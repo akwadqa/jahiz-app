@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "372726738591",
+    "project_id": "jahiz-75594",
+    "storage_bucket": "jahiz-75594.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372726738591:android:672e9b07cff0d32d4d7caa",
+        "android_client_info": {
+          "package_name": "qa.akwad.jahiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS-mq0HpTqbLRT4W_pH-p-k6G8xywgIXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

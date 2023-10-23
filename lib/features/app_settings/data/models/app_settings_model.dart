@@ -1,0 +1,52 @@
+import 'package:jahiz/core/shared_functions.dart';
+import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
+
+class AppSettingsModel extends AppSettings {
+  const AppSettingsModel(
+      {required super.customerId,
+      required super.company,
+      required super.companyWhatsappNumber,
+      required super.privacyPolicy,
+      required super.username,
+      required super.fullName,
+      required super.mobileNo,
+      required super.companyName,
+      required super.splashImage,
+      required super.appLogo,
+      required super.primaryColor,
+      required super.accentColor});
+
+  factory AppSettingsModel.fromJson(Map<String, dynamic> json) {
+    return AppSettingsModel(
+      customerId: json['customer_id'],
+      company: json['company'],
+      companyWhatsappNumber: json['company_whatsapp_number'],
+      privacyPolicy: json['privacy_policy'],
+      username: json['username'],
+      fullName: json['full_name'],
+      mobileNo: json['mobile_no'],
+      companyName: json['company_name'],
+      splashImage: json['splash_image'],
+      appLogo: SharedFunctions.getImageUrl(json['app_logo']),
+      primaryColor: json['primary_color'],
+      accentColor: json['accent_color'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['customer_id'] = customerId;
+    map['company'] = company;
+    map['company_whatsapp_number'] = companyWhatsappNumber;
+    map['privacy_policy'] = privacyPolicy;
+    map['username'] = username;
+    map['full_name'] = fullName;
+    map['mobile_no'] = mobileNo;
+    map['company_name'] = companyName;
+    map['splash_image'] = splashImage;
+    map['app_logo'] = appLogo;
+    map['primary_color'] = primaryColor;
+    map['accent_color'] = accentColor;
+    return map;
+  }
+}

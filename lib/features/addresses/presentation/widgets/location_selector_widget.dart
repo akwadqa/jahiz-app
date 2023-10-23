@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/addresses/presentation/bloc/get_addresses/get_addresses_cubit.dart';
+import 'package:jahiz/features/addresses/presentation/widgets/addresses_list.dart';
+import 'package:jahiz/generated/l10n.dart';
+import 'package:jahiz/injection_container.dart';
+
+import '../../../../core/widgets/app_bottom_sheet.dart';
+
+Future<dynamic> showLocationSelectorBottomSheet(BuildContext context) {
+  return showAppBottomSheet(
+    context: context,
+    child: BlocProvider(
+      create: (context) => getIt<GetAddressesCubit>()..getAddresses(),
+      child: const LocationSelectorWidget(),
+    ),
+  );
+}
+
+class LocationSelectorWidget extends StatelessWidget {
+  const LocationSelectorWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBottomSheetSkeleton(
+      title: S.of(context).chooseYourLocation,
+      content: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 14.0),
+        child: AddressesList(),
+      ),
+      isShowBackButton: false,
+    );
+  }
+}
