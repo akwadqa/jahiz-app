@@ -5,14 +5,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/custom_container.dart';
-import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
 import 'package:jahiz/features/products/presentation/bloc/add_to_cart/add_to_cart_cubit.dart';
 import 'package:jahiz/features/products/presentation/widgets/home/dynamic_layout.dart';
 import 'package:jahiz/generated/l10n.dart';
 
 import 'app_cached_network_image.dart';
-import '../../features/app_settings/presentation/bloc/app_settings_cubit.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem(
@@ -152,21 +150,15 @@ class ProductItem extends StatelessWidget {
               ),
             ),
             if (product.discountAmount > 0)
-              BlocBuilder<AppSettingsCubit, AppSettings?>(
-                  builder: (context, state) {
-                return Container(
-                  decoration: BoxDecoration(
-                      color: state != null
-                          ? HexColor(state.accentColor)
-                          : AppColors.red,
-                      borderRadius: const BorderRadiusDirectional.only(
-                          bottomEnd: Radius.circular(17))),
-                  padding: const EdgeInsets.all(8),
-                  child: Text('-${product.discountPercent}',
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 16)),
-                );
-              })
+              Container(
+                decoration: const BoxDecoration(
+                    color: AppColors.red,
+                    borderRadius: BorderRadiusDirectional.only(
+                        bottomEnd: Radius.circular(17))),
+                padding: const EdgeInsets.all(8),
+                child: Text('-${product.discountPercent}',
+                    style: const TextStyle(color: Colors.white, fontSize: 16)),
+              )
           ],
         ),
       ),

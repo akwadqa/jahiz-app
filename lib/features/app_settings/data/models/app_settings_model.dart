@@ -1,4 +1,3 @@
-import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
 
 class AppSettingsModel extends AppSettings {
@@ -11,10 +10,7 @@ class AppSettingsModel extends AppSettings {
       required super.fullName,
       required super.mobileNo,
       required super.companyName,
-      required super.splashImage,
-      required super.appLogo,
-      required super.primaryColor,
-      required super.accentColor});
+  });
 
   factory AppSettingsModel.fromJson(Map<String, dynamic> json) {
     return AppSettingsModel(
@@ -26,10 +22,6 @@ class AppSettingsModel extends AppSettings {
       fullName: json['full_name'],
       mobileNo: json['mobile_no'],
       companyName: json['company_name'],
-      splashImage: json['splash_image'],
-      appLogo: SharedFunctions.getImageUrl(json['app_logo']),
-      primaryColor: json['primary_color'],
-      accentColor: json['accent_color'],
     );
   }
 
@@ -43,10 +35,6 @@ class AppSettingsModel extends AppSettings {
     map['full_name'] = fullName;
     map['mobile_no'] = mobileNo;
     map['company_name'] = companyName;
-    map['splash_image'] = splashImage;
-    map['app_logo'] = appLogo;
-    map['primary_color'] = primaryColor;
-    map['accent_color'] = accentColor;
     return map;
   }
 }

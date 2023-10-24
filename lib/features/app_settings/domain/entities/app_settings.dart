@@ -9,10 +9,6 @@ class AppSettings extends Equatable {
   final String fullName;
   final String mobileNo;
   final String? companyName;
-  final String splashImage;
-  final String appLogo;
-  final String primaryColor;
-  final String accentColor;
 
   const AppSettings(
       {required this.customerId,
@@ -22,11 +18,7 @@ class AppSettings extends Equatable {
       required this.username,
       required this.fullName,
       required this.mobileNo,
-      required this.companyName,
-      required this.splashImage,
-      required this.appLogo,
-      required this.primaryColor,
-      required this.accentColor});
+      required this.companyName});
 
   AppSettings copyWith(
       {String? customerId,
@@ -36,11 +28,7 @@ class AppSettings extends Equatable {
       String? username,
       String? fullName,
       String? mobileNo,
-      String? companyName,
-      String? splashImage,
-      String? appLogo,
-      String? primaryColor,
-      String? accentColor}) {
+      String? companyName}) {
     return AppSettings(
         customerId: customerId ?? this.customerId,
         company: company ?? this.company,
@@ -51,10 +39,7 @@ class AppSettings extends Equatable {
         fullName: fullName ?? this.fullName,
         mobileNo: mobileNo ?? this.mobileNo,
         companyName: companyName ?? this.companyName,
-        splashImage: splashImage ?? this.splashImage,
-        appLogo: appLogo ?? this.appLogo,
-        primaryColor: primaryColor ?? this.primaryColor,
-        accentColor: accentColor ?? this.accentColor);
+        );
   }
 
   @override
@@ -67,9 +52,5 @@ class AppSettings extends Equatable {
         fullName,
         mobileNo,
         companyName,
-        splashImage,
-        appLogo,
-        primaryColor,
-        accentColor,
       ];
 }

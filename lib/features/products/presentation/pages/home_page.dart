@@ -2,17 +2,14 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
-import 'package:jahiz/core/widgets/app_cached_network_image.dart';
 import 'package:jahiz/core/widgets/app_error_widget.dart';
 import 'package:jahiz/core/widgets/contained_button.dart';
 import 'package:jahiz/core/widgets/no_elements_widget.dart';
-import 'package:jahiz/features/app_settings/presentation/bloc/app_settings_cubit.dart';
 import 'package:jahiz/features/products/presentation/bloc/home/home_cubit.dart';
 import 'package:jahiz/features/products/presentation/widgets/home/dynamic_list.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:jahiz/injection_container.dart';
 import '../../../../core/widgets/sign_up_login_bottom_sheet.dart';
-import '../../../app_settings/domain/entities/app_settings.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -23,15 +20,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: SizedBox(
-            height: 40,
-            child: BlocBuilder<AppSettingsCubit, AppSettings?>(
-                builder: (context, state) {
-              if (state != null) {
-                return AppCachedNetworkImage(imageUrl: state.appLogo);
-              }
-              return const SizedBox.shrink();
-            })),
+        title: const SizedBox(height: 40),
         bottom: const _SearchTextFormField(),
         actions: [
           ContainedButton(
