@@ -24,6 +24,9 @@ class SubCategoriesCubit extends Cubit<SubCategoriesState> {
         .fold((failure) => emit(SubCategoriesLoadFailure(failure.message)),
             (category) async {
       if (category.subCategories!.isNotEmpty && category.products!.isEmpty) {
+        emit(SubCategoriesLoadSuccess(
+            category: category,
+            productsState: ProductsLoadSuccess(category.products!)));
         await loadProductsOfCategory(category.itemGroupId, true);
       } else {
         emit(SubCategoriesLoadSuccess(
