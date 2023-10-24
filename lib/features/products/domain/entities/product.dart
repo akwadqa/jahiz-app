@@ -10,7 +10,6 @@ class Product extends Equatable implements HomeBlockData {
   final String discountPercent;
   final double discountAmount;
   final double discountedPrice;
-  final dynamic mobileSellingDefaultUom;
   final String productId;
   final String? backgroundColor;
   final int hasOptions;
@@ -22,7 +21,6 @@ class Product extends Equatable implements HomeBlockData {
       required this.discountPercent,
       required this.discountAmount,
       required this.discountedPrice,
-      required this.mobileSellingDefaultUom,
       required this.productId,
       required this.backgroundColor,
       required this.hasOptions});
@@ -34,7 +32,6 @@ class Product extends Equatable implements HomeBlockData {
           String? discountPercent,
           double? discountAmount,
           double? discountedPrice,
-          dynamic mobileSellingDefaultUom,
           String? productId,
           String? backgroundColor,
           int? hasOptions}) =>
@@ -45,8 +42,6 @@ class Product extends Equatable implements HomeBlockData {
           discountPercent: discountPercent ?? this.discountPercent,
           discountAmount: discountAmount ?? this.discountAmount,
           discountedPrice: discountedPrice ?? this.discountedPrice,
-          mobileSellingDefaultUom:
-              mobileSellingDefaultUom ?? this.mobileSellingDefaultUom,
           productId: productId ?? this.productId,
           backgroundColor: backgroundColor ?? this.backgroundColor,
           hasOptions: hasOptions ?? this.hasOptions);
@@ -73,7 +68,6 @@ class Product extends Equatable implements HomeBlockData {
         discountPercent,
         discountAmount,
         discountedPrice,
-        mobileSellingDefaultUom,
         productId,
         backgroundColor,
         hasOptions

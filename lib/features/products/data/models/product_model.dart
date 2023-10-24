@@ -11,7 +11,6 @@ class ProductModel extends Product implements HomeBlockDataModel {
       required super.discountPercent,
       required super.discountAmount,
       required super.discountedPrice,
-      required super.mobileSellingDefaultUom,
       required super.productId,
       required super.backgroundColor,
       required super.hasOptions});
@@ -24,7 +23,6 @@ class ProductModel extends Product implements HomeBlockDataModel {
         discountPercent: json['discount_percent'],
         discountAmount: json['discount_amount'],
         discountedPrice: json['discounted_price'],
-        mobileSellingDefaultUom: json['mobile_selling_default_uom'],
         productId: json['product_id'],
         backgroundColor: json['background_color'],
         hasOptions: json['has_options']);
@@ -38,7 +36,6 @@ class ProductModel extends Product implements HomeBlockDataModel {
     map['discount_percent'] = discountPercent;
     map['discount_amount'] = discountAmount;
     map['discounted_price'] = discountedPrice;
-    map['mobile_selling_default_uom'] = mobileSellingDefaultUom;
     map['product_id'] = productId;
     map['background_color'] = backgroundColor;
     map['has_options'] = hasOptions;
