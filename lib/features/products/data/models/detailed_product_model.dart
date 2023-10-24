@@ -12,7 +12,6 @@ class DetailedProductModel extends DetailedProduct {
       required super.websiteItemName,
       required super.itemGroup,
       required super.stockUom,
-      required super.mobileDefaultUom,
       required super.itemDescription,
       required super.backgroundColor,
       required super.published,
@@ -37,7 +36,6 @@ class DetailedProductModel extends DetailedProduct {
       websiteItemName: json['website_item_name'],
       itemGroup: json['item_group'],
       stockUom: json['stock_uom'],
-      mobileDefaultUom: json['mobile_default_uom'],
       itemDescription: json['item_description'],
       backgroundColor: json['background_color'],
       published: json['published'],
@@ -69,7 +67,6 @@ class DetailedProductModel extends DetailedProduct {
     map['website_item_name'] = websiteItemName;
     map['item_group'] = itemGroup;
     map['stock_uom'] = stockUom;
-    map['mobile_default_uom'] = mobileDefaultUom;
     map['item_description'] = itemDescription;
     map['background_color'] = backgroundColor;
     map['published'] = published;

@@ -11,7 +11,6 @@ class DetailedProduct extends Equatable {
       required this.websiteItemName,
       required this.itemGroup,
       required this.stockUom,
-      required this.mobileDefaultUom,
       required this.itemDescription,
       required this.backgroundColor,
       required this.published,
@@ -34,7 +33,6 @@ class DetailedProduct extends Equatable {
   final String websiteItemName;
   final String itemGroup;
   final String stockUom;
-  final String? mobileDefaultUom;
   final String itemDescription;
   final String? backgroundColor;
   final int published;
@@ -82,7 +80,6 @@ class DetailedProduct extends Equatable {
         websiteItemName: websiteItemName ?? this.websiteItemName,
         itemGroup: itemGroup ?? this.itemGroup,
         stockUom: stockUom ?? this.stockUom,
-        mobileDefaultUom: mobileDefaultUom ?? this.mobileDefaultUom,
         itemDescription: itemDescription ?? this.itemDescription,
         backgroundColor: backgroundColor ?? this.backgroundColor,
         published: published ?? this.published,
@@ -123,7 +120,6 @@ class DetailedProduct extends Equatable {
         websiteItemName,
         itemGroup,
         stockUom,
-        mobileDefaultUom,
         itemDescription,
         backgroundColor,
         published,
