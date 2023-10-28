@@ -46,7 +46,6 @@ class OrderModel extends Order {
       required super.netTotal,
       required super.taxCategory,
       required super.shippingRule,
-      required super.exemptFromSalesTax,
       required super.otherChargesCalculation,
       required super.baseTotalTaxesAndCharges,
       required super.totalTaxesAndCharges,
@@ -130,7 +129,6 @@ class OrderModel extends Order {
       netTotal: json['net_total'],
       taxCategory: json['tax_category'],
       shippingRule: json['shipping_rule'],
-      exemptFromSalesTax: json['exempt_from_sales_tax'],
       otherChargesCalculation: json['other_charges_calculation'],
       baseTotalTaxesAndCharges: json['base_total_taxes_and_charges'],
       totalTaxesAndCharges: json['total_taxes_and_charges'],
@@ -221,7 +219,6 @@ class OrderModel extends Order {
     map['net_total'] = netTotal;
     map['tax_category'] = taxCategory;
     map['shipping_rule'] = shippingRule;
-    map['exempt_from_sales_tax'] = exemptFromSalesTax;
     map['other_charges_calculation'] = otherChargesCalculation;
     map['base_total_taxes_and_charges'] = baseTotalTaxesAndCharges;
     map['total_taxes_and_charges'] = totalTaxesAndCharges;

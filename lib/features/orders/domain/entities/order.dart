@@ -45,7 +45,6 @@ class Order extends Equatable {
   final double netTotal;
   final String taxCategory;
   final String? shippingRule;
-  final int exemptFromSalesTax;
   final String? otherChargesCalculation;
   final double baseTotalTaxesAndCharges;
   final double totalTaxesAndCharges;
@@ -128,7 +127,6 @@ class Order extends Equatable {
     required this.netTotal,
     required this.taxCategory,
     required this.shippingRule,
-    required this.exemptFromSalesTax,
     required this.otherChargesCalculation,
     required this.baseTotalTaxesAndCharges,
     required this.totalTaxesAndCharges,
@@ -213,7 +211,6 @@ class Order extends Equatable {
         netTotal,
         taxCategory,
         shippingRule,
-        exemptFromSalesTax,
         otherChargesCalculation,
         baseTotalTaxesAndCharges,
         totalTaxesAndCharges,

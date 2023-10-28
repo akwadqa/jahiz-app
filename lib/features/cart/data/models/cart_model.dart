@@ -60,6 +60,7 @@ class CartModel extends Cart {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['coupon_code'] = couponCode;
+    map["shipping_address_name"] = shippingAddressName;
     if (shippingAddressDetails.isNotEmpty) {
       map['shipping_address_name'] = shippingAddressDetails.first.addressId;
     }
