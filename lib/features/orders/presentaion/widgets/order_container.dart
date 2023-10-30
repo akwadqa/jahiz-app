@@ -8,8 +8,8 @@ class OrderContanier extends StatelessWidget {
       required this.discountAmount,
       required this.taxAmount,
       required this.grandTotal});
-  final double orderPrice;
-  final double discountAmount;
+  final double? orderPrice;
+  final double? discountAmount;
   final double? taxAmount;
   final double grandTotal;
   @override
@@ -21,23 +21,28 @@ class OrderContanier extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(14.0),
       child: Column(children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(S.of(context).orderPrice),
-            Text('${orderPrice.toStringAsFixed(2)} ${S.of(context).qar}'),
-          ],
-        ),
-        const SizedBox(height: 10.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(S.of(context).discount),
-            Text('${discountAmount.toStringAsFixed(2)} ${S.of(context).qar}'),
-          ],
-        ),
-        const SizedBox(height: 10.0),
+        if (orderPrice != null) ...[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(S.of(context).orderPrice),
+              Text('${orderPrice!.toStringAsFixed(2)} ${S.of(context).qar}'),
+            ],
+          ),
+        ],
+        if (discountAmount != null) ...[
+          const SizedBox(height: 10.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(S.of(context).discount),
+              Text(
+                  '${discountAmount!.toStringAsFixed(2)} ${S.of(context).qar}'),
+            ],
+          ),
+        ],
         if (taxAmount != null) ...[
+          const SizedBox(height: 10.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -45,8 +50,8 @@ class OrderContanier extends StatelessWidget {
               Text('${taxAmount!.toStringAsFixed(2)} ${S.of(context).qar}'),
             ],
           ),
-          const SizedBox(height: 14.0),
         ],
+        const SizedBox(height: 14.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

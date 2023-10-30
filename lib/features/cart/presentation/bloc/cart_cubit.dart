@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/widgets/sign_up_login_bottom_sheet.dart';
 import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/features/cart/domain/usecases/get_cart.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/create_order/create_order_cubit.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/update_payment_status/update_payment_status_cubit.dart';
@@ -47,8 +48,7 @@ class CartCubit extends Cubit<CartState> {
             SnackBar(content: Text(S.of(context).addShippingAddress)));
         showLocationSelectorBottomSheet(context).then((address) {
           if (address != null) {
-            context.read<UpdateCartCubit>().updateAddress(
-                (context.read<CartCubit>().state as CartLoaded).cart, address);
+            CartService.updateCartAddress(address);
           }
         });
       } else {

@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/features/addresses/domain/entities/address.dart';
 import 'package:jahiz/features/addresses/domain/entities/city.dart';
@@ -41,14 +43,20 @@ class AddressFormWidget extends StatelessWidget {
             Text(S.of(context).addressDetails, style: _titleStyle),
             const SizedBox(height: 10.0),
             TextFormField(
-              initialValue: address?.city.country,
+              initialValue: address?.akdZoneNumber.toString(),
               decoration: InputDecoration(
-                label: Text(S.of(context).area),
+                label: Text(S.of(context).zoneNumber),
               ),
-              validator:
-                  context.read<AddUpdateAddressCubit>().validator(context),
-              onSaved: context.read<AddUpdateAddressCubit>().onAreaSaved,
-              keyboardType: TextInputType.streetAddress,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                ArabicNumberInputFormatter(),
+                LengthLimitingTextInputFormatter(2)
+              ],
+              validator: context
+                  .read<AddUpdateAddressCubit>()
+                  .zoneNumberValidator(context),
+              onSaved: (value) => context.read<AddUpdateAddressCubit>().onZoneNumberSaved(value),
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 10.0),
@@ -188,6 +196,7 @@ class _CityTextFormFieldState extends State<_CityTextFormField> {
   @override
   void initState() {
     _controller.text = widget.initialCity?.cityName ?? '';
+    _selectedCity = widget.initialCity;
     super.initState();
   }
 
@@ -202,7 +211,7 @@ class _CityTextFormFieldState extends State<_CityTextFormField> {
       readOnly: true,
       validator: context.read<AddUpdateAddressCubit>().validator(context),
       onSaved: (_) =>
-          context.read<AddUpdateAddressCubit>().onCityIdSaved(_selectedCity),
+          context.read<AddUpdateAddressCubit>().onCitySaved(_selectedCity),
       onTap: () async {
         final City? city = await showAppBottomSheet(
             context: context,

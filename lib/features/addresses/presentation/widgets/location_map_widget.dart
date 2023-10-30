@@ -2,12 +2,9 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/add_update_address/add_update_address_cubit.dart';
-import 'package:jahiz/features/addresses/presentation/widgets/address_form_widget.dart';
+import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 
 class LocationMapWidget extends StatelessWidget {
@@ -26,11 +23,8 @@ class LocationMapWidget extends StatelessWidget {
       submitButton: ElevatedButton(
         onPressed: () {
           context.popRoute().then((value) {
-            showAppBottomSheet(
-                context: context,
-                child: BlocProvider(
-                    create: (_) => getIt<AddUpdateAddressCubit>(),
-                    child: AddressFormWidget(latLng: latLng)));
+            SharedFunctions.showAddressFormBottomSheet(
+                context: context, latLng: latLng);
           });
         },
         child: Text(S.of(context).continueLabel),

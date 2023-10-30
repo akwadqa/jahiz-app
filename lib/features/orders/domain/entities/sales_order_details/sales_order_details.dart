@@ -11,11 +11,10 @@ class SalesOrderDetails extends Equatable {
   final String owner;
   final String currency;
   final String status;
-  final double additionalDiscountPercentage;
-  final double discountAmount;
-  final String paymentStatus;
+  final double? additionalDiscountPercentage;
+  final double? discountAmount;
   final List<ItemsDetail> itemsDetail;
-  final double orderPrice;
+  final double? orderPrice;
 
   const SalesOrderDetails({
     required this.salesOrderId,
@@ -28,7 +27,6 @@ class SalesOrderDetails extends Equatable {
     required this.status,
     required this.additionalDiscountPercentage,
     required this.discountAmount,
-    required this.paymentStatus,
     required this.itemsDetail,
     required this.orderPrice,
   });
@@ -46,7 +44,6 @@ class SalesOrderDetails extends Equatable {
       status,
       additionalDiscountPercentage,
       discountAmount,
-      paymentStatus,
       itemsDetail,
       orderPrice,
     ];

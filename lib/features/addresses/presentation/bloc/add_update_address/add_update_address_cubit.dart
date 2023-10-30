@@ -3,6 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jahiz/features/addresses/domain/entities/address.dart';
+import 'package:jahiz/generated/l10n.dart';
+import 'package:queen_validators/queen_validators.dart';
 
 import '../../../../../core/shared_functions.dart';
 import '../../../domain/entities/city.dart';
@@ -31,7 +33,7 @@ class AddUpdateAddressCubit extends Cubit<AddUpdateAddressState> {
   GlobalKey<FormState> get formKey => _formKey;
 
   AddressType? _addressType;
-  String? _area;
+  String? _zoneNumber;
   String? _buildingNameOrNumber;
   String? _streetNameOrNumber;
   City? _city;
@@ -41,15 +43,21 @@ class AddUpdateAddressCubit extends Cubit<AddUpdateAddressState> {
   String? Function(String?)? validator(BuildContext context) =>
       SharedFunctions.requiredValidator(context);
 
+  String? Function(String?)? zoneNumberValidator(BuildContext context) =>
+      qValidator([
+        IsRequired(S.of(context).required),
+        IsNumber(S.of(context).shouldBeNumber),
+      ]);
+
   String? Function(String?)? phoneNumberValidator(BuildContext context) =>
       SharedFunctions.phoneNumberValidator(context);
 
   void onAddressTypeSelected(AddressType value) => _addressType = value;
-  void onAreaSaved(String? value) => _area = value;
+  void onZoneNumberSaved(String? value) => _zoneNumber = value;
   void onBuildingNameOrNumberSaved(String? value) =>
       _buildingNameOrNumber = value;
   void onStreetNameOrNumberSaved(String? value) => _streetNameOrNumber = value;
-  void onCityIdSaved(City? value) => _city = value;
+  void onCitySaved(City? value) => _city = value;
   void onIsDefaultAddressSaved(bool? value) => _isDefaultAddress = value;
   void onReceiverPhoneNumberSaved(String? value) =>
       _receiverPhoneNumber = value;
@@ -63,7 +71,7 @@ class AddUpdateAddressCubit extends Cubit<AddUpdateAddressState> {
           streetNo: _streetNameOrNumber!,
           buildingNo: _buildingNameOrNumber!,
           city: _city!,
-          akdZoneNumber: _area,
+          akdZoneNumber: _zoneNumber,
           isShippingAddress: _isDefaultAddress! ? 1 : 0,
           akdLongitude: latLng.longitude.toString(),
           akdAltitude: latLng.latitude.toString(),

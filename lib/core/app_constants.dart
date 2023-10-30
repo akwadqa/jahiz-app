@@ -7,5 +7,5 @@ abstract class AppConstants {
   static const String qatarInternationalCode = '974';
   static const String phoneNumberHint = '5XXXXXXX';
   static const String tokenKey = 'TOKEN_KEY';
-  static const String mainCategoriesId = 'IG23-00001';
+  static const String mainCategoriesId = 'All Item Groups';
 }

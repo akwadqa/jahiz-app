@@ -30,11 +30,13 @@ class AddressModel extends Address {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    map['address_id'] = addressId;
+    if(addressId != null){
+      map['address_id'] = addressId;
+    }
     map['address_title'] = addressTitle;
     map['street_no'] = streetNo;
     map['building_no'] = buildingNo;
-    map['city'] = (city as CityModel).toJson();
+    map['city'] = (city as CityModel).cityId;
     map['akd_zone_number'] = akdZoneNumber;
     map['is_shipping_address'] = isShippingAddress;
     map['akd_longitude'] = akdLongitude;

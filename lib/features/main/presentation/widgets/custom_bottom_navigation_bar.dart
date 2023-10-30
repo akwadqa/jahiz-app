@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
+import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
 
 import '../../../../core/gen/assets.gen.dart';
 
@@ -37,22 +39,21 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 label: labels[1],
                 icon: Assets.images.categoriesIcon,
                 isSelected: currentIndex == 1),
-            // BlocBuilder<AppSettingsCubit, AppSettings?>(
-            //   builder: (context, state) {
-            //     return badges.Badge(
-            //         badgeContent: const Text('3', style: TextStyle(color: Colors.white)),
-            //         elevation: 0,
-            //         badgeColor: state != null ? HexColor(state.accentColor) : Colors.red,
-            //         position: BadgePosition.topEnd(top: 5, end: 5),
-            //         padding: const EdgeInsets.all(6.0),
-            //         child: _BnbIcon(onPressed: () => onPressed(2), label: labels[2], icon: Assets.images.cartIcon, isSelected: currentIndex == 2));
-            //   }
-            // ),
-            _BnbIcon(
-                onPressed: () => onPressed(2),
-                label: labels[2],
-                icon: Assets.images.cartIcon,
-                isSelected: currentIndex == 2),
+            BlocBuilder<CartCountCubit, int>(
+              builder: (context, state) {
+                return Badge(
+                  backgroundColor: Colors.red,
+                  label: Text(state.toString(),
+                      style: const TextStyle(color: Colors.white)),
+                  offset: const Offset(-5, 3),
+                  child: _BnbIcon(
+                      onPressed: () => onPressed(2),
+                      label: labels[2],
+                      icon: Assets.images.cartIcon,
+                      isSelected: currentIndex == 2),
+                );
+              },
+            ),
             _BnbIcon(
                 onPressed: () => onPressed(3),
                 label: labels[3],
@@ -92,6 +93,7 @@ class _BnbIcon extends StatelessWidget {
                 width: 24),
             const SizedBox(height: 3),
             Text(label,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 10.0,
                     color: isSelected

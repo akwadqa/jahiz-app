@@ -14,7 +14,6 @@ class SalesOrderDetailsModel extends SalesOrderDetails {
       required super.status,
       required super.additionalDiscountPercentage,
       required super.discountAmount,
-      required super.paymentStatus,
       required super.itemsDetail,
       required super.orderPrice});
 
@@ -29,13 +28,12 @@ class SalesOrderDetailsModel extends SalesOrderDetails {
       currency: json['currency'] as String,
       status: json['status'] as String,
       additionalDiscountPercentage:
-          json['additional_discount_percentage'] as double,
-      discountAmount: json['discount_amount'] as double,
-      paymentStatus: json['payment_status'] as String,
+          json['additional_discount_percentage'] as double?,
+      discountAmount: json['discount_amount'] as double?,
       itemsDetail: (json['items_detail'] as List<dynamic>)
           .map((e) => ItemsDetailModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      orderPrice: json['order_price'] as double,
+      orderPrice: json['order_price'] as double?,
     );
   }
 
@@ -50,7 +48,6 @@ class SalesOrderDetailsModel extends SalesOrderDetails {
         'status': status,
         'additional_discount_percentage': additionalDiscountPercentage,
         'discount_amount': discountAmount,
-        'payment_status': paymentStatus,
         'items_detail':
             itemsDetail.map((e) => (e as ItemsDetailModel).toJson()).toList(),
         'order_price': orderPrice,

@@ -20,11 +20,8 @@ import '../../domain/entities/cart.dart';
 import '../bloc/cart_cubit.dart';
 
 @RoutePage()
-class CartPage extends StatefulWidget implements AutoRouteWrapper {
+class CartPage extends StatelessWidget implements AutoRouteWrapper {
   const CartPage({Key? key}) : super(key: key);
-
-  @override
-  State<CartPage> createState() => _CartPageState();
 
   @override
   Widget wrappedRoute(BuildContext context) {
@@ -46,22 +43,8 @@ class CartPage extends StatefulWidget implements AutoRouteWrapper {
         );
       }
       return MultiBlocProvider(providers: [
-        BlocProvider(create: (_) => getIt<CartCubit>()..getCart()),
         BlocProvider(create: (_) => getIt<UpdateCartCubit>()),
       ], child: this);
-    });
-  }
-}
-
-class _CartPageState extends State<CartPage> {
-  @override
-  void initState() {
-    super.initState();
-    final tabsRouter = context.tabsRouter;
-    tabsRouter.addListener(() {
-      if (tabsRouter.activeIndex == 2) {
-        context.read<CartCubit>().getCart();
-      }
     });
   }
 
@@ -78,98 +61,95 @@ class _CartPageState extends State<CartPage> {
                   borderRadius:
                       BorderRadius.vertical(top: Radius.circular(35.0))),
               padding: EdgeInsets.zero,
-              child: RefreshIndicator(
-                onRefresh: () async => context.read<CartCubit>().getCart(),
-                child: BlocBuilder<CartCubit, CartState>(
-                  builder: (context, state) {
-                    if (state is CartLoaded) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(35.0))),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: ListView.separated(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16.0, vertical: 20.0),
-                                      itemCount: state.cart.items.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return _CartItem(
-                                            cart: state.cart, index: index);
-                                      },
-                                      separatorBuilder:
-                                          (BuildContext context, int index) =>
-                                              const SizedBox(height: 8.0),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0),
-                                    child: DashedLine(
-                                        color: Theme.of(context).primaryColor),
-                                  ),
-                                  Padding(
+              child: BlocBuilder<CartCubit, CartState>(
+                builder: (context, state) {
+                  if (state is CartLoaded) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(35.0))),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: ListView.separated(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16.0, vertical: 20.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(S.of(context).subTotal,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleLarge!
-                                                .copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                        Text(
-                                            '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleLarge!
-                                                .copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                      ],
-                                    ),
+                                    itemCount: state.cart.items.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return _CartItem(
+                                          cart: state.cart, index: index);
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) =>
+                                            const SizedBox(height: 8.0),
                                   ),
-                                ],
-                              ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: DashedLine(
+                                      color: Theme.of(context).primaryColor),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0, vertical: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(S.of(context).subTotal,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge!
+                                              .copyWith(
+                                                  fontWeight:
+                                                      FontWeight.bold)),
+                                      Text(
+                                          '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge!
+                                              .copyWith(
+                                                  fontWeight:
+                                                      FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: ElevatedButton(
-                                onPressed: () => context
-                                    .read<CartCubit>()
-                                    .checkout(state.cart, context),
-                                child: Text(S.of(context).checkout)),
-                          ),
-                          const SizedBox(height: 100.0),
-                        ],
-                      );
-                    }
-                    if (state is CartError) {
-                      return AppErrorWidget(
-                          errorText: state.message,
-                          onRetryClicked: context.read<CartCubit>().getCart);
-                    }
-                    if (state is CartEmpty) {
-                      return const NoElementsWidget();
-                    }
-                    return const Center(
-                        child: CircularProgressIndicator.adaptive());
-                  },
-                ),
+                        ),
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: ElevatedButton(
+                              onPressed: () => context
+                                  .read<CartCubit>()
+                                  .checkout(state.cart, context),
+                              child: Text(S.of(context).checkout)),
+                        ),
+                        const SizedBox(height: 100.0),
+                      ],
+                    );
+                  }
+                  if (state is CartError) {
+                    return AppErrorWidget(
+                        errorText: state.message,
+                        onRetryClicked: context.read<CartCubit>().getCart);
+                  }
+                  if (state is CartEmpty) {
+                    return const NoElementsWidget();
+                  }
+                  return const Center(
+                      child: CircularProgressIndicator.adaptive());
+                },
               ),
             ))
       ],

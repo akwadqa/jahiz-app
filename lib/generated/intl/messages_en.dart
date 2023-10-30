@@ -158,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "shippingTo": MessageLookupByLibrary.simpleMessage("Shipping to"),
         "shopByCategory":
             MessageLookupByLibrary.simpleMessage("Shop By Category"),
+        "shouldBeNumber":
+            MessageLookupByLibrary.simpleMessage("Should be number"),
         "signOut": MessageLookupByLibrary.simpleMessage("Sign Out"),
         "signupLogin": MessageLookupByLibrary.simpleMessage("Sign up / Login"),
         "signupLoginDescription": MessageLookupByLibrary.simpleMessage(
@@ -179,6 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "viewCart": MessageLookupByLibrary.simpleMessage("View cart"),
         "youHaveItemsInYourCart":
             MessageLookupByLibrary.simpleMessage("You have items in your cart"),
-        "yourOrder": MessageLookupByLibrary.simpleMessage(" Your Order")
+        "yourOrder": MessageLookupByLibrary.simpleMessage(" Your Order"),
+        "zoneNumber": MessageLookupByLibrary.simpleMessage("Zone number")
       };
 }

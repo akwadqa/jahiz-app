@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:jahiz/core/widgets/app_bottom_sheet.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/add_update_address/add_update_address_cubit.dart';
-import 'package:jahiz/features/addresses/presentation/widgets/address_form_widget.dart';
+import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/features/addresses/presentation/widgets/location_selector_widget.dart';
-import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
-import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
+import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
 
 import '../../domain/entities/address.dart';
 import '../../../../core/gen/assets.gen.dart';
@@ -39,17 +34,13 @@ class AddressItem extends StatelessWidget {
                 _AddressDetailsRow(address: address),
                 isEditiable
                     ? IconButton(
-                        onPressed: () {
-                          showAppBottomSheet(
-                              context: context,
-                              child: BlocProvider(
-                                  create: (_) => getIt<AddUpdateAddressCubit>(),
-                                  child: AddressFormWidget(
-                                      latLng: LatLng(
-                                          double.parse(address.akdAltitude),
-                                          double.parse(address.akdLongitude)),
-                                      address: address)));
-                        },
+                        onPressed: () =>
+                            SharedFunctions.showAddressFormBottomSheet(
+                                context: context,
+                                latLng: LatLng(
+                                    double.parse(address.akdAltitude),
+                                    double.parse(address.akdLongitude)),
+                                address: address),
                         icon: Assets.images.editIcon.svg())
                     : SizedBox(
                         width: 80.0,
@@ -59,11 +50,7 @@ class AddressItem extends StatelessWidget {
                               showLocationSelectorBottomSheet(context)
                                   .then((address) {
                                 if (address != null) {
-                                  context.read<UpdateCartCubit>().updateAddress(
-                                      (context.read<CartCubit>().state
-                                              as CartLoaded)
-                                          .cart,
-                                      address);
+                                  CartService.updateCartAddress(address);
                                 }
                               });
                             },

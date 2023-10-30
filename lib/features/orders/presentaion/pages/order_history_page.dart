@@ -6,7 +6,6 @@ import 'package:jahiz/core/widgets/app_error_widget.dart';
 import 'package:jahiz/core/widgets/app_pagination_widget.dart';
 import 'package:jahiz/core/widgets/contained_button.dart';
 import 'package:jahiz/core/widgets/custom_back_button.dart';
-import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/sales_orders/cubit/sales_orders_cubit.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:jahiz/injection_container.dart';

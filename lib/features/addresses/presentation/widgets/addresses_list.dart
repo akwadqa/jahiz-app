@@ -20,19 +20,21 @@ class AddressesList extends StatelessWidget {
         return Column(
           children: [
             Expanded(
-                child: Column(
-                    children: state.addresses
-                        .map((address) => Padding(
-                            padding: const EdgeInsets.only(bottom: 15.0),
-                            child: selecteable
-                                ? InkWell(
-                                    onTap: () =>
-                                        Navigator.of(context).pop(address),
-                                    radius: 5.0,
-                                    child: AddressItem(address: address))
-                                : AddressItem(
-                                    address: address, isEditiable: true)))
-                        .toList())),
+                child: SingleChildScrollView(
+              child: Column(
+                  children: state.addresses
+                      .map((address) => Padding(
+                          padding: const EdgeInsets.only(bottom: 15.0),
+                          child: selecteable
+                              ? InkWell(
+                                  onTap: () =>
+                                      Navigator.of(context).pop(address),
+                                  radius: 5.0,
+                                  child: AddressItem(address: address))
+                              : AddressItem(
+                                  address: address, isEditiable: true)))
+                      .toList()),
+            )),
             const SizedBox(height: 20),
             const _AddAddressButton(),
           ],

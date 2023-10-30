@@ -34,8 +34,6 @@ dependencies:
   auto_route: ^7.8.4
   # Localization
   intl: ^0.18.1
-  #Fonts
-  google_fonts: ^6.1.0
   #Views
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
@@ -54,7 +52,7 @@ dependencies:
   google_maps_flutter: ^2.5.0
   pull_to_refresh: ^2.0.0
   #Payment
-  myfatoorah_flutter: ^3.0.2
+  myfatoorah_flutter: ^3.0.3
   #Share
   share_plus: ^8.0.0
   #Url launcher
@@ -87,5 +85,20 @@ flutter:
 
   assets:
     - assets/images/
+
+  fonts:
+  - family: Qatar
+    fonts:
+      - asset: assets/fonts/qatar/Qatar2022Arabic-Thin.ttf
+        weight: 100
+      - asset: assets/fonts/qatar/Qatar2022Arabic-Book.ttf
+        weight: 400
+      - asset: assets/fonts/qatar/Qatar2022Arabic-Medium.ttf
+        weight: 500
+      - asset: assets/fonts/qatar/Qatar2022Arabic-Bold.ttf
+        weight: 700
+      - asset: assets/fonts/qatar/Qatar2022Arabic-Heavy.ttf
+        weight: 800
+
 flutter_intl:
   enabled: true

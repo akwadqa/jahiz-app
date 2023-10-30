@@ -112,5 +112,7 @@
     "deleteAccount" : "حذف الحساب",
     "updateProfile" : "تحديث الملف الشخصي",
     "appTitle" : "جاهز",
-    "qar" : "ر.ق"
+    "qar" : "ر.ق",
+    "zoneNumber" : "رقم المنطقة",
+    "shouldBeNumber" : "يجب أن يكون رقماً"
 }

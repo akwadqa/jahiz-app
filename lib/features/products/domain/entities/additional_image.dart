@@ -8,9 +8,9 @@ class AdditionalImage extends Equatable {
       required this.url});
 
   final String image;
-  final String heading;
-  final String description;
-  final String url;
+  final String? heading;
+  final String? description;
+  final String? url;
 
   AdditionalImage copyWith({
     String? image,

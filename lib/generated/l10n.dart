@@ -1189,6 +1189,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Zone number`
+  String get zoneNumber {
+    return Intl.message(
+      'Zone number',
+      name: 'zoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Should be number`
+  String get shouldBeNumber {
+    return Intl.message(
+      'Should be number',
+      name: 'shouldBeNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

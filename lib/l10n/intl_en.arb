@@ -112,5 +112,7 @@
     "deleteAccount" : "Delete Account",
     "updateProfile" : "Update Profile",
     "appTitle" : "Jahiz",
-    "qar" : "QAR"
+    "qar" : "QAR",
+    "zoneNumber" : "Zone number",
+    "shouldBeNumber" : "Should be number"
 }

@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/app_observer.dart';
 import 'package:jahiz/core/blocs/selected_language_cubit.dart';
 import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
+import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
+import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
 import 'package:jahiz/firebase_options.dart';
 import 'package:jahiz/injection_container.dart';
 
@@ -30,6 +32,8 @@ void main() async {
     BlocProvider(create: (context) => getIt<AppSettingsCubit>()),
     BlocProvider(create: (context) => getIt<AuthCubit>()),
     BlocProvider(create: (_) => getIt<AddToCartCubit>()),
-    BlocProvider(create: (_) => getIt<SelectedLanguageCubit>())
+    BlocProvider(create: (_) => getIt<SelectedLanguageCubit>()),
+    BlocProvider(lazy: false, create: (_) => getIt<CartCubit>()..getCart()),
+    BlocProvider(create: (_) => getIt<CartCountCubit>()..init()),
   ], child: const App()));
 }

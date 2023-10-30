@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_order_details.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_orders.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/sales_order_details/sales_order_details_cubit.dart';
@@ -107,8 +108,8 @@ Future<void> init() async {
   getIt.registerFactoryParam<DetailedProductCubit, String, void>(
       (productId, _) => DetailedProductCubit(getIt(), productId));
   getIt.registerFactory(() => PriceModifierCubit());
-  getIt.registerFactory(() => AddDetailedProductToCartCubit(getIt(), getIt()));
-  getIt.registerFactory(() => AddToCartCubit(getIt(), getIt()));
+  getIt.registerFactory(() => AddDetailedProductToCartCubit());
+  getIt.registerFactory(() => AddToCartCubit());
 
   //UseCases
   getIt.registerLazySingleton(() => GetDetailedProductUseCase(getIt()));
@@ -194,8 +195,8 @@ Future<void> init() async {
 
   //!Features - cart
   //Bloc
-  getIt.registerFactory(() => CartCubit(getIt(), getIt()));
-  getIt.registerFactory(() => UpdateCartCubit(getIt()));
+  getIt.registerLazySingleton(() => CartCubit(getIt(), getIt()));
+  getIt.registerLazySingleton(() => UpdateCartCubit(getIt()));
 
   //UseCases
   getIt.registerLazySingleton(() => GetCartUseCase(getIt()));
@@ -208,6 +209,9 @@ Future<void> init() async {
   //DataSources
   getIt.registerLazySingleton<CartRemoteDataSource>(
       () => CartRemoteDataSourceImpl(getIt()));
+
+  //Applicaiton
+  getIt.registerFactory<CartCountCubit>(() => CartCountCubit(getIt()));
 
   //!Features - payment
   //Bloc

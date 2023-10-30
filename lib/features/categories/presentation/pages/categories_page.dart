@@ -85,7 +85,12 @@ class _CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
         onTap: () => context
-            .pushRoute(SubCategoriesRoute(categoryId: category.itemGroupId)),
+                .pushRoute(SubCategoriesRoute(categoryId: category.itemGroupId))
+                .then((value) {
+              if (value == true) {
+                context.tabsRouter.setActiveIndex(2);
+              }
+            }),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

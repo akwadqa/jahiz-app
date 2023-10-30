@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:jahiz/core/gen/fonts.gen.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 
 abstract class AppTheme {
   static ThemeData lightTheme(String? primaryColor) => ThemeData(
-      textTheme: GoogleFonts.tajawalTextTheme(),
+    fontFamily: FontFamily.qatar,
       appBarTheme: _appBarTheme,
       inputDecorationTheme: _inputDecorationTheme(primaryColor),
       primarySwatch: primaryColor != null

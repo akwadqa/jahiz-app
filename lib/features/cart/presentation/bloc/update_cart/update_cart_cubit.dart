@@ -1,7 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:jahiz/core/domain/entities/app_response.dart';
+import 'package:jahiz/core/error/failures.dart';
 import 'package:jahiz/features/addresses/domain/entities/address.dart';
+import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
+import 'package:jahiz/injection_container.dart';
 
 import '../../../domain/entities/cart.dart';
 import '../../../domain/usecases/update_cart.dart';
@@ -27,6 +31,14 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
           : emit(UpdateCartLoaded(cart: cart));
       return true;
     });
+  }
+
+  Future<Either<Failure, Cart?>> callUpdateCart(Cart cart) async {
+    final failureOrCart = await _updateCartUseCase(cart);
+    if (failureOrCart.isRight()) {
+      getIt<CartCubit>().setCart(failureOrCart.getOrElse(() => null)!);
+    }
+    return failureOrCart;
   }
 
   Future<void> increaseQuantity(Cart cart, int index) async =>

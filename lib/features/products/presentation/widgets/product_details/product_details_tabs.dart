@@ -32,27 +32,30 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(text: S.of(context).options),
-            Tab(text: S.of(context).description),
-            Tab(text: S.of(context).specifications)
-          ],
-        ),
-        Expanded(
-            child: TabBarView(controller: _tabController, children: [
-          _OptionsTabView(
-              productOptions: widget.detailedProduct.productOptions),
-          _DescriptionTabView(
-              description: widget.detailedProduct.webLongDescription ?? ''),
-          _SpecificationsTabView(
-              productSpecifications:
-                  widget.detailedProduct.productSpecifications)
-        ]))
-      ],
+    return Form(
+      key: context.read<AddDetailedProductToCartCubit>().formKey,
+      child: Column(
+        children: [
+          TabBar(
+            controller: _tabController,
+            tabs: [
+              Tab(text: S.of(context).options),
+              Tab(text: S.of(context).description),
+              Tab(text: S.of(context).specifications)
+            ],
+          ),
+          Expanded(
+              child: TabBarView(controller: _tabController, children: [
+            _OptionsTabView(
+                productOptions: widget.detailedProduct.productOptions),
+            _DescriptionTabView(
+                description: widget.detailedProduct.webLongDescription ?? ''),
+            _SpecificationsTabView(
+                productSpecifications:
+                    widget.detailedProduct.productSpecifications)
+          ]))
+        ],
+      ),
     );
   }
 }
@@ -76,82 +79,80 @@ class _OptionsTabView extends StatelessWidget {
     const InputBorder outlineInputBorder = OutlineInputBorder(
       borderSide: BorderSide(color: AppColors.mediumLightGray),
     );
-    return Form(
-      key: context.read<AddDetailedProductToCartCubit>().formKey,
-      child: ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          itemBuilder: (context, index) {
-            {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(productOptions[index].optionName,
-                      style: const TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 5),
-                  if (productOptions[index].optionType ==
-                          OptionType.textInput.name ||
-                      productOptions[index].optionType ==
-                          OptionType.textArea.name ||
-                      productOptions[index].optionType ==
-                          OptionType.numberInput.name)
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: productOptions[index].hint,
-                        border: outlineInputBorder,
-                        enabledBorder: outlineInputBorder,
-                        focusedBorder: outlineInputBorder,
-                      ),
-                      maxLines: productOptions[index].optionType ==
-                              OptionType.textArea.name
-                          ? 3
-                          : null,
-                      keyboardType: productOptions[index].optionType ==
-                              OptionType.numberInput.name
-                          ? TextInputType.number
-                          : null,
-                      onChanged: productOptions[index].optionType ==
-                                  OptionType.numberInput.name &&
-                              productOptions[index].isPriceModifier == 1
-                          ? (value) {
-                              if (value.isNotEmpty) {
-                                context
-                                    .read<PriceModifierCubit>()
-                                    .setAmount(double.parse(value));
-                              }
-                            }
-                          : null,
-                      validator: productOptions[index].isMandatory == 1
-                          ? context
-                              .read<AddDetailedProductToCartCubit>()
-                              .validator(context)
-                          : null,
-                      onSaved: (value) => context
-                          .read<AddDetailedProductToCartCubit>()
-                          .onSaved(productOptions[index], value!),
+    return ListView.separated(
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        itemBuilder: (context, index) {
+          {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(productOptions[index].optionName,
+                    style: const TextStyle(
+                        fontSize: 18.0, fontWeight: FontWeight.w500)),
+                const SizedBox(height: 5),
+                if (productOptions[index].optionType ==
+                        OptionType.textInput.name ||
+                    productOptions[index].optionType ==
+                        OptionType.textArea.name ||
+                    productOptions[index].optionType ==
+                        OptionType.numberInput.name)
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: productOptions[index].hint,
+                      border: outlineInputBorder,
+                      enabledBorder: outlineInputBorder,
+                      focusedBorder: outlineInputBorder,
                     ),
-                  if (productOptions[index].optionType ==
-                      OptionType.radioGroup.name)
-                    ItemsSelectorFormField(
-                      items: productOptions[index].radioGroupOption,
-                      validator: (value) =>
-                          productOptions[index].isMandatory == 1
-                              ? context
-                                  .read<AddDetailedProductToCartCubit>()
-                                  .selectorValidator(value, context)
-                              : null,
-                      onSaved: (value) => context
-                          .read<AddDetailedProductToCartCubit>()
-                          .onSaved(productOptions[index], value!),
-                    )
-                ],
-              );
-            }
-          },
-          separatorBuilder: (context, index) => const SizedBox(height: 20.0),
-          itemCount: productOptions.length),
-    );
+                    maxLines: productOptions[index].optionType ==
+                            OptionType.textArea.name
+                        ? 3
+                        : null,
+                    keyboardType: productOptions[index].optionType ==
+                            OptionType.numberInput.name
+                        ? TextInputType.number
+                        : null,
+                    onChanged: productOptions[index].optionType ==
+                                OptionType.numberInput.name &&
+                            productOptions[index].isPriceModifier == 1
+                        ? (value) {
+                            if (value.isNotEmpty) {
+                              context
+                                  .read<PriceModifierCubit>()
+                                  .setAmount(double.parse(value));
+                            }
+                          }
+                        : null,
+                    validator: productOptions[index].isMandatory == 1
+                        ? context
+                            .read<AddDetailedProductToCartCubit>()
+                            .validator(context)
+                        : null,
+                    onSaved: (value) => context
+                        .read<AddDetailedProductToCartCubit>()
+                        .onSaved(productOptions[index], value!),
+                  ),
+                if (productOptions[index].optionType ==
+                    OptionType.radioGroup.name)
+                  ItemsSelectorFormField(
+                    items: productOptions[index].radioGroupOption,
+                    validator: (value) => productOptions[index].isMandatory == 1
+                        ? context
+                            .read<AddDetailedProductToCartCubit>()
+                            .selectorValidator(value, context)
+                        : null,
+                    onSaved: (value) => value != null
+                        ? context
+                            .read<AddDetailedProductToCartCubit>()
+                            .onSaved(productOptions[index], value)
+                        : null,
+                  )
+              ],
+            );
+          }
+        },
+        separatorBuilder: (context, index) => const SizedBox(height: 20.0),
+        itemCount: productOptions.length);
   }
 }
 

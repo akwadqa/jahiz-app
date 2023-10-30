@@ -9,7 +9,6 @@ import 'package:jahiz/features/products/presentation/bloc/home/home_cubit.dart';
 import 'package:jahiz/features/products/presentation/widgets/home/dynamic_list.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:jahiz/injection_container.dart';
-import '../../../../core/widgets/sign_up_login_bottom_sheet.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -26,7 +25,6 @@ class HomePage extends StatelessWidget {
           ContainedButton(
             icon: const Icon(Icons.notifications_active_outlined),
             onPressed: () {
-              showSignUpLoginBottomSheet(context);
             },
             withShadow: false,
             backgroundColor: Colors.white,

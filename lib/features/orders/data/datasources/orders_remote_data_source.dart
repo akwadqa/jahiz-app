@@ -53,7 +53,7 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
       } else {
         return responseModel.data;
       }
-    }catch (e, stackTrace) {
+    } catch (e, stackTrace) {
       throw ServerException(message: e.toString(), stackTrace: stackTrace);
     }
   }
@@ -96,7 +96,7 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
       }
     } catch (e, stackTrace) {
       throw ServerException(message: e.toString(), stackTrace: stackTrace);
-    } 
+    }
   }
 
   @override

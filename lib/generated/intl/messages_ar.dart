@@ -158,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "shippingTo": MessageLookupByLibrary.simpleMessage("الشحن إلى"),
         "shopByCategory":
             MessageLookupByLibrary.simpleMessage("تسوق حسب الفئة"),
+        "shouldBeNumber":
+            MessageLookupByLibrary.simpleMessage("يجب أن يكون رقماً"),
         "signOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "signupLogin":
             MessageLookupByLibrary.simpleMessage("تسجيل الدخول / الاشتراك"),
@@ -181,6 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "viewCart": MessageLookupByLibrary.simpleMessage("عرض السلة"),
         "youHaveItemsInYourCart": MessageLookupByLibrary.simpleMessage(
             "لديك عناصر في سلة التسوق الخاصة بك"),
-        "yourOrder": MessageLookupByLibrary.simpleMessage("طلبك")
+        "yourOrder": MessageLookupByLibrary.simpleMessage("طلبك"),
+        "zoneNumber": MessageLookupByLibrary.simpleMessage("رقم المنطقة")
       };
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/product_item.dart';
+import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
 import 'package:jahiz/features/categories/presentation/bloc/sub_categories/sub_categories_cubit.dart';
 import 'package:jahiz/features/products/presentation/widgets/home/dynamic_layout.dart';
 import 'package:jahiz/generated/l10n.dart';
@@ -149,41 +150,48 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
             return const Expanded(
                 child: Center(child: CircularProgressIndicator.adaptive()));
           }),
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5.0),
-            color: AppColors.green,
-            boxShadow: [
-              BoxShadow(
-                  offset: const Offset(0, 4),
-                  blurRadius: 6,
-                  color: Colors.black.withOpacity(0.16))
-            ]),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+      bottomNavigationBar: BlocBuilder<CartCountCubit, int>(
+        builder: (context, state) {
+          if (state == 0) {
+            return const SizedBox.shrink();
+          }
+          return Container(
+            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: AppColors.green,
+                boxShadow: [
+                  BoxShadow(
+                      offset: const Offset(0, 4),
+                      blurRadius: 6,
+                      color: Colors.black.withOpacity(0.16))
+                ]),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Assets.images.cartIcon.svg(color: Colors.white),
-                const SizedBox(width: 5),
-                Text(S.of(context).youHaveItemsInYourCart,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: Colors.white, fontSize: 15))
+                Row(
+                  children: [
+                    Assets.images.cartIcon.svg(color: Colors.white),
+                    const SizedBox(width: 5),
+                    Text(S.of(context).youHaveItemsInYourCart,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(color: Colors.white, fontSize: 15))
+                  ],
+                ),
+                TextButton(
+                    onPressed: () => context.popRoute(true),
+                    child: Text(S.of(context).viewCart,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .copyWith(color: Colors.white, fontSize: 15)))
               ],
             ),
-            TextButton(
-                onPressed: () {},
-                child: Text(S.of(context).viewCart,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: Colors.white, fontSize: 15)))
-          ],
-        ),
+          );
+        },
       ),
     );
   }
