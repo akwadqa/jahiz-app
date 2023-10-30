@@ -1,7 +1,14 @@
 import 'package:bloc/bloc.dart';
+import 'package:jahiz/core/app_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectedLanguageCubit extends Cubit<String> {
-  SelectedLanguageCubit() : super('en');
+  SelectedLanguageCubit(this._sharedPreferences) : super(_sharedPreferences.getString(AppConstants.languageKey) ?? 'en');
 
-  set language(String value) => emit(value);
+  final SharedPreferences _sharedPreferences;
+  
+  set language(String value) {
+    _sharedPreferences.setString(AppConstants.languageKey, value);
+    emit(value);
+  }
 }

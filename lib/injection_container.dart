@@ -86,7 +86,7 @@ final getIt = GetIt.instance;
 
 Future<void> init() async {
   ///Core
-  getIt.registerLazySingleton(() => SelectedLanguageCubit());
+  getIt.registerLazySingleton(() => SelectedLanguageCubit(getIt()));
 
   //!Features - home
   //Bloc

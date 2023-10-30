@@ -8,4 +8,5 @@ abstract class AppConstants {
   static const String phoneNumberHint = '5XXXXXXX';
   static const String tokenKey = 'TOKEN_KEY';
   static const String mainCategoriesId = 'All Item Groups';
+  static const String languageKey = 'LANGUAGE_KEY';
 }
