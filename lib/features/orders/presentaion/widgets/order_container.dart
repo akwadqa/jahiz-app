@@ -19,7 +19,7 @@ class OrderContanier extends StatelessWidget {
         color: Theme.of(context).primaryColor.withOpacity(0.05),
         borderRadius: BorderRadius.circular(5.0),
       ),
-      padding: const EdgeInsets.all(14.0),
+      padding: const EdgeInsets.all(8.0),
       child: Column(children: [
         if (orderPrice != null) ...[
           Row(
@@ -31,7 +31,7 @@ class OrderContanier extends StatelessWidget {
           ),
         ],
         if (discountAmount != null) ...[
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 8.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -42,7 +42,7 @@ class OrderContanier extends StatelessWidget {
           ),
         ],
         if (taxAmount != null) ...[
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 8.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -51,7 +51,7 @@ class OrderContanier extends StatelessWidget {
             ],
           ),
         ],
-        const SizedBox(height: 14.0),
+        const SizedBox(height: 10.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -37,7 +37,7 @@ class OrderHistoryPage extends StatelessWidget implements AutoRouteWrapper {
                     return Container(
                       decoration: BoxDecoration(
                           color:
-                              Theme.of(context).primaryColor.withOpacity(0.3),
+                              Theme.of(context).primaryColor.withOpacity(0.05),
                           borderRadius: BorderRadius.circular(15.0)),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 10.0),

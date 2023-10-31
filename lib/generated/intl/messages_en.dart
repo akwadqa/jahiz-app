@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Promo Code"),
         "enterYourLocation":
             MessageLookupByLibrary.simpleMessage("Enter your location"),
+        "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "freiendlyErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Something went wrong! Please contact our customer support."),

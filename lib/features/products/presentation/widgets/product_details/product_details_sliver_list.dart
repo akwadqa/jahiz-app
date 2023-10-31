@@ -24,8 +24,8 @@ class ProductDetailsSliverList extends StatelessWidget {
           children: [
             const SizedBox(height: 10),
             Text(detailedProduct.websiteItemName, style: _titleTextStyle()),
-            const SizedBox(height: 10),
-            const Text('-500g', style: TextStyle(color: AppColors.midnight)),
+            Text(detailedProduct.itemDescription,
+                style: const TextStyle(color: AppColors.midnight)),
             Row(
               children: [
                 Text('${detailedProduct.discountedPrice} ${S.of(context).qar}',

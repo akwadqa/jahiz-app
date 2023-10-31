@@ -108,16 +108,14 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
                                               .textTheme
                                               .titleLarge!
                                               .copyWith(
-                                                  fontWeight:
-                                                      FontWeight.bold)),
+                                                  fontWeight: FontWeight.bold)),
                                       Text(
                                           '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleLarge!
                                               .copyWith(
-                                                  fontWeight:
-                                                      FontWeight.bold)),
+                                                  fontWeight: FontWeight.bold)),
                                     ],
                                   ),
                                 ),
@@ -127,8 +125,7 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
                         ),
                         const SizedBox(height: 20),
                         Padding(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 16.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           child: ElevatedButton(
                               onPressed: () => context
                                   .read<CartCubit>()

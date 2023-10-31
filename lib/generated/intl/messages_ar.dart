@@ -83,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterPromoCode":
             MessageLookupByLibrary.simpleMessage("أدخل رمز العرض الترويجي"),
         "enterYourLocation": MessageLookupByLibrary.simpleMessage("أدخل موقعك"),
+        "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "freiendlyErrorMessage": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ تقني! يرجى التواصل مع فريق خدمة العملاء."),

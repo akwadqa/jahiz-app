@@ -66,6 +66,9 @@ class _AddAddressButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: () => showLocationMapBottomSheet(context),
-        child: Text(S.of(context).addNewAddress));
+        child: Text(
+          S.of(context).addNewAddress,
+          style: const TextStyle(fontSize: 22),
+        ));
   }
 }

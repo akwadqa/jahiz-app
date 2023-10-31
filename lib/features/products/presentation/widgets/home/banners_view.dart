@@ -24,7 +24,7 @@ class BannersView extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 130,
+              height: 144,
               width: double.infinity,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(20)),

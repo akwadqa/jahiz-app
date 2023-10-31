@@ -55,12 +55,20 @@ class $AssetsImagesGen {
   SvgGenImage get editProfileIcon =>
       const SvgGenImage('assets/images/edit_profile_icon.svg');
 
+  /// File path: assets/images/favorite.png
+  AssetGenImage get favorite =>
+      const AssetGenImage('assets/images/favorite.png');
+
   /// File path: assets/images/folder_icon.svg
   SvgGenImage get folderIcon =>
       const SvgGenImage('assets/images/folder_icon.svg');
 
   /// File path: assets/images/home_icon.svg
   SvgGenImage get homeIcon => const SvgGenImage('assets/images/home_icon.svg');
+
+  /// File path: assets/images/jahez_logo.png
+  AssetGenImage get jahezLogo =>
+      const AssetGenImage('assets/images/jahez_logo.png');
 
   /// File path: assets/images/location_icon.svg
   SvgGenImage get locationIcon =>
@@ -69,6 +77,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/logout_icon.svg
   SvgGenImage get logoutIcon =>
       const SvgGenImage('assets/images/logout_icon.svg');
+
+  /// File path: assets/images/notification.svg
+  SvgGenImage get notification =>
+      const SvgGenImage('assets/images/notification.svg');
 
   /// File path: assets/images/outlined_home_icon.svg
   SvgGenImage get outlinedHomeIcon =>
@@ -95,10 +107,13 @@ class $AssetsImagesGen {
         deleteIcon,
         editIcon,
         editProfileIcon,
+        favorite,
         folderIcon,
         homeIcon,
+        jahezLogo,
         locationIcon,
         logoutIcon,
+        notification,
         outlinedHomeIcon,
         profileIcon,
         shareAppIcon

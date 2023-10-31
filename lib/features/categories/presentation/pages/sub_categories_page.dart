@@ -157,7 +157,7 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
           }
           return Container(
             margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0),
                 color: AppColors.green,

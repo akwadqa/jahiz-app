@@ -111,6 +111,7 @@ class _ItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final cartItem = cartItems[index];
         return OrderItemWidget(
@@ -118,7 +119,7 @@ class _ItemsList extends StatelessWidget {
             itemName: cartItem.itemName,
             amount: cartItem.amount);
       },
-      separatorBuilder: (context, index) => const SizedBox(height: 20.0),
+      separatorBuilder: (context, index) => const SizedBox(height: 8.0),
       itemCount: cartItems.length,
       shrinkWrap: true,
     );
@@ -285,20 +286,20 @@ class _PaymentAndConfirmationSectionState
   Future<void> _initiateSession(BuildContext context, Order order) async {
     final selectedLanguageCode = context.read<SelectedLanguageCubit>().state;
     MFSDK.init(_paymentMethod!.apiToken!, MFCountry.QATAR, MFEnvironment.TEST);
-    MFInitiatePaymentRequest request = MFInitiatePaymentRequest(
-        currencyIso: MFCurrencyISO.QATAR_QAR);
+    MFInitiatePaymentRequest request =
+        MFInitiatePaymentRequest(currencyIso: MFCurrencyISO.QATAR_QAR);
     await MFSDK
-        .initiatePayment(request, selectedLanguageCode == 'en' ? MFLanguage.ENGLISH : MFLanguage.ARABIC)
-        .then((value) => pay(
-                      context,
-                      _paymentMethod!,
-                      widget.cart.grandTotal,
-                      _showSuccessPaymentDialog,
-                      _showFailPaymentDialog,
-                      order,
-                      false))
-        .catchError((error) => {ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(error!.message!)))});
+        .initiatePayment(
+            request,
+            selectedLanguageCode == 'en'
+                ? MFLanguage.ENGLISH
+                : MFLanguage.ARABIC)
+        .then((value) => pay(context, _paymentMethod!, widget.cart.grandTotal,
+            _showSuccessPaymentDialog, _showFailPaymentDialog, order, false))
+        .catchError((error) => {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(error!.message!)))
+            });
   }
 
   Future<dynamic> _showSuccessPaymentDialog(String salesOrderId) {

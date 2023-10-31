@@ -17,8 +17,9 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: isNotLast ? const EdgeInsets.only(bottom: 30) : EdgeInsets.zero,
+      padding: EdgeInsets.zero,
       sliver: DynamicLayout(
+        heightOfHorizontalList: 145,
         title: categoriesBlock.title,
         onMoreButtonPressed: () {},
         viewType: ViewType.values
@@ -31,27 +32,26 @@ class CategoriesView extends StatelessWidget {
                 alignment: AlignmentDirectional.center,
                 children: [
                   CircleAvatar(
-                    radius: 30,
+                    radius: 40,
                     backgroundColor:
                         SharedFunctions.getColor(categoriesBlock.background),
                   ),
                   AppCachedNetworkImage(
                       imageUrl: categoriesBlock.data[index].categoryImage,
-                      width: 50,
-                      height: 50)
+                      width: 72,
+                      height: 72)
                 ],
               ),
-              const SizedBox(height: 8),
-              Text(categoriesBlock.data[index].categoryTitle,
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600))
+              SizedBox(
+                width: 95,
+                child: Text(categoriesBlock.data[index].categoryTitle,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.black, fontSize: 18)),
+              )
             ],
           );
         },
         count: categoriesBlock.data.length,
-        heightOfHorizontalList: 100,
         backgroundColor: SharedFunctions.getColor(categoriesBlock.background),
       ),
     );

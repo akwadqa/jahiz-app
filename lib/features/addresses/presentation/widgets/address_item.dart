@@ -26,7 +26,7 @@ class AddressItem extends StatelessWidget {
         color: Theme.of(context).primaryColor.withOpacity(0.05),
         borderRadius: BorderRadius.circular(5.0),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: isChangeable || isEditiable
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

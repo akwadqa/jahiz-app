@@ -2,6 +2,8 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
+import 'package:jahiz/core/gen/assets.gen.dart';
+import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/app_error_widget.dart';
 import 'package:jahiz/core/widgets/contained_button.dart';
 import 'package:jahiz/core/widgets/no_elements_widget.dart';
@@ -19,13 +21,12 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: const SizedBox(height: 40),
+        title: Assets.images.jahezLogo.image(width: 70),
         bottom: const _SearchTextFormField(),
         actions: [
           ContainedButton(
-            icon: const Icon(Icons.notifications_active_outlined),
-            onPressed: () {
-            },
+            icon: Assets.images.notification.svg(),
+            onPressed: () {},
             withShadow: false,
             backgroundColor: Colors.white,
             margin: const EdgeInsetsDirectional.only(end: 16.0),
@@ -62,11 +63,20 @@ class _SearchTextFormField extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 40.0),
-      child: Column(
-        children: [
-          TextFormField(
+    return Stack(
+      alignment: AlignmentDirectional.bottomEnd,
+      children: [
+        Container(
+          height: 30,
+          decoration: const BoxDecoration(
+              color: AppColors.whiteSmoke,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(35), topRight: Radius.circular(35))),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 40.0),
+          child: TextFormField(
+            textAlign: TextAlign.center,
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.only(bottom: 2, top: 5, right: 8, left: 8),
@@ -87,9 +97,8 @@ class _SearchTextFormField extends StatelessWidget
               fillColor: Colors.white,
             ),
           ),
-          const SizedBox(height: 10),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

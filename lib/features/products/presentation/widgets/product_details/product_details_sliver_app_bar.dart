@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/app_constants.dart';
 import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/app_cached_network_image.dart';
@@ -18,7 +19,13 @@ class ProductDetailsSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final images = [
-      ...detailedProduct.additionalImages,
+      ...detailedProduct.additionalImages
+          .map((e) => AdditionalImage(
+              image: "${AppConstants.hostUrl}${e.image}",
+              heading: null,
+              description: '',
+              url: ''))
+          .toList(),
       AdditionalImage(
           image: detailedProduct.websiteImage,
           heading: '',
