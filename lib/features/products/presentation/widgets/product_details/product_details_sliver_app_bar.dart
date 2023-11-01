@@ -10,6 +10,7 @@ import 'package:jahiz/core/widgets/contained_button.dart';
 import 'package:jahiz/core/widgets/custom_back_button.dart';
 import 'package:jahiz/features/products/domain/entities/additional_image.dart';
 import 'package:jahiz/features/products/domain/entities/detailed_product.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProductDetailsSliverAppBar extends StatelessWidget {
   const ProductDetailsSliverAppBar({Key? key, required this.detailedProduct})
@@ -38,14 +39,11 @@ class ProductDetailsSliverAppBar extends StatelessWidget {
       pinned: true,
       actions: [
         ContainedButton(
-          icon: const Icon(Icons.favorite_border),
-          margin: const EdgeInsets.all(8.0),
-          onPressed: () {},
-        ),
-        ContainedButton(
           icon: const Icon(Icons.share),
           margin: const EdgeInsets.all(8.0),
-          onPressed: () {},
+          onPressed: () {
+            Share.share("product");
+          },
         ),
       ],
       flexibleSpace: FlexibleSpaceBar(

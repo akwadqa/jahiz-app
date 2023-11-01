@@ -50,11 +50,14 @@ class BannersView extends StatelessWidget {
             ),
             BlocBuilder<SliderIndicatorCubit, int>(builder: (context, state) {
               return DotsIndicator(
-                dotsCount: bannersBlock.data.length,
-                position: state,
-              );
+                  dotsCount: bannersBlock.data.length,
+                  position: state,
+                  decorator: const DotsDecorator(
+                    size: Size.square(8.0),
+                    activeSize: Size.square(8.0),
+                  ));
             }),
-            if (isNotLast) const SizedBox(height: 30),
+            if (isNotLast) const SizedBox(height: 20),
           ],
         ),
       ),

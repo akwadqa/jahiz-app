@@ -157,7 +157,7 @@ class ProductItem extends StatelessWidget {
                     color: AppColors.red,
                     borderRadius: BorderRadiusDirectional.only(
                         bottomEnd: Radius.circular(17))),
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: Text('-${product.discountPercent}',
                     style: const TextStyle(color: Colors.white, fontSize: 16)),
               )

@@ -40,8 +40,9 @@ class DynamicLayout extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           sliver: MultiSliver(
             children: [
-              _TitleHeader(
-                  title: title, onMoreButtonPressed: onMoreButtonPressed),
+              if (title != null)
+                _TitleHeader(
+                    title: title, onMoreButtonPressed: onMoreButtonPressed),
               SliverGrid(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -56,14 +57,14 @@ class DynamicLayout extends StatelessWidget {
       case ViewType.circleList:
         return _HorizontalList(
             heightOfHorizontalList: heightOfHorizontalList,
-            title: title!,
+            title: title,
             itemCount: count,
             itemBuilder: itemBuilder,
             onMoreButtonPressed: onMoreButtonPressed!);
       case ViewType.horizontalScroll:
         return _HorizontalList(
             heightOfHorizontalList: 320,
-            title: title!,
+            title: title,
             itemCount: count,
             itemBuilder: itemBuilder,
             onMoreButtonPressed: onMoreButtonPressed!);
@@ -144,7 +145,7 @@ class _HorizontalList extends StatelessWidget {
       : super(key: key);
 
   final double heightOfHorizontalList;
-  final String title;
+  final String? title;
   final VoidCallback onMoreButtonPressed;
   final Widget Function(BuildContext, int) itemBuilder;
   final int itemCount;
@@ -154,11 +155,12 @@ class _HorizontalList extends StatelessWidget {
     return SliverToBoxAdapter(
         child: Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: _TitleHeader(
-              title: title, onMoreButtonPressed: onMoreButtonPressed),
-        ),
+        if (title != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: _TitleHeader(
+                title: title, onMoreButtonPressed: onMoreButtonPressed),
+          ),
         SizedBox(
             height: heightOfHorizontalList,
             child: ListView.separated(

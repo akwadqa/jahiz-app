@@ -19,8 +19,7 @@ class CategoriesView extends StatelessWidget {
     return SliverPadding(
       padding: EdgeInsets.zero,
       sliver: DynamicLayout(
-        heightOfHorizontalList: 145,
-        title: categoriesBlock.title,
+        heightOfHorizontalList: 144,
         onMoreButtonPressed: () {},
         viewType: ViewType.values
             .firstWhere((element) => element.name == categoriesBlock.view),

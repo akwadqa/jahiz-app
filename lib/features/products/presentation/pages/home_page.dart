@@ -81,8 +81,8 @@ class _SearchTextFormField extends StatelessWidget
               contentPadding:
                   const EdgeInsets.only(bottom: 2, top: 5, right: 8, left: 8),
               hintText: S.of(context).searchHint,
-              suffixIcon:
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+              suffixIcon: IconButton(
+                  onPressed: () {}, icon: Assets.images.search.svg()),
               border: const OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.all(Radius.circular(20)),

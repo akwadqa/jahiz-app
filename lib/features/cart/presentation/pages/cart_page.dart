@@ -175,7 +175,7 @@ class _CartItem extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor.withOpacity(0.2),
+            color: Theme.of(context).primaryColor.withOpacity(0.07),
             borderRadius: BorderRadius.circular(17.0)),
         padding: const EdgeInsets.all(16.0),
         child: Row(

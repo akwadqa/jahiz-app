@@ -90,6 +90,12 @@ class $AssetsImagesGen {
   SvgGenImage get profileIcon =>
       const SvgGenImage('assets/images/profile_icon.svg');
 
+  /// File path: assets/images/search.svg
+  SvgGenImage get search => const SvgGenImage('assets/images/search.svg');
+
+  /// File path: assets/images/share.svg
+  SvgGenImage get share => const SvgGenImage('assets/images/share.svg');
+
   /// File path: assets/images/share_app_icon.svg
   SvgGenImage get shareAppIcon =>
       const SvgGenImage('assets/images/share_app_icon.svg');
@@ -116,6 +122,8 @@ class $AssetsImagesGen {
         notification,
         outlinedHomeIcon,
         profileIcon,
+        search,
+        share,
         shareAppIcon
       ];
 }

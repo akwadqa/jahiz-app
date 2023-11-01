@@ -17,7 +17,7 @@ class DynamicList extends StatelessWidget {
         slivers: homeBlocks
             .map((e) => SliverPadding(
                 padding: EdgeInsetsDirectional.only(
-                    top: homeBlocks.indexOf(e) == 0 ? 30 : 0,
+                    top: homeBlocks.indexOf(e) == 0 ? 10 : 0,
                     bottom: homeBlocks.indexOf(e) == homeBlocks.length - 1
                         ? 100
                         : 0),

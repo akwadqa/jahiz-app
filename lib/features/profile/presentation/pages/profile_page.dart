@@ -65,10 +65,6 @@ class ProfilePage extends StatelessWidget {
                         icon: Assets.images.contactUsIcon.image(),
                         onTap: () => _contactUs(context),
                         text: S.of(context).contactUs),
-                    ActionButton(
-                        icon: Assets.images.favorite.image(),
-                        onTap: () {},
-                        text: S.of(context).favorite),
                   ],
                 ),
                 const SizedBox(height: 40),

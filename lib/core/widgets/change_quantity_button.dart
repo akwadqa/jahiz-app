@@ -24,7 +24,7 @@ class ChangeQuantityButton extends StatelessWidget {
         borderRadius: borderRadius,
         child: Padding(
           padding: padding,
-          child: Icon(icon, color: Theme.of(context).primaryColor),
+          child: Icon(icon, color: Theme.of(context).primaryColor, size: 18),
         ),
       ),
     );
