@@ -33,7 +33,7 @@ class CategoriesPage extends StatelessWidget implements AutoRouteWrapper {
             child: BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {
               if (state is CategoriesLoadSuccess) {
-                return RefreshIndicator(
+                return RefreshIndicator.adaptive(
                   onRefresh: context.read<CategoriesCubit>().getCategories,
                   child: GridView.builder(
                     padding: const EdgeInsets.only(
@@ -97,7 +97,8 @@ class _CategoryItem extends StatelessWidget {
             Expanded(
               child: SizedBox(
                   width: double.maxFinite,
-                  child: AppCachedNetworkImage(imageUrl: category.image!)),
+                  child: AppCachedNetworkImage(
+                      imageUrl: category.image!, fit: BoxFit.fitWidth)),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),

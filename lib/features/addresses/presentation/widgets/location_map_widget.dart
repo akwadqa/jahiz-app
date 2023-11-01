@@ -16,7 +16,7 @@ class LocationMapWidget extends StatelessWidget {
     return AppBottomSheetSkeleton(
       title: S.of(context).chooseYourLocation,
       content: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 14.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: _MapWidget(onLocationSelected: (LatLng value) => latLng = value),
       ),
       scrollPhysics: const NeverScrollableScrollPhysics(),
@@ -43,37 +43,37 @@ class _MapWidget extends StatefulWidget {
 class _MapWidgetState extends State<_MapWidget> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  CameraPosition _kGooglePlex = const CameraPosition(
-    target: LatLng(25.286106, 51.534817),
-    zoom: 14.4746,
-  );
+  late LatLng _currentPosition;
 
   @override
   void initState() {
-    widget.onLocationSelected(_kGooglePlex.target);
+    _currentPosition = const LatLng(25.286106, 51.534817);
+    widget.onLocationSelected(_currentPosition);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      initialCameraPosition: _kGooglePlex,
-      onMapCreated: (GoogleMapController controller) {
-        _controller.complete(controller);
-      },
-      onCameraMove: (CameraPosition position) {
-        setState(() {
-          _kGooglePlex = position;
-        });
-        widget.onLocationSelected(position.target);
-      },
-      myLocationEnabled: true,
-      markers: {
-        Marker(
-          markerId: const MarkerId('marker_1'),
-          position: _kGooglePlex.target,
+    return Stack(
+      children: [
+        GoogleMap(
+          initialCameraPosition: CameraPosition(
+                    target: _currentPosition,
+                    zoom: 14.0,
+                  ),
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          onCameraMove: (position) {
+            _currentPosition = position.target;
+            widget.onLocationSelected(_currentPosition);
+          },
+          myLocationEnabled: true,
         ),
-      },
+        const Center(
+          child: Icon(Icons.location_on, color: Colors.red, size: 40),
+        )
+      ],
     );
   }
 }

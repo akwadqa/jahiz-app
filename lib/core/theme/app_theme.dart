@@ -4,7 +4,7 @@ import 'package:jahiz/core/theme/app_colors.dart';
 
 abstract class AppTheme {
   static ThemeData lightTheme(String? primaryColor) => ThemeData(
-    fontFamily: FontFamily.qatar,
+      fontFamily: FontFamily.qatar,
       appBarTheme: _appBarTheme,
       inputDecorationTheme: _inputDecorationTheme(primaryColor),
       primarySwatch: primaryColor != null
@@ -19,7 +19,10 @@ abstract class AppTheme {
       centerTitle: true,
       backgroundColor: Colors.transparent,
       titleTextStyle: TextStyle(
-          fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black));
+          fontFamily: FontFamily.qatar,
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          color: Colors.black));
 
   static ChipThemeData _chipTheme(String? primaryColor) => ChipThemeData(
         selectedColor: primaryColor != null ? HexColor(primaryColor) : null,
@@ -36,8 +39,10 @@ abstract class AppTheme {
         style: ButtonStyle(
             shape: MaterialStateProperty.all(const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(17)))),
-            textStyle: MaterialStateProperty.all(
-                const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            textStyle: MaterialStateProperty.all(const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontFamily: FontFamily.qatar)),
             padding: MaterialStateProperty.all(const EdgeInsets.all(20.0)),
             minimumSize:
                 MaterialStateProperty.all(const Size(double.infinity, 65))),

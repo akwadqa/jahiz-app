@@ -32,6 +32,9 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
                   current is SubCategoriesLoadSuccess),
           builder: (context, state) {
             if (state is SubCategoriesLoadSuccess) {
+              if (state.category.subCategories!.isEmpty) {
+                return const NoElementsWidget();
+              }
               return Expanded(
                 child: Column(
                   children: [

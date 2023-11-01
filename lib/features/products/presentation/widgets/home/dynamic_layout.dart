@@ -62,7 +62,7 @@ class DynamicLayout extends StatelessWidget {
             onMoreButtonPressed: onMoreButtonPressed!);
       case ViewType.horizontalScroll:
         return _HorizontalList(
-            heightOfHorizontalList: 260,
+            heightOfHorizontalList: 320,
             title: title!,
             itemCount: count,
             itemBuilder: itemBuilder,
@@ -83,20 +83,17 @@ class DynamicLayout extends StatelessWidget {
                 children: [
                   _TitleHeader(
                       title: title!, onMoreButtonPressed: onMoreButtonPressed!),
-                  SliverGrid(
-                    gridDelegate: SliverQuiltedGridDelegate(
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 15,
-                      pattern: const [
-                        QuiltedGridTile(2, 2),
-                        QuiltedGridTile(1, 1),
-                        QuiltedGridTile(1, 1)
-                      ],
-                      crossAxisCount: 3,
-                    ),
-                    delegate: SliverChildBuilderDelegate(itemBuilder,
-                        childCount: count),
-                  ),
+                  StaggeredGrid.count(
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15,
+                    crossAxisCount: 6,
+                    children: List.generate(count, (index) {
+                      return StaggeredGridTile.count(
+                          crossAxisCellCount: index % 3 == 0 ? 4 : 2,
+                          mainAxisCellCount: index % 3 == 0 ? 6 : 3,
+                          child: itemBuilder(context, index));
+                    }),
+                  )
                 ],
               ),
             ),

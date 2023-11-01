@@ -62,7 +62,9 @@ class ProductItem extends StatelessWidget {
                     child: SizedBox(
                         width: double.maxFinite,
                         child: AppCachedNetworkImage(
-                            imageUrl: product.productImage)),
+                          imageUrl: product.productImage,
+                          fit: BoxFit.fitWidth,
+                        )),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),

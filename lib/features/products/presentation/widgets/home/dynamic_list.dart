@@ -11,7 +11,7 @@ class DynamicList extends StatelessWidget {
   final List<HomeBlock<HomeBlockData>> homeBlocks;
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
+    return RefreshIndicator.adaptive(
       onRefresh: context.read<HomeCubit>().getHomeBlocks,
       child: CustomScrollView(
         slivers: homeBlocks

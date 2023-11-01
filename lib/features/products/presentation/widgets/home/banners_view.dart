@@ -32,13 +32,14 @@ class BannersView extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: CarouselSlider.builder(
                 itemCount: bannersBlock.data.length,
-                itemBuilder:
-                    (BuildContext context, int itemIndex, int pageViewIndex) =>
-                        SizedBox(
-                            width: double.infinity,
-                            child: AppCachedNetworkImage(
-                                imageUrl:
-                                    bannersBlock.data[itemIndex].bannerImage)),
+                itemBuilder: (BuildContext context, int itemIndex,
+                        int pageViewIndex) =>
+                    SizedBox(
+                        width: double.infinity,
+                        child: AppCachedNetworkImage(
+                          imageUrl: bannersBlock.data[itemIndex].bannerImage,
+                          fit: BoxFit.fitWidth,
+                        )),
                 options: CarouselOptions(
                   onPageChanged: (page, _) =>
                       context.read<SliderIndicatorCubit>().page = page,

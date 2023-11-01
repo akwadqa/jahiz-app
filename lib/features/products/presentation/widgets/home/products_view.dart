@@ -29,7 +29,7 @@ class ProductsView extends StatelessWidget {
                 width: ViewType.values.firstWhere(
                             (element) => element.name == productsBlock.view) ==
                         ViewType.horizontalScroll
-                    ? 250
+                    ? 200
                     : null,
                 child: ProductItem(
                   product: productsBlock.data[index],
