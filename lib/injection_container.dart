@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
+import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_order_details.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_orders.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
@@ -210,6 +211,7 @@ Future<void> init() async {
 
   //Applicaiton
   getIt.registerFactory<CartCountCubit>(() => CartCountCubit(getIt()));
+  getIt.registerFactory(() => CartService(getIt(), getIt()));
 
   //!Features - payment
   //Bloc

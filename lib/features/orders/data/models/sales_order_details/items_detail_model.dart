@@ -1,7 +1,6 @@
 import 'package:jahiz/features/orders/domain/entities/sales_order_details/items_detail.dart';
 
 class ItemsDetailModel extends ItemsDetail {
-
   const ItemsDetailModel({
     required super.websiteItemCode,
     required super.websiteItemName,
@@ -16,7 +15,8 @@ class ItemsDetailModel extends ItemsDetail {
     required super.productOptions,
   });
 
-  factory ItemsDetailModel.fromJson(Map<String, dynamic> json) => ItemsDetailModel(
+  factory ItemsDetailModel.fromJson(Map<String, dynamic> json) =>
+      ItemsDetailModel(
         websiteItemCode: json['website_item_code'] as String,
         websiteItemName: json['website_item_name'] as String,
         qty: json['qty'] as double,
@@ -26,7 +26,7 @@ class ItemsDetailModel extends ItemsDetail {
         image: json['image'] as String,
         productOption: json['product_option'] as dynamic,
         itemImage: json['item_image'] as String,
-        backgroundColor: json['background_color'] as String,
+        backgroundColor: json['background_color'] as String?,
         productOptions: json['product_options'] as List<dynamic>,
       );
 

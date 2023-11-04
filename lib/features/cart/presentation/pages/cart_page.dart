@@ -15,7 +15,6 @@ import '../../../../core/widgets/app_header.dart';
 import '../../../../core/widgets/change_quantity_button.dart';
 import '../../../../core/widgets/no_elements_widget.dart';
 import '../../../../core/widgets/sign_up_login_bottom_sheet.dart';
-import '../../../../injection_container.dart';
 import '../../domain/entities/cart.dart';
 import '../bloc/cart_cubit.dart';
 
@@ -42,9 +41,7 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
           ),
         );
       }
-      return MultiBlocProvider(providers: [
-        BlocProvider(create: (_) => getIt<UpdateCartCubit>()),
-      ], child: this);
+      return this;
     });
   }
 

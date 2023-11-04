@@ -6,6 +6,7 @@ import 'package:jahiz/core/blocs/selected_language_cubit.dart';
 import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
+import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
 import 'package:jahiz/firebase_options.dart';
 import 'package:jahiz/injection_container.dart';
 
@@ -35,5 +36,6 @@ void main() async {
     BlocProvider(create: (_) => getIt<SelectedLanguageCubit>()),
     BlocProvider(lazy: false, create: (_) => getIt<CartCubit>()..getCart()),
     BlocProvider(create: (_) => getIt<CartCountCubit>()..init()),
+    BlocProvider(create: (_) => getIt<UpdateCartCubit>()),
   ], child: const App()));
 }

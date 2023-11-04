@@ -1,9 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/blocs/selected_language_cubit.dart';
-import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/core/widgets/app_bottom_sheet.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 
@@ -44,14 +43,13 @@ class PaymentWidget extends StatefulWidget {
 }
 
 class _PaymentWidgetState extends State<PaymentWidget> {
-  final _paymentCardView = MFCardPaymentView();
+  late MFCardPaymentView _paymentCardView;
 
   @override
   void initState() {
     MFSDK.init(
         widget.paymentMethod.apiToken!, MFCountry.QATAR, MFEnvironment.TEST);
     _initiateSession();
-    _initiatePaymentRequest();
     super.initState();
   }
 
@@ -68,23 +66,9 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         .catchError((error) => {debugPrint(error.message)});
   }
 
-  Future<void> _initiatePaymentRequest() async {
-    final selectedLanguageCode = context.read<SelectedLanguageCubit>().state;
-    MFInitiatePaymentRequest request =
-        MFInitiatePaymentRequest(currencyIso: MFCurrencyISO.QATAR_QAR);
-    await MFSDK
-        .initiatePayment(
-            request,
-            selectedLanguageCode == 'en'
-                ? MFLanguage.ENGLISH
-                : MFLanguage.ARABIC)
-        .then((value) => debugPrint(value.toJson().toString()))
-        .catchError((error) => ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(error!.message!))));
-  }
-
   @override
   Widget build(BuildContext context) {
+    _paymentCardView = MFCardPaymentView();
     return AppBottomSheetSkeleton(
         title: S.of(context).paymentMethod,
         content: _paymentCardView,
@@ -99,10 +83,9 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             await _paymentCardView
                 .pay(request, apiLanguage, (invoiceId) {})
                 .then((value) async {
-              context.read<PlaceOrderCubit>().placeOrder(widget.qutationId, 1);
+              context.popRoute(true);
             }).catchError((error) {
-              print((error as MFError).message);
-              widget.onFailedPayment;
+              context.popRoute(false);
             });
           },
           child: Text(S.of(context).confirm),

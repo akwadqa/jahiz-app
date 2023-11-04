@@ -10,7 +10,7 @@ class ItemsDetail extends Equatable {
   final String image;
   final dynamic productOption;
   final String itemImage;
-  final String backgroundColor;
+  final String? backgroundColor;
   final List<dynamic> productOptions;
 
   const ItemsDetail({

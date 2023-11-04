@@ -4,6 +4,7 @@ import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/features/addresses/presentation/widgets/location_selector_widget.dart';
 import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/generated/l10n.dart';
+import 'package:jahiz/injection_container.dart';
 
 import '../../domain/entities/address.dart';
 import '../../../../core/gen/assets.gen.dart';
@@ -50,7 +51,7 @@ class AddressItem extends StatelessWidget {
                               showLocationSelectorBottomSheet(context)
                                   .then((address) {
                                 if (address != null) {
-                                  CartService.updateCartAddress(address);
+                                  getIt<CartService>().updateCartAddress(address);
                                 }
                               });
                             },

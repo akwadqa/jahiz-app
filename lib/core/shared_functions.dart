@@ -74,7 +74,7 @@ Future<void> pay(
     required int paymentMethodId}) async {
   final selectedLanguageCode = context.read<SelectedLanguageCubit>().state;
   var request = MFExecutePaymentRequest(
-      paymentMethodId: 2, invoiceValue: total);
+      paymentMethodId: paymentMethodId, invoiceValue: total);
   String apiLanguage =
       selectedLanguageCode == 'en' ? MFLanguage.ENGLISH : MFLanguage.ARABIC;
     MFSDK

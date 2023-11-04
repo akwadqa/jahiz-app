@@ -7,22 +7,27 @@ import 'package:jahiz/features/cart/domain/entities/cart_product_option.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
 import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
-import 'package:jahiz/injection_container.dart';
-
 class CartService {
-  static void updateCartAddress(Address address) {
-    getIt<UpdateCartCubit>()
-        .updateAddress((getIt<CartCubit>().state as CartLoaded).cart, address);
+
+  const CartService(this._cartCubit, this._updateCartCubit);
+
+  final CartCubit _cartCubit;
+
+  final UpdateCartCubit _updateCartCubit;
+
+  void updateCartAddress(Address address) {
+    _updateCartCubit
+        .updateAddress((_cartCubit.state as CartLoaded).cart, address);
   }
 
-  static Future<Either<Failure, Cart?>> addToCart<T extends dynamic>(
+  Future<Either<Failure, Cart?>> addToCart<T extends dynamic>(
       {required T product,
       required int quantity,
       List<CartProductOption>? cartProductOptions}) {
-    final cartState = getIt<CartCubit>().state;
+    final cartState = _cartCubit.state;
     Cart? cart;
     if (cartState is CartLoaded) {
-      cart = (getIt<CartCubit>().state as CartLoaded).cart;
+      cart = (_cartCubit.state as CartLoaded).cart;
       final productId =
           product is Product ? product.productId : product.websiteItemId;
       if (cart.items.any((element) => element.itemCode == productId)) {
@@ -65,10 +70,10 @@ class CartService {
           shippingAddressDetails: const [],
           otherChargesCalculation: const []);
     }
-    return getIt<UpdateCartCubit>().callUpdateCart(cart);
+    return _updateCartCubit.callUpdateCart(cart);
   }
 
-  static void clearCart() {
-    getIt<CartCubit>().setEmptyCart();
+  void clearCart() {
+    _cartCubit.setEmptyCart();
   }
 }

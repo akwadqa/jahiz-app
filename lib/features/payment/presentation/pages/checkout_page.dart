@@ -16,6 +16,7 @@ import 'package:jahiz/features/orders/presentaion/widgets/order_container.dart';
 import 'package:jahiz/features/orders/presentaion/widgets/order_item_widget.dart';
 import 'package:jahiz/features/orders/presentaion/widgets/your_order_text.dart';
 import 'package:jahiz/generated/l10n.dart';
+import 'package:jahiz/injection_container.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import 'package:queen_validators/queen_validators.dart';
 
@@ -272,11 +273,22 @@ class _PaymentAndConfirmationSectionState
                   } else {
                     if (_paymentMethod!.isEmbedded == 1) {
                       showPaymentBottomSheet(
-                          context: context,
-                          paymentMethod: _paymentMethod!,
-                          qutationId: widget.cart.name,
-                          total: widget.cart.grandTotal,
-                          onFailedPayment: _showFailPaymentDialog);
+                              context: context,
+                              paymentMethod: _paymentMethod!,
+                              qutationId: widget.cart.name,
+                              total: widget.cart.grandTotal,
+                              onFailedPayment: _showFailPaymentDialog)
+                          .then((value) {
+                        if (value != null) {
+                          if (value) {
+                            context
+                                .read<PlaceOrderCubit>()
+                                .placeOrder(widget.cart.name, 1);
+                          } else {
+                            _showFailPaymentDialog();
+                          }
+                        }
+                      });
                     } else {
                       _initiateSession(context);
                     }
@@ -322,7 +334,7 @@ class _PaymentAndConfirmationSectionState
       title: S.of(context).thankYou,
       desc: S.of(context).orderAndPaymentPlaced,
       btnOkOnPress: () {
-        CartService.clearCart();
+        getIt<CartService>().clearCart();
         context.router
             .pushAndPopUntil(const MainRoute(), predicate: (route) => false);
         context.pushRoute(OrderDetailsRoute(salesOrderId: salesOrderId));
@@ -333,7 +345,7 @@ class _PaymentAndConfirmationSectionState
       dismissOnBackKeyPress: false,
       dismissOnTouchOutside: false,
       btnCancelOnPress: () {
-        CartService.clearCart();
+        getIt<CartService>().clearCart();
         context.router
             .pushAndPopUntil(const MainRoute(), predicate: (route) => false);
       },

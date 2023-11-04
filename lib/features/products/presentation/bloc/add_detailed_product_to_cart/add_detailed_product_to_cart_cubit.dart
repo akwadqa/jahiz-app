@@ -6,6 +6,7 @@ import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/features/cart/domain/entities/cart_product_option.dart';
 import 'package:jahiz/features/products/domain/entities/product_option.dart';
 import 'package:jahiz/generated/l10n.dart';
+import 'package:jahiz/injection_container.dart';
 
 import '../../../../../core/shared_functions.dart';
 
@@ -47,7 +48,7 @@ class AddDetailedProductToCartCubit
 
   Future<void> _submit(DetailedProduct detailedProduct, int quantity) async {
     emit(AddDetailedProductToCartLoading());
-    final failureOrCart = await CartService.addToCart(
+    final failureOrCart = await getIt<CartService>().addToCart(
           product: detailedProduct, quantity: quantity, cartProductOptions: _cartProductOptions);
       return failureOrCart.fold(
           (failure) =>

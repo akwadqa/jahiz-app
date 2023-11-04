@@ -47,7 +47,7 @@ class CartCubit extends Cubit<CartState> {
             SnackBar(content: Text(S.of(context).addShippingAddress)));
         showLocationSelectorBottomSheet(context).then((address) {
           if (address != null) {
-            CartService.updateCartAddress(address);
+            getIt<CartService>().updateCartAddress(address);
           }
         });
       } else {
