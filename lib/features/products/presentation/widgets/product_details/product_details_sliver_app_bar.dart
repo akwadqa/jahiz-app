@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/app_constants.dart';
 import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
+import 'package:jahiz/core/gen/assets.gen.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/app_cached_network_image.dart';
 import 'package:jahiz/core/widgets/contained_button.dart';
@@ -39,10 +40,10 @@ class ProductDetailsSliverAppBar extends StatelessWidget {
       pinned: true,
       actions: [
         ContainedButton(
-          icon: const Icon(Icons.share),
+          icon: Assets.images.shareSvg.svg(),
           margin: const EdgeInsets.all(8.0),
           onPressed: () {
-            Share.share("product");
+            Share.share("${AppConstants.hostUrl}");
           },
         ),
       ],
