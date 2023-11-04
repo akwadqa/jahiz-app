@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:jahiz/core/gen/fonts.gen.dart';
 import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/custom_container.dart';
@@ -141,6 +142,7 @@ class ProductItem extends StatelessWidget {
                                 const EdgeInsets.all(8.0)),
                             textStyle: MaterialStateProperty.all(
                                 const TextStyle(
+                                    fontFamily: FontFamily.qatar,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700))),
                         child: Text(product.hasOptions == 0

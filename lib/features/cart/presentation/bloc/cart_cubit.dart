@@ -5,8 +5,7 @@ import 'package:jahiz/core/widgets/sign_up_login_bottom_sheet.dart';
 import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/features/cart/domain/usecases/get_cart.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/create_order/create_order_cubit.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/update_payment_status/update_payment_status_cubit.dart';
+import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
 import 'package:jahiz/features/payment/presentation/bloc/payment_methods_cubit.dart';
 import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
 import 'package:jahiz/features/payment/presentation/pages/checkout_page.dart';
@@ -63,9 +62,7 @@ class CartCubit extends Cubit<CartState> {
                         BlocProvider(
                             create: (_) => getIt<PaymentMethodsCubit>()
                               ..getPaymentMethods()),
-                        BlocProvider(create: (_) => getIt<CreateOrderCubit>()),
-                        BlocProvider(
-                            create: (_) => getIt<UpdatePaymentStatusCubit>()),
+                        BlocProvider(create: (_) => getIt<PlaceOrderCubit>()),
                       ],
                       child: const CheckoutPage(),
                     )));

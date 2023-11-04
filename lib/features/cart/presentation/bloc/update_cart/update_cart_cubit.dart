@@ -90,4 +90,10 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
     final updatedCart = clonedCart.copyWith(couponCode: '');
     return _updateCart(updatedCart);
   }
+
+  Future<void> updatePaymentMethod(Cart cart, String paymentGateway) async {
+    final clonedCart = await cart.clone();
+    final updatedCart = clonedCart.copyWith(paymentGetway: paymentGateway);
+    _updateCart(updatedCart);
+  }
 }

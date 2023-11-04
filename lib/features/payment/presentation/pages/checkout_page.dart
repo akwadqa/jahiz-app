@@ -7,9 +7,11 @@ import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/custom_back_button.dart';
 import 'package:jahiz/core/widgets/dashed_line.dart';
+import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/features/cart/domain/entities/cart_item.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
-import 'package:jahiz/features/orders/presentaion/widgets/create_order_button.dart';
+import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
+import 'package:jahiz/features/orders/presentaion/widgets/place_order_button.dart';
 import 'package:jahiz/features/orders/presentaion/widgets/order_container.dart';
 import 'package:jahiz/features/orders/presentaion/widgets/order_item_widget.dart';
 import 'package:jahiz/features/orders/presentaion/widgets/your_order_text.dart';
@@ -22,8 +24,6 @@ import '../../../../core/shared_functions.dart';
 import '../../../addresses/presentation/widgets/address_item.dart';
 import '../../../cart/domain/entities/cart.dart';
 import '../../../cart/presentation/bloc/update_cart/update_cart_cubit.dart';
-import '../../../orders/domain/entities/order.dart';
-import '../../../orders/presentaion/bloc/create_order/create_order_cubit.dart';
 import '../../domain/entities/payment_method.dart';
 import '../widgets/payment_method_selector.dart';
 import '../widgets/payment_widget.dart';
@@ -111,7 +111,7 @@ class _ItemsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final cartItem = cartItems[index];
         return OrderItemWidget(
@@ -247,20 +247,40 @@ class _PaymentAndConfirmationSectionState
       child: Column(
         children: [
           PaymentMethodsSelector(
-              context: context, onSaved: (value) => _paymentMethod = value),
+            context: context,
+            onSaved: (value) => _paymentMethod = value,
+            onSelected: (PaymentMethod paymentMethod) {
+              context.read<UpdateCartCubit>().updatePaymentMethod(
+                  widget.cart, paymentMethod.paymentGateway);
+            },
+          ),
           const SizedBox(height: 12.0),
-          BlocListener<CreateOrderCubit, CreateOrderState>(
+          BlocListener<PlaceOrderCubit, PlaceOrderState>(
             listener: (context, state) {
-              if (state is CreateOrderLoaded) {
-                _handelPaymentProcess(state.order);
+              if (state is PlaceOrderLoaded) {
+                _showSuccessPaymentDialog(state.orderId);
               }
             },
-            child: CreateOrderButton(
+            child: PlaceOrderButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  context.read<CreateOrderCubit>().createOrder(
-                      widget.cart.name, _paymentMethod!.paymentGateway);
+                  if (_paymentMethod!.isOffline == 1) {
+                    context
+                        .read<PlaceOrderCubit>()
+                        .placeOrder(widget.cart.name);
+                  } else {
+                    if (_paymentMethod!.isEmbedded == 1) {
+                      showPaymentBottomSheet(
+                          context: context,
+                          paymentMethod: _paymentMethod!,
+                          qutationId: widget.cart.name,
+                          total: widget.cart.grandTotal,
+                          onFailedPayment: _showFailPaymentDialog);
+                    } else {
+                      _initiateSession(context);
+                    }
+                  }
                 }
               },
             ),
@@ -270,20 +290,7 @@ class _PaymentAndConfirmationSectionState
     );
   }
 
-  void _handelPaymentProcess(Order order) {
-    if (_paymentMethod!.isOffline == 1) {
-      _showSuccessPaymentDialog(order.name);
-    } else {
-      if (_paymentMethod!.isEmbedded == 1) {
-        showPaymentBottomSheet(context, _paymentMethod!, widget.cart.grandTotal,
-            _showSuccessPaymentDialog, _showFailPaymentDialog, order);
-      } else {
-        _initiateSession(context, order);
-      }
-    }
-  }
-
-  Future<void> _initiateSession(BuildContext context, Order order) async {
+  Future<void> _initiateSession(BuildContext context) async {
     final selectedLanguageCode = context.read<SelectedLanguageCubit>().state;
     MFSDK.init(_paymentMethod!.apiToken!, MFCountry.QATAR, MFEnvironment.TEST);
     MFInitiatePaymentRequest request =
@@ -294,8 +301,13 @@ class _PaymentAndConfirmationSectionState
             selectedLanguageCode == 'en'
                 ? MFLanguage.ENGLISH
                 : MFLanguage.ARABIC)
-        .then((value) => pay(context, _paymentMethod!, widget.cart.grandTotal,
-            _showSuccessPaymentDialog, _showFailPaymentDialog, order, false))
+        .then((value) => pay(
+              paymentMethodId: int.parse(_paymentMethod!.myfatoorahPaymentId!),
+              context: context,
+              qutationId: widget.cart.name,
+              total: widget.cart.grandTotal,
+              onFailedPayment: _showFailPaymentDialog,
+            ))
         .catchError((error) => {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(error!.message!)))
@@ -310,6 +322,7 @@ class _PaymentAndConfirmationSectionState
       title: S.of(context).thankYou,
       desc: S.of(context).orderAndPaymentPlaced,
       btnOkOnPress: () {
+        CartService.clearCart();
         context.router
             .pushAndPopUntil(const MainRoute(), predicate: (route) => false);
         context.pushRoute(OrderDetailsRoute(salesOrderId: salesOrderId));
@@ -319,8 +332,11 @@ class _PaymentAndConfirmationSectionState
       btnCancelColor: Theme.of(context).primaryColor,
       dismissOnBackKeyPress: false,
       dismissOnTouchOutside: false,
-      btnCancelOnPress: () => context.router
-          .pushAndPopUntil(const MainRoute(), predicate: (route) => false),
+      btnCancelOnPress: () {
+        CartService.clearCart();
+        context.router
+            .pushAndPopUntil(const MainRoute(), predicate: (route) => false);
+      },
     ).show();
   }
 

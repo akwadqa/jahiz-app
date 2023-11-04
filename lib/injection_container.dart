@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_order_details.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_orders.dart';
+import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/sales_order_details/sales_order_details_cubit.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/sales_orders/cubit/sales_orders_cubit.dart';
 import 'package:jahiz/features/profile/data/datasources/profile_remote_data_source.dart';
@@ -37,8 +38,7 @@ import 'package:jahiz/features/auth/presentation/bloc/register/register_cubit.da
 import 'package:jahiz/features/cart/data/datasources/cart_remote_data_source.dart';
 import 'package:jahiz/features/cart/data/repositories/cart_repository_impl.dart';
 import 'package:jahiz/features/cart/domain/repositories/cart_repository.dart';
-import 'package:jahiz/features/orders/domain/usecases/create_order.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/create_order/create_order_cubit.dart';
+import 'package:jahiz/features/orders/domain/usecases/place_order.dart';
 import 'package:jahiz/features/payment/domain/repositories/payment_repository.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
 import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
@@ -65,8 +65,6 @@ import 'features/auth/domain/usecases/register.dart';
 import 'features/orders/data/datasources/orders_remote_data_source.dart';
 import 'features/orders/data/repositories/orders_repository_impl.dart';
 import 'features/orders/domain/repositories/orders_repository.dart';
-import 'features/orders/domain/usecases/update_payment_status.dart';
-import 'features/orders/presentaion/bloc/update_payment_status/update_payment_status_cubit.dart';
 import 'features/payment/data/datasources/payment_remote_data_source.dart';
 import 'features/payment/data/repositories/payment_repository_impl.dart';
 import 'features/cart/domain/usecases/get_cart.dart';
@@ -230,14 +228,12 @@ Future<void> init() async {
 
   //!Features - orders
   //Bloc
-  getIt.registerFactory(() => CreateOrderCubit(getIt()));
-  getIt.registerFactory(() => UpdatePaymentStatusCubit(getIt()));
+  getIt.registerFactory(() => PlaceOrderCubit(getIt()));
   getIt.registerFactory(() => SalesOrdersCubit(getIt()));
   getIt.registerFactory(() => SalesOrderDetailsCubit(getIt()));
 
   //UseCases
-  getIt.registerLazySingleton(() => CreateOrderUseCase(getIt()));
-  getIt.registerLazySingleton(() => UpdatePaymentStatusUseCase(getIt()));
+  getIt.registerLazySingleton(() => PlaceOrderUseCase(getIt()));
   getIt.registerLazySingleton(() => GetSalesOrdersUseCase(getIt()));
   getIt.registerLazySingleton(() => GetSalesOrderDetailsUseCase(getIt()));
 

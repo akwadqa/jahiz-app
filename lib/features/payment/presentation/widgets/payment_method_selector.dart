@@ -11,15 +11,18 @@ class PaymentMethodsSelector extends FormField<PaymentMethod> {
   PaymentMethodsSelector(
       {Key? key,
       required BuildContext context,
-      void Function(PaymentMethod?)? onSaved})
+      void Function(PaymentMethod?)? onSaved,
+      required Function(PaymentMethod) onSelected})
       : super(
             onSaved: onSaved,
             validator: (value) => value == null ? S.of(context).required : null,
-            builder: (state) => _builder(context, state),
+            builder: (state) =>
+                _builder(context, state, onSelected: onSelected),
             key: key);
 
   static Widget _builder(
-      BuildContext context, FormFieldState<PaymentMethod> formFieldState) {
+      BuildContext context, FormFieldState<PaymentMethod> formFieldState,
+      {required Function(PaymentMethod) onSelected}) {
     return Column(
       children: [
         BlocBuilder<PaymentMethodsCubit, PaymentMethodsState>(
@@ -31,7 +34,8 @@ class PaymentMethodsSelector extends FormField<PaymentMethod> {
                 itemBuilder: (BuildContext context, int index) {
                   return _PaymentMethodItem(
                       paymentMethod: state.paymentMethods[index],
-                      formFieldState: formFieldState);
+                      formFieldState: formFieldState,
+                      onSelected: onSelected);
                 },
                 separatorBuilder: (context, index) =>
                     const SizedBox(width: 18.0),
@@ -62,10 +66,14 @@ class PaymentMethodsSelector extends FormField<PaymentMethod> {
 
 class _PaymentMethodItem extends StatelessWidget {
   const _PaymentMethodItem(
-      {Key? key, required this.paymentMethod, required this.formFieldState})
+      {Key? key,
+      required this.paymentMethod,
+      required this.formFieldState,
+      required this.onSelected})
       : super(key: key);
   final PaymentMethod paymentMethod;
   final FormFieldState<PaymentMethod> formFieldState;
+  final Function(PaymentMethod) onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +102,12 @@ class _PaymentMethodItem extends StatelessWidget {
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(5.0),
               child: InkWell(
-                onTap: () => formFieldState.didChange(paymentMethod),
+                onTap: () {
+                  if (formFieldState.value != paymentMethod) {
+                    formFieldState.didChange(paymentMethod);
+                    onSelected(paymentMethod);
+                  }
+                },
                 borderRadius: BorderRadius.circular(5.0),
                 child: Padding(
                   padding: const EdgeInsets.all(14.0),
