@@ -6,18 +6,9 @@ import 'package:jahiz/features/orders/data/models/sales_order_model/sales_order_
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_service.dart';
-import '../models/Order_model.dart';
 
 abstract class OrdersRemoteDataSource {
-  Future<OrderModel> createOrder(String quotationId, String paymentMethodId);
-  Future<void> updatePaymentStatus(
-      String orderId,
-      String paymentGateway,
-      String invoiceId,
-      String amount,
-      String payerEmail,
-      String payerName,
-      String currency);
+  Future<String> placeOrder(String quotationId, int? isSuccess);
 
   Future<AppResponseModel<List<SalesOrderModel>>> getSalesOrders([int? page]);
 
@@ -30,69 +21,27 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   OrdersRemoteDataSourceImpl(this._networkService);
 
   @override
-  Future<OrderModel> createOrder(
-      String quotationId, String paymentMethodId) async {
+  Future<String> placeOrder(String quotationId, int? isSuccess) async {
     final formData = FormData.fromMap({
       'quotation_id': quotationId,
-      'payment_method': paymentMethodId,
+      if (isSuccess != null) 'is_success': isSuccess,
     });
 
     try {
       final response = await _networkService.post(
-        endpoint: EndPoints.createOrder,
+        endpoint: EndPoints.placeOrder,
         data: formData,
       );
 
-      final responseModel = AppResponseModel<OrderModel>.fromJson(
+      final responseModel = AppResponseModel<String>.fromJson(
         response.data,
-        (data) => data.isNotEmpty ? OrderModel.fromJson(data) : null,
+        (data) => data.isNotEmpty ? data['sales_order'] : null,
       );
 
       if (responseModel.error == 1) {
         throw ServerException(message: responseModel.message);
       } else {
         return responseModel.data;
-      }
-    } catch (e, stackTrace) {
-      throw ServerException(message: e.toString(), stackTrace: stackTrace);
-    }
-  }
-
-  @override
-  Future<void> updatePaymentStatus(
-    String orderId,
-    String paymentGateway,
-    String invoiceId,
-    String amount,
-    String payerEmail,
-    String payerName,
-    String currency,
-  ) async {
-    final formData = FormData.fromMap({
-      'data': {
-        'order_id': orderId,
-        'payment_gateway': paymentGateway,
-        'invoice_id': invoiceId,
-        'amount': amount,
-        'payer_email': payerEmail,
-        'payer_name': payerName,
-        'currency': currency,
-      },
-    });
-
-    try {
-      final response = await _networkService.post(
-        endpoint: EndPoints.updatePaymentStatus,
-        data: formData,
-      );
-
-      final responseModel = AppResponseModel.fromJson(
-        response.data,
-        (data) => data,
-      );
-
-      if (responseModel.error == 1) {
-        throw ServerException(message: responseModel.message);
       }
     } catch (e, stackTrace) {
       throw ServerException(message: e.toString(), stackTrace: stackTrace);

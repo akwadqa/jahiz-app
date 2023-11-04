@@ -12,7 +12,7 @@ abstract class EndPoints {
   static const String updateCart = '.update_cart';
   static const String getAddresses = '.get_addresses';
   static const String paymentMethods = '.payment_methods';
-  static const String createOrder = '.create_order';
+  static const String placeOrder = '.place_order';
   static const String updatePaymentStatus = '.update_payment_status';
   static const String getSalesOrders = '.get_sales_orders';
   static const String getProfileDetails = '.get_profile_details';

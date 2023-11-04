@@ -3,50 +3,41 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/blocs/selected_language_cubit.dart';
 import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/core/widgets/app_bottom_sheet.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/update_payment_status/update_payment_status_cubit.dart';
+import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
 import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 
-import '../../../orders/domain/entities/order.dart';
 import '../../domain/entities/payment_method.dart';
 
 Future<dynamic> showPaymentBottomSheet(
-    BuildContext context,
-    PaymentMethod paymentMethod,
-    double total,
-    Function(String orderId) onSuccessfulPayment,
-    VoidCallback onFailedPayment,
-    Order order) {
+    {required BuildContext context,
+    required PaymentMethod paymentMethod,
+    required String qutationId,
+    required double total,
+    required VoidCallback onFailedPayment}) {
   return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (_) => BlocProvider(
-            create: (_) => getIt<UpdatePaymentStatusCubit>(),
-            child: PaymentWidget(
-                paymentMethod: paymentMethod,
-                total: total,
-                onSuccessfulPayment: onSuccessfulPayment(order.name),
-                onFailedPayment: onFailedPayment,
-                order: order),
-          ));
+      builder: (_) => PaymentWidget(
+          paymentMethod: paymentMethod,
+          qutationId: qutationId,
+          total: total,
+          onFailedPayment: onFailedPayment));
 }
 
 class PaymentWidget extends StatefulWidget {
   const PaymentWidget(
       {Key? key,
       required this.paymentMethod,
+      required this.qutationId,
       required this.total,
-      required this.onSuccessfulPayment,
-      required this.onFailedPayment,
-      required this.order})
+      required this.onFailedPayment})
       : super(key: key);
 
   final PaymentMethod paymentMethod;
+  final String qutationId;
   final double total;
-  final Function(String orderId) onSuccessfulPayment;
   final VoidCallback onFailedPayment;
-  final Order order;
 
   @override
   State<PaymentWidget> createState() => _PaymentWidgetState();
@@ -60,18 +51,36 @@ class _PaymentWidgetState extends State<PaymentWidget> {
     MFSDK.init(
         widget.paymentMethod.apiToken!, MFCountry.QATAR, MFEnvironment.TEST);
     _initiateSession();
+    _initiatePaymentRequest();
     super.initState();
   }
 
-  Future<void> _initiateSession() async {
-    final selectedLanguageCode = context.read<SelectedLanguageCubit>().state;
-    MFInitiatePaymentRequest request = MFInitiatePaymentRequest(
-        currencyIso: MFCurrencyISO.QATAR_QAR);
+  void _initiateSession() async {
+    MFInitiateSessionRequest initiateSessionRequest =
+        MFInitiateSessionRequest();
     await MFSDK
-        .initiatePayment(request, selectedLanguageCode == 'en' ? MFLanguage.ENGLISH : MFLanguage.ARABIC)
-        .then((value) => debugPrint(value.paymentMethods.toString()))
-        .catchError((error) => ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(error!.message!))));
+        .initiateSession(initiateSessionRequest, (bin) {
+          debugPrint(bin);
+        })
+        .then((value) => {
+              debugPrint(value.toString()),
+            })
+        .catchError((error) => {debugPrint(error.message)});
+  }
+
+  Future<void> _initiatePaymentRequest() async {
+    final selectedLanguageCode = context.read<SelectedLanguageCubit>().state;
+    MFInitiatePaymentRequest request =
+        MFInitiatePaymentRequest(currencyIso: MFCurrencyISO.QATAR_QAR);
+    await MFSDK
+        .initiatePayment(
+            request,
+            selectedLanguageCode == 'en'
+                ? MFLanguage.ENGLISH
+                : MFLanguage.ARABIC)
+        .then((value) => debugPrint(value.toJson().toString()))
+        .catchError((error) => ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(error!.message!))));
   }
 
   @override
@@ -80,16 +89,21 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         title: S.of(context).paymentMethod,
         content: _paymentCardView,
         submitButton: ElevatedButton(
-          onPressed: () {
-            pay(
-                context,
-                widget.paymentMethod,
-                widget.total,
-                widget.onSuccessfulPayment(widget.order.name),
-                widget.onFailedPayment,
-                widget.order,
-                true,
-                _paymentCardView);
+          onPressed: () async {
+            final selectedLanguageCode =
+                context.read<SelectedLanguageCubit>().state;
+            String apiLanguage = selectedLanguageCode == 'en'
+                ? MFLanguage.ENGLISH
+                : MFLanguage.ARABIC;
+            var request = MFExecutePaymentRequest(invoiceValue: widget.total);
+            await _paymentCardView
+                .pay(request, apiLanguage, (invoiceId) {})
+                .then((value) async {
+              context.read<PlaceOrderCubit>().placeOrder(widget.qutationId, 1);
+            }).catchError((error) {
+              print((error as MFError).message);
+              widget.onFailedPayment;
+            });
           },
           child: Text(S.of(context).confirm),
         ));

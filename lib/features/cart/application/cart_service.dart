@@ -23,16 +23,15 @@ class CartService {
     Cart? cart;
     if (cartState is CartLoaded) {
       cart = (getIt<CartCubit>().state as CartLoaded).cart;
-      final productId = product is Product ? product.productId : product.websiteItemId;
-      if (cart.items
-          .any((element) => element.itemCode == productId)) {
-        final excistingProduct = cart.items
-            .firstWhere((element) => element.itemCode == productId);
+      final productId =
+          product is Product ? product.productId : product.websiteItemId;
+      if (cart.items.any((element) => element.itemCode == productId)) {
+        final excistingProduct =
+            cart.items.firstWhere((element) => element.itemCode == productId);
         final CartItem cartItem = excistingProduct.copyWith(
             qty: excistingProduct.qty + quantity.toDouble(),
             productOptions: cartProductOptions);
-        cart.items.removeWhere(
-            (element) => element.itemCode == productId);
+        cart.items.removeWhere((element) => element.itemCode == productId);
         cart.items.add(cartItem.toModel());
       } else {
         cart.items.add(product
@@ -67,5 +66,9 @@ class CartService {
           otherChargesCalculation: const []);
     }
     return getIt<UpdateCartCubit>().callUpdateCart(cart);
+  }
+
+  static void clearCart() {
+    getIt<CartCubit>().setEmptyCart();
   }
 }

@@ -22,6 +22,7 @@ class Cart extends Equatable {
   final List<Address> shippingAddressDetails;
   final List<CartItem> items;
   final List<OtherChargesCalculation> otherChargesCalculation;
+  final String? paymentGateway;
 
   const Cart(
       {required this.name,
@@ -38,7 +39,7 @@ class Cart extends Equatable {
       required this.couponCodeDetails,
       required this.shippingAddressDetails,
       required this.items,
-      required this.otherChargesCalculation});
+      required this.otherChargesCalculation, this.paymentGateway});
 
   Cart copyWith(
       {String? name,
@@ -55,7 +56,7 @@ class Cart extends Equatable {
       CouponCodeDetails? couponCodeDetails,
       List<Address>? shippingAddressDetails,
       List<CartItem>? items,
-      List<OtherChargesCalculation>? otherChargesCalculation}) {
+      List<OtherChargesCalculation>? otherChargesCalculation, String? paymentGetway}) {
     return Cart(
         name: name ?? this.name,
         transactionDate: transactionDate ?? this.transactionDate,
@@ -74,7 +75,9 @@ class Cart extends Equatable {
             shippingAddressDetails ?? this.shippingAddressDetails,
         items: items ?? this.items,
         otherChargesCalculation:
-            otherChargesCalculation ?? this.otherChargesCalculation);
+            otherChargesCalculation ?? this.otherChargesCalculation,
+        paymentGateway: paymentGetway ?? this.paymentGateway
+            );
   }
 
   CartModel toModel() {
@@ -95,7 +98,7 @@ class Cart extends Equatable {
             shippingAddressDetails.map((e) => e.toModel()).toList(),
         items: items.map((e) => e.toModel()).toList(),
         otherChargesCalculation:
-            otherChargesCalculation.map((e) => e.toModel()).toList());
+            otherChargesCalculation.map((e) => e.toModel()).toList(), paymentGateway: paymentGateway);
   }
 
   @override
@@ -114,6 +117,7 @@ class Cart extends Equatable {
         couponCodeDetails,
         shippingAddressDetails,
         items,
-        otherChargesCalculation
+        otherChargesCalculation,
+        paymentGateway
       ];
 }

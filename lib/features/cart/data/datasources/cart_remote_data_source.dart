@@ -35,15 +35,15 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
     try {
       final Response response = await function();
       AppResponseModel<CartModel?> responseModel =
-            AppResponseModel<CartModel?>.fromJson(
-                response.data,
-                (data) =>
-                    data.isNotEmpty ? CartModel.fromJson(data.first) : null);
-        if (responseModel.error == 1) {
-          throw ServerException(message: responseModel.message);
-        } else {
-          return responseModel.data;
-        }
+          AppResponseModel<CartModel?>.fromJson(
+              response.data,
+              (data) =>
+                  data.isNotEmpty ? CartModel.fromJson(data.first) : null);
+      if (responseModel.error == 1) {
+        throw ServerException(message: responseModel.message);
+      } else {
+        return responseModel.data;
+      }
     } catch (e, stackTrace) {
       throw ServerException(message: e.toString(), stackTrace: stackTrace);
     }

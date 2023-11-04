@@ -8,7 +8,6 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/orders_repository.dart';
 import '../datasources/orders_remote_data_source.dart';
-import '../../domain/entities/order.dart' as o;
 
 class OrdersRepositoryImpl implements OrdersRepository {
   final OrdersRemoteDataSource _remoteDataSource;
@@ -17,35 +16,13 @@ class OrdersRepositoryImpl implements OrdersRepository {
   OrdersRepositoryImpl(this._remoteDataSource, this._networkInfo);
 
   @override
-  Future<Either<Failure, o.Order>> createOrder(
-      String quotationId, String paymentMethodId) async {
+  Future<Either<Failure, String>> placeOrder(
+      String quotationId, int? isSuccess) async {
     if (await _networkInfo.isConnected) {
       try {
-        final o.Order order =
-            await _remoteDataSource.createOrder(quotationId, paymentMethodId);
-        return Right(order);
-      } on ServerException catch (e, stackTrace) {
-        return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> updatePaymentStatus(
-      String orderId,
-      String paymentGateway,
-      String invoiceId,
-      String amount,
-      String payerEmail,
-      String payerName,
-      String currency) async {
-    if (await _networkInfo.isConnected) {
-      try {
-        await _remoteDataSource.updatePaymentStatus(orderId, paymentGateway,
-            invoiceId, amount, payerEmail, payerName, currency);
-        return const Right(null);
+        final String orderId =
+            await _remoteDataSource.placeOrder(quotationId, isSuccess);
+        return Right(orderId);
       } on ServerException catch (e, stackTrace) {
         return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
       }
