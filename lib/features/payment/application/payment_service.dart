@@ -92,6 +92,7 @@ class PaymentService {
         .then((value) {
       onSuccess();
     }).catchError((error) {
+      debugPrint((error as MFError).message.toString());
       onFail();
     });
   }
