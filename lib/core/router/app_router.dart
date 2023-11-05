@@ -5,6 +5,7 @@ import 'package:jahiz/features/cart/presentation/pages/cart_page.dart';
 import 'package:jahiz/features/categories/presentation/pages/categories_page.dart';
 import 'package:jahiz/features/categories/presentation/pages/sub_categories_page.dart';
 import 'package:jahiz/features/main/presentation/pages/main_page.dart';
+import 'package:jahiz/features/notification/presentation/pages/notification_page.dart';
 import 'package:jahiz/features/orders/presentaion/pages/order_details_page.dart';
 import 'package:jahiz/features/orders/presentaion/pages/order_history_page.dart';
 import 'package:jahiz/features/checkout/presentation/pages/checkout_page.dart';
@@ -31,6 +32,7 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: OrderHistoryRoute.page),
         AutoRoute(page: EditProfileRoute.page),
         AutoRoute(page: OrderDetailsRoute.page),
-        AutoRoute(page: AddressesRoute.page)
+        AutoRoute(page: AddressesRoute.page),
+        AutoRoute(page: NotificationRoute.page),
       ];
 }

@@ -18,4 +18,5 @@ abstract class EndPoints {
   static const String getProfileDetails = '.get_profile_details';
   static const String updateProfileDetails = '.update_user';
   static const String getSalesOrderDetails = '.get_sales_order_detail';
+  static const String getNotifications = '.notification_list';
 }

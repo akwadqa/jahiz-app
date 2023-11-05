@@ -115,5 +115,7 @@
     "qar": "QAR",
     "zoneNumber": "Zone number",
     "shouldBeNumber": "Should be number",
-    "favorite": "Favorite"
+    "favorite": "Favorite",
+    "notifications": "Notifications",
+    "noNotifications": "No Notifications"
 }

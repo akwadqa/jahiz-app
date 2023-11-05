@@ -115,5 +115,7 @@
     "qar": "ر.ق",
     "zoneNumber": "رقم المنطقة",
     "shouldBeNumber": "يجب أن يكون رقماً",
-    "favorite": "المفضلة"
+    "favorite": "المفضلة",
+    "notifications": "الإشعارات",
+    "noNotifications": "لا يوجد إشعارات"
 }

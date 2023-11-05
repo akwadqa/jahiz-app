@@ -112,8 +112,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "noElements": MessageLookupByLibrary.simpleMessage("لا توجد عناصر"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالانترنت"),
+        "noNotifications":
+            MessageLookupByLibrary.simpleMessage("لا يوجد إشعارات"),
         "notFound": MessageLookupByLibrary.simpleMessage("غير موجود"),
         "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
+        "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "office": MessageLookupByLibrary.simpleMessage("مكتب"),
         "options": MessageLookupByLibrary.simpleMessage("الخيارات"),
         "orderAndPaymentPlaced": MessageLookupByLibrary.simpleMessage(

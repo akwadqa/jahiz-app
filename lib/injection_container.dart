@@ -5,6 +5,11 @@ import 'package:jahiz/features/checkout/data/datasources/checkout_remote_data_so
 import 'package:jahiz/features/checkout/data/repositories/checkout_repository_impl.dart';
 import 'package:jahiz/features/checkout/domain/repositories/checkout_repository.dart';
 import 'package:jahiz/features/checkout/presentation/bloc/place_order/place_order_cubit.dart';
+import 'package:jahiz/features/notification/data/datasources/notification_remote_data_source.dart';
+import 'package:jahiz/features/notification/data/repositories/notifications_repository_impl.dart';
+import 'package:jahiz/features/notification/domain/repositories/notification_repository.dart';
+import 'package:jahiz/features/notification/domain/usecases/get_notification.dart';
+import 'package:jahiz/features/notification/presentation/bloc/get_notifications/get_notifictions_cubit.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_order_details.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_orders.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/sales_order_details/sales_order_details_cubit.dart';
@@ -194,6 +199,21 @@ Future<void> init() async {
   //DataSources
   getIt.registerLazySingleton<AddressesRemoteDataSource>(
       () => AddressesRemoteDataSourceImpl(getIt()));
+
+  //!Features - notifications
+  //Bloc
+  getIt.registerFactory(() => GetNotificationsCubit(getIt()));
+
+  //UseCases
+  getIt.registerLazySingleton(() => GetNotificationUseCase(getIt()));
+
+  //Repository
+  getIt.registerLazySingleton<NotificationRepository>(
+      () => NotificationRepositoryImpl(getIt(), getIt()));
+
+  //DataSources
+  getIt.registerLazySingleton<NotificationsRemoteDataSource>(
+      () => NotificationsRemoteDataSourceImpl(getIt()));
 
   //!Features - cart
   //Bloc

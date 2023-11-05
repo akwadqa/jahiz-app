@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
 import 'package:jahiz/core/gen/assets.gen.dart';
+import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/app_error_widget.dart';
 import 'package:jahiz/core/widgets/contained_button.dart';
@@ -11,6 +12,7 @@ import 'package:jahiz/features/products/presentation/bloc/home/home_cubit.dart';
 import 'package:jahiz/features/products/presentation/widgets/home/dynamic_list.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:jahiz/injection_container.dart';
+import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -26,7 +28,10 @@ class HomePage extends StatelessWidget {
         actions: [
           ContainedButton(
             icon: Assets.images.notification.svg(),
-            onPressed: () {},
+            onPressed: () {
+              // Todo Check if user logged in or not
+              context.pushRoute(const NotificationRoute());
+            },
             withShadow: false,
             backgroundColor: Colors.white,
             margin: const EdgeInsetsDirectional.only(end: 16.0),

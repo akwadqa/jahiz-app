@@ -110,8 +110,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "noElements": MessageLookupByLibrary.simpleMessage("No Elements"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("No Internet Connection"),
+        "noNotifications":
+            MessageLookupByLibrary.simpleMessage("No Notifications"),
         "notFound": MessageLookupByLibrary.simpleMessage("Not Found"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
+        "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "office": MessageLookupByLibrary.simpleMessage("Office"),
         "options": MessageLookupByLibrary.simpleMessage("Options"),
         "orderAndPaymentPlaced": MessageLookupByLibrary.simpleMessage(
