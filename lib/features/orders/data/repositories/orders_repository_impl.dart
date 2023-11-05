@@ -16,22 +16,6 @@ class OrdersRepositoryImpl implements OrdersRepository {
   OrdersRepositoryImpl(this._remoteDataSource, this._networkInfo);
 
   @override
-  Future<Either<Failure, String>> placeOrder(
-      String quotationId, int? isSuccess) async {
-    if (await _networkInfo.isConnected) {
-      try {
-        final String orderId =
-            await _remoteDataSource.placeOrder(quotationId, isSuccess);
-        return Right(orderId);
-      } on ServerException catch (e, stackTrace) {
-        return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
-  }
-
-  @override
   Future<Either<Failure, AppResponse<List<SalesOrder>>>> getSalesOrders(
       [int? page]) async {
     if (await _networkInfo.isConnected) {

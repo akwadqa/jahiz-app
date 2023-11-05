@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:jahiz/features/checkout/domain/repositories/checkout_repository.dart';
 
 import '../../../../core/error/failures.dart';
-import '../repositories/orders_repository.dart';
 
 class PlaceOrderUseCase {
-  final OrdersRepository _repository;
+  final CheckoutRepository _repository;
 
   PlaceOrderUseCase(this._repository);
 

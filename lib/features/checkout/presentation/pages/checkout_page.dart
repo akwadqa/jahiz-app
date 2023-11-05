@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/blocs/selected_language_cubit.dart';
 import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/custom_back_button.dart';
@@ -10,27 +9,27 @@ import 'package:jahiz/core/widgets/dashed_line.dart';
 import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/features/cart/domain/entities/cart_item.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
-import 'package:jahiz/features/orders/presentaion/widgets/place_order_button.dart';
+import 'package:jahiz/features/checkout/presentation/bloc/place_order/place_order_cubit.dart';
+import 'package:jahiz/features/checkout/presentation/widgets/place_order_button.dart';
 import 'package:jahiz/features/orders/presentaion/widgets/order_container.dart';
 import 'package:jahiz/features/orders/presentaion/widgets/order_item_widget.dart';
 import 'package:jahiz/features/orders/presentaion/widgets/your_order_text.dart';
+import 'package:jahiz/features/payment/application/payment_service.dart';
+import 'package:jahiz/features/payment/presentation/bloc/payment_methods_cubit.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:jahiz/injection_container.dart';
-import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 import '../../../../core/gen/assets.gen.dart';
-import '../../../../core/shared_functions.dart';
 import '../../../addresses/presentation/widgets/address_item.dart';
 import '../../../cart/domain/entities/cart.dart';
 import '../../../cart/presentation/bloc/update_cart/update_cart_cubit.dart';
-import '../../domain/entities/payment_method.dart';
-import '../widgets/payment_method_selector.dart';
-import '../widgets/payment_widget.dart';
+import '../../../payment/domain/entities/payment_method.dart';
+import '../../../payment/presentation/widgets/payment_method_selector.dart';
+import '../../../payment/presentation/widgets/payment_widget.dart';
 
 @RoutePage()
-class CheckoutPage extends StatelessWidget {
+class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
   const CheckoutPage({Key? key}) : super(key: key);
 
   @override
@@ -101,6 +100,20 @@ class CheckoutPage extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+  
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: context.read<CartCubit>()),
+        BlocProvider.value(value: context.read<UpdateCartCubit>()),
+        BlocProvider(
+            create: (_) => getIt<PaymentMethodsCubit>()..getPaymentMethods()),
+        BlocProvider(create: (_) => getIt<PlaceOrderCubit>()),
+      ],
+      child: this,
     );
   }
 }
@@ -275,9 +288,7 @@ class _PaymentAndConfirmationSectionState
                       showPaymentBottomSheet(
                               context: context,
                               paymentMethod: _paymentMethod!,
-                              qutationId: widget.cart.name,
-                              total: widget.cart.grandTotal,
-                              onFailedPayment: _showFailPaymentDialog)
+                              total: widget.cart.grandTotal)
                           .then((value) {
                         if (value != null) {
                           if (value) {
@@ -290,7 +301,16 @@ class _PaymentAndConfirmationSectionState
                         }
                       });
                     } else {
-                      _initiateSession(context);
+                      final paymentService = PaymentService(
+                          paymentMethod: _paymentMethod!,
+                          total: widget.cart.grandTotal);
+                      paymentService.initiatePayment(onFail: () {
+                        _showFailPaymentDialog();
+                      }, onSuccess: () {
+                        context
+                            .read<PlaceOrderCubit>()
+                            .placeOrder(widget.cart.name, 1);
+                      });
                     }
                   }
                 }
@@ -300,30 +320,6 @@ class _PaymentAndConfirmationSectionState
         ],
       ),
     );
-  }
-
-  Future<void> _initiateSession(BuildContext context) async {
-    final selectedLanguageCode = context.read<SelectedLanguageCubit>().state;
-    MFSDK.init(_paymentMethod!.apiToken!, MFCountry.QATAR, MFEnvironment.TEST);
-    MFInitiatePaymentRequest request =
-        MFInitiatePaymentRequest(currencyIso: MFCurrencyISO.QATAR_QAR);
-    await MFSDK
-        .initiatePayment(
-            request,
-            selectedLanguageCode == 'en'
-                ? MFLanguage.ENGLISH
-                : MFLanguage.ARABIC)
-        .then((value) => pay(
-              paymentMethodId: int.parse(_paymentMethod!.myfatoorahPaymentId!),
-              context: context,
-              qutationId: widget.cart.name,
-              total: widget.cart.grandTotal,
-              onFailedPayment: _showFailPaymentDialog,
-            ))
-        .catchError((error) => {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(error!.message!)))
-            });
   }
 
   Future<dynamic> _showSuccessPaymentDialog(String salesOrderId) {

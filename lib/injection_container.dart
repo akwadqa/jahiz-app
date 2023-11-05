@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
 import 'package:jahiz/features/cart/application/cart_service.dart';
+import 'package:jahiz/features/checkout/data/datasources/checkout_remote_data_source.dart';
+import 'package:jahiz/features/checkout/data/repositories/checkout_repository_impl.dart';
+import 'package:jahiz/features/checkout/domain/repositories/checkout_repository.dart';
+import 'package:jahiz/features/checkout/presentation/bloc/place_order/place_order_cubit.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_order_details.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_orders.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/sales_order_details/sales_order_details_cubit.dart';
 import 'package:jahiz/features/orders/presentaion/bloc/sales_orders/cubit/sales_orders_cubit.dart';
 import 'package:jahiz/features/profile/data/datasources/profile_remote_data_source.dart';
@@ -39,7 +42,7 @@ import 'package:jahiz/features/auth/presentation/bloc/register/register_cubit.da
 import 'package:jahiz/features/cart/data/datasources/cart_remote_data_source.dart';
 import 'package:jahiz/features/cart/data/repositories/cart_repository_impl.dart';
 import 'package:jahiz/features/cart/domain/repositories/cart_repository.dart';
-import 'package:jahiz/features/orders/domain/usecases/place_order.dart';
+import 'package:jahiz/features/checkout/domain/usecases/place_order.dart';
 import 'package:jahiz/features/payment/domain/repositories/payment_repository.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
 import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
@@ -230,12 +233,10 @@ Future<void> init() async {
 
   //!Features - orders
   //Bloc
-  getIt.registerFactory(() => PlaceOrderCubit(getIt()));
   getIt.registerFactory(() => SalesOrdersCubit(getIt()));
   getIt.registerFactory(() => SalesOrderDetailsCubit(getIt()));
 
   //UseCases
-  getIt.registerLazySingleton(() => PlaceOrderUseCase(getIt()));
   getIt.registerLazySingleton(() => GetSalesOrdersUseCase(getIt()));
   getIt.registerLazySingleton(() => GetSalesOrderDetailsUseCase(getIt()));
 
@@ -246,6 +247,21 @@ Future<void> init() async {
   //DataSources
   getIt.registerLazySingleton<OrdersRemoteDataSource>(
       () => OrdersRemoteDataSourceImpl(getIt()));
+
+  //!Features - checkout
+  //Bloc
+  getIt.registerFactory(() => PlaceOrderCubit(getIt()));
+  
+  //UseCases
+  getIt.registerLazySingleton(() => PlaceOrderUseCase(getIt()));
+
+  //Repository
+  getIt.registerLazySingleton<CheckoutRepository>(
+      () => CheckoutRepositoryImpl(getIt(), getIt()));
+
+  //DataSources
+  getIt.registerLazySingleton<CheckoutRemoteDataSource>(
+      () => CheckoutRemoteDataSourceImpl(getIt()));
 
   //!Features - profile
   //Bloc

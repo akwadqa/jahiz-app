@@ -8,13 +8,9 @@ import 'package:jahiz/features/addresses/domain/entities/address.dart';
 import 'package:jahiz/features/addresses/presentation/bloc/add_update_address/add_update_address_cubit.dart';
 import 'package:jahiz/features/addresses/presentation/bloc/get_addresses/get_addresses_cubit.dart';
 import 'package:jahiz/features/addresses/presentation/widgets/address_form_widget.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:jahiz/injection_container.dart';
-import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 import 'package:queen_validators/queen_validators.dart';
-
-import 'blocs/selected_language_cubit.dart';
 
 class ArabicNumberInputFormatter extends TextInputFormatter {
   @override
@@ -63,26 +59,4 @@ abstract class SharedFunctions {
           BlocProvider.value(value: context.read<GetAddressesCubit>())
         ], child: AddressFormWidget(latLng: latLng, address: address)));
   }
-}
-
-Future<void> pay(
-    {required BuildContext context,
-    required String qutationId,
-    required double total,
-    required VoidCallback onFailedPayment,
-    MFCardPaymentView? paymentCardView,
-    required int paymentMethodId}) async {
-  final selectedLanguageCode = context.read<SelectedLanguageCubit>().state;
-  var request = MFExecutePaymentRequest(
-      paymentMethodId: paymentMethodId, invoiceValue: total);
-  String apiLanguage =
-      selectedLanguageCode == 'en' ? MFLanguage.ENGLISH : MFLanguage.ARABIC;
-    MFSDK
-        .executePayment(request, apiLanguage, (String invoiceId) {})
-        .then((value) async {
-      context.read<PlaceOrderCubit>().placeOrder(qutationId, 1);
-    }).catchError((error) {
-      print((error as MFError).message);
-      onFailedPayment();
-    });
 }
