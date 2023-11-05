@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jahiz/core/gen/fonts.gen.dart';
 import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/features/addresses/presentation/widgets/location_selector_widget.dart';
 import 'package:jahiz/features/cart/application/cart_service.dart';
@@ -51,7 +52,8 @@ class AddressItem extends StatelessWidget {
                               showLocationSelectorBottomSheet(context)
                                   .then((address) {
                                 if (address != null) {
-                                  getIt<CartService>().updateCartAddress(address);
+                                  getIt<CartService>()
+                                      .updateCartAddress(address);
                                 }
                               });
                             },
@@ -74,7 +76,9 @@ class AddressItem extends StatelessWidget {
                               padding:
                                   MaterialStateProperty.all(EdgeInsets.zero),
                             ),
-                            child: Text(S.of(context).change)),
+                            child: Text(S.of(context).change,
+                                style:
+                                    TextStyle(fontFamily: FontFamily.qatar))),
                       )
               ],
             )

@@ -135,7 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentSuccess":
             MessageLookupByLibrary.simpleMessage("تم الدفع بنجاح"),
         "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
-        "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+        "profile": MessageLookupByLibrary.simpleMessage("حسابي"),
         "qar": MessageLookupByLibrary.simpleMessage("ر.ق"),
         "qatar": MessageLookupByLibrary.simpleMessage("قطر"),
         "qatariPhoneNumberValidator": MessageLookupByLibrary.simpleMessage(

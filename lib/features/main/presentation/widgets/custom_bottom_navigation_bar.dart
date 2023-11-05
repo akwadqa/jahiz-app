@@ -19,7 +19,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 85,
+      height: 86,
       child: Container(
         margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
         decoration: const BoxDecoration(
@@ -42,10 +42,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
             BlocBuilder<CartCountCubit, int>(
               builder: (context, state) {
                 return Badge(
+                  alignment: Alignment.centerRight,
                   backgroundColor: Colors.red,
                   label: Text(state.toString(),
                       style: const TextStyle(color: Colors.white)),
-                  offset: const Offset(-5, 3),
+                  offset: const Offset(-4, 2),
                   child: _BnbIcon(
                       onPressed: () => onPressed(2),
                       label: labels[2],
