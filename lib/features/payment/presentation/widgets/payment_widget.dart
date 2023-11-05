@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/blocs/selected_language_cubit.dart';
 import 'package:jahiz/core/widgets/app_bottom_sheet.dart';
+import 'package:jahiz/features/payment/application/payment_service.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 
@@ -11,32 +10,21 @@ import '../../domain/entities/payment_method.dart';
 Future<dynamic> showPaymentBottomSheet(
     {required BuildContext context,
     required PaymentMethod paymentMethod,
-    required String qutationId,
-    required double total,
-    required VoidCallback onFailedPayment}) {
+    required double total}) {
   return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (_) => PaymentWidget(
-          paymentMethod: paymentMethod,
-          qutationId: qutationId,
-          total: total,
-          onFailedPayment: onFailedPayment));
+      builder: (_) =>
+          PaymentWidget(paymentMethod: paymentMethod, total: total));
 }
 
 class PaymentWidget extends StatefulWidget {
   const PaymentWidget(
-      {Key? key,
-      required this.paymentMethod,
-      required this.qutationId,
-      required this.total,
-      required this.onFailedPayment})
+      {Key? key, required this.paymentMethod, required this.total})
       : super(key: key);
 
   final PaymentMethod paymentMethod;
-  final String qutationId;
   final double total;
-  final VoidCallback onFailedPayment;
 
   @override
   State<PaymentWidget> createState() => _PaymentWidgetState();
@@ -44,26 +32,14 @@ class PaymentWidget extends StatefulWidget {
 
 class _PaymentWidgetState extends State<PaymentWidget> {
   late MFCardPaymentView _paymentCardView;
+  late PaymentService _paymentService;
 
   @override
   void initState() {
-    MFSDK.init(
-        widget.paymentMethod.apiToken!, MFCountry.QATAR, MFEnvironment.TEST);
-    _initiateSession();
+    _paymentService = PaymentService(
+        paymentMethod: widget.paymentMethod, total: widget.total);
+    _paymentService.initiateCardSession();
     super.initState();
-  }
-
-  void _initiateSession() async {
-    MFInitiateSessionRequest initiateSessionRequest =
-        MFInitiateSessionRequest();
-    await MFSDK
-        .initiateSession(initiateSessionRequest, (bin) {
-          debugPrint(bin);
-        })
-        .then((value) => {
-              debugPrint(value.toString()),
-            })
-        .catchError((error) => {debugPrint(error.message)});
   }
 
   @override
@@ -73,20 +49,15 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         title: S.of(context).paymentMethod,
         content: _paymentCardView,
         submitButton: ElevatedButton(
-          onPressed: () async {
-            final selectedLanguageCode =
-                context.read<SelectedLanguageCubit>().state;
-            String apiLanguage = selectedLanguageCode == 'en'
-                ? MFLanguage.ENGLISH
-                : MFLanguage.ARABIC;
-            var request = MFExecutePaymentRequest(invoiceValue: widget.total);
-            await _paymentCardView
-                .pay(request, apiLanguage, (invoiceId) {})
-                .then((value) async {
-              context.popRoute(true);
-            }).catchError((error) {
-              context.popRoute(false);
-            });
+          onPressed: () {
+            _paymentService.payWithCard(
+                paymentCardView: _paymentCardView,
+                onSuccess: () {
+                  context.popRoute(true);
+                },
+                onFail: () {
+                  context.popRoute(false);
+                });
           },
           child: Text(S.of(context).confirm),
         ));

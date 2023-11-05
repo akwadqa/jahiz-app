@@ -1,14 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/core/widgets/sign_up_login_bottom_sheet.dart';
 import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:jahiz/features/cart/application/cart_service.dart';
 import 'package:jahiz/features/cart/domain/usecases/get_cart.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/place_order/place_order_cubit.dart';
-import 'package:jahiz/features/payment/presentation/bloc/payment_methods_cubit.dart';
-import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
-import 'package:jahiz/features/payment/presentation/pages/checkout_page.dart';
 import 'package:jahiz/generated/l10n.dart';
 import '../../../../injection_container.dart';
 import '../../../addresses/presentation/widgets/location_selector_widget.dart';
@@ -51,21 +49,7 @@ class CartCubit extends Cubit<CartState> {
           }
         });
       } else {
-        await Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (_) => MultiBlocProvider(
-                      providers: [
-                        BlocProvider.value(value: context.read<CartCubit>()),
-                        BlocProvider.value(
-                            value: context.read<UpdateCartCubit>()),
-                        BlocProvider(
-                            create: (_) => getIt<PaymentMethodsCubit>()
-                              ..getPaymentMethods()),
-                        BlocProvider(create: (_) => getIt<PlaceOrderCubit>()),
-                      ],
-                      child: const CheckoutPage(),
-                    )));
+        await context.pushRoute(const CheckoutRoute());
       }
     } else {
       await showSignUpLoginBottomSheet(context);

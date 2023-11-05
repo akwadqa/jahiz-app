@@ -8,7 +8,6 @@ import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_service.dart';
 
 abstract class OrdersRemoteDataSource {
-  Future<String> placeOrder(String quotationId, int? isSuccess);
 
   Future<AppResponseModel<List<SalesOrderModel>>> getSalesOrders([int? page]);
 
@@ -19,34 +18,6 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   final NetworkService<Response> _networkService;
 
   OrdersRemoteDataSourceImpl(this._networkService);
-
-  @override
-  Future<String> placeOrder(String quotationId, int? isSuccess) async {
-    final formData = FormData.fromMap({
-      'quotation_id': quotationId,
-      if (isSuccess != null) 'is_success': isSuccess,
-    });
-
-    try {
-      final response = await _networkService.post(
-        endpoint: EndPoints.placeOrder,
-        data: formData,
-      );
-
-      final responseModel = AppResponseModel<String>.fromJson(
-        response.data,
-        (data) => data.isNotEmpty ? data['sales_order'] : null,
-      );
-
-      if (responseModel.error == 1) {
-        throw ServerException(message: responseModel.message);
-      } else {
-        return responseModel.data;
-      }
-    } catch (e, stackTrace) {
-      throw ServerException(message: e.toString(), stackTrace: stackTrace);
-    }
-  }
 
   @override
   Future<AppResponseModel<List<SalesOrderModel>>> getSalesOrders(

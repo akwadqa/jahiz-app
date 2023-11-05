@@ -7,7 +7,7 @@ import 'package:jahiz/features/categories/presentation/pages/sub_categories_page
 import 'package:jahiz/features/main/presentation/pages/main_page.dart';
 import 'package:jahiz/features/orders/presentaion/pages/order_details_page.dart';
 import 'package:jahiz/features/orders/presentaion/pages/order_history_page.dart';
-import 'package:jahiz/features/payment/presentation/pages/checkout_page.dart';
+import 'package:jahiz/features/checkout/presentation/pages/checkout_page.dart';
 import 'package:jahiz/features/products/presentation/pages/home_page.dart';
 import 'package:jahiz/features/products/presentation/pages/product_details_page.dart';
 import 'package:jahiz/features/profile/presentation/pages/edit_profile_page.dart';

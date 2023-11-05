@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/orders/domain/usecases/place_order.dart';
+import 'package:jahiz/features/checkout/domain/usecases/place_order.dart';
 
 part 'place_order_state.dart';
 
