@@ -6,4 +6,8 @@ import '../../../../core/error/failures.dart';
 abstract class NotificationsRepository {
   Future<Either<Failure, AppResponse<List<Notification>>>> getNotifications(
       [int? page]);
+
+  Future<Either<Failure, AppResponse<String>>> updateDeviceToken(
+    String deviceToken,
+    );
 }

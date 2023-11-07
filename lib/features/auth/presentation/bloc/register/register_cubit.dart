@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/features/auth/domain/usecases/register.dart';
+import 'package:jahiz/features/notifications/application/notifications_service.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:queen_validators/queen_validators.dart';
 
@@ -12,11 +13,13 @@ import '../auth_cubit.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  RegisterCubit(this._registerUseCase, this._authCubit)
+  RegisterCubit(
+      this._registerUseCase, this._authCubit, this._notificationsService)
       : super(RegisterInitial());
 
   final RegisterUseCase _registerUseCase;
   final AuthCubit _authCubit;
+  final NotificationsService _notificationsService;
 
   final _formKey = GlobalKey<FormState>();
   get formKey => _formKey;
@@ -65,6 +68,8 @@ class RegisterCubit extends Cubit<RegisterState> {
           .fold((failure) => emit(RegisterLoadFailure(failure.message)),
               (authResponse) async {
         await _authCubit.setAuthenticated(authResponse.data.token);
+        await _notificationsService
+            .setDeviceToken();
         emit(RegisterLoadSuccess(authResponse.message));
       });
     }

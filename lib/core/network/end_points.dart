@@ -19,4 +19,5 @@ abstract class EndPoints {
   static const String updateProfileDetails = '.update_user';
   static const String getSalesOrderDetails = '.get_sales_order_detail';
   static const String appMessages = '.app_messages';
+  static const String updateDeviceToken = '.device_token';
 }

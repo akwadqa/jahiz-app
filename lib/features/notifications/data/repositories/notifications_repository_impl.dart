@@ -9,23 +9,38 @@ import '../../../../core/network/network_info.dart';
 
 class NotificationsRepositoryImpl implements NotificationsRepository {
   final NotificationsRemoteDataSource remoteDataSource;
-  final NetworkInfo _networkInfo;
+  final NetworkInfo networkInfo;
 
-  NotificationsRepositoryImpl(this.remoteDataSource, this._networkInfo);
+  NotificationsRepositoryImpl(this.remoteDataSource, this.networkInfo);
 
   @override
   Future<Either<Failure, AppResponse<List<Notification>>>> getNotifications(
       [int? page]) async {
-    if (await _networkInfo.isConnected) {
+    return await _performNetworkOperation(
+        () => remoteDataSource.getNotifications(page));
+  }
+
+  @override
+  Future<Either<Failure, AppResponse<String>>> updateDeviceToken(
+    String deviceToken,
+  ) async {
+    return await _performNetworkOperation(
+        () => remoteDataSource.updateDeviceToken(
+              deviceToken,
+            ));
+  }
+
+  Future<Either<Failure, T>> _performNetworkOperation<T>(
+      Future<T> Function() operation) async {
+    if (await networkInfo.isConnected) {
       try {
-        final AppResponse<List<Notification>> response =
-            await remoteDataSource.getNotifications(page);
+        final response = await operation();
         return Right(response);
       } on ServerException catch (e, stackTrace) {
         return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
       }
     } else {
-      return Left(OfflineFailure());
+      return Future.value(Left(OfflineFailure()));
     }
   }
 }

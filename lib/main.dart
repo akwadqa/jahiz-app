@@ -1,4 +1,3 @@
-import 'package:fcm_config/fcm_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/app_observer.dart';
@@ -7,7 +6,7 @@ import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
 import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
 import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
-import 'package:jahiz/firebase_options.dart';
+import 'package:jahiz/features/notifications/application/notifications_service.dart';
 import 'package:jahiz/injection_container.dart';
 
 import 'features/app_settings/presentation/app.dart';
@@ -18,15 +17,8 @@ import 'features/products/presentation/bloc/add_to_cart/add_to_cart_cubit.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  await FCMConfig.instance.init(
-    options: DefaultFirebaseOptions.currentPlatform,
-    defaultAndroidChannel: const AndroidNotificationChannel(
-      'high_importance_channel',
-      'Fcm config',
-      importance: Importance.high,
-    ),
-  );
   await init();
+  await getIt<NotificationsService>().init();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   Bloc.observer = AppObserver();
   runApp(MultiBlocProvider(providers: [

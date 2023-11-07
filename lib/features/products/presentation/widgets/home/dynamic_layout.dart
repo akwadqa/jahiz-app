@@ -38,19 +38,18 @@ class DynamicLayout extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           sliver: MultiSliver(
             children: [
-              if (title != null)
-                _TitledLayout(
-                  title: title,
-                  layoutWidget: SliverGrid(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 15,
-                              crossAxisSpacing: 15,
-                              childAspectRatio: 2 / 3),
-                      delegate: SliverChildBuilderDelegate(itemBuilder,
-                          childCount: count)),
-                ),
+              _TitledLayout(
+                title: title,
+                layoutWidget: SliverGrid(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 15,
+                            crossAxisSpacing: 15,
+                            childAspectRatio: 2 / 3),
+                    delegate: SliverChildBuilderDelegate(itemBuilder,
+                        childCount: count)),
+              ),
             ],
           ),
         );
@@ -187,22 +186,21 @@ class _HorizontalList extends StatelessWidget {
     return SliverToBoxAdapter(
         child: Column(
       children: [
-        if (title != null)
-          _TitledLayout(
-            title: title,
-            type: _TitledLayoutType.boxAdapter,
-            titlePadding: const EdgeInsets.symmetric(horizontal: 20),
-            layoutWidget: SizedBox(
-                height: heightOfHorizontalList,
-                child: ListView.separated(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    itemBuilder: itemBuilder,
-                    itemCount: itemCount,
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const SizedBox(width: 15))),
-          ),
+        _TitledLayout(
+          title: title,
+          type: _TitledLayoutType.boxAdapter,
+          titlePadding: const EdgeInsets.symmetric(horizontal: 20),
+          layoutWidget: SizedBox(
+              height: heightOfHorizontalList,
+              child: ListView.separated(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  itemBuilder: itemBuilder,
+                  itemCount: itemCount,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const SizedBox(width: 15))),
+        ),
       ],
     ));
   }

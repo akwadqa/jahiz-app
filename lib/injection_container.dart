@@ -5,10 +5,13 @@ import 'package:jahiz/features/checkout/data/datasources/checkout_remote_data_so
 import 'package:jahiz/features/checkout/data/repositories/checkout_repository_impl.dart';
 import 'package:jahiz/features/checkout/domain/repositories/checkout_repository.dart';
 import 'package:jahiz/features/checkout/presentation/bloc/place_order/place_order_cubit.dart';
+import 'package:jahiz/features/notifications/application/cubit/update_device_token_cubit.dart';
+import 'package:jahiz/features/notifications/application/notifications_service.dart';
 import 'package:jahiz/features/notifications/data/datasources/notifications_remote_data_source.dart';
 import 'package:jahiz/features/notifications/data/repositories/notifications_repository_impl.dart';
 import 'package:jahiz/features/notifications/domain/repositories/notifications_repository.dart';
 import 'package:jahiz/features/notifications/domain/usecases/get_notifications.dart';
+import 'package:jahiz/features/notifications/domain/usecases/update_device_token.dart';
 import 'package:jahiz/features/notifications/presentation/bloc/get_notifications/get_notifictions_cubit.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_order_details.dart';
 import 'package:jahiz/features/orders/domain/usecases/get_sales_orders.dart';
@@ -133,8 +136,8 @@ Future<void> init() async {
   //Bloc
   getIt.registerFactory(() => CheckUserValidationCubit(getIt()));
   getIt.registerLazySingleton(() => AuthCubit(getIt()));
-  getIt.registerFactory(() => RegisterCubit(getIt(), getIt()));
-  getIt.registerFactory(() => LoginCubit(getIt(), getIt()));
+  getIt.registerFactory(() => RegisterCubit(getIt(), getIt(), getIt()));
+  getIt.registerFactory(() => LoginCubit(getIt(), getIt(), getIt()));
 
   //UseCases
   getIt.registerLazySingleton(() => CheckUserValidationUseCase(getIt()));
@@ -206,6 +209,7 @@ Future<void> init() async {
 
   //UseCases
   getIt.registerLazySingleton(() => GetNotificationsUseCase(getIt()));
+  getIt.registerLazySingleton(() => UpdateDeviceTokenUseCase(getIt()));
 
   //Repository
   getIt.registerLazySingleton<NotificationsRepository>(
@@ -214,6 +218,10 @@ Future<void> init() async {
   //DataSources
   getIt.registerLazySingleton<NotificationsRemoteDataSource>(
       () => NotificationsRemoteDataSourceImpl(getIt()));
+
+  //Applicaiton
+  getIt.registerFactory(() => UpdateDeviceTokenCubit(getIt()));
+  getIt.registerLazySingleton(() => NotificationsService(getIt()));
 
   //!Features - cart
   //Bloc
