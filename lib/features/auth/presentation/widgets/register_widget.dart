@@ -67,16 +67,7 @@ class RegisterWidget extends StatelessWidget {
               onSaved: context.read<RegisterCubit>().onSavedEmail,
             ),
             const SizedBox(height: 14.0),
-            TextFormField(
-              decoration: InputDecoration(
-                label: Text(S.of(context).password),
-              ),
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.visiblePassword,
-              validator:
-                  context.read<RegisterCubit>().passwordValidator(context),
-              onSaved: context.read<RegisterCubit>().onSavedPassword,
-            ),
+            const _PasswordTextFormField(),
             const SizedBox(height: 20.0),
             CheckBoxFormField(
               validator: (value) => context
@@ -117,6 +108,38 @@ class RegisterWidget extends StatelessWidget {
                     context.read<RegisterCubit>().register(userPhoneNumber),
                 child: Text(S.of(context).createAccount));
           }),
+    );
+  }
+}
+
+class _PasswordTextFormField extends StatefulWidget {
+  const _PasswordTextFormField({Key? key}) : super(key: key);
+
+  @override
+  State<_PasswordTextFormField> createState() => _PasswordTextFormFieldState();
+}
+
+class _PasswordTextFormFieldState extends State<_PasswordTextFormField> {
+  bool _obscureText = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+          label: Text(S.of(context).password),
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.remove_red_eye_outlined),
+            onPressed: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+          )),
+      obscureText: _obscureText,
+      onSaved: context.read<RegisterCubit>().onSavedPassword,
+      validator: context.read<RegisterCubit>().passwordValidator(context),
+      keyboardType: TextInputType.visiblePassword,
+      textInputAction: TextInputAction.done,
     );
   }
 }

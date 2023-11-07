@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
@@ -25,9 +26,11 @@ class AddToCartButton extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               if (context.read<AuthCubit>().state is Authenticated) {
-                context.read<AddDetailedProductToCartCubit>().addToCart(
-                    detailedProduct,
-                    context.read<PriceModifierCubit>().state.quantity);
+                context
+                    .read<AddDetailedProductToCartCubit>()
+                    .addToCart(detailedProduct,
+                        context.read<PriceModifierCubit>().state.quantity)
+                    .then((value) => context.popRoute());
               } else {
                 showSignUpLoginBottomSheet(context);
               }
