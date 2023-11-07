@@ -1,15 +1,15 @@
 import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
 
 class AppSettingsModel extends AppSettings {
-  const AppSettingsModel(
-      {required super.customerId,
-      required super.company,
-      required super.companyWhatsappNumber,
-      required super.privacyPolicy,
-      required super.username,
-      required super.fullName,
-      required super.mobileNo,
-      required super.companyName,
+  const AppSettingsModel({
+    required super.customerId,
+    required super.company,
+    required super.companyWhatsappNumber,
+    required super.privacyPolicy,
+    required super.username,
+    required super.fullName,
+    required super.mobileNo,
+    required super.companyName,
   });
 
   factory AppSettingsModel.fromJson(Map<String, dynamic> json) {

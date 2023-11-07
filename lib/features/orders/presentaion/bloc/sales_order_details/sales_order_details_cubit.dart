@@ -6,7 +6,8 @@ import 'package:jahiz/features/orders/domain/usecases/get_sales_order_details.da
 part 'sales_order_details_state.dart';
 
 class SalesOrderDetailsCubit extends Cubit<SalesOrderDetailsState> {
-  SalesOrderDetailsCubit(this._getSalesOrderDetailsUseCase) : super(SalesOrderDetailsInitial());
+  SalesOrderDetailsCubit(this._getSalesOrderDetailsUseCase)
+      : super(SalesOrderDetailsInitial());
 
   final GetSalesOrderDetailsUseCase _getSalesOrderDetailsUseCase;
 
@@ -15,6 +16,7 @@ class SalesOrderDetailsCubit extends Cubit<SalesOrderDetailsState> {
     final failureOrLoaded = await _getSalesOrderDetailsUseCase(orderId);
     failureOrLoaded.fold(
         (failure) => emit(SalesOrderDetailsError(failure.message)),
-        (salesOrderDetails) => emit(SalesOrderDetailsLoaded(salesOrderDetails)));
+        (salesOrderDetails) =>
+            emit(SalesOrderDetailsLoaded(salesOrderDetails)));
   }
 }

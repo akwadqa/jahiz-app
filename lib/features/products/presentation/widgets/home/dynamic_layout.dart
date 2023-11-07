@@ -21,7 +21,6 @@ class DynamicLayout extends StatelessWidget {
       required this.count,
       this.heightOfHorizontalList = 200,
       this.title,
-      this.onMoreButtonPressed,
       required this.backgroundColor})
       : super(key: key);
   final ViewType viewType;
@@ -29,7 +28,6 @@ class DynamicLayout extends StatelessWidget {
   final int count;
   final double heightOfHorizontalList;
   final String? title;
-  final VoidCallback? onMoreButtonPressed;
   final Color backgroundColor;
 
   @override
@@ -41,16 +39,18 @@ class DynamicLayout extends StatelessWidget {
           sliver: MultiSliver(
             children: [
               if (title != null)
-                _TitleHeader(
-                    title: title, onMoreButtonPressed: onMoreButtonPressed),
-              SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 15,
-                      childAspectRatio: 2 / 3),
-                  delegate: SliverChildBuilderDelegate(itemBuilder,
-                      childCount: count)),
+                _TitledLayout(
+                  title: title,
+                  layoutWidget: SliverGrid(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 15,
+                              crossAxisSpacing: 15,
+                              childAspectRatio: 2 / 3),
+                      delegate: SliverChildBuilderDelegate(itemBuilder,
+                          childCount: count)),
+                ),
             ],
           ),
         );
@@ -59,15 +59,13 @@ class DynamicLayout extends StatelessWidget {
             heightOfHorizontalList: heightOfHorizontalList,
             title: title,
             itemCount: count,
-            itemBuilder: itemBuilder,
-            onMoreButtonPressed: onMoreButtonPressed!);
+            itemBuilder: itemBuilder);
       case ViewType.horizontalScroll:
         return _HorizontalList(
             heightOfHorizontalList: 320,
             title: title,
             itemCount: count,
-            itemBuilder: itemBuilder,
-            onMoreButtonPressed: onMoreButtonPressed!);
+            itemBuilder: itemBuilder);
       default:
         return SliverStack(
           children: [
@@ -82,19 +80,20 @@ class DynamicLayout extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               sliver: MultiSliver(
                 children: [
-                  _TitleHeader(
-                      title: title!, onMoreButtonPressed: onMoreButtonPressed!),
-                  StaggeredGrid.count(
-                    mainAxisSpacing: 15,
-                    crossAxisSpacing: 15,
-                    crossAxisCount: 6,
-                    children: List.generate(count, (index) {
-                      return StaggeredGridTile.count(
-                          crossAxisCellCount: index % 3 == 0 ? 4 : 2,
-                          mainAxisCellCount: index % 3 == 0 ? 6 : 3,
-                          child: itemBuilder(context, index));
-                    }),
-                  )
+                  _TitledLayout(
+                    title: title!,
+                    layoutWidget: StaggeredGrid.count(
+                      mainAxisSpacing: 15,
+                      crossAxisSpacing: 15,
+                      crossAxisCount: 6,
+                      children: List.generate(count, (index) {
+                        return StaggeredGridTile.count(
+                            crossAxisCellCount: index % 3 == 0 ? 4 : 2,
+                            mainAxisCellCount: index % 3 == 0 ? 6 : 3,
+                            child: itemBuilder(context, index));
+                      }),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -104,32 +103,67 @@ class DynamicLayout extends StatelessWidget {
   }
 }
 
-class _TitleHeader extends StatelessWidget {
-  const _TitleHeader(
-      {Key? key, required this.title, required this.onMoreButtonPressed})
+enum _TitledLayoutType { sliver, boxAdapter }
+
+class _TitledLayout extends StatefulWidget {
+  const _TitledLayout(
+      {Key? key,
+      required this.title,
+      required this.layoutWidget,
+      this.titlePadding,
+      this.type = _TitledLayoutType.sliver})
       : super(key: key);
   final String? title;
-  final VoidCallback? onMoreButtonPressed;
+  final Widget layoutWidget;
+  final EdgeInsetsGeometry? titlePadding;
+  final _TitledLayoutType type;
+
+  @override
+  State<_TitledLayout> createState() => _TitledLayoutState();
+}
+
+class _TitledLayoutState extends State<_TitledLayout> {
+  bool isExpanded = true;
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        if (title != null)
-          Text(title!,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(fontWeight: FontWeight.bold)),
-        if (onMoreButtonPressed != null)
+    if (widget.title == null) return widget.layoutWidget;
+    return widget.type == _TitledLayoutType.sliver
+        ? MultiSliver(
+            children: [_title(context), if (isExpanded) widget.layoutWidget],
+          )
+        : Column(
+            children: [_title(context), if (isExpanded) widget.layoutWidget],
+          );
+  }
+
+  Padding _title(BuildContext context) {
+    return Padding(
+      padding: widget.titlePadding ?? const EdgeInsets.all(0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (widget.title != null)
+            Text(widget.title!,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontWeight: FontWeight.bold)),
           IconButton(
-              onPressed: onMoreButtonPressed,
+              onPressed: () {
+                setState(() {
+                  isExpanded = !isExpanded;
+                });
+              },
               icon: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all()),
-                  child: const Icon(Icons.keyboard_arrow_down)))
-      ],
+                  child: Icon(isExpanded
+                      ? Icons.keyboard_arrow_down
+                      : Icons.keyboard_arrow_up)))
+        ],
+      ),
     );
   }
 }
@@ -139,14 +173,12 @@ class _HorizontalList extends StatelessWidget {
       {Key? key,
       required this.heightOfHorizontalList,
       required this.title,
-      required this.onMoreButtonPressed,
       required this.itemBuilder,
       required this.itemCount})
       : super(key: key);
 
   final double heightOfHorizontalList;
   final String? title;
-  final VoidCallback onMoreButtonPressed;
   final Widget Function(BuildContext, int) itemBuilder;
   final int itemCount;
 
@@ -156,21 +188,21 @@ class _HorizontalList extends StatelessWidget {
         child: Column(
       children: [
         if (title != null)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: _TitleHeader(
-                title: title, onMoreButtonPressed: onMoreButtonPressed),
+          _TitledLayout(
+            title: title,
+            type: _TitledLayoutType.boxAdapter,
+            titlePadding: const EdgeInsets.symmetric(horizontal: 20),
+            layoutWidget: SizedBox(
+                height: heightOfHorizontalList,
+                child: ListView.separated(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    itemBuilder: itemBuilder,
+                    itemCount: itemCount,
+                    scrollDirection: Axis.horizontal,
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(width: 15))),
           ),
-        SizedBox(
-            height: heightOfHorizontalList,
-            child: ListView.separated(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                itemBuilder: itemBuilder,
-                itemCount: itemCount,
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (BuildContext context, int index) =>
-                    const SizedBox(width: 15))),
       ],
     ));
   }

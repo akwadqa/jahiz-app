@@ -57,10 +57,20 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MainPage(),
       );
     },
-    NotificationRoute.name: (routeData) {
+    NotificationDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<NotificationDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: const NotificationPage()),
+        child: NotificationDetailsPage(
+          key: args.key,
+          notification: args.notification,
+        ),
+      );
+    },
+    NotificationsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(child: const NotificationsPage()),
       );
     },
     OrderDetailsRoute.name: (routeData) {
@@ -210,15 +220,54 @@ class MainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [NotificationPage]
-class NotificationRoute extends PageRouteInfo<void> {
-  const NotificationRoute({List<PageRouteInfo>? children})
-      : super(
-          NotificationRoute.name,
+/// [NotificationDetailsPage]
+class NotificationDetailsRoute
+    extends PageRouteInfo<NotificationDetailsRouteArgs> {
+  NotificationDetailsRoute({
+    Key? key,
+    required Notification notification,
+    List<PageRouteInfo>? children,
+  }) : super(
+          NotificationDetailsRoute.name,
+          args: NotificationDetailsRouteArgs(
+            key: key,
+            notification: notification,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'NotificationRoute';
+  static const String name = 'NotificationDetailsRoute';
+
+  static const PageInfo<NotificationDetailsRouteArgs> page =
+      PageInfo<NotificationDetailsRouteArgs>(name);
+}
+
+class NotificationDetailsRouteArgs {
+  const NotificationDetailsRouteArgs({
+    this.key,
+    required this.notification,
+  });
+
+  final Key? key;
+
+  final Notification notification;
+
+  @override
+  String toString() {
+    return 'NotificationDetailsRouteArgs{key: $key, notification: $notification}';
+  }
+}
+
+/// generated route for
+/// [NotificationsPage]
+class NotificationsRoute extends PageRouteInfo<void> {
+  const NotificationsRoute({List<PageRouteInfo>? children})
+      : super(
+          NotificationsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NotificationsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

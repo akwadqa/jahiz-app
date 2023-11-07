@@ -5,7 +5,8 @@ import 'package:jahiz/generated/l10n.dart';
 import '../../../../core/gen/assets.gen.dart';
 
 class AddressTypeSelector extends StatefulWidget {
-  const AddressTypeSelector({Key? key, required this.onSelected, this.initialValue})
+  const AddressTypeSelector(
+      {Key? key, required this.onSelected, this.initialValue})
       : super(key: key);
   final Function(AddressType) onSelected;
   final AddressType? initialValue;

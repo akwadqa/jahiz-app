@@ -7,8 +7,8 @@ import 'package:jahiz/features/cart/domain/entities/cart_product_option.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
 import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
-class CartService {
 
+class CartService {
   const CartService(this._cartCubit, this._updateCartCubit);
 
   final CartCubit _cartCubit;
@@ -16,8 +16,8 @@ class CartService {
   final UpdateCartCubit _updateCartCubit;
 
   void updateCartAddress(Address address) {
-    _updateCartCubit
-        .updateAddress((_cartCubit.state as CartLoaded).cart, address);
+    _updateCartCubit.updateAddress(
+        (_cartCubit.state as CartLoaded).cart, address);
   }
 
   Future<Either<Failure, Cart?>> addToCart<T extends dynamic>(

@@ -58,9 +58,9 @@ class _MapWidgetState extends State<_MapWidget> {
       children: [
         GoogleMap(
           initialCameraPosition: CameraPosition(
-                    target: _currentPosition,
-                    zoom: 14.0,
-                  ),
+            target: _currentPosition,
+            zoom: 14.0,
+          ),
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
           },

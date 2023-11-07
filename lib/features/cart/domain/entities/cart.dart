@@ -39,7 +39,8 @@ class Cart extends Equatable {
       required this.couponCodeDetails,
       required this.shippingAddressDetails,
       required this.items,
-      required this.otherChargesCalculation, this.paymentGateway});
+      required this.otherChargesCalculation,
+      this.paymentGateway});
 
   Cart copyWith(
       {String? name,
@@ -56,7 +57,8 @@ class Cart extends Equatable {
       CouponCodeDetails? couponCodeDetails,
       List<Address>? shippingAddressDetails,
       List<CartItem>? items,
-      List<OtherChargesCalculation>? otherChargesCalculation, String? paymentGetway}) {
+      List<OtherChargesCalculation>? otherChargesCalculation,
+      String? paymentGetway}) {
     return Cart(
         name: name ?? this.name,
         transactionDate: transactionDate ?? this.transactionDate,
@@ -76,8 +78,7 @@ class Cart extends Equatable {
         items: items ?? this.items,
         otherChargesCalculation:
             otherChargesCalculation ?? this.otherChargesCalculation,
-        paymentGateway: paymentGetway ?? this.paymentGateway
-            );
+        paymentGateway: paymentGetway ?? paymentGateway);
   }
 
   CartModel toModel() {
@@ -98,7 +99,8 @@ class Cart extends Equatable {
             shippingAddressDetails.map((e) => e.toModel()).toList(),
         items: items.map((e) => e.toModel()).toList(),
         otherChargesCalculation:
-            otherChargesCalculation.map((e) => e.toModel()).toList(), paymentGateway: paymentGateway);
+            otherChargesCalculation.map((e) => e.toModel()).toList(),
+        paymentGateway: paymentGateway);
   }
 
   @override

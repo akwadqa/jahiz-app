@@ -8,7 +8,6 @@ import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_service.dart';
 
 abstract class OrdersRemoteDataSource {
-
   Future<AppResponseModel<List<SalesOrderModel>>> getSalesOrders([int? page]);
 
   Future<SalesOrderDetailsModel> getSalesOrderDetails(String orderId);

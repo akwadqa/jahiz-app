@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/gen/fonts.gen.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/core/widgets/sign_up_login_bottom_sheet.dart';
 import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
@@ -126,7 +127,9 @@ class ProfilePage extends StatelessWidget {
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.black,
                     textStyle: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.w500),
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: FontFamily.qatar),
                   ),
                   child: Text(S.of(context).login));
             })),

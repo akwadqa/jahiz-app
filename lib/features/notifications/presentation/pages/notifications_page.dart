@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/widgets/custom_back_button.dart';
-import 'package:jahiz/features/notification/presentation/bloc/get_notifications/get_notifictions_cubit.dart';
-import 'package:jahiz/features/notification/presentation/widgets/notification_list.dart';
+import 'package:jahiz/features/notifications/presentation/bloc/get_notifications/get_notifictions_cubit.dart';
+import 'package:jahiz/features/notifications/presentation/widgets/notifications_list.dart';
 import 'package:jahiz/generated/l10n.dart';
 import 'package:jahiz/injection_container.dart';
 
 @RoutePage()
-class NotificationPage extends StatelessWidget implements AutoRouteWrapper {
-  const NotificationPage({super.key});
+class NotificationsPage extends StatelessWidget implements AutoRouteWrapper {
+  const NotificationsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class NotificationPage extends StatelessWidget implements AutoRouteWrapper {
         appBar: AppBar(
             leading: const CustomBackButton(),
             title: Text(S.of(context).notifications)),
-        body: const NotificationList());
+        body: const NotificationsList());
   }
 
   @override

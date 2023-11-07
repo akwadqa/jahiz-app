@@ -16,8 +16,7 @@ class ProfileDetails extends Equatable {
       required this.email,
       required this.mobileNo,
       required this.gender,
-      required this.enabled
-      });
+      required this.enabled});
 
   ProfileDetails copyWith(
       {String? firstName,
@@ -26,8 +25,7 @@ class ProfileDetails extends Equatable {
       String? email,
       String? mobileNo,
       bool? gender,
-      int? enabled
-      }) {
+      int? enabled}) {
     return ProfileDetails(
         firstName: firstName ?? this.firstName,
         middleName: middleName ?? this.middleName,
@@ -35,18 +33,10 @@ class ProfileDetails extends Equatable {
         email: email ?? this.email,
         mobileNo: mobileNo ?? this.mobileNo,
         gender: gender ?? this.gender,
-        enabled: enabled ?? this.enabled
-        );
+        enabled: enabled ?? this.enabled);
   }
 
   @override
-  List<Object?> get props => [
-        firstName,
-        middleName,
-        lastName,
-        email,
-        mobileNo,
-        gender,
-        enabled
-      ];
+  List<Object?> get props =>
+      [firstName, middleName, lastName, email, mobileNo, gender, enabled];
 }

@@ -102,7 +102,7 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
       ),
     );
   }
-  
+
   @override
   Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(

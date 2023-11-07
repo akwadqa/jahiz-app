@@ -55,7 +55,9 @@ class AddressFormWidget extends StatelessWidget {
               validator: context
                   .read<AddUpdateAddressCubit>()
                   .zoneNumberValidator(context),
-              onSaved: (value) => context.read<AddUpdateAddressCubit>().onZoneNumberSaved(value),
+              onSaved: (value) => context
+                  .read<AddUpdateAddressCubit>()
+                  .onZoneNumberSaved(value),
               keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
             ),

@@ -20,7 +20,6 @@ class CategoriesView extends StatelessWidget {
       padding: EdgeInsets.zero,
       sliver: DynamicLayout(
         heightOfHorizontalList: 144,
-        onMoreButtonPressed: () {},
         viewType: ViewType.values
             .firstWhere((element) => element.name == categoriesBlock.view),
         itemBuilder: (context, index) {

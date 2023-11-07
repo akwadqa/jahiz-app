@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
@@ -28,10 +27,7 @@ class HomePage extends StatelessWidget {
         actions: [
           ContainedButton(
             icon: Assets.images.notification.svg(),
-            onPressed: () {
-              // Todo Check if user logged in or not
-              context.pushRoute(const NotificationRoute());
-            },
+            onPressed: () => context.pushRoute(const NotificationsRoute()),
             withShadow: false,
             backgroundColor: Colors.white,
             margin: const EdgeInsetsDirectional.only(end: 16.0),

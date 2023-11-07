@@ -8,8 +8,7 @@ class ProfileDetailsModel extends ProfileDetails {
       required super.email,
       required super.mobileNo,
       required super.gender,
-      required super.enabled
-      });
+      required super.enabled});
 
   factory ProfileDetailsModel.fromJson(dynamic json) {
     return ProfileDetailsModel(
@@ -19,8 +18,7 @@ class ProfileDetailsModel extends ProfileDetails {
         email: json['email'],
         mobileNo: json['mobile_no'],
         gender: json['gender'],
-        enabled: json['is_enabled']
-        );
+        enabled: json['is_enabled']);
   }
 
   Map<String, dynamic> toJson() {

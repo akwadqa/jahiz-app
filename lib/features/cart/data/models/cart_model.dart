@@ -21,7 +21,8 @@ class CartModel extends Cart {
       required super.couponCodeDetails,
       required super.shippingAddressDetails,
       required super.items,
-      required super.otherChargesCalculation, required super.paymentGateway});
+      required super.otherChargesCalculation,
+      required super.paymentGateway});
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
@@ -54,7 +55,8 @@ class CartModel extends Cart {
             ? (json['other_charges_calculation'] as List<dynamic>)
                 .map((e) => OtherChargesCalculationModel.fromJson(e))
                 .toList()
-            : [], paymentGateway: json['payment_gateway']);
+            : [],
+        paymentGateway: json['payment_gateway']);
   }
 
   Map<String, dynamic> toJson() {

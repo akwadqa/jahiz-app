@@ -10,8 +10,7 @@ class PlaceOrderCubit extends Cubit<PlaceOrderState> {
 
   Future<void> placeOrder(String quotationId, [int? isSuccess]) async {
     emit(PlaceOrderLoading());
-    final failureOrOrder =
-        await _placeOrderUseCase(quotationId, isSuccess);
+    final failureOrOrder = await _placeOrderUseCase(quotationId, isSuccess);
     failureOrOrder.fold(
         (failure) => emit(PlaceOrderError(message: failure.message)),
         (order) => emit(PlaceOrderLoaded(order)));

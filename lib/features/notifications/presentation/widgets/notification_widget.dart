@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:jahiz/features/notification/domain/entities/notification.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart' hide Notification;
+import 'package:jahiz/core/router/app_router.dart';
+import 'package:jahiz/features/notifications/domain/entities/notification.dart';
 
 class NotifiationWidget extends StatelessWidget {
-  final Notifications notification;
+  final Notification notification;
   const NotifiationWidget({super.key, required this.notification});
 
   @override
@@ -15,17 +16,18 @@ class NotifiationWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            notification.subject,
+            notification.appMessageTitle,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          Text(notification.emailContent),
+          Text(notification.content),
         ],
       ),
       subtitle: Text(
-        "${DateFormat('dd', "en_US").format(DateTime.parse(notification.postingDateTime))} ${DateFormat('MMMM', "en_US").format(DateTime.parse(notification.postingDateTime)).substring(0, 3)} ${DateFormat('y', "en_US").format(DateTime.parse(notification.postingDateTime))}",
+        notification.publishedOn,
         style: const TextStyle(color: Colors.grey),
       ),
       trailing: const Icon(Icons.arrow_forward_ios),
+      onTap: () => context.pushRoute(NotificationDetailsRoute(notification: notification)),
     );
   }
 }

@@ -20,13 +20,13 @@ class CategoriesRemoteDataSourceImpl extends CategoriesRemoteDataSource {
           endpoint: EndPoints.getCategories,
           queryParameters: {'category': category});
       AppResponseModel<CategoryModel> responseModel =
-            AppResponseModel<CategoryModel>.fromJson(
-                response.data, (data) => CategoryModel.fromJson(data));
-        if (responseModel.error == 1) {
-          throw ServerException(message: responseModel.message);
-        } else {
-          return responseModel.data;
-        }
+          AppResponseModel<CategoryModel>.fromJson(
+              response.data, (data) => CategoryModel.fromJson(data));
+      if (responseModel.error == 1) {
+        throw ServerException(message: responseModel.message);
+      } else {
+        return responseModel.data;
+      }
     } catch (e, stackTrace) {
       throw ServerException(message: e.toString(), stackTrace: stackTrace);
     }

@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/features/profile/presentation/widgets/language_switch.dart';
 import 'package:jahiz/features/profile/presentation/widgets/titled_container.dart';
 import 'package:jahiz/generated/l10n.dart';
@@ -18,6 +20,7 @@ class Settings extends StatelessWidget {
           const LanguageSwitch(),
           const Divider(),
           ListTile(
+            onTap: () => context.pushRoute(const NotificationsRoute()),
             leading: Text(S.of(context).notification,
                 style: const TextStyle(
                     fontSize: 18,

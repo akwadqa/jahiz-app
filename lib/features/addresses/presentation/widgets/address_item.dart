@@ -77,8 +77,8 @@ class AddressItem extends StatelessWidget {
                                   MaterialStateProperty.all(EdgeInsets.zero),
                             ),
                             child: Text(S.of(context).change,
-                                style:
-                                    TextStyle(fontFamily: FontFamily.qatar))),
+                                style: const TextStyle(
+                                    fontFamily: FontFamily.qatar))),
                       )
               ],
             )

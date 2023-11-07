@@ -11,7 +11,7 @@ final class SalesOrdersCubitInitial extends SalesOrdersCubitState {}
 
 final class SalesOrdersCubitLoading extends SalesOrdersCubitState {}
 
-final class SalesOrdersCubitLoadedEmpty extends SalesOrdersCubitState{}
+final class SalesOrdersCubitLoadedEmpty extends SalesOrdersCubitState {}
 
 final class SalesOrdersCubitLoaded extends SalesOrdersCubitState {
   final AppResponse<List<SalesOrder>> appResponse;

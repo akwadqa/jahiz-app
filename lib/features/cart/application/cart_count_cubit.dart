@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
 
-
 import 'dart:async';
 
 class CartCountCubit extends Cubit<int> {
@@ -26,4 +25,3 @@ class CartCountCubit extends Cubit<int> {
     return super.close();
   }
 }
-

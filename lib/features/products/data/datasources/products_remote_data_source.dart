@@ -21,13 +21,13 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
           endpoint: EndPoints.getDetailedProduct,
           queryParameters: {'website_item_id': productId});
       AppResponseModel<DetailedProductModel> responseModel =
-            AppResponseModel<DetailedProductModel>.fromJson(response.data,
-                (data) => DetailedProductModel.fromJson((data as List).first));
-        if (responseModel.error == 1) {
-          throw ServerException(message: responseModel.message);
-        } else {
-          return responseModel.data;
-        }
+          AppResponseModel<DetailedProductModel>.fromJson(response.data,
+              (data) => DetailedProductModel.fromJson((data as List).first));
+      if (responseModel.error == 1) {
+        throw ServerException(message: responseModel.message);
+      } else {
+        return responseModel.data;
+      }
     } catch (e, stackTrace) {
       throw ServerException(message: e.toString(), stackTrace: stackTrace);
     }

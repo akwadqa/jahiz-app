@@ -35,123 +35,118 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
               if (state.category.subCategories!.isEmpty) {
                 return const NoElementsWidget();
               }
-              return Expanded(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: BlocBuilder<SubCategoriesCubit,
-                              SubCategoriesState>(
-                          buildWhen: (previous, current) =>
-                              (previous as SubCategoriesLoadSuccess)
-                                  .selectedCategory !=
-                              (current as SubCategoriesLoadSuccess)
-                                  .selectedCategory,
-                          builder: (context, state) {
-                            return Wrap(
-                                spacing: 6,
-                                children: (state as SubCategoriesLoadSuccess)
-                                    .category
-                                    .subCategories!
-                                    .map((e) => ChoiceChip(
-                                          label: Text(
-                                              e.websiteTitle ?? 'smartphone'),
-                                          elevation: 2,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 8),
-                                          backgroundColor:
-                                              state.selectedCategory == e
-                                                  ? Theme.of(context)
-                                                      .primaryColor
-                                                  : Colors.white,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0)),
-                                          labelStyle: Theme.of(context)
-                                              .textTheme
-                                              .titleLarge!
-                                              .copyWith(
-                                                  color:
-                                                      state.selectedCategory ==
-                                                              e
-                                                          ? Colors.white
-                                                          : Colors.black),
-                                          selected: state.selectedCategory == e,
-                                          onSelected: (value) {
-                                            if (value) {
-                                              context
-                                                  .read<SubCategoriesCubit>()
-                                                  .loadProductsOfCategory(
-                                                      e.itemGroupId);
-                                            }
-                                          },
-                                        ))
-                                    .toList());
-                          }),
-                    ),
-                    BlocBuilder<SubCategoriesCubit, SubCategoriesState>(
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: BlocBuilder<SubCategoriesCubit, SubCategoriesState>(
                         buildWhen: (previous, current) =>
                             (previous as SubCategoriesLoadSuccess)
-                                .productsState !=
-                            (current as SubCategoriesLoadSuccess).productsState,
+                                .selectedCategory !=
+                            (current as SubCategoriesLoadSuccess)
+                                .selectedCategory,
                         builder: (context, state) {
-                          return Expanded(
-                            child: (state as SubCategoriesLoadSuccess)
-                                    .productsState is ProductsLoadSuccess
-                                ? GridView.builder(
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2,
-                                            mainAxisSpacing: 15,
-                                            crossAxisSpacing: 15,
-                                            childAspectRatio: 2 / 3),
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return ProductItem(
-                                          product: (state.productsState
-                                                  as ProductsLoadSuccess)
-                                              .products[index],
-                                          viewType: ViewType.grid,
-                                          index: index);
-                                    },
-                                    itemCount: state.category.products!.length,
-                                    padding: const EdgeInsets.only(
-                                        left: 20.0,
-                                        right: 20.0,
-                                        top: 20.0,
-                                        bottom: 120),
-                                  )
-                                : state.productsState is ProductsLoadEmpty
-                                    ? const Center(child: NoElementsWidget())
-                                    : state.productsState is ProductsLoadFailure
-                                        ? AppErrorWidget(
-                                            errorText: (state.productsState
-                                                    as ProductsLoadFailure)
-                                                .error,
-                                            onRetryClicked: () => context
+                          return Wrap(
+                              spacing: 6,
+                              children: (state as SubCategoriesLoadSuccess)
+                                  .category
+                                  .subCategories!
+                                  .map((e) => ChoiceChip(
+                                        label: Text(
+                                            e.websiteTitle ?? 'smartphone'),
+                                        elevation: 2,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 8),
+                                        backgroundColor:
+                                            state.selectedCategory == e
+                                                ? Theme.of(context).primaryColor
+                                                : Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        labelStyle: Theme.of(context)
+                                            .textTheme
+                                            .titleLarge!
+                                            .copyWith(
+                                                color:
+                                                    state.selectedCategory == e
+                                                        ? Colors.white
+                                                        : Colors.black),
+                                        selected: state.selectedCategory == e,
+                                        onSelected: (value) {
+                                          if (value) {
+                                            context
                                                 .read<SubCategoriesCubit>()
-                                                .loadProductsOfCategory(state
-                                                    .selectedCategory!
-                                                    .itemGroupId))
-                                        : const Center(
-                                            child: CircularProgressIndicator
-                                                .adaptive()),
-                          );
-                        })
-                  ],
-                ),
+                                                .loadProductsOfCategory(
+                                                    e.itemGroupId);
+                                          }
+                                        },
+                                      ))
+                                  .toList());
+                        }),
+                  ),
+                  BlocBuilder<SubCategoriesCubit, SubCategoriesState>(
+                      buildWhen: (previous, current) =>
+                          (previous as SubCategoriesLoadSuccess)
+                              .productsState !=
+                          (current as SubCategoriesLoadSuccess).productsState,
+                      builder: (context, state) {
+                        return Expanded(
+                          child: (state as SubCategoriesLoadSuccess)
+                                  .productsState is ProductsLoadSuccess
+                              ? GridView.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          mainAxisSpacing: 15,
+                                          crossAxisSpacing: 15,
+                                          childAspectRatio: 2 / 3),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return ProductItem(
+                                        product: (state.productsState
+                                                as ProductsLoadSuccess)
+                                            .products[index],
+                                        viewType: ViewType.grid,
+                                        index: index);
+                                  },
+                                  itemCount: (state.productsState
+                                          as ProductsLoadSuccess)
+                                      .products
+                                      .length,
+                                  padding: const EdgeInsets.only(
+                                      left: 20.0,
+                                      right: 20.0,
+                                      top: 20.0,
+                                      bottom: 120),
+                                )
+                              : state.productsState is ProductsLoadEmpty
+                                  ? const Center(child: NoElementsWidget())
+                                  : state.productsState is ProductsLoadFailure
+                                      ? AppErrorWidget(
+                                          errorText: (state.productsState
+                                                  as ProductsLoadFailure)
+                                              .error,
+                                          onRetryClicked: () => context
+                                              .read<SubCategoriesCubit>()
+                                              .loadProductsOfCategory(state
+                                                  .selectedCategory!
+                                                  .itemGroupId))
+                                      : const Center(
+                                          child: CircularProgressIndicator
+                                              .adaptive()),
+                        );
+                      })
+                ],
               );
             }
             if (state is SubCategoriesLoadFailure) {
-              return Expanded(
-                child: AppErrorWidget(
-                    errorText: state.error,
-                    onRetryClicked:
-                        context.read<SubCategoriesCubit>().getSubCategories),
-              );
+              return AppErrorWidget(
+                  errorText: state.error,
+                  onRetryClicked:
+                      context.read<SubCategoriesCubit>().getSubCategories);
             }
-            return const Expanded(
-                child: Center(child: CircularProgressIndicator.adaptive()));
+            return const Center(child: CircularProgressIndicator.adaptive());
           }),
       bottomNavigationBar: BlocBuilder<CartCountCubit, int>(
         builder: (context, state) {

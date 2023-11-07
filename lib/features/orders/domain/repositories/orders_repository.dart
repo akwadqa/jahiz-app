@@ -5,7 +5,6 @@ import 'package:jahiz/features/orders/domain/entities/sales_order/sales_order.da
 import 'package:jahiz/features/orders/domain/entities/sales_order_details/sales_order_details.dart';
 
 abstract class OrdersRepository {
-
   Future<Either<Failure, AppResponse<List<SalesOrder>>>> getSalesOrders(
       [int? page]);
 

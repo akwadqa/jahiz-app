@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +15,7 @@ part 'add_detailed_product_to_cart_state.dart';
 
 class AddDetailedProductToCartCubit
     extends Cubit<AddDetailedProductToCartState> {
-  AddDetailedProductToCartCubit()
-      : super(AddDetailedProductToCartInitial());
-
+  AddDetailedProductToCartCubit() : super(AddDetailedProductToCartInitial());
 
   final _formKey = GlobalKey<FormState>();
 
@@ -49,10 +46,12 @@ class AddDetailedProductToCartCubit
   Future<void> _submit(DetailedProduct detailedProduct, int quantity) async {
     emit(AddDetailedProductToCartLoading());
     final failureOrCart = await getIt<CartService>().addToCart(
-          product: detailedProduct, quantity: quantity, cartProductOptions: _cartProductOptions);
-      return failureOrCart.fold(
-          (failure) =>
-              emit(AddDetailedProductToCartError(message: failure.message)),
-          (cart) => emit(AddDetailedProductToCartLoaded()));
+        product: detailedProduct,
+        quantity: quantity,
+        cartProductOptions: _cartProductOptions);
+    return failureOrCart.fold(
+        (failure) =>
+            emit(AddDetailedProductToCartError(message: failure.message)),
+        (cart) => emit(AddDetailedProductToCartLoaded()));
   }
 }

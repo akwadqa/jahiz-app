@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 
 class AppCachedNetworkImage extends StatelessWidget {
   const AppCachedNetworkImage(
-      {Key? key, required this.imageUrl, this.height, this.width, this.fit = BoxFit.cover})
+      {Key? key,
+      required this.imageUrl,
+      this.height,
+      this.width,
+      this.fit = BoxFit.cover})
       : super(key: key);
 
   final String imageUrl;

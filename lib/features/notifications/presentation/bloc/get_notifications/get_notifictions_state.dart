@@ -14,7 +14,7 @@ final class GetNotificationsLoading extends GetNotificationsState {}
 final class GetNotificationsIsEmpty extends GetNotificationsState {}
 
 final class GetNotificationsSuccess extends GetNotificationsState {
-  final AppResponse<List<Notifications>> appResponse;
+  final AppResponse<List<Notification>> appResponse;
   const GetNotificationsSuccess(this.appResponse);
 }
 

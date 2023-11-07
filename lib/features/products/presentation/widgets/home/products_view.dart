@@ -19,7 +19,6 @@ class ProductsView extends StatelessWidget {
       padding: isNotLast ? const EdgeInsets.only(bottom: 30) : EdgeInsets.zero,
       sliver: DynamicLayout(
         title: productsBlock.title,
-        onMoreButtonPressed: () {},
         viewType: ViewType.values
             .firstWhere((element) => element.name == productsBlock.view),
         itemBuilder: (context, index) {

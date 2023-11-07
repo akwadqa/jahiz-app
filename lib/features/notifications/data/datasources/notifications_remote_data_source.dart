@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:jahiz/features/notification/data/models/notifications_model.dart';
+import 'package:jahiz/features/notifications/data/models/notification_model.dart';
 
 import '../../../../core/data/models/app_response_model.dart';
 import '../../../../core/error/exception.dart';
@@ -22,7 +22,7 @@ class NotificationsRemoteDataSourceImpl
       [int? page]) async {
     try {
       final Response response = await _networkService.get(
-        endpoint: EndPoints.getNotifications,
+        endpoint: EndPoints.appMessages,
         queryParameters: {
           'page': page,
         },

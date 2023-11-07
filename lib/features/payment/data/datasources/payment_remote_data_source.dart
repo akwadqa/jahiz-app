@@ -20,16 +20,16 @@ class PaymentRemoteDataSourceImpl implements PaymentRemoteDataSource {
       final Response response =
           await _networkService.get(endpoint: EndPoints.paymentMethods);
       AppResponseModel<List<PaymentMethodModel>> responseModel =
-            AppResponseModel<List<PaymentMethodModel>>.fromJson(
-                response.data,
-                (data) => (data as List)
-                    .map((e) => PaymentMethodModel.fromJson(e))
-                    .toList());
-        if (responseModel.error == 1) {
-          throw ServerException(message: responseModel.message);
-        } else {
-          return responseModel.data;
-        }
+          AppResponseModel<List<PaymentMethodModel>>.fromJson(
+              response.data,
+              (data) => (data as List)
+                  .map((e) => PaymentMethodModel.fromJson(e))
+                  .toList());
+      if (responseModel.error == 1) {
+        throw ServerException(message: responseModel.message);
+      } else {
+        return responseModel.data;
+      }
     } catch (e, stackTrace) {
       throw ServerException(message: e.toString(), stackTrace: stackTrace);
     }

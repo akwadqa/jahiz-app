@@ -30,7 +30,7 @@ class AddressModel extends Address {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if(addressId != null){
+    if (addressId != null) {
       map['address_id'] = addressId;
     }
     map['address_title'] = addressTitle;

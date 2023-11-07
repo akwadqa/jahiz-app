@@ -43,7 +43,7 @@ class ProductDetailsSliverAppBar extends StatelessWidget {
           icon: Assets.images.shareSvg.svg(),
           margin: const EdgeInsets.all(8.0),
           onPressed: () {
-            Share.share("${AppConstants.hostUrl}");
+            Share.share(AppConstants.hostUrl);
           },
         ),
       ],

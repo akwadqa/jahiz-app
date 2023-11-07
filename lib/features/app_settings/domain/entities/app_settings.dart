@@ -30,16 +30,16 @@ class AppSettings extends Equatable {
       String? mobileNo,
       String? companyName}) {
     return AppSettings(
-        customerId: customerId ?? this.customerId,
-        company: company ?? this.company,
-        companyWhatsappNumber:
-            companyWhatsappNumber ?? this.companyWhatsappNumber,
-        privacyPolicy: privacyPolicy ?? this.privacyPolicy,
-        username: username ?? this.username,
-        fullName: fullName ?? this.fullName,
-        mobileNo: mobileNo ?? this.mobileNo,
-        companyName: companyName ?? this.companyName,
-        );
+      customerId: customerId ?? this.customerId,
+      company: company ?? this.company,
+      companyWhatsappNumber:
+          companyWhatsappNumber ?? this.companyWhatsappNumber,
+      privacyPolicy: privacyPolicy ?? this.privacyPolicy,
+      username: username ?? this.username,
+      fullName: fullName ?? this.fullName,
+      mobileNo: mobileNo ?? this.mobileNo,
+      companyName: companyName ?? this.companyName,
+    );
   }
 
   @override
