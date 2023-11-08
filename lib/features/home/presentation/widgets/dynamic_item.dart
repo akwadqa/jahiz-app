@@ -3,7 +3,7 @@ import 'package:jahiz/features/home/domain/entities/banner.dart';
 import 'package:jahiz/features/home/domain/entities/category.dart';
 import 'package:jahiz/features/home/presentation/widgets/banners_view.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
-import 'package:jahiz/features/home/presentation/widgets/home/categories_view.dart';
+import 'package:jahiz/features/home/presentation/widgets/categories_view.dart';
 import 'package:jahiz/features/home/presentation/widgets/home/products_view.dart';
 import '../../domain/entities/home_block.dart';
 import '../../domain/entities/home_block_data.dart';

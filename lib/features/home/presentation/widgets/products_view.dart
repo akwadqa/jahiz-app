@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jahiz/features/home/domain/entities/home_block.dart';
 import '../../../../core/shared_functions.dart';
 import '../../../products/domain/entities/product.dart';
-import 'home/dynamic_layout.dart';
+import 'dynamic_layout.dart';
 import '../../../products/presentation/widgets/product_item.dart';
 
 class ProductsView extends StatelessWidget {

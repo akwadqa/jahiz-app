@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '../../../domain/usecases/login.dart';
-import '../auth_cubit.dart';
+import '../../../application/auth_cubit.dart';
 import '../../../../notifications/application/notifications_service.dart';
 
 import '../../../../../core/app_constants.dart';

@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/home/presentation/widgets/dynamic_layout.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../products/presentation/widgets/product_item.dart';
 import '../../../cart/application/cart_count_cubit.dart';
 import '../bloc/sub_categories/sub_categories_cubit.dart';
-import '../../../home/presentation/widgets/home/dynamic_layout.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../core/gen/assets.gen.dart';
 import '../../../../core/widgets/app_error_widget.dart';

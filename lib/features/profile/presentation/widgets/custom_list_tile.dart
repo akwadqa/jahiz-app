@@ -4,7 +4,7 @@ import '../../../../generated/l10n.dart';
 
 import '../../../../core/gen/assets.gen.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../auth/presentation/bloc/auth_cubit.dart';
+import '../../../auth/application/auth_cubit.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({Key? key}) : super(key: key);

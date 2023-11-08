@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../auth/presentation/bloc/auth_cubit.dart';
+import '../../../../auth/application/auth_cubit.dart';
 import '../../../domain/entities/detailed_product.dart';
 import '../../bloc/add_detailed_product_to_cart/add_detailed_product_to_cart_cubit.dart';
 import '../../../../../generated/l10n.dart';

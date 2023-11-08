@@ -6,13 +6,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../core/shared_functions.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/address.dart';
-import '../../domain/entities/city.dart';
+import '../../../cities/domain/entities/city.dart';
 import '../bloc/add_update_address/add_update_address_cubit.dart';
 import '../bloc/get_addresses/get_addresses_cubit.dart';
-import '../bloc/get_cities/get_cities_cubit.dart';
 import 'cities_list.dart';
 import '../../../../generated/l10n.dart';
-import '../../../../injection_container.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 
 import 'address_type_selector.dart';
@@ -217,9 +215,7 @@ class _CityTextFormFieldState extends State<_CityTextFormField> {
       onTap: () async {
         final City? city = await showAppBottomSheet(
             context: context,
-            child: BlocProvider(
-                create: (_) => getIt<GetCitiesCubit>(),
-                child: const CitiesList()));
+            child: const CitiesList());
         if (city != null) {
           _selectedCity = city;
           _controller.text = city.cityName;

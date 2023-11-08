@@ -1,4 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:jahiz/features/cities/data/datasources/cities_remote_data_source.dart';
+import 'package:jahiz/features/cities/data/repositories/cities_repository_impl.dart';
+import 'package:jahiz/features/cities/domain/repositories/cities_repository.dart';
+import 'package:jahiz/features/cities/presentation/blocs/get_cities_cubit.dart';
 import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
 import 'features/cart/application/cart_count_cubit.dart';
 import 'features/cart/application/cart_service.dart';
@@ -35,16 +39,15 @@ import 'features/addresses/data/datasources/addresses_remote_data_source.dart';
 import 'features/addresses/data/repositories/addresses_repository_impl.dart';
 import 'features/addresses/domain/repositories/addresses_repository.dart';
 import 'features/addresses/domain/usecases/add_update_address.dart';
-import 'features/addresses/domain/usecases/get_cities.dart';
+import 'features/cities/domain/usecases/get_cities.dart';
 import 'features/addresses/presentation/bloc/add_update_address/add_update_address_cubit.dart';
-import 'features/addresses/presentation/bloc/get_cities/get_cities_cubit.dart';
 import 'features/app_settings/presentation/bloc/app_settings_cubit.dart';
 import 'features/auth/data/datasources/auth_remote_data_source.dart';
 import 'features/auth/data/repositories/auth_repository_impl.dart';
 import 'features/auth/domain/repositories/auth_repository.dart';
 import 'features/auth/domain/usecases/check_user_validation.dart';
 import 'features/auth/domain/usecases/login.dart';
-import 'features/auth/presentation/bloc/auth_cubit.dart';
+import 'features/auth/application/auth_cubit.dart';
 import 'features/auth/presentation/bloc/check_user_validation/check_user_validation_cubit.dart';
 import 'features/auth/presentation/bloc/login/login_cubit.dart';
 import 'features/auth/presentation/bloc/register/register_cubit.dart';
@@ -133,9 +136,12 @@ Future<void> init() async {
       () => ProductsRemoteDataSourceImpl(getIt()));
 
   //!Features - auth
+
+  //Application
+  getIt.registerLazySingleton(() => AuthCubit(getIt()));
+
   //Bloc
   getIt.registerFactory(() => CheckUserValidationCubit(getIt()));
-  getIt.registerLazySingleton(() => AuthCubit(getIt()));
   getIt.registerFactory(() => RegisterCubit(getIt(), getIt(), getIt()));
   getIt.registerFactory(() => LoginCubit(getIt(), getIt(), getIt()));
 
@@ -187,11 +193,9 @@ Future<void> init() async {
   //!Features - addresses
   //Bloc
   getIt.registerFactory(() => AddUpdateAddressCubit(getIt()));
-  getIt.registerFactory(() => GetCitiesCubit(getIt()));
   getIt.registerFactory(() => GetAddressesCubit(getIt()));
 
   //UseCases
-  getIt.registerLazySingleton(() => GetCitiesUseCase(getIt()));
   getIt.registerLazySingleton(() => AddUpdateAddressUseCase(getIt()));
   getIt.registerLazySingleton(() => GetAddressesUseCase(getIt()));
 
@@ -202,6 +206,21 @@ Future<void> init() async {
   //DataSources
   getIt.registerLazySingleton<AddressesRemoteDataSource>(
       () => AddressesRemoteDataSourceImpl(getIt()));
+
+  //!Features - cities
+  //Bloc
+  getIt.registerFactory(() => GetCitiesCubit(getIt()));
+
+  //UseCases
+  getIt.registerLazySingleton(() => GetCitiesUseCase(getIt()));
+
+  //Repository
+  getIt.registerLazySingleton<CitiesRepository>(
+      () => CitiesRepositoryImpl(getIt(), getIt()));
+
+  //DataSources
+  getIt.registerLazySingleton<CitiesRemoteDataSource>(
+      () => CitiesRemoteDataSourceImpl(getIt()));
 
   //!Features - notifications
   //Bloc

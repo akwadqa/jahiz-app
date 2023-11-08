@@ -5,7 +5,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/custom_back_button.dart';
 import '../../../app_settings/presentation/bloc/app_settings_cubit.dart';
-import '../../../auth/presentation/bloc/auth_cubit.dart';
+import '../../../auth/application/auth_cubit.dart';
 import '../bloc/edit_profile/edit_profile_cubit.dart';
 import '../bloc/profile_details/profile_details_cubit.dart';
 import '../../../../generated/l10n.dart';

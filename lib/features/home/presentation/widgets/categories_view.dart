@@ -3,7 +3,7 @@ import 'package:jahiz/features/home/domain/entities/home_block.dart';
 import '../../../../core/shared_functions.dart';
 import '../../../../core/widgets/app_cached_network_image.dart';
 import 'package:jahiz/features/home/domain/entities/category.dart';
-import 'package:jahiz/features/home/presentation/widgets/home/dynamic_layout.dart';
+import 'package:jahiz/features/home/presentation/widgets/dynamic_layout.dart';
 
 class CategoriesView extends StatelessWidget {
   const CategoriesView(

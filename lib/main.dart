@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/app_observer.dart';
 import 'core/blocs/selected_language_cubit.dart';
-import 'features/auth/presentation/bloc/auth_cubit.dart';
+import 'features/auth/application/auth_cubit.dart';
 import 'features/cart/application/cart_count_cubit.dart';
 import 'features/cart/presentation/bloc/cart_cubit.dart';
 import 'features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../../domain/entities/city.dart';
-import '../../../domain/usecases/get_cities.dart';
+import 'package:jahiz/features/cities/domain/entities/city.dart';
+import 'package:jahiz/features/cities/domain/usecases/get_cities.dart';
 
 part 'get_cities_state.dart';
 

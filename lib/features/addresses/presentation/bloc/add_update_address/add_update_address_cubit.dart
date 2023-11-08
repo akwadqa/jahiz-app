@@ -7,7 +7,7 @@ import '../../../../../generated/l10n.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 import '../../../../../core/shared_functions.dart';
-import '../../../domain/entities/city.dart';
+import '../../../../cities/domain/entities/city.dart';
 import '../../../domain/usecases/add_update_address.dart';
 
 part 'add_update_address_state.dart';

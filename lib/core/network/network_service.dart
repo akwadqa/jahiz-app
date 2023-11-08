@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import '../app_constants.dart';
-import '../../features/auth/presentation/bloc/auth_cubit.dart';
+import '../../features/auth/application/auth_cubit.dart';
 import '../../generated/l10n.dart';
 import '../../injection_container.dart';
 import '../blocs/selected_language_cubit.dart';

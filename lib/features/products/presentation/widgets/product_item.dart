@@ -8,7 +8,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_container.dart';
 import '../../domain/entities/product.dart';
 import '../bloc/add_to_cart/add_to_cart_cubit.dart';
-import '../../../home/presentation/widgets/home/dynamic_layout.dart';
+import '../../../home/presentation/widgets/dynamic_layout.dart';
 import '../../../../generated/l10n.dart';
 
 import '../../../../core/widgets/app_cached_network_image.dart';

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/gen/fonts.gen.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../auth/presentation/widgets/sign_up_login_bottom_sheet.dart';
-import '../../../auth/presentation/bloc/auth_cubit.dart';
+import '../../../auth/application/auth_cubit.dart';
 import '../widgets/account_details.dart';
 import '../widgets/action_button.dart';
 import '../widgets/settings.dart';

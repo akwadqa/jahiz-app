@@ -8,7 +8,7 @@ import '../../../../../generated/l10n.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 import '../../../../../core/app_constants.dart';
-import '../auth_cubit.dart';
+import '../../../application/auth_cubit.dart';
 
 part 'register_state.dart';
 

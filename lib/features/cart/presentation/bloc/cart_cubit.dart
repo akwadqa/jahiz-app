@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../auth/presentation/widgets/sign_up_login_bottom_sheet.dart';
-import '../../../auth/presentation/bloc/auth_cubit.dart';
+import '../../../auth/application/auth_cubit.dart';
 import '../../application/cart_service.dart';
 import '../../domain/usecases/get_cart.dart';
 import '../../../../generated/l10n.dart';

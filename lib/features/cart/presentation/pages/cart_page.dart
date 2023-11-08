@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../core/widgets/app_cached_network_image.dart';
 import '../../../../core/widgets/dashed_line.dart';
-import '../../../auth/presentation/bloc/auth_cubit.dart';
+import '../../../auth/application/auth_cubit.dart';
 import '../../domain/entities/cart_item.dart';
 import '../bloc/update_cart/update_cart_cubit.dart';
 import '../../../../generated/l10n.dart';

@@ -1,4 +1,4 @@
-import 'city_model.dart';
+import '../../../cities/data/models/city_model.dart';
 import '../../domain/entities/address.dart';
 
 class AddressModel extends Address {
