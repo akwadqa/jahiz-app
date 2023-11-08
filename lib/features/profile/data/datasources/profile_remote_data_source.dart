@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:jahiz/core/data/models/app_response_model.dart';
-import 'package:jahiz/core/error/exception.dart';
-import 'package:jahiz/core/network/end_points.dart';
-import 'package:jahiz/core/network/network_service.dart';
-import 'package:jahiz/features/profile/data/models/profile_details_model.dart';
+import '../../../../core/data/models/app_response_model.dart';
+import '../../../../core/error/exception.dart';
+import '../../../../core/network/end_points.dart';
+import '../../../../core/network/network_service.dart';
+import '../models/profile_details_model.dart';
 
 abstract class ProfileRemoteDataSource {
   Future<ProfileDetailsModel> getProfileDetails();

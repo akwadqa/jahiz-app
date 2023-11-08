@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:jahiz/core/app_constants.dart';
-import 'package:jahiz/core/widgets/app_bottom_sheet.dart';
-import 'package:jahiz/features/addresses/domain/entities/address.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/add_update_address/add_update_address_cubit.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/get_addresses/get_addresses_cubit.dart';
-import 'package:jahiz/features/addresses/presentation/widgets/address_form_widget.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import 'app_constants.dart';
+import 'widgets/app_bottom_sheet.dart';
+import '../features/addresses/domain/entities/address.dart';
+import '../features/addresses/presentation/bloc/add_update_address/add_update_address_cubit.dart';
+import '../features/addresses/presentation/bloc/get_addresses/get_addresses_cubit.dart';
+import '../features/addresses/presentation/widgets/address_form_widget.dart';
+import '../generated/l10n.dart';
+import '../injection_container.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 class ArabicNumberInputFormatter extends TextInputFormatter {

@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/theme/app_colors.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/core/widgets/custom_back_button.dart';
-import 'package:jahiz/features/app_settings/presentation/bloc/app_settings_cubit.dart';
-import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
-import 'package:jahiz/features/profile/presentation/bloc/edit_profile/edit_profile_cubit.dart';
-import 'package:jahiz/features/profile/presentation/bloc/profile_details/profile_details_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/custom_back_button.dart';
+import '../../../app_settings/presentation/bloc/app_settings_cubit.dart';
+import '../../../auth/presentation/bloc/auth_cubit.dart';
+import '../bloc/edit_profile/edit_profile_cubit.dart';
+import '../bloc/profile_details/profile_details_cubit.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
 
 @RoutePage()
 class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {

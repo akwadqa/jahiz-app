@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/categories/data/datasources/categories_remote_data_source.dart';
-import 'package:jahiz/features/categories/domain/entities/category.dart';
-import 'package:jahiz/features/categories/domain/repositories/categories_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../datasources/categories_remote_data_source.dart';
+import '../../domain/entities/category.dart';
+import '../../domain/repositories/categories_repository.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_info.dart';

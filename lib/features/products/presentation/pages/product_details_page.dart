@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
-import 'package:jahiz/features/products/presentation/bloc/detailed_product/detailed_product_cubit.dart';
-import 'package:jahiz/features/products/presentation/widgets/product_details/product_details_body.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../core/blocs/slider_indicator_cubit.dart';
+import '../bloc/detailed_product/detailed_product_cubit.dart';
+import '../widgets/product_details/product_details_body.dart';
+import '../../../../injection_container.dart';
 
 import '../../../../core/widgets/app_error_widget.dart';
 import '../bloc/add_detailed_product_to_cart/add_detailed_product_to_cart_cubit.dart';

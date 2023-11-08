@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/router/app_router.dart';
-import 'package:jahiz/core/widgets/app_header.dart';
-import 'package:jahiz/core/widgets/custom_container.dart';
-import 'package:jahiz/features/categories/domain/entities/category.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../core/router/app_router.dart';
+import '../../../../core/widgets/app_header.dart';
+import '../../../../core/widgets/custom_container.dart';
+import '../../domain/entities/category.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../core/widgets/app_cached_network_image.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/no_elements_widget.dart';

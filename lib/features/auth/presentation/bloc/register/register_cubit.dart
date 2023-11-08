@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/auth/domain/usecases/register.dart';
-import 'package:jahiz/features/notifications/application/notifications_service.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../../core/shared_functions.dart';
+import '../../../domain/usecases/register.dart';
+import '../../../../notifications/application/notifications_service.dart';
+import '../../../../../generated/l10n.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 import '../../../../../core/app_constants.dart';

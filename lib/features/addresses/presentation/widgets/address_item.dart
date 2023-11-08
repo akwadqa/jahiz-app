@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:jahiz/core/gen/fonts.gen.dart';
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/addresses/presentation/widgets/location_selector_widget.dart';
-import 'package:jahiz/features/cart/application/cart_service.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../core/gen/fonts.gen.dart';
+import '../../../../core/shared_functions.dart';
+import 'location_selector_widget.dart';
+import '../../../cart/application/cart_service.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
 
 import '../../domain/entities/address.dart';
 import '../../../../core/gen/assets.gen.dart';

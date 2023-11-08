@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/addresses/domain/entities/address.dart';
-import 'package:jahiz/features/cart/domain/entities/cart.dart';
-import 'package:jahiz/features/cart/domain/entities/cart_item.dart';
-import 'package:jahiz/features/cart/domain/entities/cart_product_option.dart';
-import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
-import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
-import 'package:jahiz/features/products/domain/entities/product.dart';
+import '../../../core/error/failures.dart';
+import '../../addresses/domain/entities/address.dart';
+import '../domain/entities/cart.dart';
+import '../domain/entities/cart_item.dart';
+import '../domain/entities/cart_product_option.dart';
+import '../presentation/bloc/cart_cubit.dart';
+import '../presentation/bloc/update_cart/update_cart_cubit.dart';
+import '../../products/domain/entities/product.dart';
 
 class CartService {
   const CartService(this._cartCubit, this._updateCartCubit);

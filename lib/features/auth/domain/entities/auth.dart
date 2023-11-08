@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/profile/domain/entities/profile_details.dart';
+import '../../../profile/domain/entities/profile_details.dart';
 
 class Auth extends Equatable {
   final String token;

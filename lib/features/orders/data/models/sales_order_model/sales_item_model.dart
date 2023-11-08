@@ -1,4 +1,4 @@
-import 'package:jahiz/features/orders/domain/entities/sales_order/sales_item.dart';
+import '../../../domain/entities/sales_order/sales_item.dart';
 
 class SalesItemModel extends SalesItem {
   const SalesItemModel(

@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/router/app_router.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
-import 'package:jahiz/features/products/presentation/bloc/home/home_cubit.dart';
-import 'package:jahiz/features/main/presentation/widgets/custom_bottom_navigation_bar.dart';
+import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
+import '../../../../core/router/app_router.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
+import '../widgets/custom_bottom_navigation_bar.dart';
 
 @RoutePage()
 class MainPage extends StatelessWidget {

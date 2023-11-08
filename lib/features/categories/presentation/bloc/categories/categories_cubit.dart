@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/core/app_constants.dart';
-import 'package:jahiz/features/categories/domain/entities/category.dart';
-import 'package:jahiz/features/categories/domain/usecases/get_categories.dart';
+import '../../../../../core/app_constants.dart';
+import '../../../domain/entities/category.dart';
+import '../../../domain/usecases/get_categories.dart';
 part 'categories_state.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {

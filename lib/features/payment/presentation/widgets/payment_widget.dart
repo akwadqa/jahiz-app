@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/widgets/app_bottom_sheet.dart';
-import 'package:jahiz/features/payment/application/payment_service.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../core/widgets/app_bottom_sheet.dart';
+import '../../application/payment_service.dart';
+import '../../../../generated/l10n.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 
 import '../../domain/entities/payment_method.dart';

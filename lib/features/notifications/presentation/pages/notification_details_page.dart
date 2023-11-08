@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart' hide Notification;
-import 'package:jahiz/core/widgets/app_cached_network_image.dart';
-import 'package:jahiz/core/widgets/custom_back_button.dart';
-import 'package:jahiz/features/notifications/domain/entities/notification.dart';
+import '../../../../core/widgets/app_cached_network_image.dart';
+import '../../../../core/widgets/custom_back_button.dart';
+import '../../domain/entities/notification.dart';
 
 @RoutePage()
 class NotificationDetailsPage extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/cart/data/models/cart_product_option_model.dart';
+import '../../data/models/cart_product_option_model.dart';
 
 class CartProductOption extends Equatable {
   final String productOptionFieldName;

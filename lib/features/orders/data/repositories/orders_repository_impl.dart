@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
-import 'package:jahiz/features/orders/domain/entities/sales_order/sales_order.dart';
-import 'package:jahiz/features/orders/domain/entities/sales_order_details/sales_order_details.dart';
+import '../../../../core/domain/entities/app_response.dart';
+import '../../domain/entities/sales_order/sales_order.dart';
+import '../../domain/entities/sales_order_details/sales_order_details.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failures.dart';

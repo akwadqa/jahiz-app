@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/addresses/data/models/address_model.dart';
-import 'package:jahiz/features/addresses/domain/entities/city.dart';
+import '../../data/models/address_model.dart';
+import 'city.dart';
 
 class Address extends Equatable {
   final String? addressId;

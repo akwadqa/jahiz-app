@@ -1,5 +1,5 @@
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/notifications/domain/entities/notification.dart';
+import '../../../../core/shared_functions.dart';
+import '../../domain/entities/notification.dart';
 
 class NotificationModel extends Notification {
   const NotificationModel(

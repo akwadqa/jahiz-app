@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/orders/domain/entities/sales_order/sales_order.dart';
-import 'package:jahiz/features/orders/domain/repositories/orders_repository.dart';
+import '../../../../core/domain/entities/app_response.dart';
+import '../../../../core/error/failures.dart';
+import '../entities/sales_order/sales_order.dart';
+import '../repositories/orders_repository.dart';
 
 class GetSalesOrdersUseCase {
   final OrdersRepository _repository;

@@ -2,15 +2,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/app_constants.dart';
-import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
-import 'package:jahiz/core/gen/assets.gen.dart';
-import 'package:jahiz/core/theme/app_colors.dart';
-import 'package:jahiz/core/widgets/app_cached_network_image.dart';
-import 'package:jahiz/core/widgets/contained_button.dart';
-import 'package:jahiz/core/widgets/custom_back_button.dart';
-import 'package:jahiz/features/products/domain/entities/additional_image.dart';
-import 'package:jahiz/features/products/domain/entities/detailed_product.dart';
+import '../../../../../core/app_constants.dart';
+import '../../../../../core/blocs/slider_indicator_cubit.dart';
+import '../../../../../core/gen/assets.gen.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/widgets/app_cached_network_image.dart';
+import '../../../../../core/widgets/contained_button.dart';
+import '../../../../../core/widgets/custom_back_button.dart';
+import '../../../../home/domain/entities/additional_image.dart';
+import '../../../domain/entities/detailed_product.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ProductDetailsSliverAppBar extends StatelessWidget {

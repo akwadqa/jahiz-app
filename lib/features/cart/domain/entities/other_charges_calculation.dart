@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/cart/data/models/other_charges_calculation_model.dart';
+import '../../data/models/other_charges_calculation_model.dart';
 
 class OtherChargesCalculation extends Equatable {
   final String chargeType;

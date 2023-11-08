@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/core/domain/entities/pagination.dart';
+import 'pagination.dart';
 import 'dart:isolate';
 
 class AppResponse<T> extends Equatable {

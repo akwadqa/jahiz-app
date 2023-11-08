@@ -1,5 +1,5 @@
-import 'package:jahiz/features/cart/data/models/coupon_code_details_model.dart';
-import 'package:jahiz/features/cart/domain/entities/cart.dart';
+import 'coupon_code_details_model.dart';
+import '../../domain/entities/cart.dart';
 
 import '../../../addresses/data/models/address_model.dart';
 import 'cart_item_model.dart';

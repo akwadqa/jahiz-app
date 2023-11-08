@@ -1,4 +1,4 @@
-import 'package:jahiz/features/orders/domain/entities/sales_order_details/items_detail.dart';
+import '../../../domain/entities/sales_order_details/items_detail.dart';
 
 class ItemsDetailModel extends ItemsDetail {
   const ItemsDetailModel({

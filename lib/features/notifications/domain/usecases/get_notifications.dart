@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
-import 'package:jahiz/features/notifications/domain/entities/notification.dart';
+import '../../../../core/domain/entities/app_response.dart';
+import '../entities/notification.dart';
 import '../../../../core/error/failures.dart';
 import '../repositories/notifications_repository.dart';
 

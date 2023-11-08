@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:jahiz/core/app_constants.dart';
+import '../app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectedLanguageCubit extends Cubit<String> {

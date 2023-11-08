@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/products/domain/entities/home_block_data.dart';
+import '../../../home/domain/entities/home_block_data.dart';
 
 import '../../../cart/domain/entities/cart_item.dart';
 

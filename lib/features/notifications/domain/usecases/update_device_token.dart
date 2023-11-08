@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/notifications/domain/repositories/notifications_repository.dart';
+import '../../../../core/domain/entities/app_response.dart';
+import '../../../../core/error/failures.dart';
+import '../repositories/notifications_repository.dart';
 
 class UpdateDeviceTokenUseCase {
   final NotificationsRepository _notificationRepository;

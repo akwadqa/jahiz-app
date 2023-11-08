@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/payment/domain/usecases/get_payment_methods.dart';
+import '../../domain/usecases/get_payment_methods.dart';
 
 import '../../domain/entities/payment_method.dart';
 part 'payment_methods_state.dart';

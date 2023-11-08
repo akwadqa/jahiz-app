@@ -1,5 +1,5 @@
-import 'package:jahiz/features/addresses/data/models/city_model.dart';
-import 'package:jahiz/features/addresses/domain/entities/address.dart';
+import 'city_model.dart';
+import '../../domain/entities/address.dart';
 
 class AddressModel extends Address {
   const AddressModel(

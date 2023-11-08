@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
-import 'package:jahiz/features/notifications/data/datasources/notifications_remote_data_source.dart';
-import 'package:jahiz/features/notifications/domain/entities/notification.dart';
-import 'package:jahiz/features/notifications/domain/repositories/notifications_repository.dart';
+import '../../../../core/domain/entities/app_response.dart';
+import '../datasources/notifications_remote_data_source.dart';
+import '../../domain/entities/notification.dart';
+import '../../domain/repositories/notifications_repository.dart';
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';

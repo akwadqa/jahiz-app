@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/blocs/selected_language_cubit.dart';
-import 'package:jahiz/features/payment/domain/entities/payment_method.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../core/blocs/selected_language_cubit.dart';
+import '../domain/entities/payment_method.dart';
+import '../../../injection_container.dart';
 import 'package:myfatoorah_flutter/myfatoorah_flutter.dart';
 
 class PaymentService {

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/error/exception.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/core/network/network_info.dart';
-import 'package:jahiz/features/checkout/data/datasources/checkout_remote_data_source.dart';
-import 'package:jahiz/features/checkout/domain/repositories/checkout_repository.dart';
+import '../../../../core/error/exception.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../datasources/checkout_remote_data_source.dart';
+import '../../domain/repositories/checkout_repository.dart';
 
 class CheckoutRepositoryImpl implements CheckoutRepository {
   final CheckoutRemoteDataSource _remoteDataSource;

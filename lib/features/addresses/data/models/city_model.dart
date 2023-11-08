@@ -1,4 +1,4 @@
-import 'package:jahiz/features/addresses/domain/entities/city.dart';
+import '../../domain/entities/city.dart';
 
 class CityModel extends City {
   const CityModel(

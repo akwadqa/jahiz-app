@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../domain/entities/payment_method.dart';

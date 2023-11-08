@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/payment/domain/repositories/payment_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../repositories/payment_repository.dart';
 
 import '../entities/payment_method.dart';
 

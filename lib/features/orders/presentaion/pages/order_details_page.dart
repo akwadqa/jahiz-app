@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/core/widgets/custom_back_button.dart';
-import 'package:jahiz/core/widgets/dashed_line.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/sales_order_details/sales_order_details_cubit.dart';
-import 'package:jahiz/features/orders/presentaion/widgets/order_container.dart';
-import 'package:jahiz/features/orders/presentaion/widgets/order_item_widget.dart';
-import 'package:jahiz/features/orders/presentaion/widgets/your_order_text.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/custom_back_button.dart';
+import '../../../../core/widgets/dashed_line.dart';
+import '../bloc/sales_order_details/sales_order_details_cubit.dart';
+import '../widgets/order_container.dart';
+import '../widgets/order_item_widget.dart';
+import '../widgets/your_order_text.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
 
 @RoutePage()
 class OrderDetailsPage extends StatelessWidget implements AutoRouteWrapper {

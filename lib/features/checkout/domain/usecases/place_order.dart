@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/features/checkout/domain/repositories/checkout_repository.dart';
+import '../repositories/checkout_repository.dart';
 
 import '../../../../core/error/failures.dart';
 

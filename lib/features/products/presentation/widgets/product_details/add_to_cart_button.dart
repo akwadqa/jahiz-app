@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
-import 'package:jahiz/features/products/domain/entities/detailed_product.dart';
-import 'package:jahiz/features/products/presentation/bloc/add_detailed_product_to_cart/add_detailed_product_to_cart_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
-import '../../../../../core/widgets/sign_up_login_bottom_sheet.dart';
+import '../../../../auth/presentation/bloc/auth_cubit.dart';
+import '../../../domain/entities/detailed_product.dart';
+import '../../bloc/add_detailed_product_to_cart/add_detailed_product_to_cart_cubit.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../auth/presentation/widgets/sign_up_login_bottom_sheet.dart';
 import '../../../domain/entities/price_modifier.dart';
 import '../../bloc/price_modifier/price_modifier_cubit.dart';
 

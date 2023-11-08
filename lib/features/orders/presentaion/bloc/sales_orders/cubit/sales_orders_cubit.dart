@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
-import 'package:jahiz/features/orders/domain/entities/sales_order/sales_order.dart';
-import 'package:jahiz/features/orders/domain/usecases/get_sales_orders.dart';
+import '../../../../../../core/domain/entities/app_response.dart';
+import '../../../../domain/entities/sales_order/sales_order.dart';
+import '../../../../domain/usecases/get_sales_orders.dart';
 
 part 'sales_orders_state.dart';
 

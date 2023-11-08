@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/widgets/custom_back_button.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/add_update_address/add_update_address_cubit.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/get_addresses/get_addresses_cubit.dart';
-import 'package:jahiz/features/addresses/presentation/widgets/addresses_list.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../core/widgets/custom_back_button.dart';
+import '../bloc/add_update_address/add_update_address_cubit.dart';
+import '../bloc/get_addresses/get_addresses_cubit.dart';
+import '../widgets/addresses_list.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
 
 @RoutePage()
 class AddressesPage extends StatelessWidget implements AutoRouteWrapper {

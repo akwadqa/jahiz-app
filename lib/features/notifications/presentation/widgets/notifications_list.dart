@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/widgets/app_pagination_widget.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/features/notifications/presentation/bloc/get_notifications/get_notifictions_cubit.dart';
-import 'package:jahiz/features/notifications/presentation/widgets/notification_widget.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../core/widgets/app_pagination_widget.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../bloc/get_notifications/get_notifictions_cubit.dart';
+import 'notification_widget.dart';
+import '../../../../generated/l10n.dart';
 
 class NotificationsList extends StatelessWidget {
   const NotificationsList({Key? key}) : super(key: key);

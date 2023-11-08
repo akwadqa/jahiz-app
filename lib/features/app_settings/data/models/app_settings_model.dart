@@ -1,4 +1,4 @@
-import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
+import '../../domain/entities/app_settings.dart';
 
 class AppSettingsModel extends AppSettings {
   const AppSettingsModel({

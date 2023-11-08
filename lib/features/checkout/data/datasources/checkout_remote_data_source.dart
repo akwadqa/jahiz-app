@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:jahiz/core/data/models/app_response_model.dart';
-import 'package:jahiz/core/error/exception.dart';
-import 'package:jahiz/core/network/end_points.dart';
-import 'package:jahiz/core/network/network_service.dart';
+import '../../../../core/data/models/app_response_model.dart';
+import '../../../../core/error/exception.dart';
+import '../../../../core/network/end_points.dart';
+import '../../../../core/network/network_service.dart';
 
 abstract class CheckoutRemoteDataSource {
   Future<String> placeOrder(String quotationId, int? isSuccess);

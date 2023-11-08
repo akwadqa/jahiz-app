@@ -1,4 +1,4 @@
-import 'package:jahiz/features/orders/domain/entities/sales_order_details/sales_order_details.dart';
+import '../../../domain/entities/sales_order_details/sales_order_details.dart';
 
 import 'items_detail_model.dart';
 

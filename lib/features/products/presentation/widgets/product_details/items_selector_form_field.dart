@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/widgets/error_text.dart';
+import '../../../../../core/widgets/error_text.dart';
 
 class ItemsSelectorFormField extends FormField<String?> {
   ItemsSelectorFormField({

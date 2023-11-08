@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/features/addresses/domain/entities/city.dart';
+import '../entities/city.dart';
 import '../../../../core/error/failures.dart';
 import '../repositories/addresses_repository.dart';
 

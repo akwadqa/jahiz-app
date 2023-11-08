@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:jahiz/core/app_constants.dart';
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/auth/domain/usecases/check_user_validation.dart';
+import '../../../../../core/app_constants.dart';
+import '../../../../../core/shared_functions.dart';
+import '../../../domain/usecases/check_user_validation.dart';
 
 part 'check_user_validation_state.dart';
 

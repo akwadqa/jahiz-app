@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/features/categories/domain/entities/category.dart';
+import '../entities/category.dart';
 
 import '../../../../core/error/failures.dart';
 

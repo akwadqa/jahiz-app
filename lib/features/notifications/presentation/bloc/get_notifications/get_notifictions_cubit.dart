@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
-import 'package:jahiz/features/notifications/domain/entities/notification.dart';
-import 'package:jahiz/features/notifications/domain/usecases/get_notifications.dart';
+import '../../../../../core/domain/entities/app_response.dart';
+import '../../../domain/entities/notification.dart';
+import '../../../domain/usecases/get_notifications.dart';
 
 part 'get_notifictions_state.dart';
 

@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
+import '../presentation/bloc/cart_cubit.dart';
 
 import 'dart:async';
 

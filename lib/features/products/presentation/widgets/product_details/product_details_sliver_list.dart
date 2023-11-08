@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/theme/app_colors.dart';
-import 'package:jahiz/features/products/domain/entities/price_modifier.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../domain/entities/price_modifier.dart';
+import '../../../../../generated/l10n.dart';
 
 import '../../../../../core/widgets/change_quantity_button.dart';
 import '../../../domain/entities/detailed_product.dart';

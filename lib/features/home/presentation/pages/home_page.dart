@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
-import 'package:jahiz/core/gen/assets.gen.dart';
-import 'package:jahiz/core/router/app_router.dart';
-import 'package:jahiz/core/theme/app_colors.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/core/widgets/contained_button.dart';
-import 'package:jahiz/core/widgets/no_elements_widget.dart';
-import 'package:jahiz/features/products/presentation/bloc/home/home_cubit.dart';
-import 'package:jahiz/features/products/presentation/widgets/home/dynamic_list.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
+import 'package:jahiz/features/home/presentation/widgets/dynamic_list.dart';
+import '../../../../core/blocs/slider_indicator_cubit.dart';
+import '../../../../core/gen/assets.gen.dart';
+import '../../../../core/router/app_router.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/contained_button.dart';
+import '../../../../core/widgets/no_elements_widget.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()

@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/profile/domain/entities/profile_details.dart';
-import 'package:jahiz/features/profile/domain/usecases/update_profile_details.dart';
+import '../../../../../core/shared_functions.dart';
+import '../../../domain/entities/profile_details.dart';
+import '../../../domain/usecases/update_profile_details.dart';
 
 part 'edit_profile_state.dart';
 

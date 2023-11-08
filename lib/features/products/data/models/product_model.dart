@@ -1,7 +1,7 @@
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/products/domain/entities/product.dart';
+import '../../../../core/shared_functions.dart';
+import '../../domain/entities/product.dart';
 
-import 'home_block_data_model.dart';
+import '../../../home/data/models/home_block_data_model.dart';
 
 class ProductModel extends Product implements HomeBlockDataModel {
   const ProductModel(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/features/products/presentation/bloc/home/home_cubit.dart';
-import 'package:jahiz/features/products/presentation/widgets/home/dynamic_item.dart';
+import 'package:jahiz/features/home/domain/entities/home_block.dart';
+import 'package:jahiz/features/home/domain/entities/home_block_data.dart';
+import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
+import 'dynamic_item.dart';
 
-import '../../../domain/entities/home_block.dart';
-import '../../../domain/entities/home_block_data.dart';
 
 class DynamicList extends StatelessWidget {
   const DynamicList({Key? key, required this.homeBlocks}) : super(key: key);

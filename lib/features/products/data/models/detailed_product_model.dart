@@ -1,7 +1,7 @@
-import 'package:jahiz/features/products/data/models/additional_image_model.dart';
-import 'package:jahiz/features/products/data/models/product_option_model.dart';
-import 'package:jahiz/features/products/data/models/product_specification_model.dart';
-import 'package:jahiz/features/products/domain/entities/detailed_product.dart';
+import '../../../home/data/models/additional_image_model.dart';
+import 'product_option_model.dart';
+import 'product_specification_model.dart';
+import '../../domain/entities/detailed_product.dart';
 
 import '../../../../core/shared_functions.dart';
 

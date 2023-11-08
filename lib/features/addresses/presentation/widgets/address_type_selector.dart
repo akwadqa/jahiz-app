@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/add_update_address/add_update_address_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../bloc/add_update_address/add_update_address_cubit.dart';
+import '../../../../generated/l10n.dart';
 
 import '../../../../core/gen/assets.gen.dart';
 

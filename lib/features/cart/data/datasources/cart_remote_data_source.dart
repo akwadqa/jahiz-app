@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:jahiz/core/network/end_points.dart';
-import 'package:jahiz/core/network/network_service.dart';
+import '../../../../core/network/end_points.dart';
+import '../../../../core/network/network_service.dart';
 
 import '../../../../core/data/models/app_response_model.dart';
 import '../../../../core/error/exception.dart';

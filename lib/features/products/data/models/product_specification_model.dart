@@ -1,4 +1,4 @@
-import 'package:jahiz/features/products/domain/entities/product_specification.dart';
+import '../../domain/entities/product_specification.dart';
 
 class ProductSpecificationModel extends ProductSpecification {
   const ProductSpecificationModel(

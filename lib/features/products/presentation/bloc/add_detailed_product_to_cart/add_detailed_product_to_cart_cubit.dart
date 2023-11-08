@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:jahiz/features/cart/application/cart_service.dart';
-import 'package:jahiz/features/cart/domain/entities/cart_product_option.dart';
-import 'package:jahiz/features/products/domain/entities/product_option.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../cart/application/cart_service.dart';
+import '../../../../cart/domain/entities/cart_product_option.dart';
+import '../../../domain/entities/product_option.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../../injection_container.dart';
 
 import '../../../../../core/shared_functions.dart';
 

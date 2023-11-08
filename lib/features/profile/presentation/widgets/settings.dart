@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/router/app_router.dart';
-import 'package:jahiz/features/profile/presentation/widgets/language_switch.dart';
-import 'package:jahiz/features/profile/presentation/widgets/titled_container.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../core/router/app_router.dart';
+import 'language_switch.dart';
+import 'titled_container.dart';
+import '../../../../generated/l10n.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import 'custom_list_tile.dart';

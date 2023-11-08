@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/error/exception.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/core/network/network_info.dart';
-import 'package:jahiz/features/profile/data/datasources/profile_remote_data_source.dart';
-import 'package:jahiz/features/profile/domain/entities/profile_details.dart';
-import 'package:jahiz/features/profile/domain/repositories/profile_repository.dart';
+import '../../../../core/error/exception.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../datasources/profile_remote_data_source.dart';
+import '../../domain/entities/profile_details.dart';
+import '../../domain/repositories/profile_repository.dart';
 
 class ProfileRepositoryImpl extends ProfileRepository {
   final ProfileRemoteDataSource _remoteDataSource;

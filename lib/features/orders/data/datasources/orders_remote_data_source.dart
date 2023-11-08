@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:jahiz/core/data/models/app_response_model.dart';
-import 'package:jahiz/core/network/end_points.dart';
-import 'package:jahiz/features/orders/data/models/sales_order_details/sales_order_details_model.dart';
-import 'package:jahiz/features/orders/data/models/sales_order_model/sales_order_model.dart';
+import '../../../../core/data/models/app_response_model.dart';
+import '../../../../core/network/end_points.dart';
+import '../models/sales_order_details/sales_order_details_model.dart';
+import '../models/sales_order_model/sales_order_model.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_service.dart';

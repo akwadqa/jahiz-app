@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/addresses/domain/entities/address.dart';
-import 'package:jahiz/features/cart/data/models/Cart_model.dart';
+import '../../../addresses/domain/entities/address.dart';
+import '../../data/models/Cart_model.dart';
 
 import 'cart_item.dart';
 import 'coupon_code_details.dart';

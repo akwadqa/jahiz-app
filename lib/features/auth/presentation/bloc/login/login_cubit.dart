@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:jahiz/features/auth/domain/usecases/login.dart';
-import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
-import 'package:jahiz/features/notifications/application/notifications_service.dart';
+import '../../../domain/usecases/login.dart';
+import '../auth_cubit.dart';
+import '../../../../notifications/application/notifications_service.dart';
 
 import '../../../../../core/app_constants.dart';
 import '../../../../../core/shared_functions.dart';

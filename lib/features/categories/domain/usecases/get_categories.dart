@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/features/categories/domain/entities/category.dart';
-import 'package:jahiz/features/categories/domain/repositories/categories_repository.dart';
+import '../entities/category.dart';
+import '../repositories/categories_repository.dart';
 
 import '../../../../core/error/failures.dart';
 

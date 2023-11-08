@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/products/domain/entities/product.dart';
+import '../../../products/domain/entities/product.dart';
 
 class Category extends Equatable {
   final String itemGroupId;

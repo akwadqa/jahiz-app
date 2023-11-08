@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/theme/app_colors.dart';
-import 'package:jahiz/features/products/domain/entities/detailed_product.dart';
-import 'package:jahiz/features/products/domain/entities/product_specification.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../domain/entities/detailed_product.dart';
+import '../../../domain/entities/product_specification.dart';
+import '../../../../../generated/l10n.dart';
 
 import '../../../domain/entities/product_option.dart';
 import '../../bloc/add_detailed_product_to_cart/add_detailed_product_to_cart_cubit.dart';

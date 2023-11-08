@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../generated/l10n.dart';
 
 import '../../../../core/gen/assets.gen.dart';
 import '../../../../core/theme/app_colors.dart';

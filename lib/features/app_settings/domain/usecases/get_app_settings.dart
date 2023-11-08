@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
+import '../entities/app_settings.dart';
 
 import '../../../../core/error/failures.dart';
 import '../repositories/app_settings_repository.dart';

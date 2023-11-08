@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/orders/domain/entities/sales_order_details/sales_order_details.dart';
-import 'package:jahiz/features/orders/domain/usecases/get_sales_order_details.dart';
+import '../../../domain/entities/sales_order_details/sales_order_details.dart';
+import '../../../domain/usecases/get_sales_order_details.dart';
 
 part 'sales_order_details_state.dart';
 

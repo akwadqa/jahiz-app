@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/features/addresses/presentation/widgets/address_item.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/core/widgets/location_map_bottom_sheet.dart';
-import 'package:jahiz/core/widgets/no_elements_widget.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/get_addresses/get_addresses_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
+import 'address_item.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import 'location_map_bottom_sheet.dart';
+import '../../../../core/widgets/no_elements_widget.dart';
+import '../bloc/get_addresses/get_addresses_cubit.dart';
+import '../../../../generated/l10n.dart';
 
 class AddressesList extends StatelessWidget {
   const AddressesList({Key? key, this.selecteable = true}) : super(key: key);

@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/products/domain/usecases/get_home_blocks.dart';
-
-import '../../../domain/entities/home_block.dart';
+import '../../domain/entities/home_block.dart';
+import '../../domain/usecases/get_home_blocks.dart';
 
 part 'home_state.dart';
 

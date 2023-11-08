@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/cart/domain/entities/cart_item.dart';
-import 'package:jahiz/features/products/domain/entities/additional_image.dart';
-import 'package:jahiz/features/products/domain/entities/product_option.dart';
-import 'package:jahiz/features/products/domain/entities/product_specification.dart';
+import '../../../cart/domain/entities/cart_item.dart';
+import '../../../home/domain/entities/additional_image.dart';
+import 'product_option.dart';
+import 'product_specification.dart';
 
 class DetailedProduct extends Equatable {
   const DetailedProduct(

@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/router/app_router.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/core/widgets/app_pagination_widget.dart';
-import 'package:jahiz/core/widgets/contained_button.dart';
-import 'package:jahiz/core/widgets/custom_back_button.dart';
-import 'package:jahiz/features/orders/presentaion/bloc/sales_orders/cubit/sales_orders_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../core/router/app_router.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/app_pagination_widget.dart';
+import '../../../../core/widgets/contained_button.dart';
+import '../../../../core/widgets/custom_back_button.dart';
+import '../bloc/sales_orders/cubit/sales_orders_cubit.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
 
 @RoutePage()
 class OrderHistoryPage extends StatelessWidget implements AutoRouteWrapper {

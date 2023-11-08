@@ -1,20 +1,19 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Banner;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/products/domain/entities/banner.dart'
-    as banner_entity;
+import 'package:jahiz/features/home/domain/entities/home_block.dart';
+import '../../../../core/shared_functions.dart';
+import 'package:jahiz/features/home/domain/entities/banner.dart';
 import 'package:jahiz/core/blocs/slider_indicator_cubit.dart';
 
 import '../../../../../core/widgets/app_cached_network_image.dart';
-import '../../../domain/entities/home_block.dart';
 
 class BannersView extends StatelessWidget {
   const BannersView(
       {Key? key, required this.bannersBlock, required this.isNotLast})
       : super(key: key);
-  final HomeBlock<banner_entity.Banner> bannersBlock;
+  final HomeBlock<Banner> bannersBlock;
   final bool isNotLast;
   @override
   Widget build(BuildContext context) {

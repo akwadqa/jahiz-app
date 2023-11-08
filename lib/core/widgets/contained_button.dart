@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/theme/app_colors.dart';
+import '../theme/app_colors.dart';
 
 class ContainedButton extends StatelessWidget {
   const ContainedButton(

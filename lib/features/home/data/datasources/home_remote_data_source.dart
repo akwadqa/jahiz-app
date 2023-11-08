@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:jahiz/core/error/exception.dart';
-import 'package:jahiz/core/network/end_points.dart';
-import 'package:jahiz/core/network/network_service.dart';
-import 'package:jahiz/features/products/data/models/banner_model.dart';
-import 'package:jahiz/features/products/data/models/category_model.dart';
-import 'package:jahiz/features/products/data/models/home_block_model.dart';
-import 'package:jahiz/features/products/data/models/product_model.dart';
+import '../../../../core/error/exception.dart';
+import '../../../../core/network/end_points.dart';
+import '../../../../core/network/network_service.dart';
+import '../models/banner_model.dart';
+import '../models/category_model.dart';
+import '../models/home_block_model.dart';
+import '../../../products/data/models/product_model.dart';
 
 import '../../../../core/data/models/app_response_model.dart';
 import '../models/home_block_data_model.dart';

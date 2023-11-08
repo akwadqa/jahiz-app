@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart' hide Notification;
-import 'package:jahiz/core/router/app_router.dart';
-import 'package:jahiz/features/notifications/domain/entities/notification.dart';
+import '../../../../core/router/app_router.dart';
+import '../../domain/entities/notification.dart';
 
 class NotifiationWidget extends StatelessWidget {
   final Notification notification;

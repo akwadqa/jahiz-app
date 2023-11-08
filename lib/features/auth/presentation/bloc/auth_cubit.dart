@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/core/app_constants.dart';
-import 'package:jahiz/features/app_settings/presentation/bloc/app_settings_cubit.dart';
+import '../../../../core/app_constants.dart';
+import '../../../app_settings/presentation/bloc/app_settings_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../injection_container.dart';

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/error/failures.dart';
+import '../../../../core/error/failures.dart';
 
 abstract class CheckoutRepository {
   Future<Either<Failure, String>> placeOrder(

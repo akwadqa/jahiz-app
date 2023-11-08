@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
+import '../../../../core/domain/entities/app_response.dart';
 
 import '../../../../core/error/failures.dart';
 import '../entities/auth.dart';

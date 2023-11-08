@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/features/products/domain/entities/detailed_product.dart';
-import 'package:jahiz/features/products/domain/repositories/products_repository.dart';
+import '../../../products/domain/entities/detailed_product.dart';
+import '../../domain/repositories/products_repository.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';
-import '../datasources/products_remote_data_source.dart';
+import '../../../products/data/datasources/products_remote_data_source.dart';
 
 class ProductsRepositoryImpl extends ProductsRepository {
   final ProductsRemoteDataSource _remoteDataSource;

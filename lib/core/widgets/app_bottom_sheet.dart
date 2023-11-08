@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/widgets/custom_back_button.dart';
+import 'custom_back_button.dart';
 
 import '../theme/app_colors.dart';
 

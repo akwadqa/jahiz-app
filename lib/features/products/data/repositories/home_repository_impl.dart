@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/error/exception.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/core/network/network_info.dart';
-import 'package:jahiz/features/products/data/datasources/home_remote_data_source.dart';
-import 'package:jahiz/features/products/domain/repositories/home_repository.dart';
+import '../../../../core/error/exception.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../home/data/datasources/home_remote_data_source.dart';
+import '../../domain/repositories/home_repository.dart';
 
-import '../../domain/entities/home_block.dart';
+import '../../../home/domain/entities/home_block.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
   final HomeRemoteDataSource _remoteDataSource;

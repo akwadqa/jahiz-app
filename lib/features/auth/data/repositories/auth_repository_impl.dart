@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
+import '../../../../core/domain/entities/app_response.dart';
 
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/auth/domain/entities/auth.dart';
+import '../../../../core/error/failures.dart';
+import '../../domain/entities/auth.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_info.dart';

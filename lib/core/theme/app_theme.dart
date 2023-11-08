@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/gen/fonts.gen.dart';
-import 'package:jahiz/core/theme/app_colors.dart';
+import '../gen/fonts.gen.dart';
+import 'app_colors.dart';
 
 abstract class AppTheme {
   static ThemeData lightTheme(String? primaryColor) => ThemeData(

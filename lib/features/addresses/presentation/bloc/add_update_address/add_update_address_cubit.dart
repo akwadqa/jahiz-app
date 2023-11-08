@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:jahiz/features/addresses/domain/entities/address.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../domain/entities/address.dart';
+import '../../../../../generated/l10n.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 import '../../../../../core/shared_functions.dart';

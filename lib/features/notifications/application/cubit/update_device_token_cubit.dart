@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/notifications/domain/usecases/update_device_token.dart';
+import '../../domain/usecases/update_device_token.dart';
 
 part 'update_device_token_state.dart';
 

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:jahiz/core/app_constants.dart';
-import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../app_constants.dart';
+import '../../features/auth/presentation/bloc/auth_cubit.dart';
+import '../../generated/l10n.dart';
 import '../../injection_container.dart';
 import '../blocs/selected_language_cubit.dart';
 

@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/widgets/app_bottom_sheet.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/get_cities/get_cities_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../core/widgets/app_bottom_sheet.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../bloc/get_cities/get_cities_cubit.dart';
+import '../../../../generated/l10n.dart';
 
 class CitiesList extends StatelessWidget {
   const CitiesList({Key? key}) : super(key: key);

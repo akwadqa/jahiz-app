@@ -1,6 +1,6 @@
 import 'package:fcm_config/fcm_config.dart';
-import 'package:jahiz/features/notifications/application/cubit/update_device_token_cubit.dart';
-import 'package:jahiz/firebase_options.dart';
+import 'cubit/update_device_token_cubit.dart';
+import '../../../firebase_options.dart';
 
 class NotificationsService {
   NotificationsService(this._updateDeviceTokenCubit);

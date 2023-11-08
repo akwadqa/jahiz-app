@@ -1,4 +1,4 @@
-import 'package:jahiz/features/cart/domain/entities/cart_item.dart';
+import '../../domain/entities/cart_item.dart';
 
 import 'cart_product_option_model.dart';
 

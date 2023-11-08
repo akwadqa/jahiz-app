@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
+import '../../domain/entities/app_settings.dart';
 
 import '../../domain/usecases/get_app_settings.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';

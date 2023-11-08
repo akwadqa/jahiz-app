@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../core/shared_functions.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 
 class LocationMapWidget extends StatelessWidget {

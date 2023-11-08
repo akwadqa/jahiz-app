@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/core/domain/entities/app_response.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/addresses/domain/entities/address.dart';
-import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../../core/domain/entities/app_response.dart';
+import '../../../../../core/error/failures.dart';
+import '../../../../addresses/domain/entities/address.dart';
+import '../cart_cubit.dart';
+import '../../../../../injection_container.dart';
 
 import '../../../domain/entities/cart.dart';
 import '../../../domain/usecases/update_cart.dart';

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/app_observer.dart';
-import 'package:jahiz/core/blocs/selected_language_cubit.dart';
-import 'package:jahiz/features/auth/presentation/bloc/auth_cubit.dart';
-import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
-import 'package:jahiz/features/cart/presentation/bloc/cart_cubit.dart';
-import 'package:jahiz/features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
-import 'package:jahiz/features/notifications/application/notifications_service.dart';
-import 'package:jahiz/injection_container.dart';
+import 'core/app_observer.dart';
+import 'core/blocs/selected_language_cubit.dart';
+import 'features/auth/presentation/bloc/auth_cubit.dart';
+import 'features/cart/application/cart_count_cubit.dart';
+import 'features/cart/presentation/bloc/cart_cubit.dart';
+import 'features/cart/presentation/bloc/update_cart/update_cart_cubit.dart';
+import 'features/notifications/application/notifications_service.dart';
+import 'injection_container.dart';
 
 import 'features/app_settings/presentation/app.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';

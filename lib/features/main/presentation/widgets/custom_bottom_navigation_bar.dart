@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/theme/app_colors.dart';
-import 'package:jahiz/features/cart/application/cart_count_cubit.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../cart/application/cart_count_cubit.dart';
 
 import '../../../../core/gen/assets.gen.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/features/addresses/presentation/bloc/get_addresses/get_addresses_cubit.dart';
-import 'package:jahiz/features/addresses/presentation/widgets/addresses_list.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import '../bloc/get_addresses/get_addresses_cubit.dart';
+import 'addresses_list.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
 
 import '../../../../core/widgets/app_bottom_sheet.dart';
 

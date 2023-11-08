@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../generated/l10n.dart';
 
 class YourOrderText extends StatelessWidget {
   const YourOrderText({super.key});

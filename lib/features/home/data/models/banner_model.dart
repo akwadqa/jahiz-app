@@ -1,5 +1,5 @@
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/products/domain/entities/banner.dart';
+import '../../../../core/shared_functions.dart';
+import '../../domain/entities/banner.dart';
 
 import 'home_block_data_model.dart';
 

@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/app_constants.dart';
-import 'package:jahiz/features/auth/presentation/bloc/register/register_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../core/app_constants.dart';
+import '../bloc/register/register_cubit.dart';
+import '../../../../generated/l10n.dart';
 
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../../../../core/widgets/app_error_widget.dart';

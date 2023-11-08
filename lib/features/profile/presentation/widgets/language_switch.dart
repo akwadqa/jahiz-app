@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../generated/l10n.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../../core/blocs/selected_language_cubit.dart';

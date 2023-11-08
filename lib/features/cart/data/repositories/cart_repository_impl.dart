@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/cart/data/datasources/cart_remote_data_source.dart';
+import '../../../../core/error/failures.dart';
+import '../datasources/cart_remote_data_source.dart';
 
-import 'package:jahiz/features/cart/domain/entities/cart.dart';
+import '../../domain/entities/cart.dart';
 
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/cart_repository.dart';

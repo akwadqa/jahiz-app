@@ -1,5 +1,5 @@
-import 'package:jahiz/features/orders/data/models/sales_order_model/sales_item_model.dart';
-import 'package:jahiz/features/orders/domain/entities/sales_order/sales_order.dart';
+import 'sales_item_model.dart';
+import '../../../domain/entities/sales_order/sales_order.dart';
 
 class SalesOrderModel extends SalesOrder {
   const SalesOrderModel(

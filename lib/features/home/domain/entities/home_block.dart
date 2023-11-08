@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/products/domain/entities/home_block_data.dart';
+import 'home_block_data.dart';
 
 class HomeBlock<T extends HomeBlockData> extends Equatable {
   final String id;

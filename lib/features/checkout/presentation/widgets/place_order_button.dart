@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/features/checkout/presentation/bloc/place_order/place_order_cubit.dart';
-import 'package:jahiz/generated/l10n.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../bloc/place_order/place_order_cubit.dart';
+import '../../../../generated/l10n.dart';
 
 class PlaceOrderButton extends StatelessWidget {
   const PlaceOrderButton({Key? key, required this.onPressed}) : super(key: key);

@@ -1,5 +1,5 @@
-import 'package:jahiz/core/data/models/pagination_model.dart';
-import 'package:jahiz/core/error/exception.dart';
+import 'pagination_model.dart';
+import '../../error/exception.dart';
 
 import '../../domain/entities/app_response.dart';
 

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:jahiz/features/addresses/data/models/address_model.dart';
+import '../models/address_model.dart';
 
 import '../../../../core/data/models/app_response_model.dart';
 import '../../../../core/error/exception.dart';

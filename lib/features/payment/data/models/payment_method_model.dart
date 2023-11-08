@@ -1,4 +1,4 @@
-import 'package:jahiz/core/shared_functions.dart';
+import '../../../../core/shared_functions.dart';
 
 import '../../domain/entities/payment_method.dart';
 

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/profile/domain/entities/profile_details.dart';
-import 'package:jahiz/features/profile/domain/usecases/get_profile_details.dart';
+import '../../../domain/entities/profile_details.dart';
+import '../../../domain/usecases/get_profile_details.dart';
 
 part 'profile_details_state.dart';
 

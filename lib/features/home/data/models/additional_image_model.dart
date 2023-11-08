@@ -1,4 +1,4 @@
-import 'package:jahiz/features/products/domain/entities/additional_image.dart';
+import '../../domain/entities/additional_image.dart';
 
 import '../../../../core/shared_functions.dart';
 

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import 'package:jahiz/core/error/failures.dart';
+import '../../../../core/error/failures.dart';
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_info.dart';

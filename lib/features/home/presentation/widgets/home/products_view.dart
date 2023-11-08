@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
-import 'package:jahiz/features/products/presentation/widgets/home/dynamic_layout.dart';
-import 'package:jahiz/core/widgets/product_item.dart';
+import 'package:jahiz/features/home/presentation/widgets/home/dynamic_layout.dart';
+import 'package:jahiz/features/products/presentation/widgets/product_item.dart';
 
 import '../../../domain/entities/home_block.dart';
 

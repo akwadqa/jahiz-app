@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jahiz/features/cart/data/models/cart_item_model.dart';
+import '../../data/models/cart_item_model.dart';
 
 import 'cart_product_option.dart';
 

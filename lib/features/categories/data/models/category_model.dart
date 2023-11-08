@@ -1,6 +1,6 @@
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/features/categories/domain/entities/category.dart';
-import 'package:jahiz/features/products/data/models/product_model.dart';
+import '../../../../core/shared_functions.dart';
+import '../../domain/entities/category.dart';
+import '../../../products/data/models/product_model.dart';
 
 class CategoryModel extends Category {
   const CategoryModel(

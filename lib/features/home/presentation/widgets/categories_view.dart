@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/shared_functions.dart';
-import 'package:jahiz/core/widgets/app_cached_network_image.dart';
-import 'package:jahiz/features/products/domain/entities/category.dart'
-    as category_entity;
-import 'package:jahiz/features/products/presentation/widgets/home/dynamic_layout.dart';
-
-import '../../../domain/entities/home_block.dart';
+import 'package:jahiz/features/home/domain/entities/home_block.dart';
+import '../../../../core/shared_functions.dart';
+import '../../../../core/widgets/app_cached_network_image.dart';
+import 'package:jahiz/features/home/domain/entities/category.dart';
+import 'package:jahiz/features/home/presentation/widgets/home/dynamic_layout.dart';
 
 class CategoriesView extends StatelessWidget {
   const CategoriesView(
       {Key? key, required this.categoriesBlock, required this.isNotLast})
       : super(key: key);
-  final HomeBlock<category_entity.Category> categoriesBlock;
+  final HomeBlock<Category> categoriesBlock;
   final bool isNotLast;
 
   @override

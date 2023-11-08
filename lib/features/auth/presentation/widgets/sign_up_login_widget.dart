@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/app_constants.dart';
-import 'package:jahiz/core/widgets/app_error_widget.dart';
-import 'package:jahiz/features/auth/presentation/bloc/check_user_validation/check_user_validation_cubit.dart';
-import 'package:jahiz/features/auth/presentation/bloc/login/login_cubit.dart';
-import 'package:jahiz/features/auth/presentation/widgets/login_widget.dart';
-import 'package:jahiz/features/auth/presentation/widgets/register_widget.dart';
-import 'package:jahiz/generated/l10n.dart';
-import 'package:jahiz/injection_container.dart';
+import '../../../../core/app_constants.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../bloc/check_user_validation/check_user_validation_cubit.dart';
+import '../bloc/login/login_cubit.dart';
+import 'login_widget.dart';
+import 'register_widget.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../injection_container.dart';
 
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../bloc/register/register_cubit.dart';

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:jahiz/core/error/failures.dart';
-import 'package:jahiz/features/profile/domain/entities/profile_details.dart';
-import 'package:jahiz/features/profile/domain/repositories/profile_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../entities/profile_details.dart';
+import '../repositories/profile_repository.dart';
 
 class GetProfileDetailsUseCase {
   final ProfileRepository _repository;

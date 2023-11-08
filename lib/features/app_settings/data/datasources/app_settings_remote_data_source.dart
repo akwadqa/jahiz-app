@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:jahiz/features/app_settings/data/models/app_settings_model.dart';
+import '../models/app_settings_model.dart';
 
 import '../../../../core/data/models/app_response_model.dart';
 import '../../../../core/error/exception.dart';

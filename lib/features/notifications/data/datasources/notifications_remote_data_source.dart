@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:jahiz/features/notifications/data/models/notification_model.dart';
+import '../models/notification_model.dart';
 import '../../../../core/data/models/app_response_model.dart';
 import '../../../../core/error/exception.dart';
 import '../../../../core/network/end_points.dart';

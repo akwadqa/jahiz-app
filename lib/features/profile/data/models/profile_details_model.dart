@@ -1,4 +1,4 @@
-import 'package:jahiz/features/profile/domain/entities/profile_details.dart';
+import '../../domain/entities/profile_details.dart';
 
 class ProfileDetailsModel extends ProfileDetails {
   const ProfileDetailsModel(
