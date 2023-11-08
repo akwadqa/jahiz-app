@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:jahiz/core/network/remote_data_source_mixin.dart';
 import '../../../../core/data/models/app_response_model.dart';
 import '../../../../core/network/end_points.dart';
 import '../models/sales_order_details/sales_order_details_model.dart';
 import '../models/sales_order_model/sales_order_model.dart';
 
-import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_service.dart';
 
 abstract class OrdersRemoteDataSource {
@@ -13,7 +13,7 @@ abstract class OrdersRemoteDataSource {
   Future<SalesOrderDetailsModel> getSalesOrderDetails(String orderId);
 }
 
-class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
+class OrdersRemoteDataSourceImpl with RemoteDataSourceMixin implements OrdersRemoteDataSource {
   final NetworkService<Response> _networkService;
 
   OrdersRemoteDataSourceImpl(this._networkService);
@@ -21,59 +21,26 @@ class OrdersRemoteDataSourceImpl implements OrdersRemoteDataSource {
   @override
   Future<AppResponseModel<List<SalesOrderModel>>> getSalesOrders(
       [int? page]) async {
-    try {
-      final response = await _networkService.get(
-        endpoint: EndPoints.getSalesOrders,
-        queryParameters: {
-          'page': page,
-        },
-      );
-
-      final responseModel = AppResponseModel<List<SalesOrderModel>>.fromJson(
-        response.data,
-        (data) => (data as List)
-            .map((e) => SalesOrderModel.fromJson(e as Map<String, dynamic>))
-            .toList(),
-      );
-
-      if (responseModel.error == 1) {
-        throw ServerException(message: responseModel.message);
-      } else {
-        return responseModel;
-      }
-    } on ServerException catch (e, stackTrace) {
-      throw ServerException(message: e.message ?? '', stackTrace: stackTrace);
-    } catch (e, stackTrace) {
-      throw ServerException(
-          message: 'Unexpected error occurred: $e', stackTrace: stackTrace);
-    }
+        return performRequest<List<SalesOrderModel>>(
+        () => _networkService.get(
+          endpoint: EndPoints.getSalesOrders,
+          queryParameters: {
+            'page': page,
+          },
+        ), (data) => (data as List).map((e) => SalesOrderModel.fromJson(e)).toList());
   }
 
   @override
   Future<SalesOrderDetailsModel> getSalesOrderDetails(String orderId) async {
-    try {
-      final response = await _networkService.get(
+    final responseModel = await performRequest<SalesOrderDetailsModel>(
+      () => _networkService.get(
         endpoint: EndPoints.getSalesOrderDetails,
         queryParameters: {
           'sales_order_id': orderId,
         },
-      );
-
-      final responseModel = AppResponseModel<SalesOrderDetailsModel>.fromJson(
-        response.data,
-        (data) => SalesOrderDetailsModel.fromJson(data as Map<String, dynamic>),
-      );
-
-      if (responseModel.error == 1) {
-        throw ServerException(message: responseModel.message);
-      } else {
-        return responseModel.data;
-      }
-    } on ServerException catch (e, stackTrace) {
-      throw ServerException(message: e.message ?? '', stackTrace: stackTrace);
-    } catch (e, stackTrace) {
-      throw ServerException(
-          message: 'Unexpected error occurred: $e', stackTrace: stackTrace);
-    }
+      ),
+      (data) => SalesOrderDetailsModel.fromJson(data as Map<String, dynamic>),
+    );
+    return responseModel.data;
   }
 }

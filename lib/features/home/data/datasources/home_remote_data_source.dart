@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import '../../../../core/error/exception.dart';
+import 'package:jahiz/core/network/remote_data_source_mixin.dart';
 import '../../../../core/network/end_points.dart';
 import '../../../../core/network/network_service.dart';
 import '../models/banner_model.dart';
@@ -17,26 +17,17 @@ abstract class HomeRemoteDataSource {
   Future<List<HomeBlockModel>> getHomeBlocks();
 }
 
-class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
+class HomeRemoteDataSourceImpl with RemoteDataSourceMixin implements HomeRemoteDataSource {
   final NetworkService<Response> _networkService;
 
   HomeRemoteDataSourceImpl(this._networkService);
 
   @override
   Future<List<HomeBlockModel>> getHomeBlocks() async {
-    try {
-      final Response response =
-          await _networkService.get(endpoint: EndPoints.getHomeBlocks);
-      HomeResponse responseModel = HomeResponse.fromJson(response.data,
-          (data) => (data as List).map((e) => _mapToHomeBlock(e)).toList());
-      if (responseModel.error == 1) {
-        throw ServerException(message: responseModel.message);
-      } else {
-        return responseModel.data;
-      }
-    } catch (e, stackTrace) {
-      throw ServerException(message: e.toString(), stackTrace: stackTrace);
-    }
+    final HomeResponse responseModel = await performRequest<List<HomeBlockModel>>(
+        () => _networkService.get(endpoint: EndPoints.getHomeBlocks),
+        (data) => (data as List).map((e) => _mapToHomeBlock(e)).toList());
+    return responseModel.data;
   }
 
   HomeBlockModel<HomeBlockDataModel> _mapToHomeBlock(

@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../injection_container.dart';
 
-part 'auth_state.dart';
+part '../presentation/bloc/auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._sharedPreferences) : super(Unauthenticated()) {
