@@ -1,46 +1,36 @@
 import 'package:dartz/dartz.dart';
+import 'package:jahiz/core/network/network_operation_handler_mixin.dart';
 import '../../../../core/domain/entities/app_response.dart';
 import '../datasources/notifications_remote_data_source.dart';
 import '../../domain/entities/notification.dart';
 import '../../domain/repositories/notifications_repository.dart';
-import '../../../../core/error/exception.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';
 
-class NotificationsRepositoryImpl implements NotificationsRepository {
+class NotificationsRepositoryImpl extends NetworkOperationHandler
+    implements NotificationsRepository {
   final NotificationsRemoteDataSource remoteDataSource;
-  final NetworkInfo networkInfo;
 
-  NotificationsRepositoryImpl(this.remoteDataSource, this.networkInfo);
+  NotificationsRepositoryImpl(this.remoteDataSource, NetworkInfo networkInfo)
+      : super(networkInfo);
 
   @override
   Future<Either<Failure, AppResponse<List<Notification>>>> getNotifications(
       [int? page]) async {
-    return await _performNetworkOperation(
-        () => remoteDataSource.getNotifications(page));
+    return await handleNetworkOperation(() async {
+      final response = await remoteDataSource.getNotifications(page);
+      return response;
+    });
   }
 
   @override
   Future<Either<Failure, AppResponse<String>>> updateDeviceToken(
     String deviceToken,
   ) async {
-    return await _performNetworkOperation(
-        () => remoteDataSource.updateDeviceToken(
-              deviceToken,
-            ));
-  }
-
-  Future<Either<Failure, T>> _performNetworkOperation<T>(
-      Future<T> Function() operation) async {
-    if (await networkInfo.isConnected) {
-      try {
-        final response = await operation();
-        return Right(response);
-      } on ServerException catch (e, stackTrace) {
-        return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
-      }
-    } else {
-      return Future.value(Left(OfflineFailure()));
-    }
+    return await handleNetworkOperation(() {
+      return remoteDataSource.updateDeviceToken(
+        deviceToken,
+      );
+    });
   }
 }

@@ -1,30 +1,24 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/error/exception.dart';
+import 'package:jahiz/core/network/network_operation_handler_mixin.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../datasources/profile_remote_data_source.dart';
 import '../../domain/entities/profile_details.dart';
 import '../../domain/repositories/profile_repository.dart';
 
-class ProfileRepositoryImpl extends ProfileRepository {
+class ProfileRepositoryImpl extends NetworkOperationHandler
+    implements ProfileRepository {
   final ProfileRemoteDataSource _remoteDataSource;
-  final NetworkInfo _networkInfo;
 
-  ProfileRepositoryImpl(this._remoteDataSource, this._networkInfo);
+  ProfileRepositoryImpl(this._remoteDataSource, NetworkInfo networkInfo)
+      : super(networkInfo);
 
   @override
   Future<Either<Failure, ProfileDetails>> getProfileDetails() async {
-    if (await _networkInfo.isConnected) {
-      try {
-        ProfileDetails profileDetails =
-            await _remoteDataSource.getProfileDetails();
-        return Right(profileDetails);
-      } on ServerException catch (e, stackTrace) {
-        return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
+    return await handleNetworkOperation<ProfileDetails>(() async {
+      final response = await _remoteDataSource.getProfileDetails();
+      return response;
+    });
   }
 
   @override
@@ -34,21 +28,14 @@ class ProfileRepositoryImpl extends ProfileRepository {
       String? email,
       String? phone,
       int? enabled}) async {
-    if (await _networkInfo.isConnected) {
-      try {
-        ProfileDetails profileDetails =
-            await _remoteDataSource.updateProfileDetails(
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                phone: phone,
-                enabled: enabled);
-        return Right(profileDetails);
-      } on ServerException catch (e, stackTrace) {
-        return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
+    return await handleNetworkOperation<ProfileDetails>(() async {
+      final response = await _remoteDataSource.updateProfileDetails(
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          phone: phone,
+          enabled: enabled);
+      return response;
+    });
   }
 }

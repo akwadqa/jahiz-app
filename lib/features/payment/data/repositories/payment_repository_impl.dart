@@ -1,31 +1,25 @@
 import 'package:dartz/dartz.dart';
+import 'package:jahiz/core/network/network_operation_handler_mixin.dart';
 
 import '../../../../core/error/failures.dart';
 
-import '../../../../core/error/exception.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/entities/payment_method.dart';
 import '../../domain/repositories/payment_repository.dart';
 import '../datasources/payment_remote_data_source.dart';
 
-class PaymentRepositoryImpl implements PaymentRepository {
+class PaymentRepositoryImpl extends NetworkOperationHandler
+    implements PaymentRepository {
   final PaymentRemoteDataSource _remoteDataSource;
-  final NetworkInfo _networkInfo;
 
-  PaymentRepositoryImpl(this._remoteDataSource, this._networkInfo);
+  PaymentRepositoryImpl(this._remoteDataSource, NetworkInfo networkInfo)
+      : super(networkInfo);
 
   @override
   Future<Either<Failure, List<PaymentMethod>>> getPaymentMethods() async {
-    if (await _networkInfo.isConnected) {
-      try {
-        final List<PaymentMethod> paymentMethods =
-            (await _remoteDataSource.getPaymentMethods()).cast<PaymentMethod>();
-        return Right(paymentMethods);
-      } on ServerException catch (e, stackTrace) {
-        return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
+    return await handleNetworkOperation<List<PaymentMethod>>(() async {
+      final response = await _remoteDataSource.getPaymentMethods();
+      return response;
+    });
   }
 }

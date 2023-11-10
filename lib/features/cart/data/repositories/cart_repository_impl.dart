@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:jahiz/core/network/network_operation_handler_mixin.dart';
 
 import '../../../../core/error/failures.dart';
 import '../datasources/cart_remote_data_source.dart';
@@ -8,33 +9,25 @@ import '../../domain/entities/cart.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/cart_repository.dart';
 
-class CartRepositoryImpl implements CartRepository {
-  final NetworkInfo _networkInfo;
+class CartRepositoryImpl extends NetworkOperationHandler
+    implements CartRepository {
   final CartRemoteDataSource _remoteDataSource;
 
-  CartRepositoryImpl(this._networkInfo, this._remoteDataSource);
+  CartRepositoryImpl(NetworkInfo networkInfo, this._remoteDataSource)
+      : super(networkInfo);
   @override
   Future<Either<Failure, Cart?>> getCart() async {
-    return await _handelCartResponse(() => _remoteDataSource.getCart());
+    return await handleNetworkOperation<Cart?>(() async {
+      Cart? cart = await _remoteDataSource.getCart();
+      return cart;
+    });
   }
 
   @override
   Future<Either<Failure, Cart?>> updateCart(Cart cart) async {
-    return await _handelCartResponse(
-        () => _remoteDataSource.updateCart(cart.toModel()));
-  }
-
-  Future<Either<Failure, Cart?>> _handelCartResponse(
-      Future<Cart?> Function() function) async {
-    if (await _networkInfo.isConnected) {
-      try {
-        Cart? cart = await function();
-        return Right(cart);
-      } catch (e, stackTrace) {
-        return Left(ServerFailure(e.toString(), stackTrace));
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
+    return await handleNetworkOperation<Cart?>(() async {
+      Cart? cartResponse = await _remoteDataSource.updateCart(cart.toModel());
+      return cartResponse;
+    });
   }
 }

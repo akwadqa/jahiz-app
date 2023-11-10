@@ -1,49 +1,36 @@
 import 'package:dartz/dartz.dart';
+import 'package:jahiz/core/network/network_operation_handler_mixin.dart';
 import '../../../../core/domain/entities/app_response.dart';
 import '../../domain/entities/sales_order/sales_order.dart';
 import '../../domain/entities/sales_order_details/sales_order_details.dart';
-
-import '../../../../core/error/exception.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/orders_repository.dart';
 import '../datasources/orders_remote_data_source.dart';
 
-class OrdersRepositoryImpl implements OrdersRepository {
+class OrdersRepositoryImpl extends NetworkOperationHandler
+    implements OrdersRepository {
   final OrdersRemoteDataSource _remoteDataSource;
-  final NetworkInfo _networkInfo;
 
-  OrdersRepositoryImpl(this._remoteDataSource, this._networkInfo);
+  OrdersRepositoryImpl(this._remoteDataSource, NetworkInfo networkInfo)
+      : super(networkInfo);
 
   @override
   Future<Either<Failure, AppResponse<List<SalesOrder>>>> getSalesOrders(
       [int? page]) async {
-    if (await _networkInfo.isConnected) {
-      try {
-        final AppResponse<List<SalesOrder>> appResponse =
-            await _remoteDataSource.getSalesOrders(page);
-        return Right(appResponse);
-      } on ServerException catch (e, stackTrace) {
-        return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
+    return await handleNetworkOperation<AppResponse<List<SalesOrder>>>(
+        () async {
+      final response = await _remoteDataSource.getSalesOrders(page);
+      return response;
+    });
   }
 
   @override
   Future<Either<Failure, SalesOrderDetails>> getSalesOrderDetails(
       String orderId) async {
-    if (await _networkInfo.isConnected) {
-      try {
-        final SalesOrderDetails salesOrderDetails =
-            await _remoteDataSource.getSalesOrderDetails(orderId);
-        return Right(salesOrderDetails);
-      } on ServerException catch (e, stackTrace) {
-        return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
-      }
-    } else {
-      return Left(OfflineFailure());
-    }
+    return await handleNetworkOperation<SalesOrderDetails>(() async {
+      final response = await _remoteDataSource.getSalesOrderDetails(orderId);
+      return response;
+    });
   }
 }
