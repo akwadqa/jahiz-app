@@ -43,46 +43,49 @@ class ProfilePage extends StatelessWidget {
         right: 0,
         child: Container(
           height: MediaQuery.of(context).size.height * 0.75,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: AppColors.whiteLilacColor,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45),
-              topRight: Radius.circular(45),
-            ),
+            borderRadius: _borderRadius(),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 60),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ActionButton(
-                        icon: Assets.images.shareAppIcon.svg(),
-                        onTap: () => _shareApp('', ''),
-                        text: S.of(context).appShare),
-                    ActionButton(
-                        icon: Assets.images.contactUsIcon.image(),
-                        onTap: () => _contactUs(context),
-                        text: S.of(context).contactUs),
-                  ],
-                ),
-                const SizedBox(height: 40),
-                BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
-                  if (state is Authenticated) {
-                    return const AccountDetails();
-                  }
-                  return const SizedBox.shrink();
-                }),
-                const Settings(),
-                const SizedBox(height: 20),
-                Center(
-                    child: Text(
-                        '${S.of(context).version} ${getIt<PackageInfo>().version}',
-                        style: const TextStyle(color: AppColors.gray))),
-                const SizedBox(height: 120),
-              ],
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: _borderRadius(),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 60),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ActionButton(
+                          icon: Assets.images.shareAppIcon.svg(),
+                          onTap: () => _shareApp('', ''),
+                          text: S.of(context).appShare),
+                      ActionButton(
+                          icon: Assets.images.contactUsIcon.image(),
+                          onTap: () => _contactUs(context),
+                          text: S.of(context).contactUs),
+                    ],
+                  ),
+                  const SizedBox(height: 40),
+                  BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+                    if (state is Authenticated) {
+                      return const AccountDetails();
+                    }
+                    return const SizedBox.shrink();
+                  }),
+                  const Settings(),
+                  const SizedBox(height: 20),
+                  Center(
+                      child: Text(
+                          '${S.of(context).version} ${getIt<PackageInfo>().version}',
+                          style: const TextStyle(color: AppColors.gray))),
+                  const SizedBox(height: 120),
+                ],
+              ),
             ),
           ),
         ),
@@ -135,6 +138,13 @@ class ProfilePage extends StatelessWidget {
             })),
       )
     ]);
+  }
+
+  BorderRadius _borderRadius() {
+    return const BorderRadius.only(
+      topLeft: Radius.circular(45),
+      topRight: Radius.circular(45),
+    );
   }
 
   void _shareApp(String androidAppId, String iOSAppId) {

@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
         bottom: const _SearchTextFormField(),
         actions: [
           ContainedButton(
-            icon: Assets.images.notification.svg(),
+            icon: Assets.images.notification.svg(height: 22, width: 22),
             onPressed: () => context.pushRoute(const NotificationsRoute()),
             withShadow: false,
             backgroundColor: Colors.white,
@@ -75,7 +75,7 @@ class _SearchTextFormField extends StatelessWidget
                   topLeft: Radius.circular(35), topRight: Radius.circular(35))),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 40.0),
+          padding: const EdgeInsets.symmetric(horizontal: 40.0),
           child: TextFormField(
             textAlign: TextAlign.center,
             decoration: InputDecoration(
