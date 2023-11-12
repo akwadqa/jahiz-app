@@ -49,13 +49,21 @@ class HomePage extends StatelessWidget {
             if (state is HomeLoadEmpty) {
               return const NoElementsWidget();
             }
-            return CustomCurveBackground(
-                stackedChild: const _SearchTextFormField(),
-                padding: const EdgeInsets.only(top: 24),
-                backgroundColor: Theme.of(context).primaryColor,
-                borderRadius: 35,
-                child: DynamicList(
-                    homeBlocks: (state as HomeLoadSuccess).homeBlocks));
+            return Stack(
+              children: [
+                CustomCurveBackground(
+                    padding: const EdgeInsets.only(top: 24),
+                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundContainerborderRadius: null,
+                    listContainerborderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(35),
+                      topRight: Radius.circular(35),
+                    ),
+                    child: DynamicList(
+                        homeBlocks: (state as HomeLoadSuccess).homeBlocks)),
+                const _SearchTextFormField(),
+              ],
+            );
           },
         ),
       ),

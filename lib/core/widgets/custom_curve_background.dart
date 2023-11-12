@@ -3,39 +3,36 @@ import 'package:jahiz/core/theme/app_colors.dart';
 
 class CustomCurveBackground extends StatelessWidget {
   final Widget child;
-  final Widget stackedChild;
   final EdgeInsetsGeometry padding;
   final Color backgroundColor;
-  final double borderRadius;
+  final BorderRadiusGeometry? backgroundContainerborderRadius;
+  final BorderRadiusGeometry? listContainerborderRadius;
+  final double? height;
 
-  const CustomCurveBackground(
-      {super.key,
-      required this.child,
-      required this.stackedChild,
-      this.padding = EdgeInsets.zero,
-      required this.backgroundColor,
-      required this.borderRadius});
+  const CustomCurveBackground({
+    super.key,
+    required this.child,
+    this.padding = EdgeInsets.zero,
+    this.height,
+    required this.backgroundColor,
+    required this.backgroundContainerborderRadius,
+    required this.listContainerborderRadius,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        
-        Container(
-            padding: padding,
+    return Container(
+        height: height,
+        padding: padding,
+        decoration: BoxDecoration(
             color: backgroundColor,
-            child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.whiteLilacColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(borderRadius),
-                    topRight: Radius.circular(borderRadius),
-                  ),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: child)),
-        stackedChild
-      ],
-    );
+            borderRadius: backgroundContainerborderRadius),
+        child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.whiteLilacColor,
+              borderRadius: listContainerborderRadius,
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: child));
   }
 }

@@ -70,6 +70,8 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
                                             .textTheme
                                             .titleLarge!
                                             .copyWith(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 18,
                                                 color:
                                                     state.selectedCategory == e
                                                         ? Colors.white
@@ -100,8 +102,8 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
                                   gridDelegate:
                                       const SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
-                                          mainAxisSpacing: 15,
-                                          crossAxisSpacing: 15,
+                                          mainAxisSpacing: 12,
+                                          crossAxisSpacing: 12,
                                           childAspectRatio: 2 / 3),
                                   itemBuilder:
                                       (BuildContext context, int index) {

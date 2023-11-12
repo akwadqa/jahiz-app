@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/widgets/custom_curve_background.dart';
 import '../../../../core/router/app_router.dart';
-import '../../../../core/widgets/app_header.dart';
 import '../../../../core/widgets/custom_container.dart';
 import '../../domain/entities/category.dart';
 import '../../../../generated/l10n.dart';
@@ -19,53 +19,52 @@ class CategoriesPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        AppHeader(title: S.of(context).shopByCategory),
-        Positioned.fill(
-          top: 130,
-          child: Container(
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(35.0)),
-                color: Colors.white),
-            padding: const EdgeInsets.only(top: 20.0),
-            child: BlocBuilder<CategoriesCubit, CategoriesState>(
-                builder: (context, state) {
-              if (state is CategoriesLoadSuccess) {
-                return RefreshIndicator.adaptive(
-                  onRefresh: context.read<CategoriesCubit>().getCategories,
-                  child: GridView.builder(
-                    padding: const EdgeInsets.only(
-                        bottom: 100.0, top: 8.0, right: 20.0, left: 20.0),
-                    itemCount: state.category.subCategories!.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 15,
-                            crossAxisSpacing: 15,
-                            childAspectRatio: 3 / 4),
-                    itemBuilder: (BuildContext context, int index) {
-                      return _CategoryItem(
-                          category: state.category.subCategories![index]);
-                    },
-                  ),
-                );
-              }
-              if (state is CategoriesLoadFailure) {
-                return AppErrorWidget(
-                    errorText: state.error,
-                    onRetryClicked:
-                        context.read<CategoriesCubit>().getCategories);
-              }
-              if (state is CategoriesLoadEmpty) {
-                return const NoElementsWidget();
-              }
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }),
-          ),
-        )
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text(S.of(context).shopByCategory,
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
+      ),
+      body: CustomCurveBackground(
+        backgroundColor: Theme.of(context).primaryColor,
+        backgroundContainerborderRadius: null,
+        listContainerborderRadius:
+            const BorderRadius.vertical(top: Radius.circular(35.0)),
+        child: BlocBuilder<CategoriesCubit, CategoriesState>(
+            builder: (context, state) {
+          if (state is CategoriesLoadSuccess) {
+            return RefreshIndicator.adaptive(
+              onRefresh: context.read<CategoriesCubit>().getCategories,
+              child: GridView.builder(
+                padding: const EdgeInsets.only(
+                    bottom: 100.0, top: 8.0, right: 20.0, left: 20.0),
+                itemCount: state.category.subCategories!.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    childAspectRatio: 3 / 4),
+                itemBuilder: (BuildContext context, int index) {
+                  return _CategoryItem(
+                      category: state.category.subCategories![index]);
+                },
+              ),
+            );
+          }
+          if (state is CategoriesLoadFailure) {
+            return AppErrorWidget(
+                errorText: state.error,
+                onRetryClicked: context.read<CategoriesCubit>().getCategories);
+          }
+          if (state is CategoriesLoadEmpty) {
+            return const NoElementsWidget();
+          }
+          return const Center(child: CircularProgressIndicator.adaptive());
+        }),
+      ),
     );
   }
 

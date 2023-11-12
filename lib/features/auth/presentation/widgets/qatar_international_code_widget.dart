@@ -11,14 +11,15 @@ class QatarInternationalCodeWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-          color: Theme.of(context).primaryColor),
+          color: Theme.of(context).primaryColor.withOpacity(0.05)),
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
           Assets.images.qatarFlag.image(),
           const SizedBox(width: 6),
-          const Text(AppConstants.qatarInternationalCodeLabel,
-              style: TextStyle(fontSize: 18, color: Colors.white))
+          Text(AppConstants.qatarInternationalCodeLabel,
+              style: TextStyle(
+                  fontSize: 18, color: Theme.of(context).primaryColor))
         ],
       ),
     );

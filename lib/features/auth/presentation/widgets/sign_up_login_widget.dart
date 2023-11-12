@@ -38,6 +38,7 @@ class SignUpLoginWidget extends StatelessWidget {
                   decoration: const InputDecoration(
                       hintText: AppConstants.phoneNumberHint),
                   textInputAction: TextInputAction.done,
+                  textAlign: TextAlign.center,
                   keyboardType: const TextInputType.numberWithOptions(
                       signed: true, decimal: true),
                   validator: context

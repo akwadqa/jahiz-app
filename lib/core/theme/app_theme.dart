@@ -43,7 +43,6 @@ abstract class AppTheme {
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 fontFamily: FontFamily.qatar)),
-            padding: MaterialStateProperty.all(const EdgeInsets.all(20.0)),
             minimumSize:
                 MaterialStateProperty.all(const Size(double.infinity, 65))),
       );
