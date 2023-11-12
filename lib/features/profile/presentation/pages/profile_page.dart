@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/widgets/custom_curve_background.dart';
 import '../../../../core/gen/fonts.gen.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../auth/presentation/widgets/sign_up_login_bottom_sheet.dart';
@@ -155,7 +156,8 @@ class ProfilePage extends StatelessWidget {
   }
 
   Future<void> _contactUs(BuildContext context) async {
-    final phone = context.read<AppSettingsCubit>().state?.mobileNo ?? '';
+    final phone =
+        context.read<AppSettingsCubit>().state?.companyWhatsappNumber ?? '';
     final Uri telLaunchUri = Uri(
       scheme: 'tel',
       path: phone,

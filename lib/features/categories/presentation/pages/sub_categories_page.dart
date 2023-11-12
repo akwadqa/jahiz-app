@@ -32,10 +32,12 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
                   current is SubCategoriesLoadSuccess),
           builder: (context, state) {
             if (state is SubCategoriesLoadSuccess) {
-              if (state.category.subCategories!.isEmpty) {
+              if (state.category.subCategories!.isEmpty &&
+                  state.category.products!.isEmpty) {
                 return const NoElementsWidget();
               }
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),

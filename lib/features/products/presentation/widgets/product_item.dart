@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:jahiz/core/widgets/custom_through_line.dart';
 import '../../../../core/gen/fonts.gen.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -89,17 +90,15 @@ class ProductItem extends StatelessWidget {
                                     const SizedBox(width: 8),
                                   if (product.discountAmount > 0 &&
                                       !isSmallestPremiumItem)
-                                    Text(
-                                        '${product.productPrice} ${S.of(context).qar}',
-                                        style: TextStyle(
-                                            fontSize:
-                                                isSmallestPremiumItem ? 11 : 13,
-                                            color: AppColors.lightGray,
-                                            decoration:
-                                                TextDecoration.lineThrough))
+                                    CustomThroughLine(
+                                      productPrice:
+                                          '${product.productPrice} ${S.of(context).qar}',
+                                      isSmallestPremiumItem:
+                                          isSmallestPremiumItem,
+                                    ),
                                 ],
                               ),
-                              SizedBox(height: isSmallestPremiumItem ? 4 : 8),
+                              SizedBox(height: isSmallestPremiumItem ? 2 : 4),
                               Wrap(
                                 children: [
                                   Text(product.productTitle,
@@ -139,7 +138,8 @@ class ProductItem extends StatelessWidget {
                             minimumSize:
                                 MaterialStateProperty.all(const Size(100, 20)),
                             padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(8.0)),
+                                const EdgeInsets.symmetric(
+                                    horizontal: 8.0, vertical: 4)),
                             textStyle: MaterialStateProperty.all(
                                 const TextStyle(
                                     fontFamily: FontFamily.qatar,
@@ -148,7 +148,6 @@ class ProductItem extends StatelessWidget {
                         child: Text(product.hasOptions == 0
                             ? S.of(context).addToCart
                             : S.of(context).goToProduct)),
-                    const SizedBox(height: 10)
                   ]
                 ],
               ),

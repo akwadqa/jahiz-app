@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/features/home/domain/entities/home_block.dart';
 import '../../../../core/shared_functions.dart';
 import '../../../../core/widgets/app_cached_network_image.dart';
@@ -17,34 +19,39 @@ class CategoriesView extends StatelessWidget {
     return SliverPadding(
       padding: EdgeInsets.zero,
       sliver: DynamicLayout(
-        heightOfHorizontalList: 144,
+        heightOfHorizontalList: 138,
         viewType: ViewType.values
             .firstWhere((element) => element.name == categoriesBlock.view),
         itemBuilder: (context, index) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundColor:
-                        SharedFunctions.getColor(categoriesBlock.background),
-                  ),
-                  AppCachedNetworkImage(
-                      imageUrl: categoriesBlock.data[index].categoryImage,
-                      width: 72,
-                      height: 72)
-                ],
-              ),
-              SizedBox(
-                width: 95,
-                child: Text(categoriesBlock.data[index].categoryTitle,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.black, fontSize: 18)),
-              )
-            ],
+          return InkWell(
+            onTap: () => context.pushRoute(SubCategoriesRoute(
+                categoryId: categoriesBlock.data[index].categoryName)),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundColor:
+                          SharedFunctions.getColor(categoriesBlock.background),
+                    ),
+                    AppCachedNetworkImage(
+                        imageUrl: categoriesBlock.data[index].categoryImage,
+                        width: 75,
+                        height: 75)
+                  ],
+                ),
+                SizedBox(
+                  width: 83,
+                  child: Text(categoriesBlock.data[index].categoryTitle,
+                      textAlign: TextAlign.center,
+                      style:
+                          const TextStyle(color: Colors.black, fontSize: 16)),
+                )
+              ],
+            ),
           );
         },
         count: categoriesBlock.data.length,

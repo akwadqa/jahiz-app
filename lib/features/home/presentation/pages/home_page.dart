@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/widgets/custom_curve_background.dart';
 import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
 import 'package:jahiz/features/home/presentation/widgets/dynamic_list.dart';
 import '../../../../core/blocs/slider_indicator_cubit.dart';
 import '../../../../core/gen/assets.gen.dart';
 import '../../../../core/router/app_router.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/contained_button.dart';
 import '../../../../core/widgets/no_elements_widget.dart';
@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         title: Assets.images.jahezLogo.image(width: 70),
-        bottom: const _SearchTextFormField(),
+        // bottom: const _SearchTextFormField(),
         actions: [
           ContainedButton(
             icon: Assets.images.notification.svg(height: 22, width: 22),
@@ -49,8 +49,13 @@ class HomePage extends StatelessWidget {
             if (state is HomeLoadEmpty) {
               return const NoElementsWidget();
             }
-            return DynamicList(
-                homeBlocks: (state as HomeLoadSuccess).homeBlocks);
+            return CustomCurveBackground(
+                stackedChild: const _SearchTextFormField(),
+                padding: const EdgeInsets.only(top: 24),
+                backgroundColor: Theme.of(context).primaryColor,
+                borderRadius: 35,
+                child: DynamicList(
+                    homeBlocks: (state as HomeLoadSuccess).homeBlocks));
           },
         ),
       ),
@@ -64,42 +69,30 @@ class _SearchTextFormField extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.bottomEnd,
-      children: [
-        Container(
-          height: 30,
-          decoration: const BoxDecoration(
-              color: AppColors.whiteSmoke,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(35), topRight: Radius.circular(35))),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-          child: TextFormField(
-            textAlign: TextAlign.center,
-            decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.only(bottom: 2, top: 5, right: 8, left: 8),
-              hintText: S.of(context).searchHint,
-              suffixIcon: IconButton(
-                  onPressed: () {}, icon: Assets.images.search.svg()),
-              border: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              filled: true,
-              fillColor: Colors.white,
-            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      child: TextFormField(
+        textAlign: TextAlign.center,
+        decoration: InputDecoration(
+          contentPadding:
+              const EdgeInsets.only(bottom: 2, top: 5, right: 8, left: 8),
+          hintText: S.of(context).searchHint,
+          suffixIcon:
+              IconButton(onPressed: () {}, icon: Assets.images.search.svg()),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
+          enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          filled: true,
+          fillColor: Colors.white,
         ),
-      ],
+      ),
     );
   }
 

@@ -27,7 +27,7 @@ class SignUpLoginWidget extends StatelessWidget {
         children: [
           const SizedBox(height: 30.0),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const QatarInternationalCodeWidget(),
               const SizedBox(width: 6),
