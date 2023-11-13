@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
+import 'package:jahiz/features/products/domain/entities/product.dart';
+import 'package:jahiz/features/products/presentation/bloc/detailed_product/detailed_product_cubit.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import '../../../domain/entities/detailed_product.dart';
 import 'product_details_sliver_app_bar.dart';
@@ -8,9 +10,12 @@ import 'product_details_sliver_list.dart';
 import 'product_details_tabs.dart';
 
 class ProductDetailsBody extends StatefulWidget {
-  final DetailedProduct detailedProduct;
+  final DetailedProductState detailedProductState;
+  final Product product;
+  final String heroTag;
 
-  const ProductDetailsBody({Key? key, required this.detailedProduct})
+  const ProductDetailsBody(
+      {Key? key, required this.detailedProductState, required this.product, required this.heroTag})
       : super(key: key);
 
   @override
@@ -30,10 +35,17 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
       child: CustomScrollView(
         slivers: [
           _buildSliverStack(),
-          ProductDetailsSliverList(detailedProduct: widget.detailedProduct),
-          SliverFillRemaining(
-              child:
-                  ProductDetailsTabs(detailedProduct: widget.detailedProduct)),
+          if (widget.detailedProductState is DetailedProductLoadSuccess) ...[
+            ProductDetailsSliverList(
+                detailedProduct:
+                    (widget.detailedProductState as DetailedProductLoadSuccess)
+                        .detailedProduct),
+            SliverFillRemaining(
+                child: ProductDetailsTabs(
+                    detailedProduct: (widget.detailedProductState
+                            as DetailedProductLoadSuccess)
+                        .detailedProduct))
+          ],
         ],
       ),
     );
@@ -42,7 +54,9 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
   Widget _buildSliverStack() {
     return SliverStack(
       children: [
-        ProductDetailsSliverAppBar(detailedProduct: widget.detailedProduct),
+        ProductDetailsSliverAppBar(
+            detailedProductState: widget.detailedProductState,
+            product: widget.product, heroTag: widget.heroTag),
         if (_isAppBarExpanded) const _ShadowContainer(),
       ],
     );
@@ -52,8 +66,9 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
     if (notification.metrics.axis == Axis.vertical) {
       final double screenHeight = MediaQuery.of(context).size.height;
       final bool hasNotch = SharedFunctions.hasNotch(context);
-      final double threshold =
-          hasNotch ? _expandedThresholdWithNotch : _expandedThresholdWithoutNotch;
+      final double threshold = hasNotch
+          ? _expandedThresholdWithNotch
+          : _expandedThresholdWithoutNotch;
       final bool shouldExpand =
           notification.metrics.pixels < screenHeight * threshold;
 

@@ -3,6 +3,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/shared_functions.dart';
+import 'package:jahiz/features/products/domain/entities/product.dart';
+import 'package:jahiz/features/products/presentation/bloc/detailed_product/detailed_product_cubit.dart';
 import '../../../../../core/app_constants.dart';
 import '../../../../../core/blocs/slider_indicator_cubit.dart';
 import '../../../../../core/gen/assets.gen.dart';
@@ -15,9 +17,15 @@ import '../../../domain/entities/detailed_product.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ProductDetailsSliverAppBar extends StatelessWidget {
-  const ProductDetailsSliverAppBar({Key? key, required this.detailedProduct})
+  const ProductDetailsSliverAppBar(
+      {Key? key,
+      required this.detailedProductState,
+      required this.product,
+      required this.heroTag})
       : super(key: key);
-  final DetailedProduct detailedProduct;
+  final DetailedProductState detailedProductState;
+  final Product product;
+  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,19 @@ class ProductDetailsSliverAppBar extends StatelessWidget {
       pinned: true,
       actions: [_ShareButton()],
       flexibleSpace: FlexibleSpaceBar(
-          background: _CarouselWithDots(detailedProduct: detailedProduct)),
+          background: detailedProductState is DetailedProductLoadSuccess
+              ? Hero(
+                  tag: heroTag,
+                  child: _CarouselWithDots(
+                      detailedProduct:
+                          (detailedProductState as DetailedProductLoadSuccess)
+                              .detailedProduct),
+                )
+              : Hero(
+                  tag: heroTag,
+                  child: AppCachedNetworkImage(
+                      imageUrl: product.productImage, fit: BoxFit.fitHeight),
+                )),
       expandedHeight: _expandedHeight(context),
     );
   }
@@ -89,7 +109,8 @@ class _CarouselWithDots extends StatelessWidget {
         .map((image) => SizedBox(
               height: double.infinity,
               width: double.infinity,
-              child: AppCachedNetworkImage(imageUrl: image.image),
+              child: AppCachedNetworkImage(
+                  imageUrl: image.image, fit: BoxFit.fitHeight),
             ))
         .toList();
   }

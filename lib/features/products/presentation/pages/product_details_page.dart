@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/products/domain/entities/product.dart';
 import '../../../../core/blocs/slider_indicator_cubit.dart';
 import '../bloc/detailed_product/detailed_product_cubit.dart';
 import '../widgets/product_details/product_details_body.dart';
@@ -13,25 +14,22 @@ import '../widgets/product_details/add_to_cart_button.dart';
 
 @RoutePage()
 class ProductDetailsPage extends StatelessWidget implements AutoRouteWrapper {
-  const ProductDetailsPage({Key? key, required this.productId})
+  const ProductDetailsPage({Key? key, required this.product, required this.heroTag})
       : super(key: key);
-  final String productId;
-
+  final Product product;
+  final String heroTag;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocBuilder<DetailedProductCubit, DetailedProductState>(
         builder: (context, state) {
-          if (state is DetailedProductLoadInProgress) {
-            return const Center(child: CircularProgressIndicator.adaptive());
-          }
           if (state is DetailedProductLoadFailure) {
             return AppErrorWidget(
                 errorText: state.error,
                 onRetryClicked: () => context
                     .read<DetailedProductCubit>()
-                    .getDetailedProduct(productId));
+                    .getDetailedProduct(product.productId));
           }
           return MultiBlocProvider(
             providers: [
@@ -44,18 +42,17 @@ class ProductDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             ],
             child: Stack(
               children: [
-                ProductDetailsBody(
-                    detailedProduct:
-                        (state as DetailedProductLoadSuccess).detailedProduct),
-                Align(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.only(
-                        bottom: 20.0, start: 20, end: 20),
-                    child:
-                        AddToCartButton(detailedProduct: state.detailedProduct),
-                  ),
-                )
+                ProductDetailsBody(detailedProductState: state, product: product, heroTag: heroTag),
+                if (state is DetailedProductLoadSuccess)
+                  Align(
+                    alignment: AlignmentDirectional.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                          bottom: 20.0, start: 20, end: 20),
+                      child: AddToCartButton(
+                          detailedProduct: state.detailedProduct),
+                    ),
+                  )
               ],
             ),
           );
@@ -69,7 +66,8 @@ class ProductDetailsPage extends StatelessWidget implements AutoRouteWrapper {
     return MultiBlocProvider(providers: [
       BlocProvider(create: (_) => getIt<SliderIndicatorCubit>()),
       BlocProvider(
-          create: (_) => getIt<DetailedProductCubit>(param1: productId)),
+          create: (_) => getIt<DetailedProductCubit>()
+            ..getDetailedProduct(product.productId)),
     ], child: this);
   }
 }

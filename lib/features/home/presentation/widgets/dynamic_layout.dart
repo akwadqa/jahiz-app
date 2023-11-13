@@ -88,7 +88,7 @@ class DynamicLayout extends StatelessWidget {
                       children: List.generate(count, (index) {
                         return StaggeredGridTile.count(
                             crossAxisCellCount: index % 3 == 0 ? 4 : 2,
-                            mainAxisCellCount: index % 3 == 0 ? 6 : 3,
+                            mainAxisCellCount: index % 3 == 0 ? 5 : 2.5,
                             child: itemBuilder(context, index));
                       }),
                     ),

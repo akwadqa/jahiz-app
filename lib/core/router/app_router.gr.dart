@@ -97,7 +97,8 @@ abstract class _$AppRouter extends RootStackRouter {
         child: WrappedRoute(
             child: ProductDetailsPage(
           key: args.key,
-          productId: args.productId,
+          product: args.product,
+          heroTag: args.heroTag,
         )),
       );
     },
@@ -329,13 +330,15 @@ class OrderHistoryRoute extends PageRouteInfo<void> {
 class ProductDetailsRoute extends PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({
     Key? key,
-    required String productId,
+    required Product product,
+    required String heroTag,
     List<PageRouteInfo>? children,
   }) : super(
           ProductDetailsRoute.name,
           args: ProductDetailsRouteArgs(
             key: key,
-            productId: productId,
+            product: product,
+            heroTag: heroTag,
           ),
           initialChildren: children,
         );
@@ -349,16 +352,19 @@ class ProductDetailsRoute extends PageRouteInfo<ProductDetailsRouteArgs> {
 class ProductDetailsRouteArgs {
   const ProductDetailsRouteArgs({
     this.key,
-    required this.productId,
+    required this.product,
+    required this.heroTag,
   });
 
   final Key? key;
 
-  final String productId;
+  final Product product;
+
+  final String heroTag;
 
   @override
   String toString() {
-    return 'ProductDetailsRouteArgs{key: $key, productId: $productId}';
+    return 'ProductDetailsRouteArgs{key: $key, product: $product, heroTag: $heroTag}';
   }
 }
 

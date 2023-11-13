@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart' hide Notification;
+import 'package:jahiz/features/products/domain/entities/product.dart';
 import '../../features/addresses/presentation/pages/addresses_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/categories/presentation/pages/categories_page.dart';

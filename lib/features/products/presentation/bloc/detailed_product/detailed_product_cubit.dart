@@ -7,10 +7,8 @@ import '../../../domain/usecases/get_detailed_product.dart';
 part 'detailed_product_state.dart';
 
 class DetailedProductCubit extends Cubit<DetailedProductState> {
-  DetailedProductCubit(this._getDetailedProductUseCase, String productId)
-      : super(DetailedProductInitial()) {
-    getDetailedProduct(productId);
-  }
+  DetailedProductCubit(this._getDetailedProductUseCase)
+      : super(DetailedProductInitial());
 
   final GetDetailedProductUseCase _getDetailedProductUseCase;
 

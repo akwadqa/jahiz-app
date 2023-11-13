@@ -118,8 +118,8 @@ Future<void> init() async {
 
   //!Features - products
   //Bloc
-  getIt.registerFactoryParam<DetailedProductCubit, String, void>(
-      (productId, _) => DetailedProductCubit(getIt(), productId));
+  getIt.registerFactory<DetailedProductCubit>(
+      () => DetailedProductCubit(getIt()));
   getIt.registerFactory(() => PriceModifierCubit());
   getIt.registerFactory(() => AddDetailedProductToCartCubit());
   getIt.registerFactory(() => AddToCartCubit());
