@@ -142,8 +142,8 @@ class _Header extends StatelessWidget {
                 children: [
                   const SizedBox(
                       width: 56, height: 56, child: CustomBackButton()),
-                  Expanded(flex: 3, child: _TitleText(title: title)),
-                  const Spacer()
+                  Expanded(child: _TitleText(title: title)),
+                  const SizedBox(width: 56, height: 56)
                 ],
               )
             : _TitleText(title: title),
