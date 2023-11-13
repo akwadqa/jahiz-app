@@ -33,6 +33,9 @@ class _AddressTypeSelectorState extends State<AddressTypeSelector> {
         _AvatarItem(
             icon: Assets.images.homeIcon
                 .svg(color: _selectedIndex.index == 0 ? Colors.white : null),
+            labelColor: _selectedIndex.index == 0
+                ? Theme.of(context).primaryColor
+                : Colors.black,
             label: S.of(context).home,
             selected: _selectedIndex.index == 0,
             onSelected: (value) {
@@ -46,6 +49,9 @@ class _AddressTypeSelectorState extends State<AddressTypeSelector> {
         _AvatarItem(
             icon: Assets.images.bagIcon
                 .svg(color: _selectedIndex.index == 1 ? Colors.white : null),
+            labelColor: _selectedIndex.index == 1
+                ? Theme.of(context).primaryColor
+                : Colors.black,
             label: S.of(context).office,
             selected: _selectedIndex.index == 1,
             onSelected: (value) {
@@ -60,6 +66,9 @@ class _AddressTypeSelectorState extends State<AddressTypeSelector> {
             icon: Assets.images.buildingIcon
                 .svg(color: _selectedIndex.index == 2 ? Colors.white : null),
             label: S.of(context).apartment,
+            labelColor: _selectedIndex.index == 2
+                ? Theme.of(context).primaryColor
+                : Colors.black,
             selected: _selectedIndex.index == 2,
             onSelected: (value) {
               if (value) {
@@ -80,10 +89,12 @@ class _AvatarItem extends StatelessWidget {
       required this.icon,
       required this.label,
       required this.selected,
+      required this.labelColor,
       this.onSelected})
       : super(key: key);
   final Widget icon;
   final String label;
+  final Color labelColor;
   final bool selected;
   final void Function(bool)? onSelected;
   @override
@@ -101,9 +112,7 @@ class _AvatarItem extends StatelessWidget {
         const SizedBox(height: 6.0),
         Text(label,
             style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 18,
-                fontWeight: FontWeight.w600))
+                color: labelColor, fontSize: 18, fontWeight: FontWeight.w600))
       ],
     );
   }

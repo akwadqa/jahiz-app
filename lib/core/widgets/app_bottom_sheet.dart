@@ -107,7 +107,7 @@ class AppBottomSheetSkeleton extends StatelessWidget {
                 ),
                 if (stackedSubmitButton != null)
                   Positioned(
-                      bottom: 0.0,
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
                       left: 0.0,
                       right: 0.0,
                       child: Padding(
@@ -140,7 +140,8 @@ class _Header extends StatelessWidget {
         isShowBackButton
             ? Row(
                 children: [
-                  const Expanded(child: CustomBackButton()),
+                  const SizedBox(
+                      width: 56, height: 56, child: CustomBackButton()),
                   Expanded(flex: 3, child: _TitleText(title: title)),
                   const Spacer()
                 ],
@@ -164,7 +165,7 @@ class _TitleText extends StatelessWidget {
     return Center(
         child: Text(title,
             style: const TextStyle(
-                fontSize: 22,
+                fontSize: 23,
                 fontWeight: FontWeight.bold,
                 color: Colors.black)));
   }
