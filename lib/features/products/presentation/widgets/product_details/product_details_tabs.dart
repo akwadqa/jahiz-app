@@ -39,9 +39,24 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
           TabBar(
             controller: _tabController,
             tabs: [
-              Tab(text: S.of(context).options),
-              Tab(text: S.of(context).description),
-              Tab(text: S.of(context).specifications)
+              Tab(
+                  child: Text(S.of(context).options,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold))),
+              Tab(
+                  child: Text(S.of(context).description,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold))),
+              Tab(
+                  child: Text(S.of(context).specifications,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)))
             ],
           ),
           Expanded(
