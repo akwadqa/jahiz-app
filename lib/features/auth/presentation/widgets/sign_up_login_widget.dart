@@ -53,43 +53,41 @@ class SignUpLoginWidget extends StatelessWidget {
           )
         ],
       ),
-      submitButton:
-          BlocConsumer<CheckUserValidationCubit, CheckUserValidationState>(
-              listenWhen: (previousState, state) =>
-                  state is CheckUserValidationLoadSuccess,
-              listener: (context, state) {
-                context.popRoute().then((value) {
-                  showAppBottomSheet(
-                      context: context,
-                      child:
-                          (state as CheckUserValidationLoadSuccess).userIsExist
-                              ? BlocProvider(
-                                  create: (_) => getIt<LoginCubit>(),
-                                  child: LoginWidget(
-                                      userPhoneNumber: state.userPhoneNumber))
-                              : BlocProvider(
-                                  create: (_) => getIt<RegisterCubit>(),
-                                  child: RegisterWidget(
-                                      userPhoneNumber: state.userPhoneNumber)));
-                });
-              },
-              builder: (context, state) {
-                if (state is CheckUserValidationLoadInProgress) {
-                  return const CircularProgressIndicator.adaptive();
-                } else if (state is CheckUserValidationLoadFailure) {
-                  return AppErrorWidget(
-                      errorText: state.error,
-                      onRetryClicked: context
-                          .read<CheckUserValidationCubit>()
-                          .checkUserValidation);
-                }
-                return ElevatedButton(
-                  onPressed: context
+      stackedSubmitButton: BlocConsumer<CheckUserValidationCubit,
+              CheckUserValidationState>(
+          listenWhen: (previousState, state) =>
+              state is CheckUserValidationLoadSuccess,
+          listener: (context, state) {
+            context.popRoute().then((value) {
+              showAppBottomSheet(
+                  context: context,
+                  child: (state as CheckUserValidationLoadSuccess).userIsExist
+                      ? BlocProvider(
+                          create: (_) => getIt<LoginCubit>(),
+                          child: LoginWidget(
+                              userPhoneNumber: state.userPhoneNumber))
+                      : BlocProvider(
+                          create: (_) => getIt<RegisterCubit>(),
+                          child: RegisterWidget(
+                              userPhoneNumber: state.userPhoneNumber)));
+            });
+          },
+          builder: (context, state) {
+            if (state is CheckUserValidationLoadInProgress) {
+              return const Center(child: CircularProgressIndicator.adaptive());
+            } else if (state is CheckUserValidationLoadFailure) {
+              return AppErrorWidget(
+                  errorText: state.error,
+                  onRetryClicked: context
                       .read<CheckUserValidationCubit>()
-                      .checkUserValidation,
-                  child: Text(S.of(context).continueLabel),
-                );
-              }),
+                      .checkUserValidation);
+            }
+            return ElevatedButton(
+              onPressed:
+                  context.read<CheckUserValidationCubit>().checkUserValidation,
+              child: Text(S.of(context).continueLabel),
+            );
+          }),
     );
   }
 }

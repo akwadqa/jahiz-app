@@ -33,7 +33,9 @@ class ContainedButton extends StatelessWidget {
                 ]
               : null),
       margin: margin,
-      child: IconButton(icon: icon, color: Colors.black, onPressed: onPressed),
+      child: Center(
+          child: IconButton(
+              icon: icon, color: Colors.black, onPressed: onPressed)),
     );
   }
 }

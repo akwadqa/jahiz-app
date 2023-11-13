@@ -214,8 +214,7 @@ class _CityTextFormFieldState extends State<_CityTextFormField> {
           context.read<AddUpdateAddressCubit>().onCitySaved(_selectedCity),
       onTap: () async {
         final City? city = await showAppBottomSheet(
-            context: context,
-            child: const CitiesList());
+            context: context, child: const CitiesList());
         if (city != null) {
           _selectedCity = city;
           _controller.text = city.cityName;

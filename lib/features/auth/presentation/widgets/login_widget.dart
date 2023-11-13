@@ -51,7 +51,7 @@ class LoginWidget extends StatelessWidget {
           ],
         ),
       ),
-      submitButton: BlocConsumer<LoginCubit, LoginState>(
+      stackedSubmitButton: BlocConsumer<LoginCubit, LoginState>(
           listenWhen: (_, state) => state is LoginLoadSuccess,
           listener: (ctx, state) {
             context.popRoute();
