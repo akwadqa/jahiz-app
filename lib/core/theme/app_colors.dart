@@ -6,6 +6,7 @@ abstract class AppColors {
   static const Color lightGray = Color(0xffA4A4A7);
   static const Color red = Color(0xffD42027);
   static final Color shadowColor = Colors.black.withOpacity(0.16);
+  static const Color lightBlack = Color(0xff0B0A0A);
   static const Color whiteSmoke = Color(0xffF6F9F6);
   static const Color darkGreen = Color(0xff000303);
   static const Color lightShadeOfGray = Color(0xffCBCBCB);

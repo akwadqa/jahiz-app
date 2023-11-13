@@ -18,13 +18,14 @@ class CustomThroughLine extends StatelessWidget {
         Text(productPrice,
             style: TextStyle(
               fontSize: isSmallestPremiumItem ? 11 : 13,
-              color: AppColors.lightGray,
+              color: AppColors.lightBlack,
             )),
         Transform.rotate(
           angle: -math.pi / 9,
           child: const SizedBox(
             width: 54,
             child: Divider(
+              thickness: 1,
               height: 8,
               color: AppColors.red,
             ),

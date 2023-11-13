@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'address_item.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import 'location_map_bottom_sheet.dart';
-import '../../../../core/widgets/no_elements_widget.dart';
 import '../bloc/get_addresses/get_addresses_cubit.dart';
 import '../../../../generated/l10n.dart';
 
@@ -19,6 +18,8 @@ class AddressesList extends StatelessWidget {
       if (state is GetAddressesLoaded) {
         return Column(
           children: [
+            const _AddAddressButton(),
+            const SizedBox(height: 13),
             Expanded(
                 child: SingleChildScrollView(
               child: Column(
@@ -35,18 +36,12 @@ class AddressesList extends StatelessWidget {
                                   address: address, isEditiable: true)))
                       .toList()),
             )),
-            const SizedBox(height: 20),
-            const _AddAddressButton(),
           ],
         );
       }
       if (state is GetAddressesEmpty) {
-        return const Column(
-          children: [
-            Expanded(child: NoElementsWidget()),
-            SizedBox(height: 20),
-            _AddAddressButton(),
-          ],
+        return const Center(
+          child: _AddAddressButton(),
         );
       }
       if (state is GetAddressesError) {
@@ -64,11 +59,21 @@ class _AddAddressButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () => showLocationMapBottomSheet(context),
-        child: Text(
-          S.of(context).addNewAddress,
-          style: const TextStyle(fontSize: 22),
-        ));
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: Theme.of(context).primaryColor.withOpacity(0.05),
+      ),
+      child: TextButton(
+          onPressed: () => showLocationMapBottomSheet(context),
+          child: Text(
+            S.of(context).addNewAddress,
+            style: TextStyle(
+              fontSize: 22,
+              color: Theme.of(context).primaryColor,
+            ),
+          )),
+    );
   }
 }

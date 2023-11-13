@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/widgets/custom_through_line.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../domain/entities/price_modifier.dart';
 import '../../../../../generated/l10n.dart';
@@ -27,17 +28,17 @@ class ProductDetailsSliverList extends StatelessWidget {
               Text(detailedProduct.websiteItemName, style: _titleTextStyle()),
               Text(detailedProduct.itemDescription,
                   style: const TextStyle(color: AppColors.midnight)),
+              const SizedBox(height: 8),
               Row(
                 children: [
                   Text(
                       '${detailedProduct.discountedPrice} ${S.of(context).qar}',
                       style: _titleTextStyle(fontSize: 20)),
                   const SizedBox(width: 10),
-                  Text('${detailedProduct.itemPrice} ${S.of(context).qar}',
-                      style: const TextStyle(
-                          color: AppColors.midnight,
-                          fontSize: 15,
-                          decoration: TextDecoration.lineThrough)),
+                  CustomThroughLine(
+                      productPrice:
+                          '${detailedProduct.itemPrice} ${S.of(context).qar}',
+                      isSmallestPremiumItem: false),
                 ],
               ),
             ],

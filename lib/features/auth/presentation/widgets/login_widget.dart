@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/auth/presentation/widgets/login_text_form_field_widget.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../bloc/login/login_cubit.dart';
@@ -29,20 +30,16 @@ class LoginWidget extends StatelessWidget {
                 const QatarInternationalCodeWidget(),
                 const SizedBox(width: 6.0),
                 Expanded(
-                  child: TextFormField(
-                    initialValue: userPhoneNumber,
-                    readOnly: true,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                    decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        filled: true,
-                        fillColor: AppColors.whiteSmoke),
-                  ),
+                  child: LoginTextFormField(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                      ),
+                      initialValue: userPhoneNumber,
+                      readOnly: true,
+                      filled: true,
+                      fillColor:
+                          Theme.of(context).primaryColor.withOpacity(0.05)),
                 ),
               ],
             ),

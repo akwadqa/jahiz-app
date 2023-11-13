@@ -44,7 +44,7 @@ abstract class AppTheme {
                 fontWeight: FontWeight.bold,
                 fontFamily: FontFamily.qatar)),
             minimumSize:
-                MaterialStateProperty.all(const Size(double.infinity, 65))),
+                MaterialStateProperty.all(const Size(double.infinity, 60))),
       );
 
   static InputBorder outlineInputBorder(String? primaryColor) =>

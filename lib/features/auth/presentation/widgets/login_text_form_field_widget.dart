@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+class LoginTextFormField extends StatelessWidget {
+  final String? initialValue;
+  final String? hintText;
+  final bool readOnly;
+  final bool? filled;
+  final Color? fillColor;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
+  final InputBorder? enabledBorder;
+  const LoginTextFormField(
+      {super.key,
+      this.initialValue,
+      this.readOnly = false,
+      this.filled,
+      this.fillColor,
+      this.validator,
+      this.onSaved,
+      this.enabledBorder,
+      this.hintText});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      initialValue: initialValue,
+      readOnly: readOnly,
+      textInputAction: TextInputAction.done,
+      textAlign: TextAlign.center,
+      keyboardType:
+          const TextInputType.numberWithOptions(signed: true, decimal: true),
+      validator: validator,
+      onSaved: onSaved,
+      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      decoration: InputDecoration(
+          isDense: true,
+          hintText: hintText,
+          enabledBorder: enabledBorder,
+          filled: filled,
+          fillColor: fillColor),
+    );
+  }
+}

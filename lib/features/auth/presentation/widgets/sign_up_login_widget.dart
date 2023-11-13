@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/auth/presentation/widgets/login_text_form_field_widget.dart';
 import '../../../../core/app_constants.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../bloc/check_user_validation/check_user_validation_cubit.dart';
@@ -34,20 +35,30 @@ class SignUpLoginWidget extends StatelessWidget {
               Form(
                 key: context.read<CheckUserValidationCubit>().formKey,
                 child: Expanded(
-                    child: TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: AppConstants.phoneNumberHint),
-                  textInputAction: TextInputAction.done,
-                  textAlign: TextAlign.center,
-                  keyboardType: const TextInputType.numberWithOptions(
-                      signed: true, decimal: true),
-                  validator: context
-                      .read<CheckUserValidationCubit>()
-                      .validator(context),
-                  onSaved: context
-                      .read<CheckUserValidationCubit>()
-                      .onSavedPhoneNumber,
-                )),
+                  child: LoginTextFormField(
+                    hintText: AppConstants.phoneNumberHint,
+                    validator: context
+                        .read<CheckUserValidationCubit>()
+                        .validator(context),
+                    onSaved: context
+                        .read<CheckUserValidationCubit>()
+                        .onSavedPhoneNumber,
+                  ),
+                  //     child: TextFormField(
+                  //   decoration: const InputDecoration(
+                  //       hintText: AppConstants.phoneNumberHint),
+                  //   textInputAction: TextInputAction.done,
+                  //   textAlign: TextAlign.center,
+                  //   keyboardType: const TextInputType.numberWithOptions(
+                  //       signed: true, decimal: true),
+                  //   validator: context
+                  //       .read<CheckUserValidationCubit>()
+                  //       .validator(context),
+                  //   onSaved: context
+                  //       .read<CheckUserValidationCubit>()
+                  //       .onSavedPhoneNumber,
+                  // )
+                ),
               )
             ],
           )

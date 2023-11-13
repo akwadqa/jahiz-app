@@ -63,7 +63,7 @@ class _ShareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ContainedButton(
       icon: Assets.images.shareSvg.svg(),
-      margin: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(9.0),
       onPressed: () => Share.share(AppConstants.hostUrl),
     );
   }

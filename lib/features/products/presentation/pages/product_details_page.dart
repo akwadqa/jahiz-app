@@ -14,7 +14,8 @@ import '../widgets/product_details/add_to_cart_button.dart';
 
 @RoutePage()
 class ProductDetailsPage extends StatelessWidget implements AutoRouteWrapper {
-  const ProductDetailsPage({Key? key, required this.product, required this.heroTag})
+  const ProductDetailsPage(
+      {Key? key, required this.product, required this.heroTag})
       : super(key: key);
   final Product product;
   final String heroTag;
@@ -42,7 +43,10 @@ class ProductDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             ],
             child: Stack(
               children: [
-                ProductDetailsBody(detailedProductState: state, product: product, heroTag: heroTag),
+                ProductDetailsBody(
+                    detailedProductState: state,
+                    product: product,
+                    heroTag: heroTag),
                 if (state is DetailedProductLoadSuccess)
                   Align(
                     alignment: AlignmentDirectional.bottomCenter,

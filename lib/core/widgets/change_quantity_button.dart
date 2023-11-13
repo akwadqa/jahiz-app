@@ -5,7 +5,7 @@ class ChangeQuantityButton extends StatelessWidget {
       {Key? key,
       required this.icon,
       required this.onPressed,
-      this.padding = const EdgeInsets.all(15)})
+      this.padding = const EdgeInsets.all(8)})
       : super(key: key);
   final IconData icon;
   final VoidCallback onPressed;

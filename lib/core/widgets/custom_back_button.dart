@@ -9,10 +9,10 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ContainedButton(
-        margin: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.all(9.0),
         icon: const Padding(
           padding: EdgeInsetsDirectional.only(start: 4.0),
-          child: Icon(Icons.arrow_back_ios),
+          child: Icon(Icons.arrow_back_ios, size: 18),
         ),
         onPressed: context.popRoute);
   }
