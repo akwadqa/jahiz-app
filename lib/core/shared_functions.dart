@@ -59,4 +59,9 @@ abstract class SharedFunctions {
           BlocProvider.value(value: context.read<GetAddressesCubit>())
         ], child: AddressFormWidget(latLng: latLng, address: address)));
   }
+
+  static bool hasNotch(BuildContext context) {
+    final double topPadding = MediaQuery.of(context).padding.top;
+    return topPadding > 30.0;
+  }
 }

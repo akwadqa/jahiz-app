@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/shared_functions.dart';
 import '../../../../../core/app_constants.dart';
 import '../../../../../core/blocs/slider_indicator_cubit.dart';
 import '../../../../../core/gen/assets.gen.dart';
@@ -20,101 +21,158 @@ class ProductDetailsSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final images = [
-      ...detailedProduct.additionalImages
-          .map((e) => AdditionalImage(
-              image: "${AppConstants.hostUrl}${e.image}",
-              heading: null,
-              description: '',
-              url: ''))
-          .toList(),
-      AdditionalImage(
-          image: detailedProduct.websiteImage,
-          heading: '',
-          description: '',
-          url: '')
-    ];
     return SliverAppBar(
       leading: const CustomBackButton(),
       backgroundColor: Theme.of(context).primaryColor,
       pinned: true,
-      actions: [
-        ContainedButton(
-          icon: Assets.images.shareSvg.svg(),
-          margin: const EdgeInsets.all(8.0),
-          onPressed: () {
-            Share.share(AppConstants.hostUrl);
-          },
-        ),
-      ],
+      actions: [_ShareButton()],
       flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          alignment: AlignmentDirectional.center,
-          fit: StackFit.expand,
-          children: [
-            CarouselSlider(
-              items: images
-                  .map((image) => SizedBox(
-                      height: double.infinity,
-                      width: double.infinity,
-                      child: AppCachedNetworkImage(imageUrl: image.image)))
-                  .toList(),
-              options: CarouselOptions(
-                  autoPlay: true,
-                  viewportFraction: 1,
-                  height: double.infinity,
-                  onPageChanged: (page, _) =>
-                      context.read<SliderIndicatorCubit>().page = page),
-            ),
-            Align(
-              alignment: AlignmentDirectional.bottomCenter,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  BlocBuilder<SliderIndicatorCubit, int>(
-                      builder: (context, state) {
-                    return DotsIndicator(
-                      dotsCount: images.length,
-                      position: state,
-                    );
-                  }),
-                  const SizedBox(height: 20),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadiusDirectional.only(
-                            topEnd: Radius.circular(40),
-                            topStart: Radius.circular(40)),
-                        boxShadow: [
-                          BoxShadow(blurRadius: 6, color: AppColors.shadowColor)
-                        ]),
-                    height: 30,
-                  ),
-                ],
-              ),
-            ),
-            if (detailedProduct.discountAmount > 0)
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: AppColors.red,
-                      borderRadius: BorderRadiusDirectional.only(
-                          topEnd: Radius.circular(10),
-                          bottomEnd: Radius.circular(10))),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                  child: Text(detailedProduct.discountPercent,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold)),
-                ),
-              )
-          ],
+          background: _CarouselWithDots(detailedProduct: detailedProduct)),
+      expandedHeight: _expandedHeight(context),
+    );
+  }
+
+  double _expandedHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height *
+        (SharedFunctions.hasNotch(context) ? 0.44 : 0.45);
+  }
+}
+
+class _ShareButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ContainedButton(
+      icon: Assets.images.shareSvg.svg(),
+      margin: const EdgeInsets.all(8.0),
+      onPressed: () => Share.share(AppConstants.hostUrl),
+    );
+  }
+}
+
+class _CarouselWithDots extends StatelessWidget {
+  final DetailedProduct detailedProduct;
+
+  const _CarouselWithDots({required this.detailedProduct});
+
+  @override
+  Widget build(BuildContext context) {
+    final images = _buildImageList();
+    return Stack(
+      alignment: AlignmentDirectional.center,
+      fit: StackFit.expand,
+      children: [
+        _ImageCarousel(images: images),
+        _DotsIndicatorWidget(images: images),
+        if (detailedProduct.discountAmount > 0)
+          _DiscountBadge(discountPercent: detailedProduct.discountPercent),
+      ],
+    );
+  }
+
+  List<Widget> _buildImageList() {
+    return [
+      ...detailedProduct.additionalImages.map(
+        (e) => AdditionalImage(
+          image: "${AppConstants.hostUrl}${e.image}",
+          heading: null,
+          description: '',
+          url: '',
         ),
       ),
-      expandedHeight: 370,
+      AdditionalImage(
+        image: detailedProduct.websiteImage,
+        heading: '',
+        description: '',
+        url: '',
+      ),
+    ]
+        .map((image) => SizedBox(
+              height: double.infinity,
+              width: double.infinity,
+              child: AppCachedNetworkImage(imageUrl: image.image),
+            ))
+        .toList();
+  }
+}
+
+class _ImageCarousel extends StatelessWidget {
+  final List<Widget> images;
+
+  const _ImageCarousel({required this.images});
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      items: images,
+      options: CarouselOptions(
+        autoPlay: true,
+        viewportFraction: 1,
+        height: double.infinity,
+        onPageChanged: (page, _) =>
+            context.read<SliderIndicatorCubit>().page = page,
+      ),
+    );
+  }
+}
+
+class _DotsIndicatorWidget extends StatelessWidget {
+  final List<Widget> images;
+
+  const _DotsIndicatorWidget({required this.images});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: AlignmentDirectional.bottomCenter,
+      child: BlocBuilder<SliderIndicatorCubit, int>(
+        builder: (context, state) {
+          return Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).size.height *
+                  _bottomPaddingMultiplier(context),
+            ),
+            child: DotsIndicator(
+              dotsCount: images.length,
+              position: state,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  double _bottomPaddingMultiplier(BuildContext context) {
+    return SharedFunctions.hasNotch(context) ? 0.04 : 0.05;
+  }
+}
+
+class _DiscountBadge extends StatelessWidget {
+  final String discountPercent;
+
+  const _DiscountBadge({required this.discountPercent});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: AppColors.red,
+          borderRadius: BorderRadiusDirectional.only(
+            topEnd: Radius.circular(10),
+            bottomEnd: Radius.circular(10),
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        child: Text(
+          discountPercent,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }

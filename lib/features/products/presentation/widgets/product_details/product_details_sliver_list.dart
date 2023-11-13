@@ -19,26 +19,29 @@ class ProductDetailsSliverList extends StatelessWidget {
         delegate: SliverChildListDelegate([
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-            Text(detailedProduct.websiteItemName, style: _titleTextStyle()),
-            Text(detailedProduct.itemDescription,
-                style: const TextStyle(color: AppColors.midnight)),
-            Row(
-              children: [
-                Text('${detailedProduct.discountedPrice} ${S.of(context).qar}',
-                    style: _titleTextStyle(fontSize: 20)),
-                const SizedBox(width: 10),
-                Text('${detailedProduct.itemPrice} ${S.of(context).qar}',
-                    style: const TextStyle(
-                        color: AppColors.midnight,
-                        fontSize: 15,
-                        decoration: TextDecoration.lineThrough)),
-              ],
-            ),
-          ],
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(detailedProduct.websiteItemName, style: _titleTextStyle()),
+              Text(detailedProduct.itemDescription,
+                  style: const TextStyle(color: AppColors.midnight)),
+              Row(
+                children: [
+                  Text(
+                      '${detailedProduct.discountedPrice} ${S.of(context).qar}',
+                      style: _titleTextStyle(fontSize: 20)),
+                  const SizedBox(width: 10),
+                  Text('${detailedProduct.itemPrice} ${S.of(context).qar}',
+                      style: const TextStyle(
+                          color: AppColors.midnight,
+                          fontSize: 15,
+                          decoration: TextDecoration.lineThrough)),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       const SizedBox(height: 20),
