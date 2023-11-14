@@ -100,16 +100,6 @@ class S {
     );
   }
 
-  /// `-Pack`
-  String get pack {
-    return Intl.message(
-      '-Pack',
-      name: 'pack',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `ADD TO CART`
   String get addToCart {
     return Intl.message(

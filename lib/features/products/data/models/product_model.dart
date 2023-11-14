@@ -13,7 +13,9 @@ class ProductModel extends Product implements HomeBlockDataModel {
       required super.discountedPrice,
       required super.productId,
       required super.backgroundColor,
-      required super.hasOptions});
+      required super.hasOptions, 
+      required super.stockUom, 
+      });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
@@ -25,7 +27,8 @@ class ProductModel extends Product implements HomeBlockDataModel {
         discountedPrice: json['discounted_price'],
         productId: json['product_id'],
         backgroundColor: json['background_color'],
-        hasOptions: json['has_options']);
+        hasOptions: json['has_options'], 
+        stockUom: json["stock_uom"]);
   }
 
   Map<String, dynamic> toJson() {

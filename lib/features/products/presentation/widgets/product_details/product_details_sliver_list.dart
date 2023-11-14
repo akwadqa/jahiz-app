@@ -26,7 +26,7 @@ class ProductDetailsSliverList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(detailedProduct.websiteItemName, style: _titleTextStyle()),
-              Text(detailedProduct.itemDescription,
+              Text(detailedProduct.stockUom,
                   style: const TextStyle(color: AppColors.midnight)),
               const SizedBox(height: 8),
               Row(

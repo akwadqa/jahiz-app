@@ -14,7 +14,12 @@ import '../../../../generated/l10n.dart';
 import '../../../../core/widgets/app_cached_network_image.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({Key? key, required this.product, required this.viewType, required this.index}) : super(key: key);
+  const ProductItem(
+      {Key? key,
+      required this.product,
+      required this.viewType,
+      required this.index})
+      : super(key: key);
   final Product product;
   final ViewType viewType;
   final int index;
@@ -25,7 +30,8 @@ class ProductItem extends StatelessWidget {
       listenWhen: (previous, current) => previous != current,
       listener: _addToCartListener,
       child: CustomContainer(
-        onTap: () => context.pushRoute(ProductDetailsRoute(product: product, heroTag: _heroTag)),
+        onTap: () => context.pushRoute(
+            ProductDetailsRoute(product: product, heroTag: _heroTag)),
         child: Stack(
           children: [
             _productContent(context),
@@ -39,16 +45,25 @@ class ProductItem extends StatelessWidget {
   void _addToCartListener(BuildContext context, AddToCartState state) {
     if (state is AddToCartError) {
       Navigator.pop(context);
-      Fluttertoast.showToast(msg: state.message, toastLength: Toast.LENGTH_LONG, backgroundColor: Colors.red, textColor: Colors.white);
+      Fluttertoast.showToast(
+          msg: state.message,
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.red,
+          textColor: Colors.white);
     } else if (state is AddToCartLoading) {
-      Navigator.of(context).push(PageRouteBuilder(pageBuilder: (context, _, __) => const Center(child: CircularProgressIndicator.adaptive()), opaque: false, barrierColor: Colors.black.withOpacity(0.1)));
+      Navigator.of(context).push(PageRouteBuilder(
+          pageBuilder: (context, _, __) =>
+              const Center(child: CircularProgressIndicator.adaptive()),
+          opaque: false,
+          barrierColor: Colors.black.withOpacity(0.1)));
     } else {
       Navigator.pop(context);
     }
   }
 
   Widget _productContent(BuildContext context) {
-    final bool isSmallestPremiumItem = viewType == ViewType.premium && index > 0;
+    final bool isSmallestPremiumItem =
+        viewType == ViewType.premium && index > 0;
     return Center(
       child: Column(
         children: [
@@ -66,7 +81,8 @@ class ProductItem extends StatelessWidget {
         width: double.maxFinite,
         child: Hero(
           tag: _heroTag,
-          child: AppCachedNetworkImage(imageUrl: product.productImage, fit: BoxFit.fitWidth),
+          child: AppCachedNetworkImage(
+              imageUrl: product.productImage, fit: BoxFit.fitWidth),
         ),
       ),
     );
@@ -81,7 +97,8 @@ class ProductItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _productInfo(context, isSmallestPremiumItem),
-          if (!isSmallestPremiumItem && viewType != ViewType.grid) _addToCartButton(context, isSmallestPremiumItem),
+          if (!isSmallestPremiumItem && viewType != ViewType.grid)
+            _addToCartButton(context, isSmallestPremiumItem),
         ],
       ),
     );
@@ -103,9 +120,16 @@ class ProductItem extends StatelessWidget {
   Widget _productPrice(BuildContext context, bool isSmallestPremiumItem) {
     return Wrap(
       children: [
-        Text('${product.discountedPrice} ${S.of(context).qar}', style: TextStyle(fontSize: isSmallestPremiumItem ? 13 : 15, fontWeight: FontWeight.bold, color: AppColors.midnight)),
+        Text('${product.discountedPrice} ${S.of(context).qar}',
+            style: TextStyle(
+                fontSize: isSmallestPremiumItem ? 13 : 15,
+                fontWeight: FontWeight.bold,
+                color: AppColors.midnight)),
         if (!isSmallestPremiumItem) const SizedBox(width: 8),
-        if (product.discountAmount > 0 && !isSmallestPremiumItem) CustomThroughLine(productPrice: '${product.productPrice} ${S.of(context).qar}', isSmallestPremiumItem: isSmallestPremiumItem),
+        if (product.discountAmount > 0 && !isSmallestPremiumItem)
+          CustomThroughLine(
+              productPrice: '${product.productPrice} ${S.of(context).qar}',
+              isSmallestPremiumItem: isSmallestPremiumItem),
       ],
     );
   }
@@ -113,10 +137,14 @@ class ProductItem extends StatelessWidget {
   Widget _productTitle(BuildContext context, bool isSmallestPremiumItem) {
     return Wrap(
       children: [
-        Text(product.productTitle, style: TextStyle(fontSize: isSmallestPremiumItem ? 13 : 16, fontWeight: FontWeight.w500, color: AppColors.midnight)),
+        Text(product.productTitle,
+            style: TextStyle(
+                fontSize: isSmallestPremiumItem ? 13 : 16,
+                fontWeight: FontWeight.w500,
+                color: AppColors.midnight)),
         if (!isSmallestPremiumItem) ...[
           const SizedBox(width: 5),
-          Text(S.of(context).pack)
+          Text("- ${product.stockUom}")
         ],
       ],
     );
@@ -138,26 +166,38 @@ class ProductItem extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => _addToCart(context),
       style: ButtonStyle(
-        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
         minimumSize: MaterialStateProperty.all(const Size(100, 20)),
-        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4)),
-        textStyle: MaterialStateProperty.all(const TextStyle(fontFamily: FontFamily.qatar, fontSize: 13, fontWeight: FontWeight.w700)),
+        padding: MaterialStateProperty.all(
+            const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4)),
+        textStyle: MaterialStateProperty.all(const TextStyle(
+            fontFamily: FontFamily.qatar,
+            fontSize: 13,
+            fontWeight: FontWeight.w700)),
       ),
-      child: Text(product.hasOptions == 0 ? S.of(context).addToCart : S.of(context).goToProduct),
+      child: Text(product.hasOptions == 0
+          ? S.of(context).addToCart
+          : S.of(context).goToProduct),
     );
   }
 
   Widget _discountBadge() {
     return Container(
-      decoration: const BoxDecoration(color: AppColors.red, borderRadius: BorderRadiusDirectional.only(bottomEnd: Radius.circular(17))),
+      decoration: const BoxDecoration(
+          color: AppColors.red,
+          borderRadius:
+              BorderRadiusDirectional.only(bottomEnd: Radius.circular(17))),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: Text('-${product.discountPercent}', style: const TextStyle(color: Colors.white, fontSize: 16)),
+      child: Text('-${product.discountPercent}',
+          style: const TextStyle(color: Colors.white, fontSize: 16)),
     );
   }
 
   void _addToCart(BuildContext context) {
     if (product.hasOptions == 1) {
-      context.pushRoute(ProductDetailsRoute(product: product, heroTag: _heroTag));
+      context
+          .pushRoute(ProductDetailsRoute(product: product, heroTag: _heroTag));
     } else {
       context.read<AddToCartCubit>().addToCart(product);
     }

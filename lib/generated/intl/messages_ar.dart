@@ -130,7 +130,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم إجراء طلبك بنجاح."),
         "orderPrice": MessageLookupByLibrary.simpleMessage("سعر الطلب"),
         "orderStatus": MessageLookupByLibrary.simpleMessage("حالة الطلب"),
-        "pack": MessageLookupByLibrary.simpleMessage("-حزمة"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "pay": MessageLookupByLibrary.simpleMessage("دفع"),
         "paymentIsFailed": MessageLookupByLibrary.simpleMessage("فشل الدفع."),

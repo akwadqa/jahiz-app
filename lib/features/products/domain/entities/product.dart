@@ -13,17 +13,20 @@ class Product extends Equatable implements HomeBlockData {
   final String productId;
   final String? backgroundColor;
   final int hasOptions;
+  final String stockUom;
 
-  const Product(
-      {required this.productImage,
-      required this.productTitle,
-      required this.productPrice,
-      required this.discountPercent,
-      required this.discountAmount,
-      required this.discountedPrice,
-      required this.productId,
-      required this.backgroundColor,
-      required this.hasOptions});
+  const Product({
+    required this.productImage,
+    required this.productTitle,
+    required this.productPrice,
+    required this.discountPercent,
+    required this.discountAmount,
+    required this.discountedPrice,
+    required this.productId,
+    required this.backgroundColor,
+    required this.hasOptions,
+    required this.stockUom,
+  });
 
   Product copyWith(
           {String? productImage,
@@ -34,7 +37,8 @@ class Product extends Equatable implements HomeBlockData {
           double? discountedPrice,
           String? productId,
           String? backgroundColor,
-          int? hasOptions}) =>
+          int? hasOptions, 
+          String? stockUom}) =>
       Product(
           productImage: productImage ?? this.productImage,
           productTitle: productTitle ?? this.productTitle,
@@ -44,7 +48,7 @@ class Product extends Equatable implements HomeBlockData {
           discountedPrice: discountedPrice ?? this.discountedPrice,
           productId: productId ?? this.productId,
           backgroundColor: backgroundColor ?? this.backgroundColor,
-          hasOptions: hasOptions ?? this.hasOptions);
+          hasOptions: hasOptions ?? this.hasOptions, stockUom: stockUom ?? this.stockUom);
 
   CartItem toCartItem() => CartItem(
       itemCode: productId,

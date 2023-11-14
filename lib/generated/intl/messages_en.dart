@@ -128,7 +128,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your order has got placed successfully."),
         "orderPrice": MessageLookupByLibrary.simpleMessage("Order price"),
         "orderStatus": MessageLookupByLibrary.simpleMessage("Order Status"),
-        "pack": MessageLookupByLibrary.simpleMessage("-Pack"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
         "paymentIsFailed":
