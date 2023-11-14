@@ -35,10 +35,11 @@ class ProductDetailsSliverList extends StatelessWidget {
                       '${detailedProduct.discountedPrice} ${S.of(context).qar}',
                       style: _titleTextStyle(fontSize: 20)),
                   const SizedBox(width: 10),
-                  CustomThroughLine(
-                      productPrice:
-                          '${detailedProduct.itemPrice} ${S.of(context).qar}',
-                      isSmallestPremiumItem: false),
+                  if (detailedProduct.discountAmount > 0)
+                    CustomThroughLine(
+                        productPrice:
+                            '${detailedProduct.itemPrice} ${S.of(context).qar}',
+                        isSmallestPremiumItem: false),
                 ],
               ),
             ],

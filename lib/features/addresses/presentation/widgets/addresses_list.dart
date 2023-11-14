@@ -70,7 +70,7 @@ class _AddAddressButton extends StatelessWidget {
           child: Text(
             S.of(context).addNewAddress,
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 20,
               color: Theme.of(context).primaryColor,
             ),
           )),

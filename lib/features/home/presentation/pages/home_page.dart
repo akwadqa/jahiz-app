@@ -79,26 +79,22 @@ class _SearchTextFormField extends StatelessWidget
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0),
-      child: TextFormField(
-        textAlign: TextAlign.center,
-        decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.only(bottom: 2, top: 5, right: 8, left: 8),
-          hintText: S.of(context).searchHint,
-          suffixIcon:
+      child: InkWell(
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(20)),
+          child: Row(
+            children: [
+              const Spacer(),
+              Expanded(
+                  flex: 3,
+                  child: Text(
+                    S.of(context).searchHint,
+                    style: const TextStyle(fontSize: 18),
+                  )),
               IconButton(onPressed: () {}, icon: Assets.images.search.svg()),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            ],
           ),
-          enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          filled: true,
-          fillColor: Colors.white,
         ),
       ),
     );

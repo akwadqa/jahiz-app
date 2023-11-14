@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/gen/fonts.gen.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/custom_back_button.dart';
@@ -93,7 +94,8 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
                             elevation: 0.0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            textStyle: const TextStyle(fontSize: 18.0),
+                            textStyle: const TextStyle(
+                                fontSize: 18.0, fontFamily: FontFamily.qatar),
                             foregroundColor: AppColors.darkGray,
                           ),
                           onPressed:
