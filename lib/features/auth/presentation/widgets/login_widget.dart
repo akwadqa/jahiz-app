@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/features/auth/presentation/widgets/login_text_form_field_widget.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../bloc/login/login_cubit.dart';
 import '../../../../generated/l10n.dart';

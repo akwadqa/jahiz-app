@@ -333,8 +333,7 @@ Future<void> init() async {
 
   //!External
   getIt.registerLazySingleton<NetworkService<Response>>(
-      () => DioNetworkService(getIt()));
-  getIt.registerLazySingleton(() => DioAppInterceptors());
+      () => DioNetworkService(getIt(), getIt()));
   getIt.registerLazySingleton(() => InternetConnectionChecker());
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerLazySingleton(() => sharedPreferences);

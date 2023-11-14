@@ -4,7 +4,6 @@ import 'package:jahiz/core/theme/app_colors.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
 import 'package:jahiz/features/products/presentation/bloc/detailed_product/detailed_product_cubit.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-import '../../../domain/entities/detailed_product.dart';
 import 'product_details_sliver_app_bar.dart';
 import 'product_details_sliver_list.dart';
 import 'product_details_tabs.dart';
@@ -15,7 +14,10 @@ class ProductDetailsBody extends StatefulWidget {
   final String heroTag;
 
   const ProductDetailsBody(
-      {Key? key, required this.detailedProductState, required this.product, required this.heroTag})
+      {Key? key,
+      required this.detailedProductState,
+      required this.product,
+      required this.heroTag})
       : super(key: key);
 
   @override
@@ -35,6 +37,12 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
       child: CustomScrollView(
         slivers: [
           _buildSliverStack(),
+          if (widget.detailedProductState is DetailedProductLoadInProgress)
+            const SliverFillRemaining(
+              child: Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            ),
           if (widget.detailedProductState is DetailedProductLoadSuccess) ...[
             ProductDetailsSliverList(
                 detailedProduct:
@@ -56,7 +64,8 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
       children: [
         ProductDetailsSliverAppBar(
             detailedProductState: widget.detailedProductState,
-            product: widget.product, heroTag: widget.heroTag),
+            product: widget.product,
+            heroTag: widget.heroTag),
         if (_isAppBarExpanded) const _ShadowContainer(),
       ],
     );

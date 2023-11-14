@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jahiz/features/cities/presentation/blocs/get_cities_cubit.dart';
+import 'package:jahiz/injection_container.dart';
 import '../../../../core/shared_functions.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/address.dart';
@@ -214,7 +216,11 @@ class _CityTextFormFieldState extends State<_CityTextFormField> {
           context.read<AddUpdateAddressCubit>().onCitySaved(_selectedCity),
       onTap: () async {
         final City? city = await showAppBottomSheet(
-            context: context, child: const CitiesList());
+            context: context,
+            child: BlocProvider(
+              create: (_) => getIt<GetCitiesCubit>(),
+              child: const CitiesList(),
+            ));
         if (city != null) {
           _selectedCity = city;
           _controller.text = city.cityName;

@@ -14,50 +14,46 @@ abstract class NetworkService<T> {
 }
 
 class DioNetworkService extends NetworkService<Response> {
-  final DioAppInterceptors _appInterceptors;
-  DioNetworkService(this._appInterceptors);
+  final Dio _dio;
 
-  Dio get _dio {
-    var dio = Dio(BaseOptions(
-      baseUrl: AppConstants.baseUrl,
-      receiveTimeout: AppConstants.dioTimeout,
-      connectTimeout: AppConstants.dioTimeout,
-      sendTimeout: AppConstants.dioTimeout,
-    ));
-
-    dio.interceptors.addAll({_appInterceptors});
+  DioNetworkService(SelectedLanguageCubit selectedLanguageCubit, AuthCubit authCubit)
+      : _dio = Dio(BaseOptions(
+          baseUrl: AppConstants.baseUrl,
+          receiveTimeout: AppConstants.dioTimeout,
+          connectTimeout: AppConstants.dioTimeout,
+          sendTimeout: AppConstants.dioTimeout,
+        )) {
+    _dio.interceptors.add(DioAppInterceptors(selectedLanguageCubit, authCubit));
     if (kDebugMode) {
-      dio.interceptors
-          .add(LogInterceptor(requestBody: true, responseBody: true));
+      _dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
     }
-    return dio;
   }
 
   @override
-  Future<Response> get(
-          {required String endpoint, Map<String, dynamic>? queryParameters}) =>
-      _dio.get(endpoint, queryParameters: queryParameters, options: Options());
+  Future<Response> get({required String endpoint, Map<String, dynamic>? queryParameters}) =>
+      _dio.get(endpoint, queryParameters: queryParameters);
 
   @override
-  Future<Response> post(
-          {required String endpoint,
-          dynamic data,
-          Map<String, dynamic>? headers}) =>
-      _dio.post(endpoint,
-          data: data,
-          options: headers != null ? Options(headers: headers) : null);
+  Future<Response> post({required String endpoint, dynamic data, Map<String, dynamic>? headers}) =>
+      _dio.post(endpoint, data: data, options: Options(headers: headers));
 }
 
 class DioAppInterceptors extends Interceptor {
+ final SelectedLanguageCubit _selectedLanguageCubit;
+  final AuthCubit _authCubit;
+
+  DioAppInterceptors(this._selectedLanguageCubit, this._authCubit);
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final AuthCubit authCubit = getIt<AuthCubit>();
-    final String selectedLanguage = getIt<SelectedLanguageCubit>().state;
-    options.queryParameters.putIfAbsent('_lang', () => selectedLanguage);
-    if (authCubit.state is Authenticated) {
-      options.headers['Authorization'] =
-          'token ${(authCubit.state as Authenticated).token}';
+    final selectedLanguage = _selectedLanguageCubit.state;
+    final token = _authCubit.state is Authenticated ? (_authCubit.state as Authenticated).token : null;
+
+    options.queryParameters['_lang'] = selectedLanguage;
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
     }
+
     super.onRequest(options, handler);
   }
 

@@ -91,6 +91,12 @@ class _CarouselWithDots extends StatelessWidget {
 
   List<Widget> _buildImageList() {
     return [
+      AdditionalImage(
+        image: detailedProduct.websiteImage,
+        heading: '',
+        description: '',
+        url: '',
+      ),
       ...detailedProduct.additionalImages.map(
         (e) => AdditionalImage(
           image: "${AppConstants.hostUrl}${e.image}",
@@ -98,12 +104,6 @@ class _CarouselWithDots extends StatelessWidget {
           description: '',
           url: '',
         ),
-      ),
-      AdditionalImage(
-        image: detailedProduct.websiteImage,
-        heading: '',
-        description: '',
-        url: '',
       ),
     ]
         .map((image) => SizedBox(
