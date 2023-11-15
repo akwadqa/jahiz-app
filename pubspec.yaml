@@ -64,6 +64,8 @@ dependencies:
     path: local_packages/fcm_config
   #Restart app
   flutter_phoenix: ^1.1.1
+  #Crashlytics
+  firebase_crashlytics: ^3.4.4
 
 dev_dependencies:
   flutter_test:
