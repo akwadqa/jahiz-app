@@ -1,5 +1,8 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'core/app_observer.dart';
 import 'core/blocs/selected_language_cubit.dart';
 import 'features/auth/application/auth_cubit.dart';
@@ -21,13 +24,22 @@ void main() async {
   await getIt<NotificationsService>().init();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   Bloc.observer = AppObserver();
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider(create: (context) => getIt<AppSettingsCubit>()),
-    BlocProvider(create: (context) => getIt<AuthCubit>()),
-    BlocProvider(create: (_) => getIt<AddToCartCubit>()),
-    BlocProvider(create: (_) => getIt<SelectedLanguageCubit>()),
-    BlocProvider(lazy: false, create: (_) => getIt<CartCubit>()..getCart()),
-    BlocProvider(create: (_) => getIt<CartCountCubit>()..init()),
-    BlocProvider(create: (_) => getIt<UpdateCartCubit>()),
-  ], child: const App()));
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+  runApp(Phoenix(
+    child: MultiBlocProvider(providers: [
+      BlocProvider(create: (context) => getIt<AppSettingsCubit>()),
+      BlocProvider(create: (context) => getIt<AuthCubit>()),
+      BlocProvider(create: (_) => getIt<AddToCartCubit>()),
+      BlocProvider(create: (_) => getIt<SelectedLanguageCubit>()),
+      BlocProvider(lazy: false, create: (_) => getIt<CartCubit>()..getCart()),
+      BlocProvider(create: (_) => getIt<CartCountCubit>()..init()),
+      BlocProvider(create: (_) => getIt<UpdateCartCubit>()),
+    ], child: const App()),
+  ));
 }

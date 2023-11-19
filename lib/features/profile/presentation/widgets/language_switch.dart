@@ -34,7 +34,7 @@ class LanguageSwitch extends StatelessWidget {
             ],
             onToggle: (index) {
               final language = index == 0 ? 'ar' : 'en';
-              context.read<SelectedLanguageCubit>().setLanguage(language);
+              context.read<SelectedLanguageCubit>().setLanguage(language, context);
             },
           );
         },

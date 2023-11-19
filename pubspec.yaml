@@ -54,14 +54,18 @@ dependencies:
   #Payment
   myfatoorah_flutter: ^3.0.3
   #Share
-  share_plus: ^8.0.0
+  share_plus: ^7.2.1
   #Url launcher
   url_launcher: ^6.1.14
   #Info
-  package_info_plus: ^5.0.0
+  package_info_plus: ^4.2.0
   #Firebase
   fcm_config: 
     path: local_packages/fcm_config
+  #Restart app
+  flutter_phoenix: ^1.1.1
+  #Crashlytics
+  firebase_crashlytics: ^3.4.4
 
 dev_dependencies:
   flutter_test:

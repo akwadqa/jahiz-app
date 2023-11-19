@@ -51,7 +51,7 @@ class DioAppInterceptors extends Interceptor {
 
     options.queryParameters['_lang'] = selectedLanguage;
     if (token != null) {
-      options.headers['Authorization'] = 'Bearer $token';
+      options.headers['Authorization'] = 'token $token';
     }
 
     super.onRequest(options, handler);
