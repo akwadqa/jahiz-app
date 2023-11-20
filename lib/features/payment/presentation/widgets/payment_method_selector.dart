@@ -80,15 +80,7 @@ class _PaymentMethodItem extends StatelessWidget {
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.only(
-              top: formFieldState.value != null &&
-                      formFieldState.value == paymentMethod
-                  ? 5.0
-                  : 0.0,
-              end: formFieldState.value != null &&
-                      formFieldState.value == paymentMethod
-                  ? 5.0
-                  : 0.0),
+          padding: const EdgeInsetsDirectional.only(top: 2.5, end: 2.5),
           child: Container(
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor.withOpacity(0.05),

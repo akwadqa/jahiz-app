@@ -50,8 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "badCertificate":
             MessageLookupByLibrary.simpleMessage("Bad Certificate"),
         "badRequest": MessageLookupByLibrary.simpleMessage("Bad Request"),
-        "buildingNameOrNumber":
-            MessageLookupByLibrary.simpleMessage("Building Name or Number"),
+        "buildingNumber":
+            MessageLookupByLibrary.simpleMessage("Building Number"),
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "change": MessageLookupByLibrary.simpleMessage("Change"),
@@ -169,8 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your phone number to register or to sign in to your existing account"),
         "specifications":
             MessageLookupByLibrary.simpleMessage("Specifications"),
-        "streetNameOrNumber":
-            MessageLookupByLibrary.simpleMessage("Street Name or Number"),
+        "streetNumber": MessageLookupByLibrary.simpleMessage("Street Number"),
         "subTotal": MessageLookupByLibrary.simpleMessage("Sub Total"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("Terms and Conditions"),

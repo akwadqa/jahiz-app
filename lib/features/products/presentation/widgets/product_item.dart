@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jahiz/core/widgets/custom_through_line.dart';
+import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
+import 'package:jahiz/features/app_settings/presentation/bloc/app_settings_cubit.dart';
 import '../../../../core/gen/fonts.gen.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -183,15 +185,21 @@ class ProductItem extends StatelessWidget {
   }
 
   Widget _discountBadge() {
-    return Container(
-      decoration: const BoxDecoration(
-          color: AppColors.red,
-          borderRadius:
-              BorderRadiusDirectional.only(bottomEnd: Radius.circular(17))),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: Text('-${product.discountPercent}',
-          style: const TextStyle(color: Colors.white, fontSize: 16)),
-    );
+    return BlocBuilder<AppSettingsCubit, AppSettings?>(
+                  builder: (context, state) {
+                return Container(
+                  decoration: BoxDecoration(
+                      color: state != null
+                          ? HexColor(state.textColor)
+                          : AppColors.red,
+                      borderRadius: const BorderRadiusDirectional.only(
+                          bottomEnd: Radius.circular(17))),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  child: Text('-${product.discountPercent}',
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 16)),
+                );
+              });
   }
 
   void _addToCart(BuildContext context) {

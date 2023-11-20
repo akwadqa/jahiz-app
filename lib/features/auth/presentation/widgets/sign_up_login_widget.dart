@@ -44,20 +44,6 @@ class SignUpLoginWidget extends StatelessWidget {
                         .read<CheckUserValidationCubit>()
                         .onSavedPhoneNumber,
                   ),
-                  //     child: TextFormField(
-                  //   decoration: const InputDecoration(
-                  //       hintText: AppConstants.phoneNumberHint),
-                  //   textInputAction: TextInputAction.done,
-                  //   textAlign: TextAlign.center,
-                  //   keyboardType: const TextInputType.numberWithOptions(
-                  //       signed: true, decimal: true),
-                  //   validator: context
-                  //       .read<CheckUserValidationCubit>()
-                  //       .validator(context),
-                  //   onSaved: context
-                  //       .read<CheckUserValidationCubit>()
-                  //       .onSavedPhoneNumber,
-                  // )
                 ),
               )
             ],

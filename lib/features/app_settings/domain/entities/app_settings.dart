@@ -9,6 +9,9 @@ class AppSettings extends Equatable {
   final String fullName;
   final String mobileNo;
   final String? companyName;
+  final String appLogo;
+  final String primaryColor;
+  final String textColor;
 
   const AppSettings(
       {required this.customerId,
@@ -18,7 +21,10 @@ class AppSettings extends Equatable {
       required this.username,
       required this.fullName,
       required this.mobileNo,
-      required this.companyName});
+      required this.companyName,
+      required this.appLogo,
+      required this.primaryColor,
+      required this.textColor});
 
   AppSettings copyWith(
       {String? customerId,
@@ -28,18 +34,23 @@ class AppSettings extends Equatable {
       String? username,
       String? fullName,
       String? mobileNo,
-      String? companyName}) {
+      String? companyName,
+      String? appLogo,
+      String? primaryColor,
+      String? textColor}) {
     return AppSettings(
-      customerId: customerId ?? this.customerId,
-      company: company ?? this.company,
-      companyWhatsappNumber:
-          companyWhatsappNumber ?? this.companyWhatsappNumber,
-      privacyPolicy: privacyPolicy ?? this.privacyPolicy,
-      username: username ?? this.username,
-      fullName: fullName ?? this.fullName,
-      mobileNo: mobileNo ?? this.mobileNo,
-      companyName: companyName ?? this.companyName,
-    );
+        customerId: customerId ?? this.customerId,
+        company: company ?? this.company,
+        companyWhatsappNumber:
+            companyWhatsappNumber ?? this.companyWhatsappNumber,
+        privacyPolicy: privacyPolicy ?? this.privacyPolicy,
+        username: username ?? this.username,
+        fullName: fullName ?? this.fullName,
+        mobileNo: mobileNo ?? this.mobileNo,
+        companyName: companyName ?? this.companyName,
+        appLogo: appLogo ?? this.appLogo,
+        primaryColor: primaryColor ?? this.primaryColor,
+        textColor: textColor ?? this.textColor);
   }
 
   @override
@@ -52,5 +63,8 @@ class AppSettings extends Equatable {
         fullName,
         mobileNo,
         companyName,
+        appLogo,
+        primaryColor,
+        textColor,
       ];
 }

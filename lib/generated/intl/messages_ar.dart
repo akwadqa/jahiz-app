@@ -50,8 +50,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "badCertificate":
             MessageLookupByLibrary.simpleMessage("خطأ في الشهادة"),
         "badRequest": MessageLookupByLibrary.simpleMessage("خطأ في البيانات"),
-        "buildingNameOrNumber":
-            MessageLookupByLibrary.simpleMessage("اسم المبنى أو رقمه"),
         "cart": MessageLookupByLibrary.simpleMessage("السلة"),
         "categories": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "change": MessageLookupByLibrary.simpleMessage("تغيير"),
@@ -169,8 +167,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "signupLoginDescription": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال رقم هاتفك للتسجيل أو تسجيل الدخول إلى حسابك الحالي"),
         "specifications": MessageLookupByLibrary.simpleMessage("المواصفات"),
-        "streetNameOrNumber":
-            MessageLookupByLibrary.simpleMessage("اسم الشارع أو رقمه"),
         "subTotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),

@@ -316,7 +316,8 @@ class _PaymentAndConfirmationSectionState
                 }
               },
             ),
-          )
+          ),
+          const SizedBox(height: 16.0),
         ],
       ),
     );

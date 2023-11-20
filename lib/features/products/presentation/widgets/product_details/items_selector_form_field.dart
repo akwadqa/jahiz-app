@@ -47,6 +47,7 @@ class _ItemsSelectorState extends State<_ItemsSelector> {
         spacing: 6,
         children: widget.items
             .map((e) => ChoiceChip(
+                  showCheckmark: false,
                   label: Text(e),
                   labelStyle: TextStyle(
                       color: selectionStates[widget.items.indexOf(e)]

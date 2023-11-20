@@ -65,28 +65,28 @@ class AddressFormWidget extends StatelessWidget {
             TextFormField(
               initialValue: address?.buildingNo,
               decoration: InputDecoration(
-                label: Text(S.of(context).buildingNameOrNumber),
+                label: Text(S.of(context).buildingNumber),
               ),
               validator:
                   context.read<AddUpdateAddressCubit>().validator(context),
               onSaved: context
                   .read<AddUpdateAddressCubit>()
                   .onBuildingNameOrNumberSaved,
-              keyboardType: TextInputType.streetAddress,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 10.0),
             TextFormField(
               initialValue: address?.streetNo,
               decoration: InputDecoration(
-                label: Text(S.of(context).streetNameOrNumber),
+                label: Text(S.of(context).streetNumber),
               ),
               validator:
                   context.read<AddUpdateAddressCubit>().validator(context),
               onSaved: context
                   .read<AddUpdateAddressCubit>()
                   .onStreetNameOrNumberSaved,
-              keyboardType: TextInputType.streetAddress,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
             ),
             const SizedBox(height: 10.0),

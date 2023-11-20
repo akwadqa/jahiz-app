@@ -450,21 +450,21 @@ class S {
     );
   }
 
-  /// `Building Name or Number`
-  String get buildingNameOrNumber {
+  /// `Building Number`
+  String get buildingNumber {
     return Intl.message(
-      'Building Name or Number',
-      name: 'buildingNameOrNumber',
+      'Building Number',
+      name: 'buildingNumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `Street Name or Number`
-  String get streetNameOrNumber {
+  /// `Street Number`
+  String get streetNumber {
     return Intl.message(
-      'Street Name or Number',
-      name: 'streetNameOrNumber',
+      'Street Number',
+      name: 'streetNumber',
       desc: '',
       args: [],
     );

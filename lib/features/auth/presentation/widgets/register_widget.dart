@@ -40,6 +40,7 @@ class RegisterWidget extends StatelessWidget {
                   decoration: InputDecoration(
                     label: Text(S.of(context).firstName),
                   ),
+                  textCapitalization: TextCapitalization.sentences,
                   textInputAction: TextInputAction.next,
                   validator: context.read<RegisterCubit>().validator(context),
                   onSaved: context.read<RegisterCubit>().onSavedFirstName,
@@ -50,6 +51,7 @@ class RegisterWidget extends StatelessWidget {
                   decoration: InputDecoration(
                     label: Text(S.of(context).lastName),
                   ),
+                  textCapitalization: TextCapitalization.sentences,
                   textInputAction: TextInputAction.next,
                   validator: context.read<RegisterCubit>().validator(context),
                   onSaved: context.read<RegisterCubit>().onSavedLastName,

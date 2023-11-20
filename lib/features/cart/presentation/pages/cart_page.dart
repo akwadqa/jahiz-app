@@ -188,7 +188,7 @@ class _CartItem extends StatelessWidget {
                     ]),
                 clipBehavior: Clip.antiAlias,
                 height: 100,
-                width: 100,
+                width: 100, 
                 child: AppCachedNetworkImage(imageUrl: cartItem.image)),
             const SizedBox(width: 12.0),
             Expanded(

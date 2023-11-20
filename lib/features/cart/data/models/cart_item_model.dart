@@ -1,3 +1,5 @@
+import 'package:jahiz/core/shared_functions.dart';
+
 import '../../domain/entities/cart_item.dart';
 
 import 'cart_product_option_model.dart';
@@ -22,7 +24,7 @@ class CartItemModel extends CartItem {
         itemCode: json['website_item_code'],
         itemName: json['website_item_name'],
         itemGroup: json['item_group'],
-        image: json['image'],
+        image: SharedFunctions.getImageUrl(json['image']),
         qty: json['qty'],
         uom: json['uom'],
         priceListRate: json['price_list_rate'],

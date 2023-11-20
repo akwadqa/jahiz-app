@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/widgets/app_cached_network_image.dart';
 import 'package:jahiz/core/widgets/custom_curve_background.dart';
+import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
+import 'package:jahiz/features/app_settings/presentation/bloc/app_settings_cubit.dart';
 import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
 import 'package:jahiz/features/home/presentation/widgets/dynamic_list.dart';
 import '../../../../core/blocs/slider_indicator_cubit.dart';
@@ -22,8 +25,15 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Assets.images.jahezLogo.image(width: 70),
-        // bottom: const _SearchTextFormField(),
+        title: SizedBox(
+            height: 40,
+            child: BlocBuilder<AppSettingsCubit, AppSettings?>(
+                builder: (context, state) {
+              if (state != null) {
+                return AppCachedNetworkImage(imageUrl: state.appLogo);
+              }
+              return const SizedBox.shrink();
+            })),
         actions: [
           ContainedButton(
             icon: Assets.images.notification.svg(height: 22, width: 22),
