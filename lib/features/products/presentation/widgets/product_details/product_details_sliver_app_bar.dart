@@ -46,7 +46,7 @@ class ProductDetailsSliverAppBar extends StatelessWidget {
               : Hero(
                   tag: heroTag,
                   child: AppCachedNetworkImage(
-                      imageUrl: product.productImage, fit: BoxFit.fitHeight),
+                      imageUrl: product.productImage, fit: BoxFit.cover),
                 )),
       expandedHeight: _expandedHeight(context),
     );
@@ -110,7 +110,7 @@ class _CarouselWithDots extends StatelessWidget {
               height: double.infinity,
               width: double.infinity,
               child: AppCachedNetworkImage(
-                  imageUrl: image.image, fit: BoxFit.fitHeight),
+                  imageUrl: image.image, fit: BoxFit.cover),
             ))
         .toList();
   }

@@ -43,7 +43,8 @@ class AddressItem extends StatelessWidget {
                                     double.parse(address.akdAltitude),
                                     double.parse(address.akdLongitude)),
                                 address: address),
-                        icon: Assets.images.editIcon.svg())
+                        icon: Assets.images.editIcon
+                            .svg(color: Theme.of(context).primaryColor))
                     : SizedBox(
                         width: 80.0,
                         height: 40.0,
@@ -100,7 +101,8 @@ class _AddressDetailsRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           ),
           padding: const EdgeInsets.symmetric(vertical: 9.0, horizontal: 12.0),
-          child: Assets.images.locationIcon.svg(),
+          child: Assets.images.locationIcon
+              .svg(color: Theme.of(context).primaryColor),
         ),
         const SizedBox(width: 8.0),
         Column(
