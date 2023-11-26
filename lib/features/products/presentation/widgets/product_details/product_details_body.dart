@@ -88,15 +88,13 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
       final bool shouldExpand =
           notification.metrics.pixels < screenHeight * threshold;
       double value = 0.0;
-      double appBarHeight = AppBar().preferredSize.height;
 
-      double stackSize = MediaQuery.of(context).size.height *
-              (hasNotch
-                  ? _expandedThresholdWithNotch
-                  : _expandedThresholdWithoutNotch) +
-          40.0;
-      if (notification.metrics.pixels > screenHeight * threshold &&
-          value < appBarHeight) {
+      double appBarHeight = kToolbarHeight + MediaQuery.of(context).padding.top;
+      double stackSize =
+          MediaQuery.of(context).size.height * (hasNotch ? 0.44 : 0.45); // 400
+// 345 >? 344
+      if (notification.metrics.pixels > stackSize - appBarHeight - 10 &&
+          notification.metrics.pixels < stackSize - appBarHeight) {
         setState(() {
           reminingValue = reminingValue + 2.0;
           value = reminingValue;
@@ -106,7 +104,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
           reminingValue = 0.0;
         });
       }
-      if ((stackSize - scrollController.position.pixels) <= appBarHeight) {
+      if (notification.metrics.pixels > stackSize - appBarHeight) {
         setState(() {
           reminingValue = 40.0;
           value = appBarHeight + 1;
