@@ -31,11 +31,14 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
   static const double _expandedThresholdWithNotch = 0.3;
   static const double _expandedThresholdWithoutNotch = 0.35;
 
+  ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
       child: CustomScrollView(
+        controller: scrollController,
         slivers: [
           _buildSliverStack(),
           if (widget.detailedProductState is DetailedProductLoadInProgress)
@@ -87,6 +90,11 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
       double value = 0.0;
       double appBarHeight = AppBar().preferredSize.height;
 
+      double stackSize = MediaQuery.of(context).size.height *
+              (hasNotch
+                  ? _expandedThresholdWithNotch
+                  : _expandedThresholdWithoutNotch) +
+          40.0;
       if (notification.metrics.pixels > screenHeight * threshold &&
           value < appBarHeight) {
         setState(() {
@@ -94,9 +102,20 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
           value = reminingValue;
         });
       } else {
-        reminingValue = 0.0;
+        setState(() {
+          reminingValue = 0.0;
+        });
       }
-
+      if ((stackSize - scrollController.position.pixels) <= appBarHeight) {
+        setState(() {
+          reminingValue = 40.0;
+          value = appBarHeight + 1;
+        });
+      } else {
+        setState(() {
+          value = 0.0;
+        });
+      }
       if (_isAppBarExpanded != shouldExpand) {
         setState(() {
           _isAppBarExpanded = shouldExpand;
