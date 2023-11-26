@@ -186,20 +186,17 @@ class ProductItem extends StatelessWidget {
 
   Widget _discountBadge() {
     return BlocBuilder<AppSettingsCubit, AppSettings?>(
-                  builder: (context, state) {
-                return Container(
-                  decoration: BoxDecoration(
-                      color: state != null
-                          ? HexColor(state.textColor)
-                          : AppColors.red,
-                      borderRadius: const BorderRadiusDirectional.only(
-                          bottomEnd: Radius.circular(17))),
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  child: Text('-${product.discountPercent}',
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 16)),
-                );
-              });
+        builder: (context, state) {
+      return Container(
+        decoration: BoxDecoration(
+            color: state != null ? HexColor(state.textColor) : AppColors.red,
+            borderRadius: const BorderRadiusDirectional.only(
+                bottomEnd: Radius.circular(17))),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Text('-${product.discountPercent}',
+            style: const TextStyle(color: Colors.white, fontSize: 16)),
+      );
+    });
   }
 
   void _addToCart(BuildContext context) {

@@ -31,14 +31,11 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
   static const double _expandedThresholdWithNotch = 0.3;
   static const double _expandedThresholdWithoutNotch = 0.35;
 
-  ScrollController scrollController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
       child: CustomScrollView(
-        controller: scrollController,
         slivers: [
           _buildSliverStack(),
           if (widget.detailedProductState is DetailedProductLoadInProgress)
@@ -70,7 +67,6 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
             detailedProductState: widget.detailedProductState,
             product: widget.product,
             heroTag: widget.heroTag),
-        //if (_isAppBarExpanded)
         _ShadowContainer(
           reminingValue: reminingValue,
         ),
@@ -87,17 +83,14 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
           : _expandedThresholdWithoutNotch;
       final bool shouldExpand =
           notification.metrics.pixels < screenHeight * threshold;
-      double value = 0.0;
 
       double appBarHeight = kToolbarHeight + MediaQuery.of(context).padding.top;
       double stackSize =
-          MediaQuery.of(context).size.height * (hasNotch ? 0.44 : 0.45); // 400
-// 345 >? 344
+          MediaQuery.of(context).size.height * (hasNotch ? 0.44 : 0.45);
       if (notification.metrics.pixels > stackSize - appBarHeight - 10 &&
           notification.metrics.pixels < stackSize - appBarHeight) {
         setState(() {
           reminingValue = reminingValue + 2.0;
-          value = reminingValue;
         });
       } else {
         setState(() {
@@ -107,11 +100,6 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
       if (notification.metrics.pixels > stackSize - appBarHeight) {
         setState(() {
           reminingValue = 40.0;
-          value = appBarHeight + 1;
-        });
-      } else {
-        setState(() {
-          value = 0.0;
         });
       }
       if (_isAppBarExpanded != shouldExpand) {
@@ -128,25 +116,14 @@ class _ShadowContainer extends StatelessWidget {
   final double reminingValue;
   const _ShadowContainer({required this.reminingValue});
 
-  static const double _shadowPositionWithNotch = 0.47;
-  static const double _shadowPositionWithoutNotch = 0.44;
-  static const double _shadowHeightWithNotch = 0.04;
-  static const double _shadowHeightWithoutNotch = 0.04;
   static const double _fixedHeight = 40.0;
 
   @override
   Widget build(BuildContext context) {
-    final bool hasNotch = SharedFunctions.hasNotch(context);
-    final double screenHeight = MediaQuery.of(context).size.height;
-    final double topPosition = screenHeight *
-        (hasNotch ? _shadowPositionWithNotch : _shadowPositionWithoutNotch);
-    final double shadowHeight = screenHeight *
-        (hasNotch ? _shadowHeightWithNotch : _shadowHeightWithoutNotch);
     final double fixedHeight =
         reminingValue < _fixedHeight ? _fixedHeight - reminingValue : 0.0;
 
     return SliverPositioned(
-      //top: topPosition,
       left: 0,
       right: 0,
       bottom: 0.0,
