@@ -31,8 +31,10 @@ class _AddressTypeSelectorState extends State<AddressTypeSelector> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         _AvatarItem(
-            icon: Assets.images.homeIcon
-                .svg(color: _selectedIndex.index == 0 ? Colors.white : null),
+            icon: Assets.images.homeIcon.svg(
+                color: _selectedIndex.index == 0
+                    ? Colors.white
+                    : Theme.of(context).primaryColor),
             labelColor: _selectedIndex.index == 0
                 ? Theme.of(context).primaryColor
                 : Colors.black,
@@ -47,8 +49,10 @@ class _AddressTypeSelectorState extends State<AddressTypeSelector> {
               }
             }),
         _AvatarItem(
-            icon: Assets.images.bagIcon
-                .svg(color: _selectedIndex.index == 1 ? Colors.white : null),
+            icon: Assets.images.bagIcon.svg(
+                color: _selectedIndex.index == 1
+                    ? Colors.white
+                    : Theme.of(context).primaryColor),
             labelColor: _selectedIndex.index == 1
                 ? Theme.of(context).primaryColor
                 : Colors.black,
@@ -63,8 +67,10 @@ class _AddressTypeSelectorState extends State<AddressTypeSelector> {
               }
             }),
         _AvatarItem(
-            icon: Assets.images.buildingIcon
-                .svg(color: _selectedIndex.index == 2 ? Colors.white : null),
+            icon: Assets.images.buildingIcon.svg(
+                color: _selectedIndex.index == 2
+                    ? Colors.white
+                    : Theme.of(context).primaryColor),
             label: S.of(context).apartment,
             labelColor: _selectedIndex.index == 2
                 ? Theme.of(context).primaryColor

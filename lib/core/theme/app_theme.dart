@@ -6,10 +6,16 @@ abstract class AppTheme {
   static ThemeData lightTheme(String? primaryColor) => ThemeData(
       fontFamily: FontFamily.qatar,
       appBarTheme: _appBarTheme,
+      colorScheme: ColorScheme.fromSwatch(
+          backgroundColor: Colors.white,
+          primarySwatch: primaryColor != null
+              ? _createMaterialColor(HexColor(primaryColor))
+              : Colors.blue),
       inputDecorationTheme: _inputDecorationTheme(primaryColor),
       primarySwatch: primaryColor != null
           ? _createMaterialColor(HexColor(primaryColor))
           : null,
+      scaffoldBackgroundColor: Colors.white,
       elevatedButtonTheme: _elevatedButtonThemeData(primaryColor),
       tabBarTheme: _tabBarTheme,
       chipTheme: _chipTheme(primaryColor));
