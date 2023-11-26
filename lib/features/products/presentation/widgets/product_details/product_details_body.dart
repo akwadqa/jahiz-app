@@ -103,7 +103,8 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
       final bool shouldExpand =
           notification.metrics.pixels < screenHeight * threshold;
 
-      double appBarHeight = kToolbarHeight + MediaQuery.of(context).padding.top;
+      double appBarHeight =
+          kToolbarHeight + MediaQuery.of(context).padding.top - 10;
       double stackSize =
           MediaQuery.of(context).size.height * (hasNotch ? 0.44 : 0.45);
       if (notification.metrics.pixels > stackSize - appBarHeight - 10 &&
