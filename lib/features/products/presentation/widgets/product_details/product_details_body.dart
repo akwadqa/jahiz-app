@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/core/theme/app_colors.dart';
+import 'package:jahiz/features/products/domain/entities/detailed_product.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
 import 'package:jahiz/features/products/presentation/bloc/detailed_product/detailed_product_cubit.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -35,6 +36,24 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isLoadSuccess =
+        widget.detailedProductState is DetailedProductLoadSuccess;
+    DetailedProduct? detailedProduct;
+    bool hasProductOptions = false;
+    bool hasWebLongDescription = false;
+    bool hasProductSpecifications = false;
+    if (isLoadSuccess) {
+      final detailedProductSuccess =
+          widget.detailedProductState as DetailedProductLoadSuccess;
+      detailedProduct = detailedProductSuccess.detailedProduct;
+
+      hasProductOptions = detailedProduct.productOptions.isNotEmpty;
+      hasWebLongDescription =
+          detailedProduct.webLongDescription?.isNotEmpty ?? false;
+      hasProductSpecifications =
+          detailedProduct.productSpecifications.isNotEmpty;
+    }
+
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
       child: CustomScrollView(
@@ -47,16 +66,16 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 child: CircularProgressIndicator.adaptive(),
               ),
             ),
-          if (widget.detailedProductState is DetailedProductLoadSuccess) ...[
-            ProductDetailsSliverList(
-                detailedProduct:
-                    (widget.detailedProductState as DetailedProductLoadSuccess)
-                        .detailedProduct),
-            SliverFillRemaining(
-                child: ProductDetailsTabs(
-                    detailedProduct: (widget.detailedProductState
-                            as DetailedProductLoadSuccess)
-                        .detailedProduct))
+          if (isLoadSuccess) ...[
+            ProductDetailsSliverList(detailedProduct: detailedProduct!),
+            if (hasProductOptions ||
+                hasWebLongDescription ||
+                hasProductSpecifications)
+              SliverFillRemaining(
+                  child: ProductDetailsTabs(
+                      detailedProduct: (widget.detailedProductState
+                              as DetailedProductLoadSuccess)
+                          .detailedProduct))
           ],
         ],
       ),

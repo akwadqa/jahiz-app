@@ -24,9 +24,26 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
+  late String? _description;
+  late List<ProductSpecification> _specifications;
+  late List<ProductOption> _productOptions;
+
+  bool _hasWebLongDescription = false;
+  bool _hasProductOptions = false;
+  bool _hasProductSpecifications = false;
+
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
+    _description = widget.detailedProduct.webLongDescription;
+    _specifications = widget.detailedProduct.productSpecifications;
+    _productOptions = widget.detailedProduct.productOptions;
+    _hasWebLongDescription = _description?.isNotEmpty ?? false;
+    _hasProductOptions = _productOptions.isNotEmpty;
+    _hasProductSpecifications = _specifications.isNotEmpty;
+    final tabBarLength = (_hasWebLongDescription ? 1 : 0) +
+        (_hasProductSpecifications ? 1 : 0) +
+        (_hasProductOptions ? 1 : 0);
+    _tabController = TabController(length: tabBarLength, vsync: this);
     super.initState();
   }
 
@@ -39,35 +56,41 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
           TabBar(
             controller: _tabController,
             tabs: [
-              Tab(
-                  child: Text(S.of(context).options,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold))),
-              Tab(
-                  child: Text(S.of(context).description,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold))),
-              Tab(
-                  child: Text(S.of(context).specifications,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold)))
+              if (_hasProductOptions)
+                Tab(
+                    child: Text(S.of(context).options,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold))),
+              if (_hasWebLongDescription)
+                Tab(
+                    child: Text(S.of(context).description,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold))),
+              if (_hasProductSpecifications)
+                Tab(
+                    child: Text(S.of(context).specifications,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold)))
             ],
           ),
           Expanded(
               child: TabBarView(controller: _tabController, children: [
-            _OptionsTabView(
-                productOptions: widget.detailedProduct.productOptions),
-            _DescriptionTabView(
-                description: widget.detailedProduct.webLongDescription ?? ''),
-            _SpecificationsTabView(
-                productSpecifications:
-                    widget.detailedProduct.productSpecifications)
+            if (_hasProductOptions)
+              _OptionsTabView(
+                  productOptions: widget.detailedProduct.productOptions),
+            if (_hasWebLongDescription)
+              _DescriptionTabView(
+                  description: widget.detailedProduct.webLongDescription ?? ''),
+            if (_hasProductSpecifications)
+              _SpecificationsTabView(
+                  productSpecifications:
+                      widget.detailedProduct.productSpecifications)
           ]))
         ],
       ),
