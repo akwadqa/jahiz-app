@@ -36,7 +36,7 @@ class SignUpLoginWidget extends StatelessWidget {
                 key: context.read<CheckUserValidationCubit>().formKey,
                 child: Expanded(
                   child: LoginTextFormField(
-                    hintText: AppConstants.phoneNumberHint,
+                    labelText: AppConstants.phoneNumberHint,
                     validator: context
                         .read<CheckUserValidationCubit>()
                         .validator(context),

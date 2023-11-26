@@ -114,7 +114,8 @@ class _OptionsTabView extends StatelessWidget {
                         OptionType.numberInput.name)
                   TextFormField(
                     decoration: InputDecoration(
-                      hintText: productOptions[index].hint,
+                      labelText: productOptions[index].hint,
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
                       border: outlineInputBorder,
                       enabledBorder: outlineInputBorder,
                       focusedBorder: outlineInputBorder,

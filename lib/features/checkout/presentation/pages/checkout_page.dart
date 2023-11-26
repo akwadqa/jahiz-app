@@ -165,7 +165,8 @@ class _CouponSectionState extends State<_CouponSection> {
           TextFormField(
             controller: _couponController,
             decoration: InputDecoration(
-              hintText: S.of(context).enterPromoCode,
+              labelText: S.of(context).enterPromoCode,
+              floatingLabelBehavior: FloatingLabelBehavior.never,
               suffixIcon: TextButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -275,46 +276,49 @@ class _PaymentAndConfirmationSectionState
                 _showSuccessPaymentDialog(state.orderId);
               }
             },
-            child: PlaceOrderButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  if (_paymentMethod!.isOffline == 1) {
-                    context
-                        .read<PlaceOrderCubit>()
-                        .placeOrder(widget.cart.name);
-                  } else {
-                    if (_paymentMethod!.isEmbedded == 1) {
-                      showPaymentBottomSheet(
-                              context: context,
-                              paymentMethod: _paymentMethod!,
-                              total: widget.cart.grandTotal)
-                          .then((value) {
-                        if (value != null) {
-                          if (value) {
-                            context
-                                .read<PlaceOrderCubit>()
-                                .placeOrder(widget.cart.name, 1);
-                          } else {
-                            _showFailPaymentDialog();
-                          }
-                        }
-                      });
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: PlaceOrderButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    if (_paymentMethod!.isOffline == 1) {
+                      context
+                          .read<PlaceOrderCubit>()
+                          .placeOrder(widget.cart.name);
                     } else {
-                      final paymentService = PaymentService(
-                          paymentMethod: _paymentMethod!,
-                          total: widget.cart.grandTotal);
-                      paymentService.initiatePayment(onFail: () {
-                        _showFailPaymentDialog();
-                      }, onSuccess: () {
-                        context
-                            .read<PlaceOrderCubit>()
-                            .placeOrder(widget.cart.name, 1);
-                      });
+                      if (_paymentMethod!.isEmbedded == 1) {
+                        showPaymentBottomSheet(
+                                context: context,
+                                paymentMethod: _paymentMethod!,
+                                total: widget.cart.grandTotal)
+                            .then((value) {
+                          if (value != null) {
+                            if (value) {
+                              context
+                                  .read<PlaceOrderCubit>()
+                                  .placeOrder(widget.cart.name, 1);
+                            } else {
+                              _showFailPaymentDialog();
+                            }
+                          }
+                        });
+                      } else {
+                        final paymentService = PaymentService(
+                            paymentMethod: _paymentMethod!,
+                            total: widget.cart.grandTotal);
+                        paymentService.initiatePayment(onFail: () {
+                          _showFailPaymentDialog();
+                        }, onSuccess: () {
+                          context
+                              .read<PlaceOrderCubit>()
+                              .placeOrder(widget.cart.name, 1);
+                        });
+                      }
                     }
                   }
-                }
-              },
+                },
+              ),
             ),
           ),
           const SizedBox(height: 16.0),

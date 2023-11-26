@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoginTextFormField extends StatelessWidget {
   final String? initialValue;
-  final String? hintText;
+  final String? labelText;
   final bool readOnly;
   final bool? filled;
   final Color? fillColor;
@@ -18,7 +18,7 @@ class LoginTextFormField extends StatelessWidget {
       this.validator,
       this.onSaved,
       this.enabledBorder,
-      this.hintText});
+      this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,8 @@ class LoginTextFormField extends StatelessWidget {
       style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       decoration: InputDecoration(
           isDense: true,
-          hintText: hintText,
+          labelText: labelText,
+          floatingLabelBehavior: FloatingLabelBehavior.never,
           enabledBorder: enabledBorder,
           filled: filled,
           fillColor: fillColor),

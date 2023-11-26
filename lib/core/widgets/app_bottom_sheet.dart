@@ -99,7 +99,7 @@ class AppBottomSheetSkeleton extends StatelessWidget {
                                 subtitle: subtitle),
                             Expanded(child: content),
                             if (submitButton != null) submitButton!,
-                            const SizedBox(height: 20.0),
+                            const SizedBox(height: 30.0),
                           ],
                         ),
                       ),
