@@ -26,9 +26,10 @@ class ProductDetailsBody extends StatefulWidget {
 
 class _ProductDetailsBodyState extends State<ProductDetailsBody> {
   bool _isAppBarExpanded = true;
+  double reminingValue = 0.0;
 
   static const double _expandedThresholdWithNotch = 0.3;
-  static const double _expandedThresholdWithoutNotch = 0.33;
+  static const double _expandedThresholdWithoutNotch = 0.35;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +67,10 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
             detailedProductState: widget.detailedProductState,
             product: widget.product,
             heroTag: widget.heroTag),
-        if (_isAppBarExpanded) const _ShadowContainer(),
+        //if (_isAppBarExpanded)
+        _ShadowContainer(
+          reminingValue: reminingValue,
+        ),
       ],
     );
   }
@@ -80,9 +84,23 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
           : _expandedThresholdWithoutNotch;
       final bool shouldExpand =
           notification.metrics.pixels < screenHeight * threshold;
+      double value = 0.0;
+      double appBarHeight = AppBar().preferredSize.height;
+
+      if (notification.metrics.pixels > screenHeight * threshold &&
+          value < appBarHeight) {
+        setState(() {
+          reminingValue = reminingValue + 2.0;
+          value = reminingValue;
+        });
+      } else {
+        reminingValue = 0.0;
+      }
 
       if (_isAppBarExpanded != shouldExpand) {
-        setState(() => _isAppBarExpanded = shouldExpand);
+        setState(() {
+          _isAppBarExpanded = shouldExpand;
+        });
       }
     }
     return false;
@@ -90,12 +108,14 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
 }
 
 class _ShadowContainer extends StatelessWidget {
-  const _ShadowContainer();
+  final double reminingValue;
+  const _ShadowContainer({required this.reminingValue});
 
   static const double _shadowPositionWithNotch = 0.47;
   static const double _shadowPositionWithoutNotch = 0.44;
   static const double _shadowHeightWithNotch = 0.04;
-  static const double _shadowHeightWithoutNotch = 0.05;
+  static const double _shadowHeightWithoutNotch = 0.04;
+  static const double _fixedHeight = 40.0;
 
   @override
   Widget build(BuildContext context) {
@@ -105,11 +125,14 @@ class _ShadowContainer extends StatelessWidget {
         (hasNotch ? _shadowPositionWithNotch : _shadowPositionWithoutNotch);
     final double shadowHeight = screenHeight *
         (hasNotch ? _shadowHeightWithNotch : _shadowHeightWithoutNotch);
+    final double fixedHeight =
+        reminingValue < _fixedHeight ? _fixedHeight - reminingValue : 0.0;
 
     return SliverPositioned(
-      top: topPosition,
+      //top: topPosition,
       left: 0,
       right: 0,
+      bottom: 0.0,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -125,7 +148,7 @@ class _ShadowContainer extends StatelessWidget {
             ),
           ],
         ),
-        height: shadowHeight,
+        height: fixedHeight,
       ),
     );
   }

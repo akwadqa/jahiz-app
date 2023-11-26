@@ -10,7 +10,7 @@ abstract class AppTheme {
       primarySwatch: primaryColor != null
           ? _createMaterialColor(HexColor(primaryColor))
           : null,
-      elevatedButtonTheme: _elevatedButtonThemeData,
+      elevatedButtonTheme: _elevatedButtonThemeData(primaryColor),
       tabBarTheme: _tabBarTheme,
       chipTheme: _chipTheme(primaryColor));
 
@@ -34,13 +34,21 @@ abstract class AppTheme {
   static TabBarTheme get _tabBarTheme =>
       const TabBarTheme(labelColor: Colors.black);
 
-  static ElevatedButtonThemeData get _elevatedButtonThemeData =>
+  static ElevatedButtonThemeData _elevatedButtonThemeData(
+          String? primaryColor) =>
       ElevatedButtonThemeData(
         style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(
+              primaryColor != null
+                  ? _createMaterialColor(HexColor(primaryColor))
+                  : null,
+            ),
+            foregroundColor: MaterialStateProperty.all(Colors.white),
             shape: MaterialStateProperty.all(const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(17)))),
             textStyle: MaterialStateProperty.all(const TextStyle(
                 fontSize: 20,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontFamily: FontFamily.qatar)),
             minimumSize:

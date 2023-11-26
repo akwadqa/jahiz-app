@@ -40,7 +40,7 @@ class CategoriesPage extends StatelessWidget implements AutoRouteWrapper {
               onRefresh: context.read<CategoriesCubit>().getCategories,
               child: GridView.builder(
                 padding: const EdgeInsets.only(
-                    bottom: 100.0, top: 8.0, right: 20.0, left: 20.0),
+                    bottom: 100.0, top: 20.0, right: 20.0, left: 20.0),
                 itemCount: state.category.subCategories!.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -106,7 +106,7 @@ class _CategoryItem extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
-                    .copyWith(fontWeight: FontWeight.bold),
+                    .copyWith(fontWeight: FontWeight.w500, fontSize: 18),
                 textAlign: TextAlign.center,
               ),
             )

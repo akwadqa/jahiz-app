@@ -131,9 +131,81 @@ class _TitledLayoutState extends State<_TitledLayout> {
         ? MultiSliver(
             children: [_title(context), if (isExpanded) widget.layoutWidget],
           )
+        // ? MultiSliver(
+        //     children: [
+        //       ExpansionTile(
+                
+        //           title: (widget.title != null)
+        //               ? Text(widget.title!,
+        //                   style: Theme.of(context)
+        //                       .textTheme
+        //                       .titleLarge!
+        //                       .copyWith(fontWeight: FontWeight.bold))
+        //               : SizedBox.shrink(),
+        //           initiallyExpanded: true,
+        //           children: [widget.layoutWidget],
+        //           collapsedShape: null),
+        //     ],
+        //   )
         : Column(
             children: [_title(context), if (isExpanded) widget.layoutWidget],
           );
+        // : ExpansionTile(
+        //     title: (widget.title != null)
+        //         ? Text(widget.title!,
+        // style: Theme.of(context)
+        //     .textTheme
+        //     .titleLarge!
+        //     .copyWith(fontWeight: FontWeight.bold))
+        //         : SizedBox.shrink(),
+        //     trailing: null,
+        //     initiallyExpanded: true,
+        //     children: [widget.layoutWidget],
+        //   );
+        // : ExpansionPanelList(
+          
+        //     elevation: 1,
+        //     expandedHeaderPadding: const EdgeInsets.symmetric(horizontal: 20),
+        //     expansionCallback: (int index, bool isExpanded2) {
+        //       setState(() {
+        //         isExpanded = isExpanded2;
+        //       });
+        //     },
+        //     children: [
+        //         ExpansionPanel(
+        //           headerBuilder: (BuildContext context, bool isExpanded) {
+        //             return (widget.title != null)
+        //                 ? Center(
+        //                     child: Text(widget.title!,
+        //                         style: Theme.of(context)
+        //                             .textTheme
+        //                             .titleLarge!
+        //                             .copyWith(fontWeight: FontWeight.bold)),
+        //                   )
+        //                 : SizedBox.shrink();
+        //           },
+        //           body: widget.layoutWidget,
+        //           isExpanded: isExpanded,
+        //         )
+        //       ]);
+    // Column(children:[_title(context), if(isExpanded) widget.layoutWidget]),
+    // ExpansionPanelList.radio(
+    //     elevation: 1,
+    //     expandedHeaderPadding: EdgeInsets.all(0),
+    //     expansionCallback: (int index, bool isExpanded2) {
+    //       setState(() {
+    //         isExpanded = isExpanded2;
+    //       });
+    //     },
+    //     children: [
+    //       ExpansionPanel(
+    //         headerBuilder: (BuildContext context, bool isExpanded) {
+    //           return const Text("item.headerValue");
+    //         },
+    //         body: widget.layoutWidget,
+    //         isExpanded: isExpanded,
+    //       )
+    //     ]);
   }
 
   Padding _title(BuildContext context) {

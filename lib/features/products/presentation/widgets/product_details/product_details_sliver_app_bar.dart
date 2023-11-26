@@ -126,7 +126,8 @@ class _ImageCarousel extends StatelessWidget {
     return CarouselSlider(
       items: images,
       options: CarouselOptions(
-        autoPlay: true,
+        autoPlay: images.length > 1 ? true : false,
+        enableInfiniteScroll: images.length > 1 ? true : false,
         viewportFraction: 1,
         height: double.infinity,
         onPageChanged: (page, _) =>

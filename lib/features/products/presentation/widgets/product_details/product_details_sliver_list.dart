@@ -19,7 +19,7 @@ class ProductDetailsSliverList extends StatelessWidget {
     return SliverList(
         delegate: SliverChildListDelegate([
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.fromLTRB(20.0, 4, 20.0, 0.0),
         child: Container(
           color: Colors.white,
           child: Column(
