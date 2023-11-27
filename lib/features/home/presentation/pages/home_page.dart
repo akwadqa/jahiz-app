@@ -100,7 +100,7 @@ class _SearchTextFormField extends StatelessWidget
                   flex: 3,
                   child: Text(
                     S.of(context).searchHint,
-                    style: const TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 16),
                   )),
               IconButton(onPressed: () {}, icon: Assets.images.search.svg()),
             ],
