@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
+        centerTitle: true,
         title: SizedBox(
             height: 40,
             child: BlocBuilder<AppSettingsCubit, AppSettings?>(
