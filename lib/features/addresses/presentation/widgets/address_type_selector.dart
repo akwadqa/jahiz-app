@@ -108,6 +108,7 @@ class _AvatarItem extends StatelessWidget {
     return Column(
       children: [
         ChoiceChip(
+          shadowColor: const Color(0xFF9C9C9C),
           showCheckmark: false,
           backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
           label: icon,

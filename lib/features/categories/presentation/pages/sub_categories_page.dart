@@ -54,7 +54,8 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
                                   .category
                                   .subCategories!
                                   .map((e) => ChoiceChip(
-                                    showCheckmark: false,
+                                        showCheckmark: false,
+                                        shadowColor: const Color(0xFF9C9C9C),
                                         label: Text(
                                             e.websiteTitle ?? 'smartphone'),
                                         elevation: 2,
