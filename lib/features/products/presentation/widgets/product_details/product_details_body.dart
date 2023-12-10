@@ -69,6 +69,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 hasWebLongDescription ||
                 hasProductSpecifications)
               SliverFillRemaining(
+                  hasScrollBody: false,
                   child: ProductDetailsTabs(
                       detailedProduct: (widget.detailedProductState
                               as DetailedProductLoadSuccess)

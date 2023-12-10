@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/products/presentation/bloc/product_details_tab_bar_index/product_details_tab_bar_index_cubit.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../domain/entities/detailed_product.dart';
 import '../../../domain/entities/product_specification.dart';
@@ -44,6 +45,13 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
         (_hasProductSpecifications ? 1 : 0) +
         (_hasProductOptions ? 1 : 0);
     _tabController = TabController(length: tabBarLength, vsync: this);
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {
+        context
+            .read<ProductDetailsTabBarIndexCubit>()
+            .changeIndex(_tabController.index);
+      }
+    });
     super.initState();
   }
 
@@ -80,21 +88,41 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
             ],
           ),
           Expanded(
-              child: TabBarView(controller: _tabController, children: [
-            if (_hasProductOptions)
-              _OptionsTabView(
-                  productOptions: widget.detailedProduct.productOptions),
-            if (_hasWebLongDescription)
-              _DescriptionTabView(
-                  description: widget.detailedProduct.webLongDescription ?? ''),
-            if (_hasProductSpecifications)
-              _SpecificationsTabView(
-                  productSpecifications:
-                      widget.detailedProduct.productSpecifications)
-          ]))
+            child: BlocBuilder<ProductDetailsTabBarIndexCubit, int>(
+              builder: (context, tabIndex) {
+                // Determine the available tabs based on conditions
+                List<Widget> tabs = [];
+                if (_hasProductOptions) {
+                  tabs.add(_OptionsTabView(
+                      productOptions: widget.detailedProduct.productOptions));
+                }
+                if (_hasWebLongDescription) {
+                  tabs.add(_DescriptionTabView(
+                      description:
+                          widget.detailedProduct.webLongDescription ?? ''));
+                }
+                if (_hasProductSpecifications) {
+                  tabs.add(_SpecificationsTabView(
+                      productSpecifications:
+                          widget.detailedProduct.productSpecifications));
+                }
+
+                // Return the corresponding widget or a default widget if out of range
+                return tabIndex < tabs.length
+                    ? tabs[tabIndex]
+                    : const SizedBox.shrink();
+              },
+            ),
+          )
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 }
 
@@ -117,81 +145,81 @@ class _OptionsTabView extends StatelessWidget {
     const InputBorder outlineInputBorder = OutlineInputBorder(
       borderSide: BorderSide(color: AppColors.mediumLightGray),
     );
-    return ListView.separated(
-        physics: const NeverScrollableScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-        itemBuilder: (context, index) {
-          {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(productOptions[index].optionName,
-                    style: const TextStyle(
-                        fontSize: 18.0, fontWeight: FontWeight.w500)),
-                const SizedBox(height: 5),
-                if (productOptions[index].optionType ==
-                        OptionType.textInput.name ||
-                    productOptions[index].optionType ==
-                        OptionType.textArea.name ||
-                    productOptions[index].optionType ==
-                        OptionType.numberInput.name)
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: productOptions[index].hint,
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      border: outlineInputBorder,
-                      enabledBorder: outlineInputBorder,
-                      focusedBorder: outlineInputBorder,
-                    ),
-                    maxLines: productOptions[index].optionType ==
-                            OptionType.textArea.name
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      child: Column(
+          children: List.generate(
+        productOptions.length,
+        (index) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(productOptions[index].optionName,
+                style: const TextStyle(
+                    fontSize: 18.0, fontWeight: FontWeight.w500)),
+            const SizedBox(height: 5),
+            if (productOptions[index].optionType == OptionType.textInput.name ||
+                productOptions[index].optionType == OptionType.textArea.name ||
+                productOptions[index].optionType == OptionType.numberInput.name)
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: productOptions[index].hint,
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  border: outlineInputBorder,
+                  enabledBorder: outlineInputBorder,
+                  focusedBorder: outlineInputBorder,
+                ),
+                maxLines:
+                    productOptions[index].optionType == OptionType.textArea.name
                         ? 3
                         : null,
-                    keyboardType: productOptions[index].optionType ==
-                            OptionType.numberInput.name
-                        ? TextInputType.number
-                        : null,
-                    onChanged: productOptions[index].optionType ==
-                                OptionType.numberInput.name &&
-                            productOptions[index].isPriceModifier == 1
-                        ? (value) {
-                            if (value.isNotEmpty) {
-                              context
-                                  .read<PriceModifierCubit>()
-                                  .setAmount(double.parse(value));
-                            }
-                          }
-                        : null,
-                    validator: productOptions[index].isMandatory == 1
-                        ? context
-                            .read<AddDetailedProductToCartCubit>()
-                            .validator(context)
-                        : null,
-                    onSaved: (value) => context
+                keyboardType: productOptions[index].optionType ==
+                        OptionType.numberInput.name
+                    ? TextInputType.number
+                    : null,
+                onChanged: productOptions[index].optionType ==
+                            OptionType.numberInput.name &&
+                        productOptions[index].isPriceModifier == 1
+                    ? (value) {
+                        if (value.isNotEmpty) {
+                          context
+                              .read<PriceModifierCubit>()
+                              .setAmount(double.parse(value));
+                        }
+                      }
+                    : null,
+                validator: productOptions[index].isMandatory == 1
+                    ? context
                         .read<AddDetailedProductToCartCubit>()
-                        .onSaved(productOptions[index], value!),
-                  ),
-                if (productOptions[index].optionType ==
-                    OptionType.radioGroup.name)
-                  ItemsSelectorFormField(
-                    items: productOptions[index].radioGroupOption,
-                    validator: (value) => productOptions[index].isMandatory == 1
-                        ? context
-                            .read<AddDetailedProductToCartCubit>()
-                            .selectorValidator(value, context)
-                        : null,
-                    onSaved: (value) => value != null
-                        ? context
-                            .read<AddDetailedProductToCartCubit>()
-                            .onSaved(productOptions[index], value)
-                        : null,
-                  )
-              ],
-            );
-          }
-        },
-        separatorBuilder: (context, index) => const SizedBox(height: 20.0),
-        itemCount: productOptions.length);
+                        .validator(context)
+                    : null,
+                onSaved: (value) => context
+                    .read<AddDetailedProductToCartCubit>()
+                    .onSaved(productOptions[index], value!),
+              ),
+            if (productOptions[index].optionType == OptionType.radioGroup.name)
+              ItemsSelectorFormField(
+                items: productOptions[index].radioGroupOption,
+                validator: (value) => productOptions[index].isMandatory == 1
+                    ? context
+                        .read<AddDetailedProductToCartCubit>()
+                        .selectorValidator(value, context)
+                    : null,
+                onSaved: (value) => value != null
+                    ? context
+                        .read<AddDetailedProductToCartCubit>()
+                        .onSaved(productOptions[index], value)
+                    : null,
+              ),
+            if (index != productOptions.length - 1)
+              const SizedBox(
+                height: 20,
+              )
+            else
+              const SizedBox(height: 70)
+          ],
+        ),
+      )),
+    );
   }
 }
 
@@ -205,7 +233,10 @@ class _DescriptionTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-      child: Text(description, style: const TextStyle(fontSize: 18)),
+      child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: SingleChildScrollView(
+              child: Text(description, style: const TextStyle(fontSize: 18)))),
     );
   }
 }

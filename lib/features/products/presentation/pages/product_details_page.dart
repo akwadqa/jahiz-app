@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
+import 'package:jahiz/features/products/presentation/bloc/product_details_tab_bar_index/product_details_tab_bar_index_cubit.dart';
 import '../../../../core/blocs/slider_indicator_cubit.dart';
 import '../bloc/detailed_product/detailed_product_cubit.dart';
 import '../widgets/product_details/product_details_body.dart';
@@ -68,6 +69,7 @@ class ProductDetailsPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(providers: [
+      BlocProvider(create: (_) => getIt<ProductDetailsTabBarIndexCubit>()),
       BlocProvider(create: (_) => getIt<SliderIndicatorCubit>()),
       BlocProvider(
           create: (_) => getIt<DetailedProductCubit>()

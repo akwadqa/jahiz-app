@@ -4,6 +4,7 @@ import 'package:jahiz/features/cities/data/repositories/cities_repository_impl.d
 import 'package:jahiz/features/cities/domain/repositories/cities_repository.dart';
 import 'package:jahiz/features/cities/presentation/blocs/get_cities_cubit.dart';
 import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
+import 'package:jahiz/features/products/presentation/bloc/product_details_tab_bar_index/product_details_tab_bar_index_cubit.dart';
 import 'features/cart/application/cart_count_cubit.dart';
 import 'features/cart/application/cart_service.dart';
 import 'features/checkout/data/datasources/checkout_remote_data_source.dart';
@@ -123,6 +124,7 @@ Future<void> init() async {
   getIt.registerFactory(() => PriceModifierCubit());
   getIt.registerFactory(() => AddDetailedProductToCartCubit());
   getIt.registerFactory(() => AddToCartCubit());
+  getIt.registerFactory(() => ProductDetailsTabBarIndexCubit());
 
   //UseCases
   getIt.registerLazySingleton(() => GetDetailedProductUseCase(getIt()));
