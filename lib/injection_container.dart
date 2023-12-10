@@ -142,8 +142,8 @@ Future<void> init() async {
 
   //Bloc
   getIt.registerFactory(() => CheckUserValidationCubit(getIt()));
-  getIt.registerFactory(() => RegisterCubit(getIt(), getIt(), getIt()));
-  getIt.registerFactory(() => LoginCubit(getIt(), getIt(), getIt()));
+  getIt.registerFactory(() => RegisterCubit(getIt(), getIt()));
+  getIt.registerFactory(() => LoginCubit(getIt(), getIt()));
 
   //UseCases
   getIt.registerLazySingleton(() => CheckUserValidationUseCase(getIt()));
@@ -339,4 +339,10 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => sharedPreferences);
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   getIt.registerLazySingleton(() => packageInfo);
+}
+
+void resetApp() async {
+  await getIt.reset();
+  await init();
+  await getIt<NotificationsService>().init();
 }

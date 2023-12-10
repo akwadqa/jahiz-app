@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '../../../domain/usecases/login.dart';
-import '../../../application/auth_cubit.dart';
 import '../../../../notifications/application/notifications_service.dart';
 
 import '../../../../../core/app_constants.dart';
@@ -11,11 +10,10 @@ import '../../../../../core/shared_functions.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this._loginUseCase, this._authCubit, this._notificationsService)
+  LoginCubit(this._loginUseCase, this._notificationsService)
       : super(LoginInitial());
 
   final LoginUseCase _loginUseCase;
-  final AuthCubit _authCubit;
   final NotificationsService _notificationsService;
 
   final _formKey = GlobalKey<FormState>();
@@ -37,10 +35,8 @@ class LoginCubit extends Cubit<LoginState> {
       failureOrAuthResponse
           .fold((failure) => emit(LoginLoadFailure(failure.message)),
               (authResponse) async {
-        await _authCubit.setAuthenticated(authResponse.data.token);
-        await _notificationsService
-            .setDeviceToken();
-        emit(LoginLoadSuccess(authResponse.message));
+        await _notificationsService.setDeviceToken();
+        emit(LoginLoadSuccess(authResponse.data.token));
       });
     }
   }

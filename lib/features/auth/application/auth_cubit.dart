@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../core/app_constants.dart';
-import '../../app_settings/presentation/bloc/app_settings_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../injection_container.dart';
@@ -27,12 +26,12 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> setAuthenticated(String token) async {
     await _sharedPreferences.setString(AppConstants.tokenKey, token);
     emit(Authenticated(token));
-    await getIt<AppSettingsCubit>().getAppSettings();
+    resetApp();
   }
 
   Future<void> setUnauthenticated() async {
     await _sharedPreferences.remove(AppConstants.tokenKey);
     emit(Unauthenticated());
-    await getIt<AppSettingsCubit>().getAppSettings();
+    resetApp();
   }
 }

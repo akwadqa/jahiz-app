@@ -70,7 +70,8 @@ class ProductItem extends StatelessWidget {
       child: Column(
         children: [
           _productImage(),
-          _productDetails(context, isSmallestPremiumItem),
+          _productDetails(
+              context, isSmallestPremiumItem, viewType == ViewType.grid),
           if (viewType == ViewType.grid) _gridActionButton(context),
         ],
       ),
@@ -92,9 +93,11 @@ class ProductItem extends StatelessWidget {
 
   String get _heroTag => '${product.productId}${viewType.name}}';
 
-  Widget _productDetails(BuildContext context, bool isSmallestPremiumItem) {
+  Widget _productDetails(
+      BuildContext context, bool isSmallestPremiumItem, bool isGrid) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.only(
+          top: 8.0, left: 8.0, right: 8.0, bottom: isGrid ? 0.0 : 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -137,18 +140,29 @@ class ProductItem extends StatelessWidget {
   }
 
   Widget _productTitle(BuildContext context, bool isSmallestPremiumItem) {
-    return Wrap(
-      children: [
-        Text(product.productTitle,
+    return RichText(
+      text: TextSpan(
+        style: const TextStyle(
+            fontFamily: FontFamily.qatar, color: Colors.black, fontSize: 13),
+        children: [
+          TextSpan(
+            text: product.productTitle,
             style: TextStyle(
-                fontSize: isSmallestPremiumItem ? 13 : 16,
-                fontWeight: FontWeight.w500,
-                color: AppColors.midnight)),
-        if (!isSmallestPremiumItem) ...[
-          const SizedBox(width: 5),
-          Text("- ${product.stockUom}")
+              fontSize: isSmallestPremiumItem ? 13 : 15,
+              fontWeight: FontWeight.w500,
+              color: AppColors.midnight,
+            ),
+          ),
+          if (!isSmallestPremiumItem) ...[
+            const TextSpan(text: ' - '),
+            TextSpan(
+              text: product.stockUom,
+            ),
+          ],
         ],
-      ],
+      ),
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
     );
   }
 

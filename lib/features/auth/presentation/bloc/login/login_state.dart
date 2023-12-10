@@ -15,11 +15,11 @@ class LoginLoadInProgress extends LoginState {
 }
 
 class LoginLoadSuccess extends LoginState {
-  final String message;
+  final String token;
 
-  const LoginLoadSuccess(this.message);
+  const LoginLoadSuccess(this.token);
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [token];
 }
 
 class LoginLoadFailure extends LoginState {

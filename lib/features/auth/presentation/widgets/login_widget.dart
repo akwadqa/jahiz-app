@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/auth/application/auth_cubit.dart';
 import 'package:jahiz/features/auth/presentation/widgets/login_text_form_field_widget.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../bloc/login/login_cubit.dart';
@@ -49,11 +49,7 @@ class LoginWidget extends StatelessWidget {
       ),
       stackedSubmitButton: BlocConsumer<LoginCubit, LoginState>(
           listenWhen: (_, state) => state is LoginLoadSuccess,
-          listener: (ctx, state) {
-            context.popRoute();
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text((state as LoginLoadSuccess).message)));
-          },
+          listener: (ctx, state) => context.read<AuthCubit>().setAuthenticated((state as LoginLoadSuccess).token),
           builder: (context, state) {
             if (state is LoginLoadInProgress) {
               return const Center(child: CircularProgressIndicator.adaptive());
