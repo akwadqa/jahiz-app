@@ -41,8 +41,6 @@ class CartCubit extends Cubit<CartState> {
   void checkout(Cart cart, BuildContext context) async {
     if (_authCubit.state is Authenticated) {
       if (cart.shippingAddressDetails.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(S.of(context).addShippingAddress)));
         showLocationSelectorBottomSheet(context).then((address) {
           if (address != null) {
             getIt<CartService>().updateCartAddress(address);

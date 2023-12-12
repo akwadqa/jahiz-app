@@ -106,14 +106,14 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
                       productSpecifications:
                           widget.detailedProduct.productSpecifications));
                 }
-
                 // Return the corresponding widget or a default widget if out of range
                 return tabIndex < tabs.length
                     ? tabs[tabIndex]
                     : const SizedBox.shrink();
               },
             ),
-          )
+          ),
+          const SizedBox(height: 80)
         ],
       ),
     );
@@ -122,6 +122,7 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
   @override
   void dispose() {
     _tabController.dispose();
+    _tabController.removeListener(() {});
     super.dispose();
   }
 }

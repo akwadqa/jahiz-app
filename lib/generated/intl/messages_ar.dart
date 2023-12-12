@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "badCertificate":
             MessageLookupByLibrary.simpleMessage("خطأ في الشهادة"),
         "badRequest": MessageLookupByLibrary.simpleMessage("خطأ في البيانات"),
+        "buildingNumber": MessageLookupByLibrary.simpleMessage("رقم المبنى"),
         "cart": MessageLookupByLibrary.simpleMessage("السلة"),
         "categories": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "change": MessageLookupByLibrary.simpleMessage("تغيير"),
@@ -98,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "loginDescription": MessageLookupByLibrary.simpleMessage(
             "لقد وجدنا حسابًا موجودًا يرتبط برقم هاتفك المحمول. أدخل كلمة المرور الخاصة بك لتسجيل الدخول"),
+        "loginOrRegister":
+            MessageLookupByLibrary.simpleMessage("الدخول أو التسجيل"),
         "mustBeEightDigits":
             MessageLookupByLibrary.simpleMessage("يجب أن يتكون من 8 أرقام"),
         "mustBeEightDigitsAtLeast": MessageLookupByLibrary.simpleMessage(
@@ -116,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "office": MessageLookupByLibrary.simpleMessage("مكتب"),
+        "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
         "options": MessageLookupByLibrary.simpleMessage("الخيارات"),
         "orderAndPaymentPlaced": MessageLookupByLibrary.simpleMessage(
             "تم استلام الدفع وتم إجراء طلبك بنجاح."),
@@ -167,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signupLoginDescription": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال رقم هاتفك للتسجيل أو تسجيل الدخول إلى حسابك الحالي"),
         "specifications": MessageLookupByLibrary.simpleMessage("المواصفات"),
+        "streetNumber": MessageLookupByLibrary.simpleMessage("رقم الشارع"),
         "subTotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
         "termsAndConditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),

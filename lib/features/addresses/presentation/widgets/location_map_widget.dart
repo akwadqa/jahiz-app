@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../../core/shared_functions.dart';
 import '../../../../generated/l10n.dart';
@@ -48,6 +49,7 @@ class _MapWidgetState extends State<_MapWidget> {
   @override
   void initState() {
     _currentPosition = const LatLng(25.286106, 51.534817);
+    _goToCurrentLocation();
     widget.onLocationSelected(_currentPosition);
     super.initState();
   }
@@ -59,7 +61,7 @@ class _MapWidgetState extends State<_MapWidget> {
         GoogleMap(
           initialCameraPosition: CameraPosition(
             target: _currentPosition,
-            zoom: 14.0,
+            zoom: 18.0,
           ),
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
@@ -75,5 +77,52 @@ class _MapWidgetState extends State<_MapWidget> {
         )
       ],
     );
+  }
+
+  void _goToCurrentLocation() async {
+    final LatLng? myLocation = await _getMyLocation();
+    if (myLocation != null) {
+      GoogleMapController controller = await _controller.future;
+      controller.animateCamera(
+        CameraUpdate.newLatLngZoom(
+          myLocation,
+          18,
+        ),
+      );
+      _currentPosition = myLocation;
+    }
+  }
+
+  Future<LatLng?> _getMyLocation() async {
+    final location = await _determinePosition();
+    return LatLng(location.latitude, location.longitude);
+  }
+
+  Future<Position> _determinePosition() async {
+    await _requestLocationPermission();
+    return await Geolocator.getCurrentPosition();
+  }
+
+  Future<void> _requestLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
   }
 }

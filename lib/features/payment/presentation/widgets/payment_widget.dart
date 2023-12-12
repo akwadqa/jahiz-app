@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jahiz/core/gen/fonts.gen.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../../application/payment_service.dart';
 import '../../../../generated/l10n.dart';
@@ -42,24 +43,36 @@ class _PaymentWidgetState extends State<PaymentWidget> {
     super.initState();
   }
 
+  MFCardViewStyle _cardViewStyle() {
+    MFCardViewStyle cardViewStyle = MFCardViewStyle();
+    cardViewStyle.input?.inputMargin = 5;
+    cardViewStyle.input?.fontFamily = FontFamily.qatar;
+    cardViewStyle.input?.borderRadius = 5;
+    cardViewStyle.input?.borderWidth = 1;
+    cardViewStyle.input?.borderColor = Theme.of(context).primaryColor.value;
+    cardViewStyle.input?.inputHeight =
+        Theme.of(context).inputDecorationTheme.constraints?.maxHeight;
+    cardViewStyle.input?.color = Theme.of(context).primaryColor.value;
+    return cardViewStyle;
+  }
+
   @override
   Widget build(BuildContext context) {
-    _paymentCardView = MFCardPaymentView();
-    return AppBottomSheetSkeleton(
-        title: S.of(context).paymentMethod,
-        content: _paymentCardView,
-        submitButton: ElevatedButton(
-          onPressed: () {
-            _paymentService.payWithCard(
-                paymentCardView: _paymentCardView,
-                onSuccess: () {
-                  context.popRoute(true);
-                },
-                onFail: () {
-                  context.popRoute(false);
-                });
-          },
-          child: Text(S.of(context).confirm),
-        ));
+    _paymentCardView = MFCardPaymentView(cardViewStyle: _cardViewStyle());
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * 0.9,
+      child: AppBottomSheetSkeleton(
+          title: S.of(context).paymentMethod,
+          content: _paymentCardView,
+          submitButton: ElevatedButton(
+            onPressed: () {
+              _paymentService.payWithCard(
+                  paymentCardView: _paymentCardView,
+                  onSuccess: () => context.popRoute(true),
+                  onFail: () => context.popRoute(false));
+            },
+            child: Text(S.of(context).confirm),
+          )),
+    );
   }
 }

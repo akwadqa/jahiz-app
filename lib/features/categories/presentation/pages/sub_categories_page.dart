@@ -159,40 +159,43 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
           if (state == 0) {
             return const SizedBox.shrink();
           }
-          return Container(
-            margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                color: AppColors.green,
-                boxShadow: [
-                  BoxShadow(
-                      offset: const Offset(0, 4),
-                      blurRadius: 6,
-                      color: Colors.black.withOpacity(0.16))
-                ]),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Assets.images.cartIcon.svg(color: Colors.white),
-                    const SizedBox(width: 5),
-                    Text(S.of(context).youHaveItemsInYourCart,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(color: Colors.white, fontSize: 15))
-                  ],
-                ),
-                TextButton(
-                    onPressed: () => context.popRoute(true),
-                    child: Text(S.of(context).viewCart,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(color: Colors.white, fontSize: 15)))
-              ],
+          return GestureDetector(
+            onTap: () => context.popRoute(true),
+            child: Container(
+              margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5.0),
+                  color: AppColors.green,
+                  boxShadow: [
+                    BoxShadow(
+                        offset: const Offset(0, 4),
+                        blurRadius: 6,
+                        color: Colors.black.withOpacity(0.16))
+                  ]),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Assets.images.cartIcon.svg(color: Colors.white),
+                      const SizedBox(width: 5),
+                      Text(S.of(context).youHaveItemsInYourCart,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: Colors.white, fontSize: 13))
+                    ],
+                  ),
+                  TextButton(
+                      onPressed: () => context.popRoute(true),
+                      child: Text(S.of(context).viewCart,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: Colors.white, fontSize: 13)))
+                ],
+              ),
             ),
           );
         },

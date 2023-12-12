@@ -1229,6 +1229,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Login or Register`
+  String get loginOrRegister {
+    return Intl.message(
+      'Login or Register',
+      name: 'loginOrRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

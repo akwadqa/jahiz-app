@@ -129,7 +129,7 @@ class ProfilePage extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         fontFamily: FontFamily.qatar),
                   ),
-                  child: Text(S.of(context).login));
+                  child: Text(S.of(context).loginOrRegister));
             })),
       )
     ]);

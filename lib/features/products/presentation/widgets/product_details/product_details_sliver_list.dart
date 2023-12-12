@@ -26,7 +26,7 @@ class ProductDetailsSliverList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(detailedProduct.websiteItemName, style: _titleTextStyle()),
-              Text(detailedProduct.stockUom,
+              Text('- ${detailedProduct.stockUom}',
                   style: const TextStyle(color: AppColors.midnight)),
               const SizedBox(height: 8),
               Row(
@@ -56,14 +56,14 @@ class ProductDetailsSliverList extends StatelessWidget {
             ChangeQuantityButton(
                 onPressed: context.read<PriceModifierCubit>().decrementQuantity,
                 icon: Icons.remove),
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             BlocBuilder<PriceModifierCubit, PriceModifier>(
                 builder: (context, state) {
               return Text(state.quantity.toString(),
                   style:
                       _titleTextStyle(color: Theme.of(context).primaryColor));
             }),
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             ChangeQuantityButton(
                 onPressed: context.read<PriceModifierCubit>().incrementQuantity,
                 icon: Icons.add),
@@ -75,6 +75,6 @@ class ProductDetailsSliverList extends StatelessWidget {
   }
 
   TextStyle _titleTextStyle(
-          {double fontSize = 25, Color color = AppColors.midnight}) =>
+          {double fontSize = 23, Color color = AppColors.midnight}) =>
       TextStyle(color: color, fontSize: fontSize, fontWeight: FontWeight.bold);
 }

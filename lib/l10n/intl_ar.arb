@@ -39,8 +39,8 @@
     "apartment": "شقة",
     "addressDetails": "تفاصيل العنوان",
     "area": "المنطقة",
-    "buildingNameOrNumber": "اسم المبنى أو رقمه",
-    "streetNameOrNumber": "اسم الشارع أو رقمه",
+    "buildingNumber": "رقم المبنى",
+    "streetNumber": "رقم الشارع",
     "city": "المدينة",
     "selectYourCity": "اختر مدينتك",
     "defaultShippingAddress": "عنوان الشحن الافتراضي",
@@ -116,5 +116,7 @@
     "shouldBeNumber": "يجب أن يكون رقماً",
     "favorite": "المفضلة",
     "notifications": "الإشعارات",
-    "noNotifications": "لا يوجد إشعارات"
+    "noNotifications": "لا يوجد إشعارات",
+    "loginOrRegister": "الدخول أو التسجيل",
+    "ok" : "حسناً"
 }
