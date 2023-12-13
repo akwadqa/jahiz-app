@@ -144,9 +144,8 @@ class _DotsIndicatorWidget extends StatelessWidget {
       child: BlocBuilder<SliderIndicatorCubit, int>(
         builder: (context, state) {
           return Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).size.height *
-                  _bottomPaddingMultiplier(context),
+            padding: const EdgeInsets.only(
+              bottom: 100,
             ),
             child: DotsIndicator(
               dotsCount: images.length,
@@ -156,10 +155,6 @@ class _DotsIndicatorWidget extends StatelessWidget {
         },
       ),
     );
-  }
-
-  double _bottomPaddingMultiplier(BuildContext context) {
-    return SharedFunctions.hasNotch(context) ? 0.04 : 0.05;
   }
 }
 
