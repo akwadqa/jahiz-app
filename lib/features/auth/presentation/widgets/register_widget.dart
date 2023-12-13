@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/auth/application/auth_cubit.dart';
 import '../../../../core/app_constants.dart';
 import '../bloc/register/register_cubit.dart';
 import '../../../../generated/l10n.dart';
@@ -91,11 +91,7 @@ class RegisterWidget extends StatelessWidget {
       ),
       submitButton: BlocConsumer<RegisterCubit, RegisterState>(
           listenWhen: (_, state) => state is RegisterLoadSuccess,
-          listener: (ctx, state) {
-            context.popRoute();
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text((state as RegisterLoadSuccess).message)));
-          },
+          listener: (ctx, state) => context.read<AuthCubit>().setAuthenticated((state as RegisterLoadSuccess).token),
           builder: (context, state) {
             if (state is RegisterLoadInProgress) {
               return const Center(child: CircularProgressIndicator.adaptive());

@@ -18,8 +18,6 @@ class AddressesList extends StatelessWidget {
       if (state is GetAddressesLoaded) {
         return Column(
           children: [
-            const _AddAddressButton(),
-            const SizedBox(height: 13),
             Expanded(
                 child: SingleChildScrollView(
               child: Column(
@@ -36,6 +34,9 @@ class AddressesList extends StatelessWidget {
                                   address: address, isEditiable: true)))
                       .toList()),
             )),
+            const SizedBox(height: 13),
+            const _AddAddressButton(),
+            const SizedBox(height: 10),
           ],
         );
       }

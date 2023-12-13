@@ -15,11 +15,11 @@ class RegisterLoadInProgress extends RegisterState {
 }
 
 class RegisterLoadSuccess extends RegisterState {
-  final String message;
+  final String token;
 
-  const RegisterLoadSuccess(this.message);
+  const RegisterLoadSuccess(this.token);
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [token];
 }
 
 class RegisterLoadFailure extends RegisterState {

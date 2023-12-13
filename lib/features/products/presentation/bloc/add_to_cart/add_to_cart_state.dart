@@ -10,8 +10,11 @@ class AddToCartInitial extends AddToCartState {
 }
 
 class AddToCartLoading extends AddToCartState {
+  final String productId;
+
+  const AddToCartLoading(this.productId);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [productId];
 }
 
 class AddToCartLoaded extends AddToCartState {

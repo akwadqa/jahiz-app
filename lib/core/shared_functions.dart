@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jahiz/core/router/app_router.dart';
 import 'app_constants.dart';
 import 'widgets/app_bottom_sheet.dart';
 import '../features/addresses/domain/entities/address.dart';
@@ -63,5 +65,13 @@ abstract class SharedFunctions {
   static bool hasNotch(BuildContext context) {
     final double topPadding = MediaQuery.of(context).padding.top;
     return topPadding > 30.0;
+  }
+
+  static void openSubCategoriesRoute(BuildContext context, String categoryId) {
+    context.pushRoute(SubCategoriesRoute(categoryId: categoryId)).then((value) {
+      if (value == true) {
+        context.tabsRouter.setActiveIndex(2);
+      }
+    });
   }
 }

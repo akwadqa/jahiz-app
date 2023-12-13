@@ -57,10 +57,10 @@ class OrderContanier extends StatelessWidget {
           children: [
             Text(S.of(context).totalPrice,
                 style: const TextStyle(
-                    fontSize: 18.0, fontWeight: FontWeight.bold)),
+                    fontSize: 16.0, fontWeight: FontWeight.bold)),
             Text('${grandTotal.toStringAsFixed(2)} ${S.of(context).qar}',
                 style: const TextStyle(
-                    fontSize: 18.0, fontWeight: FontWeight.bold)),
+                    fontSize: 16.0, fontWeight: FontWeight.bold)),
           ],
         ),
       ]),

@@ -98,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginDescription": MessageLookupByLibrary.simpleMessage(
             "We have found an existing account that is associated with your mobile number. Enter your Password to log in"),
+        "loginOrRegister":
+            MessageLookupByLibrary.simpleMessage("Login or Register"),
         "mustBeEightDigits":
             MessageLookupByLibrary.simpleMessage("Must be 8 digits"),
         "mustBeEightDigitsAtLeast":
@@ -116,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "office": MessageLookupByLibrary.simpleMessage("Office"),
+        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "options": MessageLookupByLibrary.simpleMessage("Options"),
         "orderAndPaymentPlaced": MessageLookupByLibrary.simpleMessage(
             "The payment is received and your order has got placed successfully."),

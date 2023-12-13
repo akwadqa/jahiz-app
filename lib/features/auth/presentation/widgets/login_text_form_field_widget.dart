@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:jahiz/core/shared_functions.dart';
 
 class LoginTextFormField extends StatelessWidget {
   final String? initialValue;
@@ -27,6 +29,10 @@ class LoginTextFormField extends StatelessWidget {
       readOnly: readOnly,
       textInputAction: TextInputAction.done,
       textAlign: TextAlign.center,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        ArabicNumberInputFormatter(),
+      ],
       keyboardType:
           const TextInputType.numberWithOptions(signed: true, decimal: true),
       validator: validator,

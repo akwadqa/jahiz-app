@@ -8,17 +8,14 @@ import '../../../../../generated/l10n.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 import '../../../../../core/app_constants.dart';
-import '../../../application/auth_cubit.dart';
 
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  RegisterCubit(
-      this._registerUseCase, this._authCubit, this._notificationsService)
+  RegisterCubit(this._registerUseCase, this._notificationsService)
       : super(RegisterInitial());
 
   final RegisterUseCase _registerUseCase;
-  final AuthCubit _authCubit;
   final NotificationsService _notificationsService;
 
   final _formKey = GlobalKey<FormState>();
@@ -67,10 +64,8 @@ class RegisterCubit extends Cubit<RegisterState> {
       failureOrAuthResponse
           .fold((failure) => emit(RegisterLoadFailure(failure.message)),
               (authResponse) async {
-        await _authCubit.setAuthenticated(authResponse.data.token);
-        await _notificationsService
-            .setDeviceToken();
-        emit(RegisterLoadSuccess(authResponse.message));
+        await _notificationsService.setDeviceToken();
+        emit(RegisterLoadSuccess(authResponse.data.token));
       });
     }
   }

@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:jahiz/features/cities/data/datasources/cities_remote_data_source.dart';
 import 'package:jahiz/features/cities/data/repositories/cities_repository_impl.dart';
 import 'package:jahiz/features/cities/domain/repositories/cities_repository.dart';
 import 'package:jahiz/features/cities/presentation/blocs/get_cities_cubit.dart';
 import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
+import 'package:jahiz/features/products/presentation/bloc/product_details_tab_bar_index/product_details_tab_bar_index_cubit.dart';
 import 'features/cart/application/cart_count_cubit.dart';
 import 'features/cart/application/cart_service.dart';
 import 'features/checkout/data/datasources/checkout_remote_data_source.dart';
@@ -123,6 +125,7 @@ Future<void> init() async {
   getIt.registerFactory(() => PriceModifierCubit());
   getIt.registerFactory(() => AddDetailedProductToCartCubit());
   getIt.registerFactory(() => AddToCartCubit());
+  getIt.registerFactory(() => ProductDetailsTabBarIndexCubit());
 
   //UseCases
   getIt.registerLazySingleton(() => GetDetailedProductUseCase(getIt()));
@@ -142,8 +145,8 @@ Future<void> init() async {
 
   //Bloc
   getIt.registerFactory(() => CheckUserValidationCubit(getIt()));
-  getIt.registerFactory(() => RegisterCubit(getIt(), getIt(), getIt()));
-  getIt.registerFactory(() => LoginCubit(getIt(), getIt(), getIt()));
+  getIt.registerFactory(() => RegisterCubit(getIt(), getIt()));
+  getIt.registerFactory(() => LoginCubit(getIt(), getIt()));
 
   //UseCases
   getIt.registerLazySingleton(() => CheckUserValidationUseCase(getIt()));
@@ -339,4 +342,12 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => sharedPreferences);
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   getIt.registerLazySingleton(() => packageInfo);
+  final bool canVibrate = await Vibrate.canVibrate;
+  getIt.registerLazySingleton(() => canVibrate);
+}
+
+void resetApp() async {
+  await getIt.reset();
+  await init();
+  await getIt<NotificationsService>().init();
 }

@@ -116,5 +116,7 @@
     "shouldBeNumber": "Should be number",
     "favorite": "Favorite",
     "notifications": "Notifications",
-    "noNotifications": "No Notifications"
+    "noNotifications": "No Notifications",
+    "loginOrRegister": "Login or Register",
+    "ok" : "Ok"
 }

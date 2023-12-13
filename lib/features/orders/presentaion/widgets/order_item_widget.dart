@@ -21,9 +21,10 @@ class OrderItemWidget extends StatelessWidget {
         const TextSpan(text: 'x')
       ])),
       title: Text(itemName,
-          style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
+          style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
       trailing: Text('${amount.toStringAsFixed(2)} ${S.of(context).qar}',
           style: TextStyle(
+              fontSize: 13.0,
               color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold)),
     );

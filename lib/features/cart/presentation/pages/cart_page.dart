@@ -101,17 +101,10 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(S.of(context).subTotal,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .copyWith(fontWeight: FontWeight.bold)),
+                                Text(S.of(context).subTotal, style: _style()),
                                 Text(
                                     '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .copyWith(fontWeight: FontWeight.bold)),
+                                    style: _style()),
                               ],
                             ),
                           ),
@@ -145,6 +138,10 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
         ),
       ),
     );
+  }
+
+  TextStyle _style() {
+    return const TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
   }
 }
 
@@ -188,7 +185,7 @@ class _CartItem extends StatelessWidget {
                     ]),
                 clipBehavior: Clip.antiAlias,
                 height: 100,
-                width: 100, 
+                width: 100,
                 child: AppCachedNetworkImage(imageUrl: cartItem.image)),
             const SizedBox(width: 12.0),
             Expanded(
@@ -199,7 +196,7 @@ class _CartItem extends StatelessWidget {
                   Text(
                     cartItem.itemName,
                     style: const TextStyle(
-                        fontSize: 18.0, fontWeight: FontWeight.w500),
+                        fontSize: 16.0, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 5.0),
                   Text(

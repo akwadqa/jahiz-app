@@ -48,13 +48,8 @@ class ProductDetailsSliverAppBar extends StatelessWidget {
                   child: AppCachedNetworkImage(
                       imageUrl: product.productImage, fit: BoxFit.cover),
                 )),
-      expandedHeight: _expandedHeight(context),
+      expandedHeight: 400,
     );
-  }
-
-  double _expandedHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height *
-        (SharedFunctions.hasNotch(context) ? 0.44 : 0.45);
   }
 }
 

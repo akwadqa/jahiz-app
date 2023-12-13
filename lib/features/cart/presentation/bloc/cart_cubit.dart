@@ -7,7 +7,6 @@ import '../../../auth/presentation/widgets/sign_up_login_bottom_sheet.dart';
 import '../../../auth/application/auth_cubit.dart';
 import '../../application/cart_service.dart';
 import '../../domain/usecases/get_cart.dart';
-import '../../../../generated/l10n.dart';
 import '../../../../injection_container.dart';
 import '../../../addresses/presentation/widgets/location_selector_widget.dart';
 import '../../domain/entities/cart.dart';
@@ -41,8 +40,6 @@ class CartCubit extends Cubit<CartState> {
   void checkout(Cart cart, BuildContext context) async {
     if (_authCubit.state is Authenticated) {
       if (cart.shippingAddressDetails.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(S.of(context).addShippingAddress)));
         showLocationSelectorBottomSheet(context).then((address) {
           if (address != null) {
             getIt<CartService>().updateCartAddress(address);

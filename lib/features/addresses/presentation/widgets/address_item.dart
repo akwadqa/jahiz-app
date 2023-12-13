@@ -113,7 +113,7 @@ class _AddressDetailsRow extends StatelessWidget {
                     fontSize: 18.0, fontWeight: FontWeight.bold)),
             const SizedBox(height: 4.0),
             Text(
-                '${address.city.cityName}, ${address.akdZoneNumber}, ${address.streetNo},\n${address.buildingNo}',
+                '${address.city.cityName}, ${S.of(context).zoneNumber} ${address.akdZoneNumber}, ${S.of(context).streetNumber} ${address.streetNo}\n${S.of(context).buildingNumber} ${address.buildingNo}',
                 style: const TextStyle(color: AppColors.darkGray)),
             Text('${S.of(context).phone} ${address.phone}'),
           ],

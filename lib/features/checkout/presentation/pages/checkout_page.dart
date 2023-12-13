@@ -40,7 +40,7 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
         title: Text(S.of(context).yourOrder),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 18.0),
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: BlocConsumer<CartCubit, CartState>(
           listener: (context, state) {
             if (state is CartError) {
@@ -55,6 +55,7 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 20.0),
                     Text(S.of(context).shippingTo,
                         style: const TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold)),
@@ -92,6 +93,7 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
                             fontSize: 18.0, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 8.0),
                     _PaymentAndConfirmationSection(cart: cart),
+                    const SizedBox(height: 20.0),
                   ],
                 ),
               );
@@ -265,15 +267,41 @@ class _PaymentAndConfirmationSectionState
             context: context,
             onSaved: (value) => _paymentMethod = value,
             onSelected: (PaymentMethod paymentMethod) {
-              context.read<UpdateCartCubit>().updatePaymentMethod(
-                  widget.cart, paymentMethod.paymentGateway);
+              context
+                  .read<UpdateCartCubit>()
+                  .updatePaymentMethod(
+                      widget.cart, paymentMethod.paymentGateway)
+                  .then((_) {
+                if (paymentMethod.isEmbedded == 1) {
+                  _formKey.currentState!.save();
+                  showPaymentBottomSheet(
+                          context: context,
+                          paymentMethod: _paymentMethod!,
+                          total: widget.cart.grandTotal)
+                      .then((value) {
+                    if (value != null) {
+                      if (value) {
+                        context
+                            .read<PlaceOrderCubit>()
+                            .placeOrder(widget.cart.name, 1);
+                      } else {
+                        _showFailPaymentDialog();
+                      }
+                    }
+                  });
+                }
+              });
             },
           ),
-          const SizedBox(height: 12.0),
+          const SizedBox(height: 20.0),
           BlocListener<PlaceOrderCubit, PlaceOrderState>(
             listener: (context, state) {
               if (state is PlaceOrderLoaded) {
-                _showSuccessPaymentDialog(state.orderId);
+                _showSuccessPaymentDialog(
+                    state.orderId,
+                    _paymentMethod!.isOffline == 1
+                        ? S.of(context).orderPlaced
+                        : null);
               }
             },
             child: Padding(
@@ -287,34 +315,16 @@ class _PaymentAndConfirmationSectionState
                           .read<PlaceOrderCubit>()
                           .placeOrder(widget.cart.name);
                     } else {
-                      if (_paymentMethod!.isEmbedded == 1) {
-                        showPaymentBottomSheet(
-                                context: context,
-                                paymentMethod: _paymentMethod!,
-                                total: widget.cart.grandTotal)
-                            .then((value) {
-                          if (value != null) {
-                            if (value) {
-                              context
-                                  .read<PlaceOrderCubit>()
-                                  .placeOrder(widget.cart.name, 1);
-                            } else {
-                              _showFailPaymentDialog();
-                            }
-                          }
-                        });
-                      } else {
-                        final paymentService = PaymentService(
-                            paymentMethod: _paymentMethod!,
-                            total: widget.cart.grandTotal);
-                        paymentService.initiatePayment(onFail: () {
-                          _showFailPaymentDialog();
-                        }, onSuccess: () {
-                          context
-                              .read<PlaceOrderCubit>()
-                              .placeOrder(widget.cart.name, 1);
-                        });
-                      }
+                      final paymentService = PaymentService(
+                          paymentMethod: _paymentMethod!,
+                          total: widget.cart.grandTotal);
+                      paymentService.initiatePayment(onFail: () {
+                        _showFailPaymentDialog();
+                      }, onSuccess: () {
+                        context
+                            .read<PlaceOrderCubit>()
+                            .placeOrder(widget.cart.name, 1);
+                      });
                     }
                   }
                 },
@@ -327,13 +337,14 @@ class _PaymentAndConfirmationSectionState
     );
   }
 
-  Future<dynamic> _showSuccessPaymentDialog(String salesOrderId) {
+  Future<dynamic> _showSuccessPaymentDialog(String salesOrderId,
+      [String? message]) {
     return AwesomeDialog(
       context: context,
       dialogType: DialogType.success,
       animType: AnimType.scale,
       title: S.of(context).thankYou,
-      desc: S.of(context).orderAndPaymentPlaced,
+      desc: message ?? S.of(context).orderAndPaymentPlaced,
       btnOkOnPress: () {
         getIt<CartService>().clearCart();
         context.router
@@ -361,9 +372,10 @@ class _PaymentAndConfirmationSectionState
       title: S.of(context).paymentIsFailed,
       desc: S.of(context).orderPaymentFailed,
       btnOkOnPress: () {},
-      btnOkText: S.of(context).orderDetails,
+      btnOkText: S.of(context).ok,
       dismissOnBackKeyPress: false,
       dismissOnTouchOutside: false,
+      btnOkColor: Theme.of(context).primaryColor,
     ).show();
   }
 }
