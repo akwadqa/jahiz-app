@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/features/products/presentation/bloc/product_details_tab_bar_index/product_details_tab_bar_index_cubit.dart';
+import 'package:jahiz/features/products/presentation/widgets/product_details/product_details_data.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../domain/entities/detailed_product.dart';
 import '../../../domain/entities/product_specification.dart';
@@ -61,34 +62,37 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
       key: context.read<AddDetailedProductToCartCubit>().formKey,
       child: Column(
         children: [
-          TabBar(
-            controller: _tabController,
-            tabs: [
-              if (_hasProductOptions)
-                Tab(
-                    child: Text(S.of(context).options,
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold))),
-              if (_hasWebLongDescription)
-                Tab(
-                    child: Text(S.of(context).description,
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold))),
-              if (_hasProductSpecifications)
-                Tab(
-                    child: Text(S.of(context).specifications,
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold)))
-            ],
-          ),
-          Expanded(
-            child: BlocBuilder<ProductDetailsTabBarIndexCubit, int>(
+          ProductDetailsData(detailedProduct: widget.detailedProduct),
+          if (_hasProductOptions ||
+              _hasWebLongDescription ||
+              _hasProductSpecifications) ...[
+            TabBar(
+              controller: _tabController,
+              tabs: [
+                if (_hasProductOptions)
+                  Tab(
+                      child: Text(S.of(context).options,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold))),
+                if (_hasWebLongDescription)
+                  Tab(
+                      child: Text(S.of(context).description,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold))),
+                if (_hasProductSpecifications)
+                  Tab(
+                      child: Text(S.of(context).specifications,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold)))
+              ],
+            ),
+            BlocBuilder<ProductDetailsTabBarIndexCubit, int>(
               builder: (context, tabIndex) {
                 // Determine the available tabs based on conditions
                 List<Widget> tabs = [];
@@ -112,8 +116,7 @@ class _ProductDetailsTabsState extends State<ProductDetailsTabs>
                     : const SizedBox.shrink();
               },
             ),
-          ),
-          const SizedBox(height: 80)
+          ]
         ],
       ),
     );
