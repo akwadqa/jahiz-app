@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:badges/badges.dart';
+import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../cart/application/cart_count_cubit.dart';
@@ -42,11 +43,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
             BlocBuilder<CartCountCubit, int>(
               builder: (context, state) {
                 return Badge(
-                  alignment: Alignment.centerRight,
-                  backgroundColor: Colors.red,
-                  label: Text(state.toString(),
+                  position: BadgePosition.topEnd(top: -5, end: -3),
+                  badgeContent: Text(state.toString(),
                       style: const TextStyle(color: Colors.white)),
-                  offset: const Offset(-4, 2),
                   child: _BnbIcon(
                       onPressed: () => onPressed(2),
                       label: labels[2],

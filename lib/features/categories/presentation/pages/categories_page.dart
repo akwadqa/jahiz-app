@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/core/widgets/custom_curve_background.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/widgets/custom_container.dart';
@@ -83,13 +84,8 @@ class _CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-        onTap: () => context
-                .pushRoute(SubCategoriesRoute(categoryId: category.itemGroupId))
-                .then((value) {
-              if (value == true) {
-                context.tabsRouter.setActiveIndex(2);
-              }
-            }),
+        onTap: () => SharedFunctions.openSubCategoriesRoute(
+            context, category.itemGroupId),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

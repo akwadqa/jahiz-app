@@ -46,20 +46,11 @@ class ProductItem extends StatelessWidget {
 
   void _addToCartListener(BuildContext context, AddToCartState state) {
     if (state is AddToCartError) {
-      Navigator.pop(context);
       Fluttertoast.showToast(
           msg: state.message,
           toastLength: Toast.LENGTH_LONG,
           backgroundColor: Colors.red,
           textColor: Colors.white);
-    } else if (state is AddToCartLoading) {
-      Navigator.of(context).push(PageRouteBuilder(
-          pageBuilder: (context, _, __) =>
-              const Center(child: CircularProgressIndicator.adaptive()),
-          opaque: false,
-          barrierColor: Colors.black.withOpacity(0.1)));
-    } else {
-      Navigator.pop(context);
     }
   }
 
@@ -103,7 +94,7 @@ class ProductItem extends StatelessWidget {
         children: [
           _productInfo(context, isSmallestPremiumItem),
           if (!isSmallestPremiumItem && viewType != ViewType.grid)
-            _addToCartButton(context, isSmallestPremiumItem),
+            _addToCartButton(context),
         ],
       ),
     );
@@ -166,35 +157,53 @@ class ProductItem extends StatelessWidget {
     );
   }
 
-  Widget _addToCartButton(BuildContext context, bool isSmallestPremiumItem) {
+  Widget _addToCartButton(BuildContext context) {
     return Align(
       alignment: AlignmentDirectional.centerEnd,
-      child: IconButton(
-        onPressed: () => _addToCart(context),
-        icon: const Icon(Icons.add_circle_outline),
-        iconSize: viewType == ViewType.premium ? 50 : 40,
-        color: Theme.of(context).primaryColor,
+      child: BlocBuilder<AddToCartCubit, AddToCartState>(
+        builder: (context, state) {
+          if (state is AddToCartLoading &&
+              state.productId == product.productId) {
+            return const CircularProgressIndicator.adaptive();
+          }
+          return IconButton(
+            onPressed: () => _addToCart(context),
+            icon: const Icon(Icons.add_circle_outline),
+            iconSize: viewType == ViewType.premium ? 50 : 40,
+            color: Theme.of(context).primaryColor,
+          );
+        },
       ),
     );
   }
 
   Widget _gridActionButton(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => _addToCart(context),
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
-        minimumSize: MaterialStateProperty.all(const Size(100, 20)),
-        padding: MaterialStateProperty.all(
-            const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4)),
-        textStyle: MaterialStateProperty.all(const TextStyle(
-            fontFamily: FontFamily.qatar,
-            fontSize: 13,
-            fontWeight: FontWeight.w700)),
-      ),
-      child: Text(product.hasOptions == 0
-          ? S.of(context).addToCart
-          : S.of(context).goToProduct),
+    return BlocBuilder<AddToCartCubit, AddToCartState>(
+      builder: (context, state) {
+        if (state is AddToCartLoading && state.productId == product.productId) {
+          return const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: CircularProgressIndicator.adaptive(),
+          );
+        }
+        return ElevatedButton(
+          onPressed: () => _addToCart(context),
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+            minimumSize: MaterialStateProperty.all(const Size(100, 20)),
+            padding: MaterialStateProperty.all(
+                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4)),
+            textStyle: MaterialStateProperty.all(const TextStyle(
+                fontFamily: FontFamily.qatar,
+                fontSize: 13,
+                fontWeight: FontWeight.w700)),
+          ),
+          child: Text(product.hasOptions == 0
+              ? S.of(context).addToCart
+              : S.of(context).goToProduct),
+        );
+      },
     );
   }
 

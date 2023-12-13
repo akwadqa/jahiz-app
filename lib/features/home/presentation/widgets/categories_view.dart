@@ -24,8 +24,8 @@ class CategoriesView extends StatelessWidget {
             .firstWhere((element) => element.name == categoriesBlock.view),
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () => context.pushRoute(SubCategoriesRoute(
-                categoryId: categoriesBlock.data[index].categoryName)),
+            onTap: () => SharedFunctions.openSubCategoriesRoute(
+                context, categoriesBlock.data[index].categoryName),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

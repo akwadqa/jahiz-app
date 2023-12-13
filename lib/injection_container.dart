@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:jahiz/features/cities/data/datasources/cities_remote_data_source.dart';
 import 'package:jahiz/features/cities/data/repositories/cities_repository_impl.dart';
 import 'package:jahiz/features/cities/domain/repositories/cities_repository.dart';
@@ -341,6 +342,8 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => sharedPreferences);
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   getIt.registerLazySingleton(() => packageInfo);
+  final bool canVibrate = await Vibrate.canVibrate;
+  getIt.registerLazySingleton(() => canVibrate);
 }
 
 void resetApp() async {
