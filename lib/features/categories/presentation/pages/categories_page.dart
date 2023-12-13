@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/core/widgets/custom_curve_background.dart';
-import '../../../../core/router/app_router.dart';
 import '../../../../core/widgets/custom_container.dart';
 import '../../domain/entities/category.dart';
 import '../../../../generated/l10n.dart';
