@@ -62,11 +62,6 @@ abstract class SharedFunctions {
         ], child: AddressFormWidget(latLng: latLng, address: address)));
   }
 
-  static bool hasNotch(BuildContext context) {
-    final double topPadding = MediaQuery.of(context).padding.top;
-    return topPadding > 30.0;
-  }
-
   static void openSubCategoriesRoute(BuildContext context, String categoryId) {
     context.pushRoute(SubCategoriesRoute(categoryId: categoryId)).then((value) {
       if (value == true) {

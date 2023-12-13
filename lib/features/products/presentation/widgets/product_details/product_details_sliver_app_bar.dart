@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jahiz/core/shared_functions.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
 import 'package:jahiz/features/products/presentation/bloc/detailed_product/detailed_product_cubit.dart';
 import '../../../../../core/app_constants.dart';
