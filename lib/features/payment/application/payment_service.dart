@@ -46,7 +46,7 @@ class PaymentService {
     required VoidCallback onFail,
   }) async {
     await paymentCardView
-        .pay(_createExecutePaymentRequest(), MFLanguage.ENGLISH, (invoiceId) {
+        .pay(_createExecutePaymentRequest(), _getLanguage(), (invoiceId) {
           debugPrint(invoiceId);
         })
         .then((value) => onSuccess())
