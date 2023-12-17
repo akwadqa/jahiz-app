@@ -95,7 +95,8 @@ class _PaymentMethodItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(5.0),
               child: InkWell(
                 onTap: () {
-                  if (formFieldState.value != paymentMethod) {
+                  if (formFieldState.value != paymentMethod ||
+                      formFieldState.value?.isEmbedded == 1) {
                     formFieldState.didChange(paymentMethod);
                     onSelected(paymentMethod);
                   }

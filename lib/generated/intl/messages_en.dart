@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "badCertificate":
             MessageLookupByLibrary.simpleMessage("Bad Certificate"),
         "badRequest": MessageLookupByLibrary.simpleMessage("Bad Request"),
+        "building": MessageLookupByLibrary.simpleMessage("Building"),
         "buildingNumber":
             MessageLookupByLibrary.simpleMessage("Building Number"),
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
@@ -172,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your phone number to register or to sign in to your existing account"),
         "specifications":
             MessageLookupByLibrary.simpleMessage("Specifications"),
+        "street": MessageLookupByLibrary.simpleMessage("Street"),
         "streetNumber": MessageLookupByLibrary.simpleMessage("Street Number"),
         "subTotal": MessageLookupByLibrary.simpleMessage("Sub Total"),
         "termsAndConditions":
@@ -187,6 +189,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youHaveItemsInYourCart":
             MessageLookupByLibrary.simpleMessage("You have items in your cart"),
         "yourOrder": MessageLookupByLibrary.simpleMessage(" Your Order"),
+        "zone": MessageLookupByLibrary.simpleMessage("Zone"),
         "zoneNumber": MessageLookupByLibrary.simpleMessage("Zone number")
       };
 }

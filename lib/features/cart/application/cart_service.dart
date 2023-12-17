@@ -15,8 +15,8 @@ class CartService {
 
   final UpdateCartCubit _updateCartCubit;
 
-  void updateCartAddress(Address address) {
-    _updateCartCubit.updateAddress(
+  Future<void> updateCartAddress(Address address) async {
+    await _updateCartCubit.updateAddress(
         (_cartCubit.state as CartLoaded).cart, address);
   }
 

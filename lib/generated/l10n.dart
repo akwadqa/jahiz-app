@@ -1249,6 +1249,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Zone`
+  String get zone {
+    return Intl.message(
+      'Zone',
+      name: 'zone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street`
+  String get street {
+    return Intl.message(
+      'Street',
+      name: 'street',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Building`
+  String get building {
+    return Intl.message(
+      'Building',
+      name: 'building',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

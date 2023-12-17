@@ -118,5 +118,8 @@
     "notifications": "Notifications",
     "noNotifications": "No Notifications",
     "loginOrRegister": "Login or Register",
-    "ok" : "Ok"
+    "ok" : "Ok",
+    "zone" : "Zone",
+    "street" : "Street",
+    "building" : "Building"
 }

@@ -118,5 +118,8 @@
     "notifications": "الإشعارات",
     "noNotifications": "لا يوجد إشعارات",
     "loginOrRegister": "الدخول أو التسجيل",
-    "ok" : "حسناً"
+    "ok" : "حسناً",
+    "zone" : "المنطقة",
+    "street" : "الشارع",
+    "building" : "المبنى"
 }

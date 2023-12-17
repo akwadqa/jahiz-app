@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/core/widgets/custom_curve_background.dart';
 import '../../../../core/widgets/app_cached_network_image.dart';
 import '../../../../core/widgets/dashed_line.dart';
@@ -211,15 +212,20 @@ class _CartItem extends StatelessWidget {
                     listenWhen: (previous, current) => previous != current,
                     listener: (context, state) {
                       if (state is UpdateCartLoaded) {
-                        Navigator.pop(context);
+                        context.popRoute(context).then((_) {
+                          if (cart.shippingAddressDetails.isEmpty &&
+                              state.cart.shippingAddressDetails.isNotEmpty) {
+                            context.pushRoute(const CheckoutRoute());
+                          }
+                        });
                         context.read<CartCubit>().setCart(state.cart);
                       }
                       if (state is UpdateCartEmpty) {
-                        Navigator.pop(context);
+                        context.popRoute(context);
                         context.read<CartCubit>().setEmptyCart();
                       }
                       if (state is UpdateCartError) {
-                        Navigator.pop(context);
+                        context.popRoute(context);
                         Fluttertoast.showToast(
                             msg: state.message,
                             toastLength: Toast.LENGTH_LONG,

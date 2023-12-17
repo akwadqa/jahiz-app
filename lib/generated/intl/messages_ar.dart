@@ -50,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "badCertificate":
             MessageLookupByLibrary.simpleMessage("خطأ في الشهادة"),
         "badRequest": MessageLookupByLibrary.simpleMessage("خطأ في البيانات"),
+        "building": MessageLookupByLibrary.simpleMessage("المبنى"),
         "buildingNumber": MessageLookupByLibrary.simpleMessage("رقم المبنى"),
         "cart": MessageLookupByLibrary.simpleMessage("السلة"),
         "categories": MessageLookupByLibrary.simpleMessage("الأقسام"),
@@ -171,6 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signupLoginDescription": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال رقم هاتفك للتسجيل أو تسجيل الدخول إلى حسابك الحالي"),
         "specifications": MessageLookupByLibrary.simpleMessage("المواصفات"),
+        "street": MessageLookupByLibrary.simpleMessage("الشارع"),
         "streetNumber": MessageLookupByLibrary.simpleMessage("رقم الشارع"),
         "subTotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي"),
         "termsAndConditions":
@@ -188,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youHaveItemsInYourCart": MessageLookupByLibrary.simpleMessage(
             "لديك عناصر في سلة التسوق الخاصة بك"),
         "yourOrder": MessageLookupByLibrary.simpleMessage("طلبك"),
+        "zone": MessageLookupByLibrary.simpleMessage("المنطقة"),
         "zoneNumber": MessageLookupByLibrary.simpleMessage("رقم المنطقة")
       };
 }
