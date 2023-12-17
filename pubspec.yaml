@@ -81,7 +81,13 @@ dev_dependencies:
   flutter_gen_runner: ^5.3.2
   mocktail: ^0.2.0
   bloc_test: ^9.1.5
-  
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: false
+  ios: true
+  image_path: "assets/images/GP Logo APP.png"
+
 flutter_gen:
   output: lib/core/gen/
   integrations:
