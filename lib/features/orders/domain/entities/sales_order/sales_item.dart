@@ -9,7 +9,6 @@ class SalesItem extends Equatable {
   final String itemGroup;
   final String image;
   final String websiteImage;
-  final String backgroundColor;
 
   const SalesItem({
     required this.websiteItemCode,
@@ -20,7 +19,6 @@ class SalesItem extends Equatable {
     required this.itemGroup,
     required this.image,
     required this.websiteImage,
-    required this.backgroundColor,
   });
 
   @override
@@ -33,8 +31,7 @@ class SalesItem extends Equatable {
       netAmount,
       itemGroup,
       image,
-      websiteImage,
-      backgroundColor,
+      websiteImage
     ];
   }
 }
