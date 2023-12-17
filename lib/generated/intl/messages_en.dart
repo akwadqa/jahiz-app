@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allProducts": MessageLookupByLibrary.simpleMessage("All Products"),
         "apartment": MessageLookupByLibrary.simpleMessage("Apartment"),
         "appShare": MessageLookupByLibrary.simpleMessage("App Share"),
-        "appTitle": MessageLookupByLibrary.simpleMessage("Jahiz"),
+        "appTitle": MessageLookupByLibrary.simpleMessage("General Product"),
         "apply": MessageLookupByLibrary.simpleMessage("Apply"),
         "applyDiscountCode":
             MessageLookupByLibrary.simpleMessage("Apply Discount Code"),
