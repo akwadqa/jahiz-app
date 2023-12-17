@@ -118,5 +118,14 @@
     "notifications": "الإشعارات",
     "noNotifications": "لا يوجد إشعارات",
     "loginOrRegister": "الدخول أو التسجيل",
-    "ok" : "حسناً"
+    "ok" : "حسناً",
+    "zone" : "المنطقة",
+    "street" : "الشارع",
+    "building" : "المبنى",
+    "cardNumber" : "رقم البطاقة",
+    "cardHolderName" : "اسم حامل البطاقة",
+    "expiryDate" : "تاريخ الإنتهاء",
+    "securityCode" : "رمز الأمان",
+    "number" : "الرقم",
+    "nameOnCard" : "الاسم على البطاقة"
 }

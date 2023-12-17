@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:jahiz/core/router/app_router.dart';
 import 'package:jahiz/core/widgets/custom_curve_background.dart';
 import '../../../../core/widgets/app_cached_network_image.dart';
 import '../../../../core/widgets/dashed_line.dart';
@@ -64,65 +65,80 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
         child: BlocBuilder<CartCubit, CartState>(
           builder: (context, state) {
             if (state is CartLoaded) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(35.0))),
-                      child: Column(
+              return BlocBuilder<UpdateCartCubit, UpdateCartState>(
+                builder: (context, updateState) {
+                  return Stack(
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Expanded(
-                            child: ListView.separated(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 20.0),
-                              itemCount: state.cart.items.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return _CartItem(
-                                    cart: state.cart, index: index);
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) =>
-                                      const SizedBox(height: 8.0),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(35.0))),
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: ListView.separated(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0, vertical: 20.0),
+                                      itemCount: state.cart.items.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return _CartItem(
+                                            cart: state.cart, index: index);
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) =>
+                                              const SizedBox(height: 8.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0),
+                                    child: DashedLine(
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0, vertical: 20.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(S.of(context).subTotal,
+                                            style: _style()),
+                                        Text(
+                                            '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
+                                            style: _style()),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
+                          const SizedBox(height: 20),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: DashedLine(
-                                color: Theme.of(context).primaryColor),
+                            child: ElevatedButton(
+                                onPressed: () => context
+                                    .read<CartCubit>()
+                                    .checkout(state.cart, context),
+                                child: Text(S.of(context).checkout)),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(S.of(context).subTotal, style: _style()),
-                                Text(
-                                    '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
-                                    style: _style()),
-                              ],
-                            ),
-                          ),
+                          const SizedBox(height: 100.0),
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: ElevatedButton(
-                        onPressed: () => context
-                            .read<CartCubit>()
-                            .checkout(state.cart, context),
-                        child: Text(S.of(context).checkout)),
-                  ),
-                  const SizedBox(height: 100.0),
-                ],
+                      if (updateState is UpdateCartLoading)
+                        const Center(
+                            child: CircularProgressIndicator.adaptive())
+                    ],
+                  );
+                },
               );
             }
             if (state is CartError) {
@@ -211,30 +227,21 @@ class _CartItem extends StatelessWidget {
                     listenWhen: (previous, current) => previous != current,
                     listener: (context, state) {
                       if (state is UpdateCartLoaded) {
-                        Navigator.pop(context);
+                        if (cart.shippingAddressDetails.isEmpty &&
+                            state.cart.shippingAddressDetails.isNotEmpty) {
+                          context.pushRoute(const CheckoutRoute());
+                        }
                         context.read<CartCubit>().setCart(state.cart);
                       }
                       if (state is UpdateCartEmpty) {
-                        Navigator.pop(context);
                         context.read<CartCubit>().setEmptyCart();
                       }
                       if (state is UpdateCartError) {
-                        Navigator.pop(context);
                         Fluttertoast.showToast(
                             msg: state.message,
                             toastLength: Toast.LENGTH_LONG,
                             backgroundColor: Colors.red,
                             textColor: Colors.white);
-                      }
-                      if (state is UpdateCartLoading) {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                            pageBuilder: (context, _, __) => const Center(
-                                child: CircularProgressIndicator.adaptive()),
-                            opaque: false,
-                            barrierColor: Colors.black.withOpacity(0.1),
-                          ),
-                        );
                       }
                     },
                     child: Row(

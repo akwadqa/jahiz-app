@@ -50,8 +50,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "badCertificate":
             MessageLookupByLibrary.simpleMessage("Bad Certificate"),
         "badRequest": MessageLookupByLibrary.simpleMessage("Bad Request"),
+        "building": MessageLookupByLibrary.simpleMessage("Building"),
         "buildingNumber":
             MessageLookupByLibrary.simpleMessage("Building Number"),
+        "cardHolderName":
+            MessageLookupByLibrary.simpleMessage("Card Holder Name"),
+        "cardNumber": MessageLookupByLibrary.simpleMessage("Card Number"),
         "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "change": MessageLookupByLibrary.simpleMessage("Change"),
@@ -83,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Promo Code"),
         "enterYourLocation":
             MessageLookupByLibrary.simpleMessage("Enter your location"),
+        "expiryDate": MessageLookupByLibrary.simpleMessage("Expiry Date"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "freiendlyErrorMessage": MessageLookupByLibrary.simpleMessage(
@@ -109,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myCart": MessageLookupByLibrary.simpleMessage("My Cart"),
         "myOrders": MessageLookupByLibrary.simpleMessage("My Orders"),
         "myProfile": MessageLookupByLibrary.simpleMessage("My Profile"),
+        "nameOnCard": MessageLookupByLibrary.simpleMessage("Name On Card"),
         "noElements": MessageLookupByLibrary.simpleMessage("No Elements"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("No Internet Connection"),
@@ -117,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notFound": MessageLookupByLibrary.simpleMessage("Not Found"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "number": MessageLookupByLibrary.simpleMessage("Number"),
         "office": MessageLookupByLibrary.simpleMessage("Office"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "options": MessageLookupByLibrary.simpleMessage("Options"),
@@ -156,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "required": MessageLookupByLibrary.simpleMessage("Required"),
         "searchHint":
             MessageLookupByLibrary.simpleMessage("What are you looking for.."),
+        "securityCode": MessageLookupByLibrary.simpleMessage("Security Code"),
         "selectYourCity":
             MessageLookupByLibrary.simpleMessage("Select your city"),
         "selectYourPayment":
@@ -172,6 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your phone number to register or to sign in to your existing account"),
         "specifications":
             MessageLookupByLibrary.simpleMessage("Specifications"),
+        "street": MessageLookupByLibrary.simpleMessage("Street"),
         "streetNumber": MessageLookupByLibrary.simpleMessage("Street Number"),
         "subTotal": MessageLookupByLibrary.simpleMessage("Sub Total"),
         "termsAndConditions":
@@ -187,6 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youHaveItemsInYourCart":
             MessageLookupByLibrary.simpleMessage("You have items in your cart"),
         "yourOrder": MessageLookupByLibrary.simpleMessage(" Your Order"),
+        "zone": MessageLookupByLibrary.simpleMessage("Zone"),
         "zoneNumber": MessageLookupByLibrary.simpleMessage("Zone number")
       };
 }

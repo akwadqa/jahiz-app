@@ -5,6 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jahiz/core/widgets/custom_through_line.dart';
 import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
 import 'package:jahiz/features/app_settings/presentation/bloc/app_settings_cubit.dart';
+import 'package:jahiz/features/auth/application/auth_cubit.dart';
+import 'package:jahiz/features/auth/presentation/widgets/sign_up_login_bottom_sheet.dart';
 import '../../../../core/gen/fonts.gen.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -131,29 +133,40 @@ class ProductItem extends StatelessWidget {
   }
 
   Widget _productTitle(BuildContext context, bool isSmallestPremiumItem) {
-    return RichText(
-      text: TextSpan(
-        style: const TextStyle(
-            fontFamily: FontFamily.qatar, color: Colors.black, fontSize: 13),
-        children: [
-          TextSpan(
-            text: product.productTitle,
-            style: TextStyle(
-              fontSize: isSmallestPremiumItem ? 13 : 15,
-              fontWeight: FontWeight.w500,
-              color: AppColors.midnight,
+    return Row(
+      children: [
+        Flexible(
+          flex: 2,
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                  fontFamily: FontFamily.qatar,
+                  color: Colors.black,
+                  fontSize: 13),
+              children: [
+                TextSpan(
+                  text: product.productTitle,
+                  style: TextStyle(
+                    fontSize: isSmallestPremiumItem ? 13 : 15,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.midnight,
+                  ),
+                ),
+              ],
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        if (!isSmallestPremiumItem) ...[
+          const Text(' - '),
+          Flexible(
+            child: Text(
+              product.stockUom,
             ),
           ),
-          if (!isSmallestPremiumItem) ...[
-            const TextSpan(text: ' - '),
-            TextSpan(
-              text: product.stockUom,
-            ),
-          ],
         ],
-      ),
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
+      ],
     );
   }
 
@@ -227,7 +240,11 @@ class ProductItem extends StatelessWidget {
       context
           .pushRoute(ProductDetailsRoute(product: product, heroTag: _heroTag));
     } else {
-      context.read<AddToCartCubit>().addToCart(product);
+      if (context.read<AuthCubit>().state is Authenticated) {
+        context.read<AddToCartCubit>().addToCart(product);
+      } else {
+        showSignUpLoginBottomSheet(context);
+      }
     }
   }
 }

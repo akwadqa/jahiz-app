@@ -118,5 +118,14 @@
     "notifications": "Notifications",
     "noNotifications": "No Notifications",
     "loginOrRegister": "Login or Register",
-    "ok" : "Ok"
+    "ok" : "Ok",
+    "zone" : "Zone",
+    "street" : "Street",
+    "building" : "Building",
+    "cardNumber" : "Card Number",
+    "cardHolderName" : "Card Holder Name",
+    "expiryDate" : "Expiry Date",
+    "securityCode" : "Security Code",
+    "number" : "Number",
+    "nameOnCard" : "Name On Card"
 }

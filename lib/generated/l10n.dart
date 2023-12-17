@@ -1249,6 +1249,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Zone`
+  String get zone {
+    return Intl.message(
+      'Zone',
+      name: 'zone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street`
+  String get street {
+    return Intl.message(
+      'Street',
+      name: 'street',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Building`
+  String get building {
+    return Intl.message(
+      'Building',
+      name: 'building',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Number`
+  String get cardNumber {
+    return Intl.message(
+      'Card Number',
+      name: 'cardNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Holder Name`
+  String get cardHolderName {
+    return Intl.message(
+      'Card Holder Name',
+      name: 'cardHolderName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiry Date`
+  String get expiryDate {
+    return Intl.message(
+      'Expiry Date',
+      name: 'expiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Security Code`
+  String get securityCode {
+    return Intl.message(
+      'Security Code',
+      name: 'securityCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number`
+  String get number {
+    return Intl.message(
+      'Number',
+      name: 'number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name On Card`
+  String get nameOnCard {
+    return Intl.message(
+      'Name On Card',
+      name: 'nameOnCard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
