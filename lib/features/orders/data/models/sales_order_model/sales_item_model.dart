@@ -9,8 +9,7 @@ class SalesItemModel extends SalesItem {
       required super.netAmount,
       required super.itemGroup,
       required super.image,
-      required super.websiteImage,
-      required super.backgroundColor});
+      required super.websiteImage});
 
   factory SalesItemModel.fromJson(Map<String, dynamic> json) => SalesItemModel(
         websiteItemCode: json['website_item_code'] as String,
@@ -20,8 +19,7 @@ class SalesItemModel extends SalesItem {
         netAmount: json['net_amount'] as double,
         itemGroup: json['item_group'] as String,
         image: json['image'] as String,
-        websiteImage: json['website_image'] as String,
-        backgroundColor: json['background_color'] as String,
+        websiteImage: json['website_image'] as String
       );
 
   Map<String, dynamic> toJson() => {
@@ -32,7 +30,6 @@ class SalesItemModel extends SalesItem {
         'net_amount': netAmount,
         'item_group': itemGroup,
         'image': image,
-        'website_image': websiteImage,
-        'background_color': backgroundColor,
+        'website_image': websiteImage
       };
 }
