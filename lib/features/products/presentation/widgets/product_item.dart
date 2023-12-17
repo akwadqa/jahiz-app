@@ -5,6 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:jahiz/core/widgets/custom_through_line.dart';
 import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
 import 'package:jahiz/features/app_settings/presentation/bloc/app_settings_cubit.dart';
+import 'package:jahiz/features/auth/application/auth_cubit.dart';
+import 'package:jahiz/features/auth/presentation/widgets/sign_up_login_bottom_sheet.dart';
 import '../../../../core/gen/fonts.gen.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -227,7 +229,11 @@ class ProductItem extends StatelessWidget {
       context
           .pushRoute(ProductDetailsRoute(product: product, heroTag: _heroTag));
     } else {
-      context.read<AddToCartCubit>().addToCart(product);
+      if (context.read<AuthCubit>().state is Authenticated) {
+        context.read<AddToCartCubit>().addToCart(product);
+      } else {
+        showSignUpLoginBottomSheet(context);
+      }
     }
   }
 }
