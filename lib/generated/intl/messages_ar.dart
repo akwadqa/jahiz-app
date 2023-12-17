@@ -52,6 +52,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "badRequest": MessageLookupByLibrary.simpleMessage("خطأ في البيانات"),
         "building": MessageLookupByLibrary.simpleMessage("المبنى"),
         "buildingNumber": MessageLookupByLibrary.simpleMessage("رقم المبنى"),
+        "cardHolderName":
+            MessageLookupByLibrary.simpleMessage("اسم حامل البطاقة"),
+        "cardNumber": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
         "cart": MessageLookupByLibrary.simpleMessage("السلة"),
         "categories": MessageLookupByLibrary.simpleMessage("الأقسام"),
         "change": MessageLookupByLibrary.simpleMessage("تغيير"),
@@ -83,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterPromoCode":
             MessageLookupByLibrary.simpleMessage("أدخل رمز العرض الترويجي"),
         "enterYourLocation": MessageLookupByLibrary.simpleMessage("أدخل موقعك"),
+        "expiryDate": MessageLookupByLibrary.simpleMessage("تاريخ الإنتهاء"),
         "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "freiendlyErrorMessage": MessageLookupByLibrary.simpleMessage(
@@ -111,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myCart": MessageLookupByLibrary.simpleMessage("عربة التسوق الخاصة بي"),
         "myOrders": MessageLookupByLibrary.simpleMessage("طلباتي"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
+        "nameOnCard": MessageLookupByLibrary.simpleMessage("الاسم على البطاقة"),
         "noElements": MessageLookupByLibrary.simpleMessage("لا توجد عناصر"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالانترنت"),
@@ -119,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notFound": MessageLookupByLibrary.simpleMessage("غير موجود"),
         "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
+        "number": MessageLookupByLibrary.simpleMessage("الرقم"),
         "office": MessageLookupByLibrary.simpleMessage("مكتب"),
         "ok": MessageLookupByLibrary.simpleMessage("حسناً"),
         "options": MessageLookupByLibrary.simpleMessage("الخيارات"),
@@ -157,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "required": MessageLookupByLibrary.simpleMessage("مطلوب"),
         "searchHint":
             MessageLookupByLibrary.simpleMessage("ما الذي تبحث عنه.."),
+        "securityCode": MessageLookupByLibrary.simpleMessage("رمز الأمان"),
         "selectYourCity": MessageLookupByLibrary.simpleMessage("اختر مدينتك"),
         "selectYourPayment":
             MessageLookupByLibrary.simpleMessage("اختر طريقة الدفع"),

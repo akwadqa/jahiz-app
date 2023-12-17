@@ -53,6 +53,13 @@ class _PaymentWidgetState extends State<PaymentWidget> {
     cardViewStyle.input?.inputHeight =
         Theme.of(context).inputDecorationTheme.constraints?.maxHeight;
     cardViewStyle.input?.color = Theme.of(context).primaryColor.value;
+    cardViewStyle.label?.text?.cardNumber = S.of(context).cardNumber;
+    cardViewStyle.label?.text?.holderName = S.of(context).cardHolderName;
+    cardViewStyle.label?.text?.expiryDate = S.of(context).expiryDate;
+    cardViewStyle.label?.text?.securityCode = S.of(context).securityCode;
+    cardViewStyle.input?.placeHolder?.cardNumber = S.of(context).number;
+    cardViewStyle.input?.placeHolder?.holderName = S.of(context).nameOnCard;
+    cardViewStyle.label?.fontFamily = FontFamily.qatar;
     return cardViewStyle;
   }
 

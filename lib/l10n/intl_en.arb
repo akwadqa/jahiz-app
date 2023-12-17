@@ -121,5 +121,11 @@
     "ok" : "Ok",
     "zone" : "Zone",
     "street" : "Street",
-    "building" : "Building"
+    "building" : "Building",
+    "cardNumber" : "Card Number",
+    "cardHolderName" : "Card Holder Name",
+    "expiryDate" : "Expiry Date",
+    "securityCode" : "Security Code",
+    "number" : "Number",
+    "nameOnCard" : "Name On Card"
 }
