@@ -131,29 +131,40 @@ class ProductItem extends StatelessWidget {
   }
 
   Widget _productTitle(BuildContext context, bool isSmallestPremiumItem) {
-    return RichText(
-      text: TextSpan(
-        style: const TextStyle(
-            fontFamily: FontFamily.qatar, color: Colors.black, fontSize: 13),
-        children: [
-          TextSpan(
-            text: product.productTitle,
-            style: TextStyle(
-              fontSize: isSmallestPremiumItem ? 13 : 15,
-              fontWeight: FontWeight.w500,
-              color: AppColors.midnight,
+    return Row(
+      children: [
+        Flexible(
+          flex: 2,
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                  fontFamily: FontFamily.qatar,
+                  color: Colors.black,
+                  fontSize: 13),
+              children: [
+                TextSpan(
+                  text: product.productTitle,
+                  style: TextStyle(
+                    fontSize: isSmallestPremiumItem ? 13 : 15,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.midnight,
+                  ),
+                ),
+              ],
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        if (!isSmallestPremiumItem) ...[
+          const Text(' - '),
+          Flexible(
+            child: Text(
+              product.stockUom,
             ),
           ),
-          if (!isSmallestPremiumItem) ...[
-            const TextSpan(text: ' - '),
-            TextSpan(
-              text: product.stockUom,
-            ),
-          ],
         ],
-      ),
-      maxLines: 2,
-      overflow: TextOverflow.ellipsis,
+      ],
     );
   }
 
