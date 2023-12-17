@@ -46,7 +46,6 @@ class _PaymentWidgetState extends State<PaymentWidget> {
   MFCardViewStyle _cardViewStyle() {
     MFCardViewStyle cardViewStyle = MFCardViewStyle();
     cardViewStyle.input?.inputMargin = 5;
-    cardViewStyle.input?.fontFamily = FontFamily.qatar;
     cardViewStyle.input?.borderRadius = 5;
     cardViewStyle.input?.borderWidth = 1;
     cardViewStyle.input?.borderColor = Theme.of(context).primaryColor.value;
@@ -59,7 +58,6 @@ class _PaymentWidgetState extends State<PaymentWidget> {
     cardViewStyle.label?.text?.securityCode = S.of(context).securityCode;
     cardViewStyle.input?.placeHolder?.cardNumber = S.of(context).number;
     cardViewStyle.input?.placeHolder?.holderName = S.of(context).nameOnCard;
-    cardViewStyle.label?.fontFamily = FontFamily.qatar;
     return cardViewStyle;
   }
 
