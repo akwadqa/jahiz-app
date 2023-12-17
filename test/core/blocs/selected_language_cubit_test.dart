@@ -6,6 +6,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jahiz/core/blocs/selected_language_cubit.dart';
 
+//Todo: There is an error on this test
 void main() {
   late SelectedLanguageCubit selectedLanguageCubit;
   late SharedPreferences sharedPreferences;
