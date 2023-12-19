@@ -64,49 +64,47 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
                 detailedProductState: widget.detailedProductState,
                 product: widget.product,
                 heroTag: widget.heroTag),
-            if (widget.detailedProductState is DetailedProductLoadInProgress)
-              const SliverFillRemaining(
-                child: Center(
-                  child: CircularProgressIndicator.adaptive(),
-                ),
-              )
-            else
+            if (widget.detailedProductState is! DetailedProductLoadInProgress)
               const SliverToBoxAdapter(child: SizedBox(height: 800)),
           ],
         ),
-        if (isLoadSuccess)
-          DraggableScrollableSheet(
-              shouldCloseOnMinExtent: false,
-              minChildSize: 0.6,
-              initialChildSize: 0.6,
-              controller: _draggableScrollableController,
-              builder: (_, scrollController) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadiusDirectional.only(
-                      topEnd: Radius.circular(50),
-                      topStart: Radius.circular(50),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 6,
-                        color: AppColors.shadowColor,
-                        offset: const Offset(0, -7),
-                      ),
-                    ],
+        DraggableScrollableSheet(
+            shouldCloseOnMinExtent: false,
+            minChildSize: 0.6,
+            initialChildSize: 0.6,
+            controller: _draggableScrollableController,
+            builder: (_, scrollController) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadiusDirectional.only(
+                    topEnd: Radius.circular(50),
+                    topStart: Radius.circular(50),
                   ),
-                  child: isLoadSuccess
-                      ? SingleChildScrollView(
-                          controller: scrollController,
-                          child: ProductDetailsTabs(
-                              detailedProduct: (widget.detailedProductState
-                                      as DetailedProductLoadSuccess)
-                                  .detailedProduct),
-                        )
-                      : const SizedBox.shrink(),
-                );
-              })
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 6,
+                      color: AppColors.shadowColor,
+                      offset: const Offset(0, -7),
+                    ),
+                  ],
+                ),
+                child: isLoadSuccess
+                    ? SingleChildScrollView(
+                        controller: scrollController,
+                        child: ProductDetailsTabs(
+                            detailedProduct: (widget.detailedProductState
+                                    as DetailedProductLoadSuccess)
+                                .detailedProduct),
+                      )
+                    : (widget.detailedProductState
+                            is DetailedProductLoadInProgress)
+                        ? const Center(
+                            child: CircularProgressIndicator.adaptive(),
+                          )
+                        : const SizedBox.shrink(),
+              );
+            })
       ],
     );
   }
