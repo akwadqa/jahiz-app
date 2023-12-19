@@ -112,7 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب أن يتكون من 8 أرقام على الأقل"),
         "myAccount": MessageLookupByLibrary.simpleMessage("حسابي"),
         "myAddresses": MessageLookupByLibrary.simpleMessage("عناويني"),
-        "myCart": MessageLookupByLibrary.simpleMessage("عربة التسوق الخاصة بي"),
+        "myCart": MessageLookupByLibrary.simpleMessage("سلة التسوق الخاصة بي"),
         "myOrders": MessageLookupByLibrary.simpleMessage("طلباتي"),
         "myProfile": MessageLookupByLibrary.simpleMessage("ملفي الشخصي"),
         "nameOnCard": MessageLookupByLibrary.simpleMessage("الاسم على البطاقة"),
