@@ -134,6 +134,8 @@ class ProductItem extends StatelessWidget {
 
   Widget _productTitle(BuildContext context, bool isSmallestPremiumItem) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.max,
       children: [
         Flexible(
           flex: 2,
