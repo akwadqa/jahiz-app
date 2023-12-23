@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/gen/fonts.gen.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../../application/payment_service.dart';
 import '../../../../generated/l10n.dart';
