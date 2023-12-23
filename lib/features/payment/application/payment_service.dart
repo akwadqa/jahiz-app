@@ -26,7 +26,7 @@ class PaymentService {
   }
 
   Future<void> initiateCardSession({
-    Function(String bin)? onSuccess,
+    required Function(MFInitiateSessionResponse sessionResponse) onSuccess,
     Function(dynamic error)? onError,
   }) async {
     _setupMyFatoorah();
@@ -35,7 +35,7 @@ class PaymentService {
           debugPrint(bin);
         })
         .then((value) => {
-              debugPrint(value.toString()),
+              onSuccess(value),
             })
         .catchError((error) => {debugPrint(error.message)});
   }

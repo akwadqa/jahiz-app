@@ -31,14 +31,16 @@ class PaymentWidget extends StatefulWidget {
 }
 
 class _PaymentWidgetState extends State<PaymentWidget> {
-  late MFCardPaymentView _paymentCardView;
   late PaymentService _paymentService;
+  late MFCardPaymentView _paymentCardView;
 
   @override
   void initState() {
     _paymentService = PaymentService(
         paymentMethod: widget.paymentMethod, total: widget.total);
-    _paymentService.initiateCardSession();
+    _paymentService.initiateCardSession(
+      onSuccess: (sessionResponse) => _paymentCardView.load(sessionResponse, (bin) => null),
+    );
     super.initState();
   }
 
