@@ -38,9 +38,12 @@ class _PaymentWidgetState extends State<PaymentWidget> {
   void initState() {
     _paymentService = PaymentService(
         paymentMethod: widget.paymentMethod, total: widget.total);
-    _paymentService.initiateCardSession(
-      onSuccess: (sessionResponse) => _paymentCardView.load(sessionResponse, (bin) => null),
-    );
+    _paymentService
+        .initiateCardSession(
+          onSuccess: (sessionResponse) =>
+              _paymentCardView.load(sessionResponse, (_) {}),
+        )
+        .then((value) => setState(() => _isLoading = false));
     super.initState();
   }
 
@@ -62,23 +65,28 @@ class _PaymentWidgetState extends State<PaymentWidget> {
     return cardViewStyle;
   }
 
+  bool _isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     _paymentCardView = MFCardPaymentView(cardViewStyle: _cardViewStyle());
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * 0.9,
-      child: AppBottomSheetSkeleton(
-          title: S.of(context).paymentMethod,
-          content: _paymentCardView,
-          submitButton: ElevatedButton(
-            onPressed: () {
-              _paymentService.payWithCard(
-                  paymentCardView: _paymentCardView,
-                  onSuccess: () => context.popRoute(true),
-                  onFail: () => context.popRoute(false));
-            },
-            child: Text(S.of(context).confirm),
-          )),
+      width: double.infinity,
+      child: _isLoading
+          ? const CircularProgressIndicator.adaptive()
+          : AppBottomSheetSkeleton(
+              title: S.of(context).paymentMethod,
+              content: _paymentCardView,
+              submitButton: ElevatedButton(
+                onPressed: () {
+                  _paymentService.payWithCard(
+                      paymentCardView: _paymentCardView,
+                      onSuccess: () => context.popRoute(true),
+                      onFail: () => context.popRoute(false));
+                },
+                child: Text(S.of(context).confirm),
+              )),
     );
   }
 }
