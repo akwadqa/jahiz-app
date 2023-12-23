@@ -210,7 +210,7 @@ class ProductItem extends StatelessWidget {
         builder: (context, state) {
       return Container(
         decoration: BoxDecoration(
-            color: state != null ? HexColor(state.textColor) : AppColors.red,
+            color: state?.textColor != null ? HexColor(state!.textColor!) : AppColors.red,
             borderRadius: const BorderRadiusDirectional.only(
                 bottomEnd: Radius.circular(17))),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
