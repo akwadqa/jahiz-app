@@ -42,7 +42,7 @@ flutter_native_splash:
   # Android 12 handles the splash screen differently than previous versions.  Please visit
   # https://developer.android.com/guide/topics/ui/splash-screen
   # Following are Android 12 specific parameter.
-  android_12:
+  # android_12:
   # The image parameter sets the splash screen icon image.  If this parameter is not specified,
   # the app's launcher icon will be used instead.
   # Please note that the splash screen will be clipped to a circle on the center of the screen.
@@ -50,10 +50,10 @@ flutter_native_splash:
   # 640 pixels in diameter.
   # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
   # 768 pixels in diameter.
-    image: assets/splash/logo.png
+    # image: assets/splash/logo.png
 
   # Splash screen background color.
-    color: "#312f94"
+    # color: "#312f94"
 
   # App icon background color.
   #icon_background_color: "#111111"
