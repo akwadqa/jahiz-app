@@ -287,6 +287,8 @@ class _PaymentAndConfirmationSectionState
                       } else {
                         _showFailPaymentDialog();
                       }
+                    } else {
+                      _formKey.currentState!.reset();
                     }
                   });
                 }
