@@ -6,8 +6,6 @@ import 'package:jahiz/core/network/network_info.dart';
 import 'package:jahiz/core/network/network_operation_handler_mixin.dart';
 import 'package:mocktail/mocktail.dart';
 
-//Todo: There is an error on this test
-
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 void main() {
@@ -53,19 +51,16 @@ void main() {
         'handleNetworkOperation returns Left(ServerFailure) on ServerException',
         () async {
       when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      final exceptionMessage = ServerException(message: 'Server error');
 
-      const exceptionMessage = 'Server error message';
-      operationFunction() async =>
-          throw ServerException(message: exceptionMessage);
-
-      final result = await networkOperationHandler
-          .handleNetworkOperation(operationFunction);
+      final result =
+          await networkOperationHandler.handleNetworkOperation(() async {
+        throw exceptionMessage;
+      });
 
       verify(() => mockNetworkInfo.isConnected).called(1);
-      expect(
-          result,
-          Left(ServerFailure(
-              exceptionMessage, isA<StackTrace>() as StackTrace)));
+      expect(result,
+          Left(ServerFailure('Server error', StackTrace.current)));
     });
   });
 }

@@ -1,36 +1,48 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jahiz/core/app_constants.dart';
+import 'package:jahiz/features/notifications/application/notifications_service.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jahiz/core/blocs/selected_language_cubit.dart';
 
-//Todo: There is an error on this test
 void main() {
-  late SelectedLanguageCubit selectedLanguageCubit;
-  late SharedPreferences sharedPreferences;
+  group("SelectedLanguageCubit", () {
+    late SelectedLanguageCubit selectedLanguageCubit;
+    late SharedPreferences sharedPreferences;
+    late MockBuildContext mockBuildContext;
 
-  setUp(() {
-    sharedPreferences = MockSharedPreferences();
+    setUp(() {
+      WidgetsFlutterBinding.ensureInitialized();
+      sharedPreferences = MockSharedPreferences();
+      mockBuildContext = MockBuildContext();
+      when(() => sharedPreferences.getString(AppConstants.languageKey))
+          .thenReturn('en');
+      selectedLanguageCubit = SelectedLanguageCubit(sharedPreferences);
+    });
 
-    when(() => sharedPreferences.getString(AppConstants.languageKey))
-        .thenReturn('en'); // Mock the behavior of SharedPreferences
-    selectedLanguageCubit = SelectedLanguageCubit(sharedPreferences);
+    test('emits [initialValue] when created', () {
+      expect(selectedLanguageCubit.state, 'en');
+    });
+    test(
+        'changing language in sharedPreferences and the state in selectedLanguageCubit',
+        () {
+      const String newValue = 'en';
+      SelectedLanguageCubit(sharedPreferences)
+          .setLanguage(newValue, mockBuildContext);
+      expect(sharedPreferences.getString(AppConstants.languageKey), 'en');
+      expect(selectedLanguageCubit.state, newValue);
+    });
   });
-
-  test('emits [initialValue] when created', () {
-    expect(selectedLanguageCubit.state, 'en');
-  });
-
-  blocTest<SelectedLanguageCubit, String>(
-    'emits ["value"] when setLanguage is called',
-    build: () => selectedLanguageCubit,
-    act: (cubit) => cubit.setLanguage("ar", MockBuildContext()),
-    expect: () => ['ar'],
-  );
 }
 
-class MockSharedPreferences extends Mock implements SharedPreferences {}
+class MockSharedPreferences extends Mock implements SharedPreferences {
+  @override
+  Future<bool> setString(String key, String value) {
+    return Future.value(true);
+  }
+}
 
 class MockBuildContext extends Mock implements BuildContext {}
+
+class MockNotificationsService extends Mock implements NotificationsService {}

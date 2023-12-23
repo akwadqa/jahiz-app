@@ -10,7 +10,7 @@ void main() {
   });
 
   blocTest<SliderIndicatorCubit, int>(
-    "set page to 0",
+    "set page to 2",
     build: () => sliderIndicatorCubit,
     act: (cubit) => cubit.page = 2,
     expect: () => [2],
