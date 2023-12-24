@@ -108,12 +108,12 @@ class ProfilePage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 5.0),
                     child: Column(
                       children: [
-                        Text(state!.fullName,
+                        Text(state?.fullName ?? '',
                             style: const TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black)),
-                        Text(state.username,
+                        Text(state?.username ?? '',
                             style: const TextStyle(color: AppColors.lightGray)),
                       ],
                     ),

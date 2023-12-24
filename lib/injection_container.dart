@@ -5,6 +5,7 @@ import 'package:jahiz/features/cities/data/repositories/cities_repository_impl.d
 import 'package:jahiz/features/cities/domain/repositories/cities_repository.dart';
 import 'package:jahiz/features/cities/presentation/blocs/get_cities_cubit.dart';
 import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
+import 'package:jahiz/features/payment/presentation/bloc/credit_card_loading_cubit.dart';
 import 'package:jahiz/features/products/presentation/bloc/product_details_tab_bar_index/product_details_tab_bar_index_cubit.dart';
 import 'features/cart/application/cart_count_cubit.dart';
 import 'features/cart/application/cart_service.dart';
@@ -269,6 +270,7 @@ Future<void> init() async {
   //!Features - payment
   //Bloc
   getIt.registerFactory(() => PaymentMethodsCubit(getIt()));
+  getIt.registerFactory(() => CreditCardLoadingCubit());
 
   //UseCases
   getIt.registerLazySingleton(() => GetPaymentMethodsUseCase(getIt()));
