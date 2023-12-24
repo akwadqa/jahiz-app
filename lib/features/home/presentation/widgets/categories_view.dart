@@ -45,8 +45,8 @@ class CategoriesView extends StatelessWidget {
                   width: 83,
                   child: Text(categoriesBlock.data[index].categoryTitle,
                       textAlign: TextAlign.center,
-                      style:
-                          const TextStyle(color: Colors.black, fontSize: 16)),
+                      style: const TextStyle(
+                          color: Colors.black, fontSize: 16, height: 1.02)),
                 )
               ],
             ),

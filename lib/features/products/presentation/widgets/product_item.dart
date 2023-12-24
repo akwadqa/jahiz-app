@@ -122,6 +122,7 @@ class ProductItem extends StatelessWidget {
             style: TextStyle(
                 fontSize: isSmallestPremiumItem ? 13 : 15,
                 fontWeight: FontWeight.bold,
+                height: 1,
                 color: AppColors.midnight)),
         if (!isSmallestPremiumItem) const SizedBox(width: 8),
         if (product.discountAmount > 0 && !isSmallestPremiumItem)
@@ -143,12 +144,16 @@ class ProductItem extends StatelessWidget {
             style: TextStyle(
               fontSize: isSmallestPremiumItem ? 13 : 15,
               fontWeight: FontWeight.w500,
+              height: 1.3,
               color: AppColors.midnight,
             ),
           ),
           if (!isSmallestPremiumItem)
             Text(
               ' - ${product.stockUom}',
+              style: const TextStyle(
+                height: 1.2,
+              ),
             ),
         ],
       ),
