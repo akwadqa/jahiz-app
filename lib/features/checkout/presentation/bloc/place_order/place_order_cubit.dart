@@ -15,4 +15,8 @@ class PlaceOrderCubit extends Cubit<PlaceOrderState> {
         (failure) => emit(PlaceOrderError(message: failure.message)),
         (order) => emit(PlaceOrderLoaded(order)));
   }
+
+  void setLoadingState() => emit(PlaceOrderLoading());
+
+  void setInitailState() => emit(PlaceOrderInitial());
 }

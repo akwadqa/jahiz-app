@@ -10,8 +10,8 @@ class AppSettings extends Equatable {
   final String mobileNo;
   final String? companyName;
   final String appLogo;
-  final String primaryColor;
-  final String textColor;
+  final String? primaryColor;
+  final String? textColor;
 
   const AppSettings(
       {required this.customerId,

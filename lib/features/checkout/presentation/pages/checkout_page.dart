@@ -287,6 +287,8 @@ class _PaymentAndConfirmationSectionState
                       } else {
                         _showFailPaymentDialog();
                       }
+                    } else {
+                      _formKey.currentState!.reset();
                     }
                   });
                 }
@@ -318,13 +320,15 @@ class _PaymentAndConfirmationSectionState
                       final paymentService = PaymentService(
                           paymentMethod: _paymentMethod!,
                           total: widget.cart.grandTotal);
+                      context.read<PlaceOrderCubit>().setLoadingState();
                       paymentService.initiatePayment(onFail: () {
                         _showFailPaymentDialog();
                       }, onSuccess: () {
                         context
                             .read<PlaceOrderCubit>()
                             .placeOrder(widget.cart.name, 1);
-                      });
+                      }).then((value) =>
+                          context.read<PlaceOrderCubit>().setInitailState());
                     }
                   }
                 },

@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:jahiz/core/gen/fonts.gen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/payment/presentation/bloc/credit_card_loading_cubit.dart';
+import 'package:jahiz/injection_container.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 import '../../application/payment_service.dart';
 import '../../../../generated/l10n.dart';
@@ -15,8 +17,10 @@ Future<dynamic> showPaymentBottomSheet(
   return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (_) =>
-          PaymentWidget(paymentMethod: paymentMethod, total: total));
+      builder: (_) => BlocProvider(
+            create: (_) => getIt<CreditCardLoadingCubit>(),
+            child: PaymentWidget(paymentMethod: paymentMethod, total: total),
+          ));
 }
 
 class PaymentWidget extends StatefulWidget {
@@ -32,14 +36,17 @@ class PaymentWidget extends StatefulWidget {
 }
 
 class _PaymentWidgetState extends State<PaymentWidget> {
-  late MFCardPaymentView _paymentCardView;
   late PaymentService _paymentService;
+  late MFCardPaymentView _paymentCardView;
 
   @override
   void initState() {
     _paymentService = PaymentService(
         paymentMethod: widget.paymentMethod, total: widget.total);
-    _paymentService.initiateCardSession();
+    _paymentService.initiateCardSession(onSuccess: (sessionResponse) {
+      context.read<CreditCardLoadingCubit>().setLoadingValue(false);
+      _paymentCardView.load(sessionResponse, (_) => null);
+    });
     super.initState();
   }
 
@@ -66,18 +73,29 @@ class _PaymentWidgetState extends State<PaymentWidget> {
     _paymentCardView = MFCardPaymentView(cardViewStyle: _cardViewStyle());
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * 0.9,
-      child: AppBottomSheetSkeleton(
-          title: S.of(context).paymentMethod,
-          content: _paymentCardView,
-          submitButton: ElevatedButton(
-            onPressed: () {
-              _paymentService.payWithCard(
-                  paymentCardView: _paymentCardView,
-                  onSuccess: () => context.popRoute(true),
-                  onFail: () => context.popRoute(false));
-            },
-            child: Text(S.of(context).confirm),
-          )),
+      width: double.infinity,
+      child: BlocBuilder<CreditCardLoadingCubit, bool>(
+        builder: (context, state) {
+          return Stack(
+            children: [
+              AppBottomSheetSkeleton(
+                  title: S.of(context).paymentMethod,
+                  content: _paymentCardView,
+                  submitButton: ElevatedButton(
+                    onPressed: () {
+                      _paymentService.payWithCard(
+                          paymentCardView: _paymentCardView,
+                          onSuccess: () => context.popRoute(true),
+                          onFail: () => context.popRoute(false));
+                    },
+                    child: Text(S.of(context).confirm),
+                  )),
+              if (state)
+                const Center(child: CircularProgressIndicator.adaptive())
+            ],
+          );
+        },
+      ),
     );
   }
 }

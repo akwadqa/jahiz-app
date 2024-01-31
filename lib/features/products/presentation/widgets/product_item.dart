@@ -91,27 +91,27 @@ class ProductItem extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
           top: 8.0, left: 8.0, right: 8.0, bottom: isGrid ? 0.0 : 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          _productPrice(context, isSmallestPremiumItem),
+          //SizedBox(height: isSmallestPremiumItem ? 2 : 4),
           _productInfo(context, isSmallestPremiumItem),
-          if (!isSmallestPremiumItem && viewType != ViewType.grid)
-            _addToCartButton(context),
         ],
       ),
     );
   }
 
   Widget _productInfo(BuildContext context, bool isSmallestPremiumItem) {
-    return Flexible(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _productPrice(context, isSmallestPremiumItem),
-          SizedBox(height: isSmallestPremiumItem ? 2 : 4),
-          _productTitle(context, isSmallestPremiumItem),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _productTitle(context, isSmallestPremiumItem),
+        if (!isSmallestPremiumItem && viewType != ViewType.grid)
+          _addToCartButton(context),
+      ],
     );
   }
 
@@ -122,6 +122,7 @@ class ProductItem extends StatelessWidget {
             style: TextStyle(
                 fontSize: isSmallestPremiumItem ? 13 : 15,
                 fontWeight: FontWeight.bold,
+                height: 1,
                 color: AppColors.midnight)),
         if (!isSmallestPremiumItem) const SizedBox(width: 8),
         if (product.discountAmount > 0 && !isSmallestPremiumItem)
@@ -133,40 +134,29 @@ class ProductItem extends StatelessWidget {
   }
 
   Widget _productTitle(BuildContext context, bool isSmallestPremiumItem) {
-    return Row(
-      children: [
-        Flexible(
-          flex: 2,
-          child: RichText(
-            text: TextSpan(
-              style: const TextStyle(
-                  fontFamily: FontFamily.qatar,
-                  color: Colors.black,
-                  fontSize: 13),
-              children: [
-                TextSpan(
-                  text: product.productTitle,
-                  style: TextStyle(
-                    fontSize: isSmallestPremiumItem ? 13 : 15,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.midnight,
-                  ),
-                ),
-              ],
-            ),
+    return Flexible(
+      child: Wrap(
+        children: [
+          Text(
+            product.productTitle,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        if (!isSmallestPremiumItem) ...[
-          const Text(' - '),
-          Flexible(
-            child: Text(
-              product.stockUom,
+            style: TextStyle(
+              fontSize: isSmallestPremiumItem ? 13 : 15,
+              fontWeight: FontWeight.w500,
+              height: 1.3,
+              color: AppColors.midnight,
             ),
           ),
+          if (!isSmallestPremiumItem)
+            Text(
+              ' - ${product.stockUom}',
+              style: const TextStyle(
+                height: 1.2,
+              ),
+            ),
         ],
-      ],
+      ),
     );
   }
 
@@ -225,7 +215,9 @@ class ProductItem extends StatelessWidget {
         builder: (context, state) {
       return Container(
         decoration: BoxDecoration(
-            color: state != null ? HexColor(state.textColor) : AppColors.red,
+            color: state?.textColor != null
+                ? HexColor(state!.textColor!)
+                : AppColors.red,
             borderRadius: const BorderRadiusDirectional.only(
                 bottomEnd: Radius.circular(17))),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

@@ -1160,10 +1160,10 @@ class S {
     );
   }
 
-  /// `Jahiz`
+  /// `General Product`
   String get appTitle {
     return Intl.message(
-      'Jahiz',
+      'General Product',
       name: 'appTitle',
       desc: '',
       args: [],
