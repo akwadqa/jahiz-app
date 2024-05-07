@@ -7,7 +7,7 @@ import '../bloc/get_addresses/get_addresses_cubit.dart';
 import '../../../../generated/l10n.dart';
 
 class AddressesList extends StatelessWidget {
-  const AddressesList({Key? key, this.selecteable = true}) : super(key: key);
+  const AddressesList({super.key, this.selecteable = true});
 
   final bool selecteable;
 
@@ -56,7 +56,7 @@ class AddressesList extends StatelessWidget {
 }
 
 class _AddAddressButton extends StatelessWidget {
-  const _AddAddressButton({Key? key}) : super(key: key);
+  const _AddAddressButton();
 
   @override
   Widget build(BuildContext context) {

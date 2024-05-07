@@ -13,8 +13,7 @@ import '../../bloc/price_modifier/price_modifier_cubit.dart';
 import 'items_selector_form_field.dart';
 
 class ProductDetailsTabs extends StatefulWidget {
-  const ProductDetailsTabs({Key? key, required this.detailedProduct})
-      : super(key: key);
+  const ProductDetailsTabs({super.key, required this.detailedProduct});
 
   final DetailedProduct detailedProduct;
 
@@ -141,8 +140,7 @@ enum OptionType {
 }
 
 class _OptionsTabView extends StatelessWidget {
-  const _OptionsTabView({Key? key, required this.productOptions})
-      : super(key: key);
+  const _OptionsTabView({required this.productOptions});
   final List<ProductOption> productOptions;
   @override
   Widget build(BuildContext context) {
@@ -228,8 +226,7 @@ class _OptionsTabView extends StatelessWidget {
 }
 
 class _DescriptionTabView extends StatelessWidget {
-  const _DescriptionTabView({Key? key, required this.description})
-      : super(key: key);
+  const _DescriptionTabView({required this.description});
 
   final String description;
 
@@ -246,8 +243,7 @@ class _DescriptionTabView extends StatelessWidget {
 }
 
 class _SpecificationsTabView extends StatelessWidget {
-  const _SpecificationsTabView({Key? key, required this.productSpecifications})
-      : super(key: key);
+  const _SpecificationsTabView({required this.productSpecifications});
   final List<ProductSpecification> productSpecifications;
   @override
   Widget build(BuildContext context) {

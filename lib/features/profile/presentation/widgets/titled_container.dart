@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class TitledContainer extends StatelessWidget {
-  const TitledContainer({Key? key, required this.title, required this.child})
-      : super(key: key);
+  const TitledContainer({super.key, required this.title, required this.child});
   final String title;
   final Widget child;
   @override

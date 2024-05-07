@@ -14,7 +14,7 @@ import '../../../../injection_container.dart';
 
 @RoutePage()
 class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
-  const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -109,10 +109,10 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
                       if (state is EditProfileSuccess) {
                         if (state.profileDetails.enabled == 0) {
                           context.read<AuthCubit>().setUnauthenticated();
-                          context.popRoute();
+                          context.maybePop();
                         } else {
                           context.read<AppSettingsCubit>().refresh();
-                          context.popRoute();
+                          context.maybePop();
                         }
                       } else if (state is EditProfileError) {
                         ScaffoldMessenger.of(context).showSnackBar(

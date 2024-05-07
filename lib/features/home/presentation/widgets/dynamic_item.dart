@@ -10,8 +10,7 @@ import '../../domain/entities/home_block_data.dart';
 
 class DynamicItem extends StatelessWidget {
   const DynamicItem(
-      {Key? key, required this.homeBlock, required this.isNotLast})
-      : super(key: key);
+      {super.key, required this.homeBlock, required this.isNotLast});
   final HomeBlock<HomeBlockData> homeBlock;
   final bool isNotLast;
   @override

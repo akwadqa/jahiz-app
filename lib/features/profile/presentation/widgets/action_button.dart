@@ -3,8 +3,7 @@ import '../../../../core/theme/app_colors.dart';
 
 class ActionButton extends StatelessWidget {
   const ActionButton(
-      {Key? key, required this.icon, required this.onTap, required this.text})
-      : super(key: key);
+      {super.key, required this.icon, required this.onTap, required this.text});
   final Widget icon;
   final VoidCallback onTap;
   final String text;

@@ -25,8 +25,7 @@ Future<dynamic> showPaymentBottomSheet(
 
 class PaymentWidget extends StatefulWidget {
   const PaymentWidget(
-      {Key? key, required this.paymentMethod, required this.total})
-      : super(key: key);
+      {super.key, required this.paymentMethod, required this.total});
 
   final PaymentMethod paymentMethod;
   final double total;
@@ -85,8 +84,8 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                     onPressed: () {
                       _paymentService.payWithCard(
                           paymentCardView: _paymentCardView,
-                          onSuccess: () => context.popRoute(true),
-                          onFail: () => context.popRoute(false));
+                          onSuccess: () => context.maybePop(true),
+                          onFail: () => context.maybePop(false));
                     },
                     child: Text(S.of(context).confirm),
                   )),

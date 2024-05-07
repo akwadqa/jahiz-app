@@ -10,8 +10,7 @@ import '../../../domain/entities/price_modifier.dart';
 import '../../bloc/price_modifier/price_modifier_cubit.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({Key? key, required this.detailedProduct})
-      : super(key: key);
+  const AddToCartButton({super.key, required this.detailedProduct});
   final DetailedProduct detailedProduct;
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class AddToCartButton extends StatelessWidget {
                     .read<AddDetailedProductToCartCubit>()
                     .addToCart(detailedProduct,
                         context.read<PriceModifierCubit>().state.quantity)
-                    .then((value) => context.popRoute());
+                    .then((value) => context.maybePop());
               } else {
                 showSignUpLoginBottomSheet(context);
               }

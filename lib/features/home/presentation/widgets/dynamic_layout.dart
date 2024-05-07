@@ -15,14 +15,13 @@ enum ViewType {
 
 class DynamicLayout extends StatelessWidget {
   const DynamicLayout(
-      {Key? key,
+      {super.key,
       required this.viewType,
       required this.itemBuilder,
       required this.count,
       this.heightOfHorizontalList = 200,
       this.title,
-      required this.backgroundColor})
-      : super(key: key);
+      required this.backgroundColor});
   final ViewType viewType;
   final Widget Function(BuildContext, int) itemBuilder;
   final int count;
@@ -106,12 +105,10 @@ enum _TitledLayoutType { sliver, boxAdapter }
 
 class _TitledLayout extends StatefulWidget {
   const _TitledLayout(
-      {Key? key,
-      required this.title,
+      {required this.title,
       required this.layoutWidget,
       this.titlePadding,
-      this.type = _TitledLayoutType.sliver})
-      : super(key: key);
+      this.type = _TitledLayoutType.sliver});
   final String? title;
   final Widget layoutWidget;
   final EdgeInsetsGeometry? titlePadding;
@@ -241,12 +238,10 @@ class _TitledLayoutState extends State<_TitledLayout> {
 
 class _HorizontalList extends StatelessWidget {
   const _HorizontalList(
-      {Key? key,
-      required this.heightOfHorizontalList,
+      {required this.heightOfHorizontalList,
       required this.title,
       required this.itemBuilder,
-      required this.itemCount})
-      : super(key: key);
+      required this.itemCount});
 
   final double heightOfHorizontalList;
   final String? title;

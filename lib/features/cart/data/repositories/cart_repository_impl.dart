@@ -6,15 +6,13 @@ import '../datasources/cart_remote_data_source.dart';
 
 import '../../domain/entities/cart.dart';
 
-import '../../../../core/network/network_info.dart';
 import '../../domain/repositories/cart_repository.dart';
 
 class CartRepositoryImpl extends NetworkOperationHandler
     implements CartRepository {
   final CartRemoteDataSource _remoteDataSource;
 
-  CartRepositoryImpl(NetworkInfo networkInfo, this._remoteDataSource)
-      : super(networkInfo);
+  CartRepositoryImpl(super.networkInfo, this._remoteDataSource);
   @override
   Future<Either<Failure, Cart?>> getCart() async {
     return await handleNetworkOperation<Cart?>(() async {

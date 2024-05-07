@@ -8,7 +8,7 @@ import '../../../../core/gen/assets.gen.dart';
 import 'account_details_item.dart';
 
 class AccountDetails extends StatelessWidget {
-  const AccountDetails({Key? key}) : super(key: key);
+  const AccountDetails({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,13 +3,12 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class AppPaginationWidget extends StatefulWidget {
   const AppPaginationWidget(
-      {Key? key,
+      {super.key,
       required this.child,
       required this.onLoading,
       this.enableLoadingOnScrollStart = false,
       this.enablePullDown = false,
-      this.onRefresh})
-      : super(key: key);
+      this.onRefresh});
   final Widget child;
   final Future<bool> Function(int page) onLoading;
   final Future<bool> Function()? onRefresh;

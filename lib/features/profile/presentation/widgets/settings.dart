@@ -9,7 +9,7 @@ import '../../../../core/theme/app_colors.dart';
 import 'custom_list_tile.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,8 +11,7 @@ import '../../../../../core/widgets/app_cached_network_image.dart';
 
 class BannersView extends StatelessWidget {
   const BannersView(
-      {Key? key, required this.bannersBlock, required this.isNotLast})
-      : super(key: key);
+      {super.key, required this.bannersBlock, required this.isNotLast});
   final HomeBlock<Banner> bannersBlock;
   final bool isNotLast;
   @override

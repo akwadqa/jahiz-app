@@ -9,16 +9,14 @@ import '../bloc/payment_methods_cubit.dart';
 
 class PaymentMethodsSelector extends FormField<PaymentMethod> {
   PaymentMethodsSelector(
-      {Key? key,
+      {super.key,
       required BuildContext context,
-      void Function(PaymentMethod?)? onSaved,
+      super.onSaved,
       required Function(PaymentMethod) onSelected})
       : super(
-            onSaved: onSaved,
             validator: (value) => value == null ? S.of(context).required : null,
             builder: (state) =>
-                _builder(context, state, onSelected: onSelected),
-            key: key);
+                _builder(context, state, onSelected: onSelected));
 
   static Widget _builder(
       BuildContext context, FormFieldState<PaymentMethod> formFieldState,
@@ -66,11 +64,9 @@ class PaymentMethodsSelector extends FormField<PaymentMethod> {
 
 class _PaymentMethodItem extends StatelessWidget {
   const _PaymentMethodItem(
-      {Key? key,
-      required this.paymentMethod,
+      {required this.paymentMethod,
       required this.formFieldState,
-      required this.onSelected})
-      : super(key: key);
+      required this.onSelected});
   final PaymentMethod paymentMethod;
   final FormFieldState<PaymentMethod> formFieldState;
   final Function(PaymentMethod) onSelected;

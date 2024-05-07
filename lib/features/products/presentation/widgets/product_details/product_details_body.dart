@@ -11,11 +11,10 @@ class ProductDetailsBody extends StatefulWidget {
   final String heroTag;
 
   const ProductDetailsBody(
-      {Key? key,
+      {super.key,
       required this.detailedProductState,
       required this.product,
-      required this.heroTag})
-      : super(key: key);
+      required this.heroTag});
 
   @override
   State<ProductDetailsBody> createState() => _ProductDetailsBodyState();

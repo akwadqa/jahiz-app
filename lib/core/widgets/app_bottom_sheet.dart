@@ -27,7 +27,7 @@ Future<dynamic> showAppBottomSheet(
 
 class AppBottomSheetSkeleton extends StatelessWidget {
   const AppBottomSheetSkeleton(
-      {Key? key,
+      {super.key,
       required this.title,
       this.subtitle,
       required this.content,
@@ -35,8 +35,7 @@ class AppBottomSheetSkeleton extends StatelessWidget {
       this.isShowBackButton = true,
       this.scrollPhysics,
       this.isSliverContent = false,
-      this.stackedSubmitButton})
-      : super(key: key);
+      this.stackedSubmitButton});
   final String title;
   final String? subtitle;
   final Widget content;
@@ -125,11 +124,9 @@ class AppBottomSheetSkeleton extends StatelessWidget {
 
 class _Header extends StatelessWidget {
   const _Header(
-      {Key? key,
-      required this.isShowBackButton,
+      {required this.isShowBackButton,
       required this.title,
-      required this.subtitle})
-      : super(key: key);
+      required this.subtitle});
   final bool isShowBackButton;
   final String title;
   final String? subtitle;
@@ -158,7 +155,7 @@ class _Header extends StatelessWidget {
 }
 
 class _TitleText extends StatelessWidget {
-  const _TitleText({Key? key, required this.title}) : super(key: key);
+  const _TitleText({required this.title});
   final String title;
   @override
   Widget build(BuildContext context) {

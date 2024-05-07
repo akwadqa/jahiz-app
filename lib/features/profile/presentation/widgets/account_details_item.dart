@@ -8,11 +8,11 @@ class AccountDetailsItem extends StatelessWidget {
   final VoidCallback onTap;
 
   const AccountDetailsItem({
-    Key? key,
+    super.key,
     required this.leading,
     required this.title,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

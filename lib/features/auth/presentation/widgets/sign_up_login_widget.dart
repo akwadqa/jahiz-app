@@ -16,7 +16,7 @@ import '../bloc/register/register_cubit.dart';
 import 'qatar_international_code_widget.dart';
 
 class SignUpLoginWidget extends StatelessWidget {
-  const SignUpLoginWidget({Key? key}) : super(key: key);
+  const SignUpLoginWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class SignUpLoginWidget extends StatelessWidget {
           listenWhen: (previousState, state) =>
               state is CheckUserValidationLoadSuccess,
           listener: (context, state) {
-            context.popRoute().then((value) {
+            context.maybePop().then((value) {
               showAppBottomSheet(
                   context: context,
                   child: (state as CheckUserValidationLoadSuccess).userIsExist

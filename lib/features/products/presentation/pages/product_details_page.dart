@@ -16,8 +16,7 @@ import '../widgets/product_details/add_to_cart_button.dart';
 @RoutePage()
 class ProductDetailsPage extends StatelessWidget implements AutoRouteWrapper {
   const ProductDetailsPage(
-      {Key? key, required this.product, required this.heroTag})
-      : super(key: key);
+      {super.key, required this.product, required this.heroTag});
   final Product product;
   final String heroTag;
   @override

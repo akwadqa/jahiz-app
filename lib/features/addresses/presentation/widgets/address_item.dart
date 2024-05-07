@@ -13,11 +13,10 @@ import '../../../../core/theme/app_colors.dart';
 
 class AddressItem extends StatelessWidget {
   const AddressItem(
-      {Key? key,
+      {super.key,
       required this.address,
       this.isChangeable = false,
-      this.isEditiable = false})
-      : super(key: key);
+      this.isEditiable = false});
   final Address address;
   final bool isChangeable;
   final bool isEditiable;
@@ -89,7 +88,7 @@ class AddressItem extends StatelessWidget {
 }
 
 class _AddressDetailsRow extends StatelessWidget {
-  const _AddressDetailsRow({Key? key, required this.address}) : super(key: key);
+  const _AddressDetailsRow({required this.address});
   final Address address;
   @override
   Widget build(BuildContext context) {

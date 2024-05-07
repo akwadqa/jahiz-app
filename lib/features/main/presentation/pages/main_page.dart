@@ -9,7 +9,7 @@ import '../widgets/custom_bottom_navigation_bar.dart';
 
 @RoutePage()
 class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {

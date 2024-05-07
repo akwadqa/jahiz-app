@@ -5,7 +5,7 @@ import '../bloc/place_order/place_order_cubit.dart';
 import '../../../../generated/l10n.dart';
 
 class PlaceOrderButton extends StatelessWidget {
-  const PlaceOrderButton({Key? key, required this.onPressed}) : super(key: key);
+  const PlaceOrderButton({super.key, required this.onPressed});
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
