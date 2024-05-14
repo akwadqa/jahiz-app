@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppErrorWidget extends StatelessWidget {
   const AppErrorWidget(
-      {Key? key, required this.errorText, required this.onRetryClicked})
-      : super(key: key);
+      {super.key, required this.errorText, required this.onRetryClicked});
   final String errorText;
   final VoidCallback onRetryClicked;
   @override

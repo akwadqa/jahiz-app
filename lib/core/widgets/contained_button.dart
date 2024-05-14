@@ -3,14 +3,13 @@ import '../theme/app_colors.dart';
 
 class ContainedButton extends StatelessWidget {
   const ContainedButton(
-      {Key? key,
+      {super.key,
       required this.icon,
       this.color = AppColors.darkGreen,
       required this.onPressed,
       this.backgroundColor = AppColors.whiteSmoke,
       this.withShadow = true,
-      this.margin})
-      : super(key: key);
+      this.margin});
   final Widget icon;
   final Color color;
   final VoidCallback onPressed;

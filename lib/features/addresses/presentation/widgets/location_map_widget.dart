@@ -9,7 +9,7 @@ import '../../../../generated/l10n.dart';
 import '../../../../core/widgets/app_bottom_sheet.dart';
 
 class LocationMapWidget extends StatelessWidget {
-  const LocationMapWidget({Key? key}) : super(key: key);
+  const LocationMapWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class LocationMapWidget extends StatelessWidget {
       scrollPhysics: const NeverScrollableScrollPhysics(),
       submitButton: ElevatedButton(
         onPressed: () {
-          context.popRoute().then((value) {
+          context.maybePop().then((value) {
             SharedFunctions.showAddressFormBottomSheet(
                 context: context, latLng: latLng);
           });

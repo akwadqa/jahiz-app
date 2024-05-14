@@ -6,7 +6,7 @@ import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
 import 'dynamic_item.dart';
 
 class DynamicList extends StatelessWidget {
-  const DynamicList({Key? key, required this.homeBlocks}) : super(key: key);
+  const DynamicList({super.key, required this.homeBlocks});
   final List<HomeBlock<HomeBlockData>> homeBlocks;
   @override
   Widget build(BuildContext context) {

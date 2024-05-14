@@ -7,7 +7,7 @@ import '../../../../core/blocs/selected_language_cubit.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class LanguageSwitch extends StatelessWidget {
-  const LanguageSwitch({Key? key}) : super(key: key);
+  const LanguageSwitch({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -9,8 +9,7 @@ import '../../../../core/widgets/app_bottom_sheet.dart';
 import 'qatar_international_code_widget.dart';
 
 class LoginWidget extends StatelessWidget {
-  const LoginWidget({Key? key, required this.userPhoneNumber})
-      : super(key: key);
+  const LoginWidget({super.key, required this.userPhoneNumber});
   final String userPhoneNumber;
   @override
   Widget build(BuildContext context) {
@@ -70,7 +69,7 @@ class LoginWidget extends StatelessWidget {
 }
 
 class _PasswordTextFormField extends StatefulWidget {
-  const _PasswordTextFormField({Key? key}) : super(key: key);
+  const _PasswordTextFormField();
 
   @override
   State<_PasswordTextFormField> createState() => _PasswordTextFormFieldState();

@@ -15,7 +15,7 @@ import '../bloc/categories/categories_cubit.dart';
 
 @RoutePage()
 class CategoriesPage extends StatelessWidget implements AutoRouteWrapper {
-  const CategoriesPage({Key? key}) : super(key: key);
+  const CategoriesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class CategoriesPage extends StatelessWidget implements AutoRouteWrapper {
 }
 
 class _CategoryItem extends StatelessWidget {
-  const _CategoryItem({Key? key, required this.category}) : super(key: key);
+  const _CategoryItem({required this.category});
   final Category category;
   @override
   Widget build(BuildContext context) {

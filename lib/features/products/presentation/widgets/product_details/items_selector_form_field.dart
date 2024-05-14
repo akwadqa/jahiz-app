@@ -22,8 +22,7 @@ class ItemsSelectorFormField extends FormField<String?> {
 
 class _ItemsSelector extends StatefulWidget {
   const _ItemsSelector(
-      {Key? key, required this.items, required this.onItemSelected})
-      : super(key: key);
+      {required this.items, required this.onItemSelected});
 
   final List<String> items;
   final void Function(String? value) onItemSelected;

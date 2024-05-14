@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
 class CustomContainer extends StatelessWidget {
-  const CustomContainer({Key? key, required this.onTap, required this.child})
-      : super(key: key);
+  const CustomContainer({super.key, required this.onTap, required this.child});
   final VoidCallback onTap;
   final Widget child;
   @override

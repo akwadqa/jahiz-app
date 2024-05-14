@@ -18,8 +18,7 @@ import '../../../../core/widgets/app_bottom_sheet.dart';
 import 'address_type_selector.dart';
 
 class AddressFormWidget extends StatelessWidget {
-  const AddressFormWidget({Key? key, required this.latLng, this.address})
-      : super(key: key);
+  const AddressFormWidget({super.key, required this.latLng, this.address});
   final LatLng latLng;
   final Address? address;
   @override
@@ -129,7 +128,7 @@ class AddressFormWidget extends StatelessWidget {
         }
         if (state is AddUpdateAddressLoaded) {
           context.read<GetAddressesCubit>().getAddresses();
-          context.popRoute();
+          context.maybePop();
         }
       }, builder: (context, state) {
         if (state is AddUpdateAddressLoading) {
@@ -149,8 +148,7 @@ class AddressFormWidget extends StatelessWidget {
 }
 
 class _ShippingCheckBox extends StatefulWidget {
-  const _ShippingCheckBox({Key? key, this.isDefaultShippingAddress = false})
-      : super(key: key);
+  const _ShippingCheckBox({this.isDefaultShippingAddress = false});
   final bool isDefaultShippingAddress;
 
   @override
@@ -184,8 +182,7 @@ class _ShippingCheckBoxState extends State<_ShippingCheckBox> {
 }
 
 class _CityTextFormField extends StatefulWidget {
-  const _CityTextFormField({Key? key, required this.initialCity})
-      : super(key: key);
+  const _CityTextFormField({required this.initialCity});
   final City? initialCity;
   @override
   State<_CityTextFormField> createState() => _CityTextFormFieldState();

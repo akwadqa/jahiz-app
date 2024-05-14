@@ -18,7 +18,7 @@ Future<dynamic> showLocationSelectorBottomSheet(BuildContext context) {
 }
 
 class LocationSelectorWidget extends StatelessWidget {
-  const LocationSelectorWidget({Key? key}) : super(key: key);
+  const LocationSelectorWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

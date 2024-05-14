@@ -7,7 +7,7 @@ import '../../../../core/gen/assets.gen.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class CustomListTile extends StatelessWidget {
-  const CustomListTile({Key? key}) : super(key: key);
+  const CustomListTile({super.key});
 
   @override
   Widget build(BuildContext context) {

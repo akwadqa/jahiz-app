@@ -14,7 +14,7 @@ import '../../../../injection_container.dart';
 
 @RoutePage()
 class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
-  const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -112,25 +112,78 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
                       ),
                     ],
                   ),
-                  Positioned(
-                    bottom: MediaQuery.of(context).viewInsets.bottom,
-                    left: 0.0,
-                    right: 0.0,
-                    child: BlocConsumer<EditProfileCubit, EditProfileState>(
-                      listener: (context, state) {
-                        if (state is EditProfileSuccess) {
-                          if (state.profileDetails.enabled == 0) {
-                            context.read<AuthCubit>().setUnauthenticated();
-                            context.popRoute();
-                          } else {
-                            context.read<AppSettingsCubit>().refresh();
-                            context.popRoute();
-                          }
-                        } else if (state is EditProfileError) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(state.message)));
+                  const SizedBox(height: 12.0),
+                  TextFormField(
+                    initialValue: profileDetails.lastName,
+                    decoration: InputDecoration(
+                      label: Text(S.of(context).lastName),
+                    ),
+                    textInputAction: TextInputAction.next,
+                    validator:
+                        context.read<EditProfileCubit>().validator(context),
+                    onSaved: context.read<EditProfileCubit>().onSavedLastName,
+                  ),
+                  const SizedBox(height: 12.0),
+                  TextFormField(
+                    initialValue: profileDetails.mobileNo.replaceAll('974', ''),
+                    decoration: InputDecoration(
+                      label: Text(S.of(context).phone),
+                    ),
+                    textInputAction: TextInputAction.next,
+                    validator: context
+                        .read<EditProfileCubit>()
+                        .phoneValidator(context),
+                    onSaved:
+                        context.read<EditProfileCubit>().onSavedPhoneNumber,
+                  ),
+                  const SizedBox(height: 12.0),
+                  TextFormField(
+                    initialValue: profileDetails.email,
+                    decoration: InputDecoration(
+                      label: Text(S.of(context).email),
+                    ),
+                    textInputAction: TextInputAction.done,
+                    validator: context
+                        .read<EditProfileCubit>()
+                        .emailValidator(context),
+                    onSaved: context.read<EditProfileCubit>().onSavedEmail,
+                  ),
+                  const SizedBox(height: 30),
+                  BlocBuilder<EditProfileCubit, EditProfileState>(
+                    builder: (context, state) {
+                      if (state is EditProfileDeleteLoading) {
+                        return const Center(
+                            child: CircularProgressIndicator.adaptive());
+                      }
+                      return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context)
+                                .primaryColor
+                                .withOpacity(0.05),
+                            elevation: 0.0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0)),
+                            textStyle: const TextStyle(
+                                fontSize: 18.0, fontFamily: FontFamily.qatar),
+                            foregroundColor: AppColors.darkGray,
+                          ),
+                          onPressed:
+                              context.read<EditProfileCubit>().deleteProfile,
+                          child: Text(S.of(context).deleteAccount));
+                    },
+                  ),
+                  const Spacer(),
+                  BlocConsumer<EditProfileCubit, EditProfileState>(
+                    listener: (context, state) {
+                      if (state is EditProfileSuccess) {
+                        if (state.profileDetails.enabled == 0) {
+                          context.read<AuthCubit>().setUnauthenticated();
+                          context.maybePop();
+                        } else {
+                          context.read<AppSettingsCubit>().refresh();
+                          context.maybePop();
                         }
-                      },
+                      }},
                       builder: (context, state) {
                         if (state is EditProfileLoading) {
                           return const Center(
@@ -142,7 +195,7 @@ class EditProfilePage extends StatelessWidget implements AutoRouteWrapper {
                             child: Text(S.of(context).updateProfile));
                       },
                     ),
-                  ),
+                  
                   // const SizedBox(height: 20),
                 ],
               ),

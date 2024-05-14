@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../generated/l10n.dart';
 
 class NoElementsWidget extends StatelessWidget {
-  const NoElementsWidget({Key? key}) : super(key: key);
+  const NoElementsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

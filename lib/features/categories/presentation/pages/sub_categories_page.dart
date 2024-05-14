@@ -15,8 +15,7 @@ import '../../../../injection_container.dart';
 
 @RoutePage()
 class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
-  const SubCategoriesPage({Key? key, required this.categoryId})
-      : super(key: key);
+  const SubCategoriesPage({super.key, required this.categoryId});
   final String categoryId;
   @override
   Widget build(BuildContext context) {
@@ -160,7 +159,7 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
             return const SizedBox.shrink();
           }
           return GestureDetector(
-            onTap: () => context.popRoute(true),
+            onTap: () => context.maybePop(true),
             child: Container(
               margin: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -188,7 +187,7 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
                     ],
                   ),
                   TextButton(
-                      onPressed: () => context.popRoute(true),
+                      onPressed: () => context.maybePop(true),
                       child: Text(S.of(context).viewCart,
                           style: Theme.of(context)
                               .textTheme

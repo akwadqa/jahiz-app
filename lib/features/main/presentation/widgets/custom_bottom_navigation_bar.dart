@@ -8,11 +8,10 @@ import '../../../../core/gen/assets.gen.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar(
-      {Key? key,
+      {super.key,
       required this.currentIndex,
       required this.onPressed,
-      required this.labels})
-      : super(key: key);
+      required this.labels});
   final int currentIndex;
   final void Function(int index) onPressed;
   final List<String> labels;
@@ -68,12 +67,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
 class _BnbIcon extends StatelessWidget {
   const _BnbIcon(
-      {Key? key,
-      required this.onPressed,
+      {required this.onPressed,
       required this.label,
       required this.icon,
-      required this.isSelected})
-      : super(key: key);
+      required this.isSelected});
   final void Function() onPressed;
   final String label;
   final SvgGenImage icon;

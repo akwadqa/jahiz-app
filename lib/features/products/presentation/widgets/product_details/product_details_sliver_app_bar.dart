@@ -17,11 +17,10 @@ import 'package:share_plus/share_plus.dart';
 
 class ProductDetailsSliverAppBar extends StatelessWidget {
   const ProductDetailsSliverAppBar(
-      {Key? key,
+      {super.key,
       required this.detailedProductState,
       required this.product,
-      required this.heroTag})
-      : super(key: key);
+      required this.heroTag});
   final DetailedProductState detailedProductState;
   final Product product;
   final String heroTag;

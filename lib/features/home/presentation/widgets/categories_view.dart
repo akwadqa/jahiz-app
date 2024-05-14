@@ -7,8 +7,7 @@ import 'package:jahiz/features/home/presentation/widgets/dynamic_layout.dart';
 
 class CategoriesView extends StatelessWidget {
   const CategoriesView(
-      {Key? key, required this.categoriesBlock, required this.isNotLast})
-      : super(key: key);
+      {super.key, required this.categoriesBlock, required this.isNotLast});
   final HomeBlock<Category> categoriesBlock;
   final bool isNotLast;
 

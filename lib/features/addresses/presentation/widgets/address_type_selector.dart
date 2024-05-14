@@ -6,8 +6,7 @@ import '../../../../core/gen/assets.gen.dart';
 
 class AddressTypeSelector extends StatefulWidget {
   const AddressTypeSelector(
-      {Key? key, required this.onSelected, this.initialValue})
-      : super(key: key);
+      {super.key, required this.onSelected, this.initialValue});
   final Function(AddressType) onSelected;
   final AddressType? initialValue;
 
@@ -91,13 +90,11 @@ class _AddressTypeSelectorState extends State<AddressTypeSelector> {
 
 class _AvatarItem extends StatelessWidget {
   const _AvatarItem(
-      {Key? key,
-      required this.icon,
+      {required this.icon,
       required this.label,
       required this.selected,
       required this.labelColor,
-      this.onSelected})
-      : super(key: key);
+      this.onSelected});
   final Widget icon;
   final String label;
   final Color labelColor;

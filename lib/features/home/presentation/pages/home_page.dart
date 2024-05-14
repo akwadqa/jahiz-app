@@ -18,7 +18,7 @@ import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
 
 class _SearchTextFormField extends StatelessWidget
     implements PreferredSizeWidget {
-  const _SearchTextFormField({Key? key}) : super(key: key);
+  const _SearchTextFormField();
 
   @override
   Widget build(BuildContext context) {

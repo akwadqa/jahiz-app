@@ -30,7 +30,7 @@ import '../../../payment/presentation/widgets/payment_widget.dart';
 
 @RoutePage()
 class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
-  const CheckoutPage({Key? key}) : super(key: key);
+  const CheckoutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
 }
 
 class _ItemsList extends StatelessWidget {
-  const _ItemsList({Key? key, required this.cartItems}) : super(key: key);
+  const _ItemsList({required this.cartItems});
   final List<CartItem> cartItems;
 
   @override
@@ -143,7 +143,7 @@ class _ItemsList extends StatelessWidget {
 }
 
 class _CouponSection extends StatefulWidget {
-  const _CouponSection({Key? key, required this.cart}) : super(key: key);
+  const _CouponSection({required this.cart});
   final Cart cart;
 
   @override
@@ -242,8 +242,7 @@ class _CouponSectionState extends State<_CouponSection> {
 }
 
 class _PaymentAndConfirmationSection extends StatefulWidget {
-  const _PaymentAndConfirmationSection({Key? key, required this.cart})
-      : super(key: key);
+  const _PaymentAndConfirmationSection({required this.cart});
 
   final Cart cart;
 

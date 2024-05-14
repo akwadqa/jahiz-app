@@ -21,7 +21,7 @@ import '../bloc/cart_cubit.dart';
 
 @RoutePage()
 class CartPage extends StatelessWidget implements AutoRouteWrapper {
-  const CartPage({Key? key}) : super(key: key);
+  const CartPage({super.key});
 
   @override
   Widget wrappedRoute(BuildContext context) {
@@ -162,8 +162,7 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
 }
 
 class _CartItem extends StatelessWidget {
-  const _CartItem({Key? key, required this.cart, required this.index})
-      : super(key: key);
+  const _CartItem({required this.cart, required this.index});
   final Cart cart;
   final int index;
   @override

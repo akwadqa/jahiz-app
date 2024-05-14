@@ -4,7 +4,7 @@ import '../../../../core/app_constants.dart';
 import '../../../../core/gen/assets.gen.dart';
 
 class QatarInternationalCodeWidget extends StatelessWidget {
-  const QatarInternationalCodeWidget({Key? key}) : super(key: key);
+  const QatarInternationalCodeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

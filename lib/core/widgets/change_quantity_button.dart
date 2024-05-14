@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class ChangeQuantityButton extends StatelessWidget {
   const ChangeQuantityButton(
-      {Key? key,
+      {super.key,
       required this.icon,
       required this.onPressed,
-      this.padding = const EdgeInsets.all(8)})
-      : super(key: key);
+      this.padding = const EdgeInsets.all(8)});
   final IconData icon;
   final VoidCallback onPressed;
   final EdgeInsetsGeometry padding;

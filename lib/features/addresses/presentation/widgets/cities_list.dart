@@ -7,7 +7,7 @@ import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../generated/l10n.dart';
 
 class CitiesList extends StatelessWidget {
-  const CitiesList({Key? key}) : super(key: key);
+  const CitiesList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class CitiesList extends StatelessWidget {
         return const Center(child: CircularProgressIndicator.adaptive());
       }),
       submitButton: ElevatedButton(
-        onPressed: () => context.popRoute(
+        onPressed: () => context.maybePop(
             context.read<GetCitiesCubit>().state is GetCitiesLoaded
                 ? (context.read<GetCitiesCubit>().state as GetCitiesLoaded)
                     .selectedCity

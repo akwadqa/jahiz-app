@@ -10,8 +10,7 @@ import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/check_box_form_field.dart';
 
 class RegisterWidget extends StatelessWidget {
-  const RegisterWidget({Key? key, required this.userPhoneNumber})
-      : super(key: key);
+  const RegisterWidget({super.key, required this.userPhoneNumber});
   final String userPhoneNumber;
   @override
   Widget build(BuildContext context) {
@@ -111,7 +110,7 @@ class RegisterWidget extends StatelessWidget {
 }
 
 class _PasswordTextFormField extends StatefulWidget {
-  const _PasswordTextFormField({Key? key}) : super(key: key);
+  const _PasswordTextFormField();
 
   @override
   State<_PasswordTextFormField> createState() => _PasswordTextFormFieldState();

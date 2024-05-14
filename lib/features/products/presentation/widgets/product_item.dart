@@ -19,11 +19,10 @@ import '../../../../core/widgets/app_cached_network_image.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem(
-      {Key? key,
+      {super.key,
       required this.product,
       required this.viewType,
-      required this.index})
-      : super(key: key);
+      required this.index});
   final Product product;
   final ViewType viewType;
   final int index;

@@ -7,8 +7,7 @@ import '../../../products/presentation/widgets/product_item.dart';
 
 class ProductsView extends StatelessWidget {
   const ProductsView(
-      {Key? key, required this.productsBlock, required this.isNotLast})
-      : super(key: key);
+      {super.key, required this.productsBlock, required this.isNotLast});
   final HomeBlock<Product> productsBlock;
   final bool isNotLast;
 

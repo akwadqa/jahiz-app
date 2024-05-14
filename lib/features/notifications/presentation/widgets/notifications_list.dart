@@ -7,7 +7,7 @@ import 'notification_widget.dart';
 import '../../../../generated/l10n.dart';
 
 class NotificationsList extends StatelessWidget {
-  const NotificationsList({Key? key}) : super(key: key);
+  const NotificationsList({super.key});
 
   @override
   Widget build(BuildContext context) {
