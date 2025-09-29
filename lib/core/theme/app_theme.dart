@@ -37,8 +37,8 @@ abstract class AppTheme {
             : null,
       );
 
-  static TabBarTheme get _tabBarTheme =>
-      const TabBarTheme(labelColor: Colors.black);
+  static TabBarThemeData get _tabBarTheme =>
+      const TabBarThemeData(labelColor: Colors.black);
 
   static ElevatedButtonThemeData _elevatedButtonThemeData(
           String? primaryColor) =>

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
+// import 'package:flutter_vibrate/flutter_vibrate.dart';
 import '../../../../cart/application/cart_service.dart';
 import '../../../../cart/domain/entities/cart_product_option.dart';
 import '../../../domain/entities/product_option.dart';
@@ -46,7 +46,7 @@ class AddDetailedProductToCartCubit
 
   Future<void> _submit(DetailedProduct detailedProduct, int quantity) async {
     if (getIt<bool>()) {
-      Vibrate.feedback(FeedbackType.heavy);
+      // Vibrate.feedback(FeedbackType.heavy);
     }
     emit(AddDetailedProductToCartLoading());
     final failureOrCart = await getIt<CartService>().addToCart(
