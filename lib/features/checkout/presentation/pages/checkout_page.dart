@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/router/app_router.dart';
@@ -339,46 +339,109 @@ class _PaymentAndConfirmationSectionState
       ),
     );
   }
+Future<dynamic> _showSuccessPaymentDialog(String salesOrderId,
+    [String? message]) {
+  return showDialog(
+    context: context,
+    barrierDismissible: false, // prevent dismiss on tap outside
+    builder: (ctx) {
+      return AlertDialog(
+        title: Text(S.of(context).thankYou),
+        content: Text(message ?? S.of(context).orderAndPaymentPlaced),
+        actions: [
+          TextButton(
+            onPressed: () {
+              getIt<CartService>().clearCart();
+              context.router.pushAndPopUntil(
+                const MainRoute(),
+                predicate: (route) => false,
+              );
+            },
+            child: Text(S.of(context).homePage),
+          ),
+          TextButton(
+            onPressed: () {
+              getIt<CartService>().clearCart();
+              context.router.pushAndPopUntil(
+                const MainRoute(),
+                predicate: (route) => false,
+              );
+              context.pushRoute(OrderDetailsRoute(salesOrderId: salesOrderId));
+            },
+            child: Text(S.of(context).orderDetails),
+          ),
+        ],
+      );
+    },
+  );
+}
+Future<dynamic> _showFailPaymentDialog() {
+  return showDialog(
+    context: context,
+    barrierDismissible: false, // prevent dismiss
+    builder: (ctx) {
+      return AlertDialog(
+        title: Text(S.of(context).paymentIsFailed),
+        content: Text(S.of(context).orderPaymentFailed),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop(); // just close
+            },
+            child: Text(
+              S.of(context).ok,
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
 
-  Future<dynamic> _showSuccessPaymentDialog(String salesOrderId,
-      [String? message]) {
-    return AwesomeDialog(
-      context: context,
-      dialogType: DialogType.success,
-      animType: AnimType.scale,
-      title: S.of(context).thankYou,
-      desc: message ?? S.of(context).orderAndPaymentPlaced,
-      btnOkOnPress: () {
-        getIt<CartService>().clearCart();
-        context.router
-            .pushAndPopUntil(const MainRoute(), predicate: (route) => false);
-        context.pushRoute(OrderDetailsRoute(salesOrderId: salesOrderId));
-      },
-      btnOkText: S.of(context).orderDetails,
-      btnCancelText: S.of(context).homePage,
-      btnCancelColor: Theme.of(context).primaryColor,
-      dismissOnBackKeyPress: false,
-      dismissOnTouchOutside: false,
-      btnCancelOnPress: () {
-        getIt<CartService>().clearCart();
-        context.router
-            .pushAndPopUntil(const MainRoute(), predicate: (route) => false);
-      },
-    ).show();
-  }
+  // Future<dynamic> _showSuccessPaymentDialog(String salesOrderId,
+  //     [String? message]) {
+  //   return showDialog(context: context, builder: (n)=>Container());
 
-  Future<dynamic> _showFailPaymentDialog() {
-    return AwesomeDialog(
-      context: context,
-      dialogType: DialogType.error,
-      animType: AnimType.scale,
-      title: S.of(context).paymentIsFailed,
-      desc: S.of(context).orderPaymentFailed,
-      btnOkOnPress: () {},
-      btnOkText: S.of(context).ok,
-      dismissOnBackKeyPress: false,
-      dismissOnTouchOutside: false,
-      btnOkColor: Theme.of(context).primaryColor,
-    ).show();
-  }
+  //   // return AwesomeDialog(
+  //   //   context: context,
+  //   //   dialogType: DialogType.success,
+  //   //   animType: AnimType.scale,
+  //   //   title: S.of(context).thankYou,
+  //   //   desc: message ?? S.of(context).orderAndPaymentPlaced,
+  //   //   btnOkOnPress: () {
+  //   //     getIt<CartService>().clearCart();
+  //   //     context.router
+  //   //         .pushAndPopUntil(const MainRoute(), predicate: (route) => false);
+  //   //     context.pushRoute(OrderDetailsRoute(salesOrderId: salesOrderId));
+  //   //   },
+  //   //   btnOkText: S.of(context).orderDetails,
+  //   //   btnCancelText: S.of(context).homePage,
+  //   //   btnCancelColor: Theme.of(context).primaryColor,
+  //   //   dismissOnBackKeyPress: false,
+  //   //   dismissOnTouchOutside: false,
+  //   //   btnCancelOnPress: () {
+  //   //     getIt<CartService>().clearCart();
+  //   //     context.router
+  //   //         .pushAndPopUntil(const MainRoute(), predicate: (route) => false);
+  //   //   },
+  //   // ).show();
+  // }
+
+  // Future<dynamic> _showFailPaymentDialog() {
+  //   return showDialog(context: context, builder: (n)=>Container());
+    
+  //   // AwesomeDialog(
+  //   //   context: context,
+  //   //   dialogType: DialogType.error,
+  //   //   animType: AnimType.scale,
+  //   //   title: S.of(context).paymentIsFailed,
+  //   //   desc: S.of(context).orderPaymentFailed,
+  //   //   btnOkOnPress: () {},
+  //   //   btnOkText: S.of(context).ok,
+  //   //   dismissOnBackKeyPress: false,
+  //   //   dismissOnTouchOutside: false,
+  //   //   btnOkColor: Theme.of(context).primaryColor,
+  //   // ).show();
+  // }
 }

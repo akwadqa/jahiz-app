@@ -32,9 +32,9 @@ class SignUpLoginWidget extends StatelessWidget {
             children: [
               const QatarInternationalCodeWidget(),
               const SizedBox(width: 6),
-              Form(
-                key: context.read<CheckUserValidationCubit>().formKey,
-                child: Expanded(
+              Expanded(
+                child: Form(
+                  key: context.read<CheckUserValidationCubit>().formKey,
                   child: LoginTextFormField(
                     labelText: AppConstants.phoneNumberHint,
                     validator: context

@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -9,215 +10,116 @@
 
 part of 'app_router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    AddressesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const AddressesPage()),
-      );
-    },
-    CartRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const CartPage()),
-      );
-    },
-    CategoriesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const CategoriesPage()),
-      );
-    },
-    CheckoutRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const CheckoutPage()),
-      );
-    },
-    EditProfileRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const EditProfilePage()),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomePage(),
-      );
-    },
-    MainRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MainPage(),
-      );
-    },
-    NotificationDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<NotificationDetailsRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: NotificationDetailsPage(
-          key: args.key,
-          notification: args.notification,
-        ),
-      );
-    },
-    NotificationsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const NotificationsPage()),
-      );
-    },
-    OrderDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<OrderDetailsRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: OrderDetailsPage(
-          key: args.key,
-          salesOrderId: args.salesOrderId,
-        )),
-      );
-    },
-    OrderHistoryRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const OrderHistoryPage()),
-      );
-    },
-    ProductDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<ProductDetailsRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: ProductDetailsPage(
-          key: args.key,
-          product: args.product,
-          heroTag: args.heroTag,
-        )),
-      );
-    },
-    ProfileRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ProfilePage(),
-      );
-    },
-    SubCategoriesRoute.name: (routeData) {
-      final args = routeData.argsAs<SubCategoriesRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: SubCategoriesPage(
-          key: args.key,
-          categoryId: args.categoryId,
-        )),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [AddressesPage]
 class AddressesRoute extends PageRouteInfo<void> {
   const AddressesRoute({List<PageRouteInfo>? children})
-      : super(
-          AddressesRoute.name,
-          initialChildren: children,
-        );
+      : super(AddressesRoute.name, initialChildren: children);
 
   static const String name = 'AddressesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const AddressesPage());
+    },
+  );
 }
 
 /// generated route for
 /// [CartPage]
 class CartRoute extends PageRouteInfo<void> {
   const CartRoute({List<PageRouteInfo>? children})
-      : super(
-          CartRoute.name,
-          initialChildren: children,
-        );
+      : super(CartRoute.name, initialChildren: children);
 
   static const String name = 'CartRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CartPage());
+    },
+  );
 }
 
 /// generated route for
 /// [CategoriesPage]
 class CategoriesRoute extends PageRouteInfo<void> {
   const CategoriesRoute({List<PageRouteInfo>? children})
-      : super(
-          CategoriesRoute.name,
-          initialChildren: children,
-        );
+      : super(CategoriesRoute.name, initialChildren: children);
 
   static const String name = 'CategoriesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CategoriesPage());
+    },
+  );
 }
 
 /// generated route for
 /// [CheckoutPage]
 class CheckoutRoute extends PageRouteInfo<void> {
   const CheckoutRoute({List<PageRouteInfo>? children})
-      : super(
-          CheckoutRoute.name,
-          initialChildren: children,
-        );
+      : super(CheckoutRoute.name, initialChildren: children);
 
   static const String name = 'CheckoutRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const CheckoutPage());
+    },
+  );
 }
 
 /// generated route for
 /// [EditProfilePage]
 class EditProfileRoute extends PageRouteInfo<void> {
   const EditProfileRoute({List<PageRouteInfo>? children})
-      : super(
-          EditProfileRoute.name,
-          initialChildren: children,
-        );
+      : super(EditProfileRoute.name, initialChildren: children);
 
   static const String name = 'EditProfileRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const EditProfilePage());
+    },
+  );
 }
 
 /// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
+      : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomePage();
+    },
+  );
 }
 
 /// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
-      : super(
-          MainRoute.name,
-          initialChildren: children,
-        );
+      : super(MainRoute.name, initialChildren: children);
 
   static const String name = 'MainRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MainPage();
+    },
+  );
 }
 
 /// generated route for
@@ -239,15 +141,20 @@ class NotificationDetailsRoute
 
   static const String name = 'NotificationDetailsRoute';
 
-  static const PageInfo<NotificationDetailsRouteArgs> page =
-      PageInfo<NotificationDetailsRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NotificationDetailsRouteArgs>();
+      return NotificationDetailsPage(
+        key: args.key,
+        notification: args.notification,
+      );
+    },
+  );
 }
 
 class NotificationDetailsRouteArgs {
-  const NotificationDetailsRouteArgs({
-    this.key,
-    required this.notification,
-  });
+  const NotificationDetailsRouteArgs({this.key, required this.notification});
 
   final Key? key;
 
@@ -257,20 +164,32 @@ class NotificationDetailsRouteArgs {
   String toString() {
     return 'NotificationDetailsRouteArgs{key: $key, notification: $notification}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! NotificationDetailsRouteArgs) return false;
+    return key == other.key && notification == other.notification;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ notification.hashCode;
 }
 
 /// generated route for
 /// [NotificationsPage]
 class NotificationsRoute extends PageRouteInfo<void> {
   const NotificationsRoute({List<PageRouteInfo>? children})
-      : super(
-          NotificationsRoute.name,
-          initialChildren: children,
-        );
+      : super(NotificationsRoute.name, initialChildren: children);
 
   static const String name = 'NotificationsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const NotificationsPage());
+    },
+  );
 }
 
 /// generated route for
@@ -282,24 +201,25 @@ class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
     List<PageRouteInfo>? children,
   }) : super(
           OrderDetailsRoute.name,
-          args: OrderDetailsRouteArgs(
-            key: key,
-            salesOrderId: salesOrderId,
-          ),
+          args: OrderDetailsRouteArgs(key: key, salesOrderId: salesOrderId),
           initialChildren: children,
         );
 
   static const String name = 'OrderDetailsRoute';
 
-  static const PageInfo<OrderDetailsRouteArgs> page =
-      PageInfo<OrderDetailsRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OrderDetailsRouteArgs>();
+      return WrappedRoute(
+        child: OrderDetailsPage(key: args.key, salesOrderId: args.salesOrderId),
+      );
+    },
+  );
 }
 
 class OrderDetailsRouteArgs {
-  const OrderDetailsRouteArgs({
-    this.key,
-    required this.salesOrderId,
-  });
+  const OrderDetailsRouteArgs({this.key, required this.salesOrderId});
 
   final Key? key;
 
@@ -309,20 +229,32 @@ class OrderDetailsRouteArgs {
   String toString() {
     return 'OrderDetailsRouteArgs{key: $key, salesOrderId: $salesOrderId}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! OrderDetailsRouteArgs) return false;
+    return key == other.key && salesOrderId == other.salesOrderId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ salesOrderId.hashCode;
 }
 
 /// generated route for
 /// [OrderHistoryPage]
 class OrderHistoryRoute extends PageRouteInfo<void> {
   const OrderHistoryRoute({List<PageRouteInfo>? children})
-      : super(
-          OrderHistoryRoute.name,
-          initialChildren: children,
-        );
+      : super(OrderHistoryRoute.name, initialChildren: children);
 
   static const String name = 'OrderHistoryRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const OrderHistoryPage());
+    },
+  );
 }
 
 /// generated route for
@@ -345,8 +277,19 @@ class ProductDetailsRoute extends PageRouteInfo<ProductDetailsRouteArgs> {
 
   static const String name = 'ProductDetailsRoute';
 
-  static const PageInfo<ProductDetailsRouteArgs> page =
-      PageInfo<ProductDetailsRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProductDetailsRouteArgs>();
+      return WrappedRoute(
+        child: ProductDetailsPage(
+          key: args.key,
+          product: args.product,
+          heroTag: args.heroTag,
+        ),
+      );
+    },
+  );
 }
 
 class ProductDetailsRouteArgs {
@@ -366,20 +309,34 @@ class ProductDetailsRouteArgs {
   String toString() {
     return 'ProductDetailsRouteArgs{key: $key, product: $product, heroTag: $heroTag}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProductDetailsRouteArgs) return false;
+    return key == other.key &&
+        product == other.product &&
+        heroTag == other.heroTag;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ product.hashCode ^ heroTag.hashCode;
 }
 
 /// generated route for
 /// [ProfilePage]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})
-      : super(
-          ProfileRoute.name,
-          initialChildren: children,
-        );
+      : super(ProfileRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfilePage();
+    },
+  );
 }
 
 /// generated route for
@@ -391,24 +348,25 @@ class SubCategoriesRoute extends PageRouteInfo<SubCategoriesRouteArgs> {
     List<PageRouteInfo>? children,
   }) : super(
           SubCategoriesRoute.name,
-          args: SubCategoriesRouteArgs(
-            key: key,
-            categoryId: categoryId,
-          ),
+          args: SubCategoriesRouteArgs(key: key, categoryId: categoryId),
           initialChildren: children,
         );
 
   static const String name = 'SubCategoriesRoute';
 
-  static const PageInfo<SubCategoriesRouteArgs> page =
-      PageInfo<SubCategoriesRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SubCategoriesRouteArgs>();
+      return WrappedRoute(
+        child: SubCategoriesPage(key: args.key, categoryId: args.categoryId),
+      );
+    },
+  );
 }
 
 class SubCategoriesRouteArgs {
-  const SubCategoriesRouteArgs({
-    this.key,
-    required this.categoryId,
-  });
+  const SubCategoriesRouteArgs({this.key, required this.categoryId});
 
   final Key? key;
 
@@ -418,4 +376,14 @@ class SubCategoriesRouteArgs {
   String toString() {
     return 'SubCategoriesRouteArgs{key: $key, categoryId: $categoryId}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SubCategoriesRouteArgs) return false;
+    return key == other.key && categoryId == other.categoryId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ categoryId.hashCode;
 }

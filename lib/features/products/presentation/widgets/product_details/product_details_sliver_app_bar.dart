@@ -147,7 +147,7 @@ class _DotsIndicatorWidget extends StatelessWidget {
             ),
             child: DotsIndicator(
               dotsCount: images.length,
-              position: state,
+              position: state.roundToDouble(),
             ),
           );
         },

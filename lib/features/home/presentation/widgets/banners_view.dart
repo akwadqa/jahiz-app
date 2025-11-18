@@ -49,7 +49,7 @@ class BannersView extends StatelessWidget {
             BlocBuilder<SliderIndicatorCubit, int>(builder: (context, state) {
               return DotsIndicator(
                   dotsCount: bannersBlock.data.length,
-                  position: state,
+                  position: state.roundToDouble(),
                   decorator: const DotsDecorator(
                     size: Size.square(8.0),
                     activeSize: Size.square(8.0),
