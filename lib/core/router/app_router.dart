@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart' hide Notification;
+import 'package:jahiz/features/home/presentation/pages/search_page.dart';
 import 'package:jahiz/features/products/domain/entities/product.dart';
 import '../../features/addresses/presentation/pages/addresses_page.dart';
 import '../../features/cart/presentation/pages/cart_page.dart';
@@ -37,6 +38,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: OrderDetailsRoute.page),
         AutoRoute(page: AddressesRoute.page),
         AutoRoute(page: NotificationsRoute.page),
+        AutoRoute(page: SearchRoute.page),
         AutoRoute(page: NotificationDetailsRoute.page)
       ];
 }

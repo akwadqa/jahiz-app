@@ -340,6 +340,22 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SearchPage]
+class SearchRoute extends PageRouteInfo<void> {
+  const SearchRoute({List<PageRouteInfo>? children})
+      : super(SearchRoute.name, initialChildren: children);
+
+  static const String name = 'SearchRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SearchPage();
+    },
+  );
+}
+
+/// generated route for
 /// [SubCategoriesPage]
 class SubCategoriesRoute extends PageRouteInfo<SubCategoriesRouteArgs> {
   SubCategoriesRoute({

@@ -97,6 +97,8 @@ class _CategoryItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
+                //TODO
+                // category.websiteTitle ?? 'web',
                 category.websiteTitle!,
                 style: Theme.of(context)
                     .textTheme

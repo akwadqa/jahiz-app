@@ -39,16 +39,17 @@ class BannersView extends StatelessWidget {
                           fit: BoxFit.fitWidth,
                         )),
                 options: CarouselOptions(
-                  onPageChanged: (page, _) =>
-                      context.read<SliderIndicatorCubit>().page = page,
-                  viewportFraction: 1.0,
-                  autoPlay: true,
-                ),
+                    onPageChanged: (page, _) =>
+                        context.read<SliderIndicatorCubit>().page = page,
+                    viewportFraction: 1.0,
+                    // autoPlay: true,
+                    autoPlay: bannersBlock.data.length > 1),
               ),
             ),
             BlocBuilder<SliderIndicatorCubit, int>(builder: (context, state) {
               return DotsIndicator(
-                  dotsCount: bannersBlock.data.length,
+                  // dotsCount: bannersBlock.data.length,
+                  dotsCount: bannersBlock.data.length + 1,
                   position: state.roundToDouble(),
                   decorator: const DotsDecorator(
                     size: Size.square(8.0),

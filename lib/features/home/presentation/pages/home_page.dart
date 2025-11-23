@@ -5,6 +5,7 @@ import 'package:jahiz/core/widgets/custom_curve_background.dart';
 import 'package:jahiz/features/app_settings/domain/entities/app_settings.dart';
 import 'package:jahiz/features/app_settings/presentation/bloc/app_settings_cubit.dart';
 import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
+import 'package:jahiz/features/home/presentation/pages/search_page.dart';
 import 'package:jahiz/features/home/presentation/widgets/dynamic_list.dart';
 import '../../../../core/blocs/slider_indicator_cubit.dart';
 import '../../../../core/gen/assets.gen.dart';
@@ -96,14 +97,35 @@ class _SearchTextFormField extends StatelessWidget
               color: Colors.white, borderRadius: BorderRadius.circular(20)),
           child: Row(
             children: [
-              const Spacer(),
+              SizedBox(
+                width: 10,
+              ),
+              // const Spacer(),
               Expanded(
-                  flex: 3,
-                  child: Text(
-                    S.of(context).searchHint,
-                    style: const TextStyle(fontSize: 16),
-                  )),
-              IconButton(onPressed: () {}, icon: Assets.images.search.svg()),
+                flex: 3,
+                child: TextField(
+                  maxLines: 1,
+                  decoration: InputDecoration(
+                      hint: Text(
+                        S.of(context).searchHint,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none),
+                ),
+                // child: Text(
+                //   S.of(context).searchHint,
+                //   style: const TextStyle(fontSize: 16),
+                // )
+              ),
+              IconButton(
+                  onPressed: () {
+                    context.pushRoute(SearchRoute());
+                  },
+                  icon: Assets.images.search.svg()),
             ],
           ),
         ),
