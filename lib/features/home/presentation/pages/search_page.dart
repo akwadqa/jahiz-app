@@ -20,7 +20,8 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        leading: const CustomBackButton(),
+        title: Text(S.of(context).allProducts),
       ),
       body: Column(
         children: [
@@ -44,7 +45,9 @@ class _SearchTextFormField extends StatelessWidget {
       child: InkWell(
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(20)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: AppColors.darkGreen)),
           child: Row(
             children: [
               SizedBox(
@@ -71,11 +74,7 @@ class _SearchTextFormField extends StatelessWidget {
                 //   style: const TextStyle(fontSize: 16),
                 // )
               ),
-              IconButton(
-                  onPressed: () {
-                    // context.pushRoute(SearchRoute());
-                  },
-                  icon: Assets.images.search.svg()),
+              IconButton(onPressed: null, icon: Assets.images.search.svg()),
             ],
           ),
         ),
@@ -83,3 +82,59 @@ class _SearchTextFormField extends StatelessWidget {
     );
   }
 }
+
+//? Use This code to make the grid view
+/*
+BlocBuilder<SubCategoriesCubit, SubCategoriesState>(
+                      buildWhen: (previous, current) =>
+                          (previous as SubCategoriesLoadSuccess)
+                              .productsState !=
+                          (current as SubCategoriesLoadSuccess).productsState,
+                      builder: (context, state) {
+                        return Expanded(
+                          child: (state as SubCategoriesLoadSuccess)
+                                  .productsState is ProductsLoadSuccess
+                              ? GridView.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          mainAxisSpacing: 12,
+                                          crossAxisSpacing: 12,
+                                          childAspectRatio: 2 / 3),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return ProductItem(
+                                        product: (state.productsState
+                                                as ProductsLoadSuccess)
+                                            .products[index],
+                                        viewType: ViewType.grid,
+                                        index: index);
+                                  },
+                                  itemCount: (state.productsState
+                                          as ProductsLoadSuccess)
+                                      .products
+                                      .length,
+                                  padding: const EdgeInsets.only(
+                                      left: 20.0,
+                                      right: 20.0,
+                                      top: 20.0,
+                                      bottom: 120),
+                                )
+                              : state.productsState is ProductsLoadEmpty
+                                  ? const Center(child: NoElementsWidget())
+                                  : state.productsState is ProductsLoadFailure
+                                      ? AppErrorWidget(
+                                          errorText: (state.productsState
+                                                  as ProductsLoadFailure)
+                                              .error,
+                                          onRetryClicked: () => context
+                                              .read<SubCategoriesCubit>()
+                                              .loadProductsOfCategory(state
+                                                  .selectedCategory!
+                                                  .itemGroupId))
+                                      : const Center(
+                                          child: CircularProgressIndicator
+                                              .adaptive()),
+                        );
+                      })
+*/

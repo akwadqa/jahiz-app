@@ -92,6 +92,7 @@ class _SearchTextFormField extends StatelessWidget
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: InkWell(
+        onTap: () => context.pushRoute(SearchRoute()),
         child: Container(
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(20)),
@@ -103,29 +104,16 @@ class _SearchTextFormField extends StatelessWidget
               // const Spacer(),
               Expanded(
                 flex: 3,
-                child: TextField(
-                  maxLines: 1,
-                  decoration: InputDecoration(
-                      hint: Text(
-                        S.of(context).searchHint,
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      border: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none),
+                child: Text(
+                  S.of(context).searchHint,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 // child: Text(
                 //   S.of(context).searchHint,
                 //   style: const TextStyle(fontSize: 16),
                 // )
               ),
-              IconButton(
-                  onPressed: () {
-                    context.pushRoute(SearchRoute());
-                  },
-                  icon: Assets.images.search.svg()),
+              IconButton(onPressed: null, icon: Assets.images.search.svg()),
             ],
           ),
         ),
