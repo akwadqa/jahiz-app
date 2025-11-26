@@ -101,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidEmail": MessageLookupByLibrary.simpleMessage(
       "بريد إلكتروني غير صالح",
     ),
+    "jod": MessageLookupByLibrary.simpleMessage("د.أ"),
+    "jordan": MessageLookupByLibrary.simpleMessage("الأردن"),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "lastName": MessageLookupByLibrary.simpleMessage("الكنية"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
@@ -171,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "requestError": MessageLookupByLibrary.simpleMessage("خطأ في الطلب"),
     "required": MessageLookupByLibrary.simpleMessage("مطلوب"),
     "searchHint": MessageLookupByLibrary.simpleMessage("ما الذي تبحث عنه.."),
+    "searchProducts": MessageLookupByLibrary.simpleMessage("ابحث عن منتجات"),
     "securityCode": MessageLookupByLibrary.simpleMessage("رمز الأمان"),
     "selectYourCity": MessageLookupByLibrary.simpleMessage("اختر مدينتك"),
     "selectYourPayment": MessageLookupByLibrary.simpleMessage(

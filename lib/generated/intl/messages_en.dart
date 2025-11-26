@@ -101,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Internal Server Error",
     ),
     "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid Email"),
+    "jod": MessageLookupByLibrary.simpleMessage("JOD"),
+    "jordan": MessageLookupByLibrary.simpleMessage("Jordan"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -176,6 +178,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "required": MessageLookupByLibrary.simpleMessage("Required"),
     "searchHint": MessageLookupByLibrary.simpleMessage(
       "What are you looking for..",
+    ),
+    "searchProducts": MessageLookupByLibrary.simpleMessage(
+      "Search For Product",
     ),
     "securityCode": MessageLookupByLibrary.simpleMessage("Security Code"),
     "selectYourCity": MessageLookupByLibrary.simpleMessage("Select your city"),

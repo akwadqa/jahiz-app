@@ -77,6 +77,10 @@ class $AssetsImagesGen {
   AssetGenImage get jahezLogo =>
       const AssetGenImage('assets/images/jahez_logo.png');
 
+  /// File path: assets/images/jordan_flag.png
+  AssetGenImage get jordanFlag =>
+      const AssetGenImage('assets/images/jordan_flag.png');
+
   /// File path: assets/images/location_icon.svg
   SvgGenImage get locationIcon =>
       const SvgGenImage('assets/images/location_icon.svg');
@@ -128,6 +132,7 @@ class $AssetsImagesGen {
         folderIcon,
         homeIcon,
         jahezLogo,
+        jordanFlag,
         locationIcon,
         logoutIcon,
         notification,

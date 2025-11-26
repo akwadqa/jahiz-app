@@ -117,16 +117,16 @@ class ProductItem extends StatelessWidget {
   Widget _productPrice(BuildContext context, bool isSmallestPremiumItem) {
     return Wrap(
       children: [
-        Text('${product.discountedPrice} ${S.of(context).qar}',
+        Text('${product.discountedPrice} ${S.of(context).jod}',
             style: TextStyle(
                 fontSize: isSmallestPremiumItem ? 13 : 15,
                 fontWeight: FontWeight.bold,
                 height: 1,
-                color: AppColors.midnight)),
+                color: AppColors.red)),
         if (!isSmallestPremiumItem) const SizedBox(width: 8),
         if (product.discountAmount > 0 && !isSmallestPremiumItem)
           CustomThroughLine(
-              productPrice: '${product.productPrice} ${S.of(context).qar}',
+              productPrice: '${product.productPrice} ${S.of(context).jod}',
               isSmallestPremiumItem: isSmallestPremiumItem),
       ],
     );
@@ -147,13 +147,14 @@ class ProductItem extends StatelessWidget {
               color: AppColors.midnight,
             ),
           ),
-          if (!isSmallestPremiumItem)
-            Text(
-              ' - ${product.stockUom}',
-              style: const TextStyle(
-                height: 1.2,
-              ),
-            ),
+          //TODO : This for -Nos :
+          // if (!isSmallestPremiumItem)
+          //   Text(
+          //     ' - ${product.stockUom}',
+          //     style: const TextStyle(
+          //       height: 1.2,
+          //     ),
+          //   ),
         ],
       ),
     );
@@ -191,6 +192,8 @@ class ProductItem extends StatelessWidget {
         return ElevatedButton(
           onPressed: () => _addToCart(context),
           style: ButtonStyle(
+            backgroundColor:
+                WidgetStatePropertyAll(Theme.of(context).primaryColor),
             shape: MaterialStateProperty.all(
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
             minimumSize: MaterialStateProperty.all(const Size(100, 20)),

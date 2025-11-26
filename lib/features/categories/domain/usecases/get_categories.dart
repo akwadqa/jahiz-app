@@ -9,6 +9,6 @@ class GetCategoriesUseCase {
 
   GetCategoriesUseCase(this._repository);
 
-  Future<Either<Failure, Category>> call(String category) async =>
-      await _repository.getCategories(category);
+  Future<Either<Failure, Category>> call(String category,String? search) async =>
+      await _repository.getCategories(category,search);
 }

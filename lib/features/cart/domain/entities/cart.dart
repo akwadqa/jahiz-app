@@ -93,7 +93,7 @@ class Cart extends Equatable {
         discountAmount: discountAmount,
         grandTotal: grandTotal,
         status: status,
-        couponCode: couponCode,
+        couponCode: couponCode ?? "",
         couponCodeDetails: couponCodeDetails,
         shippingAddressDetails:
             shippingAddressDetails.map((e) => e.toModel()).toList(),

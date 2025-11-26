@@ -60,18 +60,51 @@ class CategoriesRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CheckoutPage]
-class CheckoutRoute extends PageRouteInfo<void> {
-  const CheckoutRoute({List<PageRouteInfo>? children})
-      : super(CheckoutRoute.name, initialChildren: children);
+class CheckoutRoute extends PageRouteInfo<CheckoutRouteArgs> {
+  CheckoutRoute({
+    Key? key,
+    required Address address,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CheckoutRoute.name,
+          args: CheckoutRouteArgs(key: key, address: address),
+          initialChildren: children,
+        );
 
   static const String name = 'CheckoutRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return WrappedRoute(child: const CheckoutPage());
+      final args = data.argsAs<CheckoutRouteArgs>();
+      return WrappedRoute(
+        child: CheckoutPage(key: args.key, address: args.address),
+      );
     },
   );
+}
+
+class CheckoutRouteArgs {
+  const CheckoutRouteArgs({this.key, required this.address});
+
+  final Key? key;
+
+  final Address address;
+
+  @override
+  String toString() {
+    return 'CheckoutRouteArgs{key: $key, address: $address}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CheckoutRouteArgs) return false;
+    return key == other.key && address == other.address;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ address.hashCode;
 }
 
 /// generated route for
@@ -350,7 +383,7 @@ class SearchRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SearchPage();
+      return WrappedRoute(child: const SearchPage());
     },
   );
 }

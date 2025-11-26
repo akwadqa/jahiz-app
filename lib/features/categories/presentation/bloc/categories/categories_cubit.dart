@@ -12,10 +12,21 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   final GetCategoriesUseCase _getCategoriesUseCase;
 
+  Future<void> searchProduct({String search = ''}) async {
+    emit(CategoriesLoadInProgress());
+    final failureOrCategory =
+        await _getCategoriesUseCase(AppConstants.mainCategoriesId, search);
+    failureOrCategory.fold(
+        (failure) => emit(CategoriesLoadFailure(failure.message)),
+        (category) => category.products == null || category.products!.isEmpty
+            ? emit(CategoriesLoadEmpty())
+            : emit(CategoriesLoadSuccess(category)));
+  }
+
   Future<void> getCategories() async {
     emit(CategoriesLoadInProgress());
     final failureOrCategory =
-        await _getCategoriesUseCase(AppConstants.mainCategoriesId);
+        await _getCategoriesUseCase(AppConstants.mainCategoriesId, null);
     failureOrCategory.fold(
         (failure) => emit(CategoriesLoadFailure(failure.message)),
         (category) =>

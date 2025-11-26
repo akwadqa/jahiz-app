@@ -20,6 +20,7 @@ class ContainedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 32,
       decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: backgroundColor,
@@ -34,7 +35,10 @@ class ContainedButton extends StatelessWidget {
       margin: margin,
       child: Center(
           child: IconButton(
-              icon: icon, color: Colors.black, onPressed: onPressed)),
+              padding: EdgeInsets.zero,
+              icon: icon,
+              color: Colors.black,
+              onPressed: onPressed)),
     );
   }
 }

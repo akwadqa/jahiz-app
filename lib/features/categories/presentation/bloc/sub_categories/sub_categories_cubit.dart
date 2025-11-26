@@ -19,7 +19,7 @@ class SubCategoriesCubit extends Cubit<SubCategoriesState> {
 
   Future<void> getSubCategories() async {
     emit(SubCategoriesLoadInProgress());
-    final failureOrCategory = await _getCategoriesUseCase(_categoryId);
+    final failureOrCategory = await _getCategoriesUseCase(_categoryId,null);
     failureOrCategory
         .fold((failure) => emit(SubCategoriesLoadFailure(failure.message)),
             (category) async {
@@ -48,7 +48,7 @@ class SubCategoriesCubit extends Cubit<SubCategoriesState> {
                 .where((element) => element.itemGroupId == categoryId)
                 .toList()
                 .first));
-    final failureOrCategory = await _getCategoriesUseCase(categoryId);
+    final failureOrCategory = await _getCategoriesUseCase(categoryId, null);
     failureOrCategory.fold(
         (failure) => emit((state as SubCategoriesLoadSuccess)
             .copyWith(productsState: ProductsLoadFailure(failure.message))),

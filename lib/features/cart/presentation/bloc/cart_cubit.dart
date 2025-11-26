@@ -42,11 +42,14 @@ class CartCubit extends Cubit<CartState> {
       if (cart.shippingAddressDetails.isEmpty) {
         showLocationSelectorBottomSheet(context).then((address) {
           if (address != null) {
+            print('++++++++++++++++++++');
+            print(address);
             getIt<CartService>().updateCartAddress(address);
           }
         });
       } else {
-        await context.pushRoute(const CheckoutRoute());
+        await context.pushRoute(
+            CheckoutRoute(address: cart.shippingAddressDetails.first));
       }
     } else {
       await showSignUpLoginBottomSheet(context);

@@ -22,7 +22,7 @@ class OrderItemWidget extends StatelessWidget {
       ])),
       title: Text(itemName,
           style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500)),
-      trailing: Text('${amount.toStringAsFixed(2)} ${S.of(context).qar}',
+      trailing: Text('${amount.toStringAsFixed(2)} ${S.of(context).jod}',
           style: TextStyle(
               fontSize: 13.0,
               color: Theme.of(context).primaryColor,

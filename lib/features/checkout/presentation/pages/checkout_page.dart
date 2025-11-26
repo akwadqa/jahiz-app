@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 // import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/addresses/domain/entities/address.dart';
+import 'package:jahiz/features/addresses/presentation/bloc/get_addresses/get_addresses_cubit.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_back_button.dart';
@@ -30,10 +32,12 @@ import '../../../payment/presentation/widgets/payment_widget.dart';
 
 @RoutePage()
 class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
-  const CheckoutPage({super.key});
+  const CheckoutPage({super.key, required this.address});
+  final Address address;
 
   @override
   Widget build(BuildContext context) {
+    // final address = context.read<UpdateCartCubit>().state as UpdateCartLoaded;
     return Scaffold(
       appBar: AppBar(
         leading: const CustomBackButton(),
@@ -60,9 +64,26 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
                         style: const TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10.0),
+                    // BlocBuilder<GetAddressesCubit, GetAddressesState>(
+                    //   builder: (context, state) {
+                    //     if (state is GetAddressesLoaded) {
+                    //       return AddressItem(
+                    //           //   //TODO :
+                    //           // address: cart.shippingAddressDetails.first,
+                    //           address: state.addresses.first,
+                    //           isChangeable: true);
+                    //     }
+                    //     return SizedBox();
+                    //   },
+                    // ),
                     AddressItem(
-                        address: cart.shippingAddressDetails.first,
-                        isChangeable: true),
+                      address: cart.shippingAddressDetails.first,
+                      isChangeable: true,
+                    ),
+                    // AddressItem(
+                    //     //TODO :
+                    //     address: address,
+                    //     isChangeable: true),
                     const SizedBox(height: 20.0),
                     const YourOrderText(),
                     _ItemsList(cartItems: cart.items),
@@ -110,6 +131,8 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(value: context.read<CartCubit>()),
+        // BlocProvider.value(
+        //     value: context.read<GetAddressesCubit>()..getAddresses()),
         BlocProvider.value(value: context.read<UpdateCartCubit>()),
         BlocProvider(
             create: (_) => getIt<PaymentMethodsCubit>()..getPaymentMethods()),
@@ -339,65 +362,68 @@ class _PaymentAndConfirmationSectionState
       ),
     );
   }
-Future<dynamic> _showSuccessPaymentDialog(String salesOrderId,
-    [String? message]) {
-  return showDialog(
-    context: context,
-    barrierDismissible: false, // prevent dismiss on tap outside
-    builder: (ctx) {
-      return AlertDialog(
-        title: Text(S.of(context).thankYou),
-        content: Text(message ?? S.of(context).orderAndPaymentPlaced),
-        actions: [
-          TextButton(
-            onPressed: () {
-              getIt<CartService>().clearCart();
-              context.router.pushAndPopUntil(
-                const MainRoute(),
-                predicate: (route) => false,
-              );
-            },
-            child: Text(S.of(context).homePage),
-          ),
-          TextButton(
-            onPressed: () {
-              getIt<CartService>().clearCart();
-              context.router.pushAndPopUntil(
-                const MainRoute(),
-                predicate: (route) => false,
-              );
-              context.pushRoute(OrderDetailsRoute(salesOrderId: salesOrderId));
-            },
-            child: Text(S.of(context).orderDetails),
-          ),
-        ],
-      );
-    },
-  );
-}
-Future<dynamic> _showFailPaymentDialog() {
-  return showDialog(
-    context: context,
-    barrierDismissible: false, // prevent dismiss
-    builder: (ctx) {
-      return AlertDialog(
-        title: Text(S.of(context).paymentIsFailed),
-        content: Text(S.of(context).orderPaymentFailed),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop(); // just close
-            },
-            child: Text(
-              S.of(context).ok,
-              style: TextStyle(color: Theme.of(context).primaryColor),
+
+  Future<dynamic> _showSuccessPaymentDialog(String salesOrderId,
+      [String? message]) {
+    return showDialog(
+      context: context,
+      barrierDismissible: false, // prevent dismiss on tap outside
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text(S.of(context).thankYou),
+          content: Text(message ?? S.of(context).orderAndPaymentPlaced),
+          actions: [
+            TextButton(
+              onPressed: () {
+                getIt<CartService>().clearCart();
+                context.router.pushAndPopUntil(
+                  const MainRoute(),
+                  predicate: (route) => false,
+                );
+              },
+              child: Text(S.of(context).homePage),
             ),
-          ),
-        ],
-      );
-    },
-  );
-}
+            TextButton(
+              onPressed: () {
+                getIt<CartService>().clearCart();
+                context.router.pushAndPopUntil(
+                  const MainRoute(),
+                  predicate: (route) => false,
+                );
+                context
+                    .pushRoute(OrderDetailsRoute(salesOrderId: salesOrderId));
+              },
+              child: Text(S.of(context).orderDetails),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<dynamic> _showFailPaymentDialog() {
+    return showDialog(
+      context: context,
+      barrierDismissible: false, // prevent dismiss
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text(S.of(context).paymentIsFailed),
+          content: Text(S.of(context).orderPaymentFailed),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx).pop(); // just close
+              },
+              child: Text(
+                S.of(context).ok,
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   // Future<dynamic> _showSuccessPaymentDialog(String salesOrderId,
   //     [String? message]) {
@@ -430,7 +456,7 @@ Future<dynamic> _showFailPaymentDialog() {
 
   // Future<dynamic> _showFailPaymentDialog() {
   //   return showDialog(context: context, builder: (n)=>Container());
-    
+
   //   // AwesomeDialog(
   //   //   context: context,
   //   //   dialogType: DialogType.error,

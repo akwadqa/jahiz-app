@@ -26,7 +26,7 @@ class OrderContanier extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(S.of(context).orderPrice),
-              Text('${orderPrice!.toStringAsFixed(2)} ${S.of(context).qar}'),
+              Text('${orderPrice!.toStringAsFixed(2)} ${S.of(context).jod}'),
             ],
           ),
         ],
@@ -37,7 +37,7 @@ class OrderContanier extends StatelessWidget {
             children: [
               Text(S.of(context).discount),
               Text(
-                  '${discountAmount!.toStringAsFixed(2)} ${S.of(context).qar}'),
+                  '${discountAmount!.toStringAsFixed(2)} ${S.of(context).jod}'),
             ],
           ),
         ],
@@ -47,7 +47,7 @@ class OrderContanier extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(S.of(context).delivery),
-              Text('${taxAmount!.toStringAsFixed(2)} ${S.of(context).qar}'),
+              Text('${taxAmount!.toStringAsFixed(2)} ${S.of(context).jod}'),
             ],
           ),
         ],
@@ -58,7 +58,7 @@ class OrderContanier extends StatelessWidget {
             Text(S.of(context).totalPrice,
                 style: const TextStyle(
                     fontSize: 16.0, fontWeight: FontWeight.bold)),
-            Text('${grandTotal.toStringAsFixed(2)} ${S.of(context).qar}',
+            Text('${grandTotal.toStringAsFixed(2)} ${S.of(context).jod}',
                 style: const TextStyle(
                     fontSize: 16.0, fontWeight: FontWeight.bold)),
           ],

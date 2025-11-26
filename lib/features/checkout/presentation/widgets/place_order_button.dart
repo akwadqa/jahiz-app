@@ -18,7 +18,11 @@ class PlaceOrderButton extends StatelessWidget {
             errorText: state.message, onRetryClicked: onPressed);
       }
       return ElevatedButton(
-          onPressed: onPressed, child: Text(S.of(context).confirm));
+          onPressed: onPressed,
+          style: ButtonStyle(
+              backgroundColor:
+                  WidgetStatePropertyAll(Theme.of(context).primaryColor)),
+          child: Text(S.of(context).confirm));
     });
   }
 }

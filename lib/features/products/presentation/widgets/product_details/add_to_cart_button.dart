@@ -23,13 +23,15 @@ class AddToCartButton extends StatelessWidget {
         return SizedBox(
           width: double.infinity,
           child: ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor:
+                    WidgetStatePropertyAll(Theme.of(context).primaryColor)),
             onPressed: () {
               if (context.read<AuthCubit>().state is Authenticated) {
-                context
-                    .read<AddDetailedProductToCartCubit>()
-                    .addToCart(detailedProduct,
-                        context.read<PriceModifierCubit>().state.quantity)
-                    .then((value) => context.maybePop());
+                context.read<AddDetailedProductToCartCubit>().addToCart(
+                    detailedProduct,
+                    context.read<PriceModifierCubit>().state.quantity);
+                // .then((value) => context.maybePop());
               } else {
                 showSignUpLoginBottomSheet(context);
               }
@@ -37,7 +39,7 @@ class AddToCartButton extends StatelessWidget {
             child: BlocBuilder<PriceModifierCubit, PriceModifier>(
                 builder: (context, state) {
               return Text(
-                  '${S.of(context).addToCart} ${state.quantity * detailedProduct.discountedPrice + state.amount} ${S.of(context).qar}');
+                  '${S.of(context).addToCart} ${state.quantity * detailedProduct.discountedPrice + state.amount} ${S.of(context).jod}');
             }),
           ),
         );

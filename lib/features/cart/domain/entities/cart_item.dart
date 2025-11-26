@@ -74,7 +74,15 @@ class CartItem extends Equatable {
       discountAmount: discountAmount,
       rate: rate,
       amount: amount,
-      productOptions: productOptions.map((e) => e.toModel()).toList(),
+      productOptions: productOptions.isNotEmpty
+          ? productOptions.map((e) => e.toModel()).toList()
+          : [
+              CartProductOption(
+                      productOptionFieldName: "",
+                      productOptionFieldValue: "",
+                      isPriceModifier: 0)
+                  .toModel()
+            ],
     );
   }
 

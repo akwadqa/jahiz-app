@@ -111,7 +111,8 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
                                         Text(S.of(context).subTotal,
                                             style: _style()),
                                         Text(
-                                            '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
+                                            // '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
+                                            '${S.of(context).jod} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
                                             style: _style()),
                                       ],
                                     ),
@@ -125,6 +126,9 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 16.0),
                             child: ElevatedButton(
+                                style: ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        Theme.of(context).primaryColor)),
                                 onPressed: () => context
                                     .read<CartCubit>()
                                     .checkout(state.cart, context),
@@ -226,9 +230,12 @@ class _CartItem extends StatelessWidget {
                     listenWhen: (previous, current) => previous != current,
                     listener: (context, state) {
                       if (state is UpdateCartLoaded) {
+                        //TODO
                         if (cart.shippingAddressDetails.isEmpty &&
                             state.cart.shippingAddressDetails.isNotEmpty) {
-                          context.pushRoute(const CheckoutRoute());
+                          context.pushRoute(CheckoutRoute(
+                              address:
+                                  state.cart.shippingAddressDetails.first));
                         }
                         context.read<CartCubit>().setCart(state.cart);
                       }
@@ -271,7 +278,8 @@ class _CartItem extends StatelessWidget {
                           ],
                         ),
                         Text(
-                            '${cartItem.amount.toStringAsFixed(2)} ${S.of(context).qar}',
+                            // '${cartItem.amount.toStringAsFixed(2)} ${S.of(context).qar}',
+                            '${cartItem.amount.toStringAsFixed(2)} ${S.of(context).jod}',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge!

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jahiz/features/categories/presentation/bloc/categories/categories_cubit.dart';
 import 'package:jahiz/features/home/presentation/widgets/dynamic_layout.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../products/presentation/widgets/product_item.dart';
@@ -80,10 +81,15 @@ class SubCategoriesPage extends StatelessWidget implements AutoRouteWrapper {
                                         selected: state.selectedCategory == e,
                                         onSelected: (value) {
                                           if (value) {
+                                            //TODO
                                             context
                                                 .read<SubCategoriesCubit>()
                                                 .loadProductsOfCategory(
                                                     e.itemGroupId);
+                                          } else {
+                                            context
+                                                .read<SubCategoriesCubit>()
+                                                .getSubCategories();
                                           }
                                         },
                                       ))

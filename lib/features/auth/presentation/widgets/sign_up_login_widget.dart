@@ -80,6 +80,9 @@ class SignUpLoginWidget extends StatelessWidget {
                       .checkUserValidation);
             }
             return ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      WidgetStatePropertyAll(Theme.of(context).primaryColor)),
               onPressed:
                   context.read<CheckUserValidationCubit>().checkUserValidation,
               child: Text(S.of(context).continueLabel),

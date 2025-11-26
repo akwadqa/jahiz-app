@@ -25,19 +25,20 @@ class ProductDetailsData extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(detailedProduct.websiteItemName, style: _titleTextStyle()),
-                Text('- ${detailedProduct.stockUom}',
-                    style: const TextStyle(color: AppColors.midnight)),
+                //TODO : This for - Nom
+                // Text('- ${detailedProduct.stockUom}',
+                //     style: const TextStyle(color: AppColors.midnight)),
                 const SizedBox(height: 8),
                 Row(
                   children: [
                     Text(
-                        '${detailedProduct.discountedPrice} ${S.of(context).qar}',
+                        '${detailedProduct.discountedPrice} ${S.of(context).jod}',
                         style: _titleTextStyle(fontSize: 20)),
                     const SizedBox(width: 10),
                     if (detailedProduct.discountAmount > 0)
                       CustomThroughLine(
                           productPrice:
-                              '${detailedProduct.itemPrice} ${S.of(context).qar}',
+                              '${detailedProduct.itemPrice} ${S.of(context).jod}',
                           isSmallestPremiumItem: false),
                   ],
                 ),

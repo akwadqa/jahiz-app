@@ -36,7 +36,8 @@ class CustomListTile extends StatelessWidget {
             ),
           ),
           trailing: Text(
-            S.of(context).qatar,
+            // S.of(context).qatar,
+            S.of(context).jordan,
             style: const TextStyle(
               fontSize: 18,
               color: AppColors.gray,

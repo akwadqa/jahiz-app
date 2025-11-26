@@ -3,6 +3,7 @@ import '../gen/fonts.gen.dart';
 import 'app_colors.dart';
 
 abstract class AppTheme {
+  // static ThemeData lightTheme(String? primaryColor) => ThemeData(
   static ThemeData lightTheme(String? primaryColor) => ThemeData(
       fontFamily: FontFamily.qatar,
       appBarTheme: _appBarTheme,
@@ -10,7 +11,7 @@ abstract class AppTheme {
           backgroundColor: Colors.white,
           primarySwatch: primaryColor != null
               ? _createMaterialColor(HexColor(primaryColor))
-              : Colors.blue),
+              : _createMaterialColor(HexColor('#098736'))),
       inputDecorationTheme: _inputDecorationTheme(primaryColor),
       primarySwatch: primaryColor != null
           ? _createMaterialColor(HexColor(primaryColor))

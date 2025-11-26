@@ -38,7 +38,9 @@ class _AppState extends State<App> {
                 routerConfig: _appRouter.config(),
                 debugShowCheckedModeBanner: false,
                 title: AppConstants.appTitle,
-                theme: AppTheme.lightTheme(state?.primaryColor).copyWith(
+                //TODO :
+                // theme: AppTheme.lightTheme(state?.primaryColor).copyWith(
+                theme: AppTheme.lightTheme(null).copyWith(
                     pageTransitionsTheme: const PageTransitionsTheme(builders: {
                   TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
                   TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),

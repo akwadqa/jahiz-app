@@ -15,9 +15,9 @@ class QatarInternationalCodeWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          Assets.images.qatarFlag.image(),
+          Assets.images.jordanFlag.image(width: 28),
           const SizedBox(width: 6),
-          Text(AppConstants.qatarInternationalCodeLabel,
+          Text(AppConstants.jordanInternationalCodeLabel,
               style: TextStyle(
                   fontSize: 18, color: Theme.of(context).primaryColor))
         ],

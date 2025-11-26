@@ -48,7 +48,9 @@ class LoginWidget extends StatelessWidget {
       ),
       stackedSubmitButton: BlocConsumer<LoginCubit, LoginState>(
           listenWhen: (_, state) => state is LoginLoadSuccess,
-          listener: (ctx, state) => context.read<AuthCubit>().setAuthenticated((state as LoginLoadSuccess).token),
+          listener: (ctx, state) => context
+              .read<AuthCubit>()
+              .setAuthenticated((state as LoginLoadSuccess).token),
           builder: (context, state) {
             if (state is LoginLoadInProgress) {
               return const Center(child: CircularProgressIndicator.adaptive());
@@ -59,6 +61,10 @@ class LoginWidget extends StatelessWidget {
                       context.read<LoginCubit>().login(userPhoneNumber));
             }
             return ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    WidgetStatePropertyAll(Theme.of(context).primaryColor),
+              ),
               onPressed: () =>
                   context.read<LoginCubit>().login(userPhoneNumber),
               child: Text(S.of(context).login),

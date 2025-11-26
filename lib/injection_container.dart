@@ -4,6 +4,7 @@ import 'package:jahiz/features/cities/data/datasources/cities_remote_data_source
 import 'package:jahiz/features/cities/data/repositories/cities_repository_impl.dart';
 import 'package:jahiz/features/cities/domain/repositories/cities_repository.dart';
 import 'package:jahiz/features/cities/presentation/blocs/get_cities_cubit.dart';
+import 'package:jahiz/features/home/presentation/blocs/cubit/search_cubit.dart';
 import 'package:jahiz/features/home/presentation/blocs/home_cubit.dart';
 import 'package:jahiz/features/payment/presentation/bloc/credit_card_loading_cubit.dart';
 import 'package:jahiz/features/products/presentation/bloc/product_details_tab_bar_index/product_details_tab_bar_index_cubit.dart';
@@ -103,10 +104,14 @@ final getIt = GetIt.instance;
 Future<void> init() async {
   ///Core
   getIt.registerLazySingleton(() => SelectedLanguageCubit(getIt()));
+  if (!getIt.isRegistered<bool>()) {
+    getIt.registerFactory<bool>(() => false);
+  }
 
   //!Features - home
   //Bloc
   getIt.registerFactory(() => HomeCubit(getIt()));
+  getIt.registerFactory(() => SearchCubit(getIt()));
 
   //UseCases
   getIt.registerLazySingleton(() => GetHomeBlocksUseCase(getIt()));

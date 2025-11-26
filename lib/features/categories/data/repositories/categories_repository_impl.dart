@@ -12,9 +12,9 @@ class CategoriesRepositoryImpl extends NetworkOperationHandler implements Catego
   CategoriesRepositoryImpl(this._remoteDataSource, NetworkInfo networkInfo) : super(networkInfo);
 
   @override
-  Future<Either<Failure, Category>> getCategories(String category) async {
+  Future<Either<Failure, Category>> getCategories(String category,String? search) async {
     return await handleNetworkOperation<Category>(() async {
-      final response = await _remoteDataSource.getCategories(category);
+      final response = await _remoteDataSource.getCategories(category,search);
       return response;
     });
   }

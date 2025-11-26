@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         title: SizedBox(
-            height: 40,
+            height: 60,
             child: BlocBuilder<AppSettingsCubit, AppSettings?>(
                 builder: (context, state) {
               if (state != null) {
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
             })),
         actions: [
           ContainedButton(
-            icon: Assets.images.notification.svg(height: 22, width: 22),
+            icon: Assets.images.notification.svg(height: 15, width: 15),
             onPressed: () => context.pushRoute(const NotificationsRoute()),
             withShadow: false,
             backgroundColor: Colors.white,

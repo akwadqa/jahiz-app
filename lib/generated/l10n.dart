@@ -294,6 +294,16 @@ class S {
     );
   }
 
+  /// `Search For Product`
+  String get searchProducts {
+    return Intl.message(
+      'Search For Product',
+      name: 'searchProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You have items in your cart`
   String get youHaveItemsInYourCart {
     return Intl.message(
@@ -734,6 +744,11 @@ class S {
     return Intl.message('Qatar', name: 'qatar', desc: '', args: []);
   }
 
+  /// `Jordan`
+  String get jordan {
+    return Intl.message('Jordan', name: 'jordan', desc: '', args: []);
+  }
+
   /// `Request Error`
   String get requestError {
     return Intl.message(
@@ -912,6 +927,11 @@ class S {
   /// `QAR`
   String get qar {
     return Intl.message('QAR', name: 'qar', desc: '', args: []);
+  }
+
+  /// `JOD`
+  String get jod {
+    return Intl.message('JOD', name: 'jod', desc: '', args: []);
   }
 
   /// `Zone number`
