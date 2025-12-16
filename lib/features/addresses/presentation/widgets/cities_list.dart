@@ -42,6 +42,9 @@ class CitiesList extends StatelessWidget {
         return const Center(child: CircularProgressIndicator.adaptive());
       }),
       submitButton: ElevatedButton(
+        style: ButtonStyle(
+            backgroundColor:
+                WidgetStatePropertyAll(Theme.of(context).primaryColor)),
         onPressed: () => context.maybePop(
             context.read<GetCitiesCubit>().state is GetCitiesLoaded
                 ? (context.read<GetCitiesCubit>().state as GetCitiesLoaded)

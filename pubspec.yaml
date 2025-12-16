@@ -92,7 +92,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/jahez_logo.png"
+  image_path: "assets/splash/foreground_logo.png"
 
 flutter_gen:
   output: lib/core/gen/

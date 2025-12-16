@@ -38,10 +38,10 @@ abstract class SharedFunctions {
           BuildContext context) =>
       qValidator([
         IsRequired(S.of(context).required),
-        MaxLength(8, S.of(context).mustBeEightDigits),
-        MinLength(8, S.of(context).mustBeEightDigits),
+        MaxLength(9, S.of(context).mustBeEightDigits),
+        MinLength(9, S.of(context).mustBeEightDigits),
         RegExpRule(
-            RegExp(r'^([3567])\d+'), S.of(context).qatariPhoneNumberValidator)
+            RegExp(r'^([7])\d+'), S.of(context).qatariPhoneNumberValidator)
       ]);
 
   static String? Function(String?)? emailValidator(BuildContext context) =>

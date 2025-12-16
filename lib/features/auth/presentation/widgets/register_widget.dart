@@ -25,7 +25,7 @@ class RegisterWidget extends StatelessWidget {
             Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
-                    '${AppConstants.qatarInternationalCode}$userPhoneNumber',
+                    '${AppConstants.jordanInternationalCodeLabel}$userPhoneNumber',
                     style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
@@ -90,7 +90,9 @@ class RegisterWidget extends StatelessWidget {
       ),
       submitButton: BlocConsumer<RegisterCubit, RegisterState>(
           listenWhen: (_, state) => state is RegisterLoadSuccess,
-          listener: (ctx, state) => context.read<AuthCubit>().setAuthenticated((state as RegisterLoadSuccess).token),
+          listener: (ctx, state) => context
+              .read<AuthCubit>()
+              .setAuthenticated((state as RegisterLoadSuccess).token),
           builder: (context, state) {
             if (state is RegisterLoadInProgress) {
               return const Center(child: CircularProgressIndicator.adaptive());
@@ -101,6 +103,9 @@ class RegisterWidget extends StatelessWidget {
                       context.read<RegisterCubit>().register(userPhoneNumber));
             }
             return ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStatePropertyAll(Theme.of(context).primaryColor)),
                 onPressed: () =>
                     context.read<RegisterCubit>().register(userPhoneNumber),
                 child: Text(S.of(context).createAccount));

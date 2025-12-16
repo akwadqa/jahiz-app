@@ -77,7 +77,7 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
                     //   },
                     // ),
                     AddressItem(
-                      address: cart.shippingAddressDetails.first,
+                      address: cart.shippingAddressDetails!.first,
                       isChangeable: true,
                     ),
                     // AddressItem(
@@ -86,7 +86,7 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
                     //     isChangeable: true),
                     const SizedBox(height: 20.0),
                     const YourOrderText(),
-                    _ItemsList(cartItems: cart.items),
+                    _ItemsList(cartItems: cart.items!),
                     DashedLine(
                         color: Theme.of(context).primaryColor.withOpacity(0.4)),
                     const SizedBox(height: 18.0),
@@ -107,7 +107,7 @@ class CheckoutPage extends StatelessWidget implements AutoRouteWrapper {
                         taxAmount: cart.otherChargesCalculation.isNotEmpty
                             ? cart.otherChargesCalculation.first.taxAmount
                             : null,
-                        grandTotal: cart.grandTotal),
+                        grandTotal: cart.grandTotal!),
                     const SizedBox(height: 20.0),
                     Text(S.of(context).selectYourPayment,
                         style: const TextStyle(
@@ -299,13 +299,13 @@ class _PaymentAndConfirmationSectionState
                   showPaymentBottomSheet(
                           context: context,
                           paymentMethod: _paymentMethod!,
-                          total: widget.cart.grandTotal)
+                          total: widget.cart.grandTotal!)
                       .then((value) {
                     if (value != null) {
                       if (value) {
                         context
                             .read<PlaceOrderCubit>()
-                            .placeOrder(widget.cart.name, 1);
+                            .placeOrder(widget.cart.name!, 1);
                       } else {
                         _showFailPaymentDialog();
                       }
@@ -337,18 +337,18 @@ class _PaymentAndConfirmationSectionState
                     if (_paymentMethod!.isOffline == 1) {
                       context
                           .read<PlaceOrderCubit>()
-                          .placeOrder(widget.cart.name);
+                          .placeOrder(widget.cart.name!);
                     } else {
                       final paymentService = PaymentService(
                           paymentMethod: _paymentMethod!,
-                          total: widget.cart.grandTotal);
+                          total: widget.cart.grandTotal!);
                       context.read<PlaceOrderCubit>().setLoadingState();
                       paymentService.initiatePayment(onFail: () {
                         _showFailPaymentDialog();
                       }, onSuccess: () {
                         context
                             .read<PlaceOrderCubit>()
-                            .placeOrder(widget.cart.name, 1);
+                            .placeOrder(widget.cart.name!, 1);
                       }).then((value) =>
                           context.read<PlaceOrderCubit>().setInitailState());
                     }

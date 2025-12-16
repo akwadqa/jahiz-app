@@ -9,15 +9,15 @@ class NetworkOperationHandler {
   NetworkOperationHandler(this.networkInfo);
 
   Future<Either<Failure, T>> handleNetworkOperation<T>(Future<T> Function() operation) async {
-    if (await networkInfo.isConnected) {
+    // if (await networkInfo.isConnected) {
       try {
         T result = await operation();
         return Right(result);
       } on ServerException catch (e, stackTrace) {
         return Left(ServerFailure(e.message ?? e.toString(), stackTrace));
       }
-    } else {
-      return Left(OfflineFailure());
-    }
+    // } else {
+    //   return Left(OfflineFailure());
+    // }
   }
 }

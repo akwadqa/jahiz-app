@@ -135,6 +135,9 @@ class AddressFormWidget extends StatelessWidget {
           return const Center(child: CircularProgressIndicator.adaptive());
         }
         return ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor:
+                    WidgetStatePropertyAll(Theme.of(context).primaryColor)),
             onPressed: () => context
                 .read<AddUpdateAddressCubit>()
                 .submit(latLng, address?.addressId),

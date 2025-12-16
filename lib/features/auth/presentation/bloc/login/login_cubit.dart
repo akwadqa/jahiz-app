@@ -31,7 +31,7 @@ class LoginCubit extends Cubit<LoginState> {
       _formKey.currentState!.save();
       emit(LoginLoadInProgress());
       final failureOrAuthResponse = await _loginUseCase(
-          '${AppConstants.qatarInternationalCode}$phoneNumber', _password!);
+          '${AppConstants.jordanInternationalCode}$phoneNumber', _password!);
       failureOrAuthResponse
           .fold((failure) => emit(LoginLoadFailure(failure.message)),
               (authResponse) async {

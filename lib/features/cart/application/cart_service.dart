@@ -30,16 +30,16 @@ class CartService {
       cart = (_cartCubit.state as CartLoaded).cart;
       final productId =
           product is Product ? product.productId : product.websiteItemId;
-      if (cart.items.any((element) => element.itemCode == productId)) {
+      if (cart.items!.any((element) => element.itemCode == productId)) {
         final excistingProduct =
-            cart.items.firstWhere((element) => element.itemCode == productId);
+            cart.items!.firstWhere((element) => element.itemCode == productId);
         final CartItem cartItem = excistingProduct.copyWith(
             qty: excistingProduct.qty + quantity.toDouble(),
             productOptions: cartProductOptions);
-        cart.items.removeWhere((element) => element.itemCode == productId);
-        cart.items.add(cartItem.toModel());
+        cart.items!.removeWhere((element) => element.itemCode == productId);
+        cart.items!.add(cartItem.toModel());
       } else {
-        cart.items.add(product
+        cart.items!.add(product
             .toCartItem()
             .copyWith(
                 productOptions: cartProductOptions, qty: quantity.toDouble())
@@ -58,6 +58,9 @@ class CartService {
           name: '',
           transactionDate: '',
           shippingAddressName: '',
+
+          // shippingAddressName:
+          //     (_cartCubit.state as CartLoaded).cart.shippingAddressName!,
           currency: '',
           totalQty: 0,
           totalTaxesAndCharges: 0,

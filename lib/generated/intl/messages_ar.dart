@@ -113,10 +113,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "الدخول أو التسجيل",
     ),
     "mustBeEightDigits": MessageLookupByLibrary.simpleMessage(
-      "يجب أن يتكون من 8 أرقام",
+      "يجب أن يتكون من 9 أرقام",
     ),
     "mustBeEightDigitsAtLeast": MessageLookupByLibrary.simpleMessage(
-      "يجب أن يتكون من 8 أرقام على الأقل",
+      "يجب أن يتكون من 9 أرقام على الأقل",
     ),
     "myAccount": MessageLookupByLibrary.simpleMessage("حسابي"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("عناويني"),
@@ -158,7 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "qar": MessageLookupByLibrary.simpleMessage("ر.ق"),
     "qatar": MessageLookupByLibrary.simpleMessage("قطر"),
     "qatariPhoneNumberValidator": MessageLookupByLibrary.simpleMessage(
-      "يجب أن يبدأ بالرقم 3 أو 5 أو 6 أو 7",
+      "يجب أن يبدأ بالرقم 7",
     ),
     "receiverDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المستلم"),
     "receiverPhoneNumber": MessageLookupByLibrary.simpleMessage(

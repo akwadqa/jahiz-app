@@ -12,7 +12,7 @@ class CartCountCubit extends Cubit<int> {
   void init() {
     _cartSubscription = cartCubit.stream.listen((state) {
       if (state is CartLoaded) {
-        emit(state.cart.totalQty.toInt());
+        emit(state.cart.totalQty!.toInt());
       } else {
         emit(0);
       }

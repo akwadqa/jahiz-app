@@ -89,48 +89,57 @@ class ProfilePage extends StatelessWidget {
         left: 0.0,
         right: 0.0,
         top: MediaQuery.of(context).size.height * 0.22,
-        child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.all(Radius.circular(50)),
-                boxShadow: [
-                  BoxShadow(
-                      offset: const Offset(0, 5),
-                      color: Colors.black.withOpacity(0.16),
-                      blurRadius: 10)
-                ]),
-            margin: const EdgeInsets.symmetric(horizontal: 60),
-            child: BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
-              if (state is Authenticated) {
-                return BlocBuilder<AppSettingsCubit, AppSettings?>(
-                    builder: (context, state) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Column(
-                      children: [
-                        Text(state?.fullName ?? '',
-                            style: const TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black)),
-                        Text(state?.username ?? '',
-                            style: const TextStyle(color: AppColors.lightGray)),
-                      ],
-                    ),
-                  );
-                });
-              }
-              return TextButton(
-                  onPressed: () => showSignUpLoginBottomSheet(context),
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    textStyle: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: FontFamily.qatar),
-                  ),
-                  child: Text(S.of(context).loginOrRegister));
-            })),
+        child: BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            if (!(state is Authenticated))
+              // ignore: curly_braces_in_flow_control_structures
+              return Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.all(Radius.circular(50)),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: const Offset(0, 5),
+                            color: Colors.black.withOpacity(0.16),
+                            blurRadius: 10)
+                      ]),
+                  margin: const EdgeInsets.symmetric(horizontal: 60),
+                  child: BlocBuilder<AuthCubit, AuthState>(
+                      builder: (context, state) {
+                    if (state is Authenticated) {
+                      return BlocBuilder<AppSettingsCubit, AppSettings?>(
+                          builder: (context, state) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: Column(
+                            children: [
+                              Text(state?.fullName ?? '',
+                                  style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black)),
+                              Text(state?.username ?? '',
+                                  style: const TextStyle(
+                                      color: AppColors.lightGray)),
+                            ],
+                          ),
+                        );
+                      });
+                    }
+                    return TextButton(
+                        onPressed: () => showSignUpLoginBottomSheet(context),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          textStyle: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: FontFamily.qatar),
+                        ),
+                        child: Text(S.of(context).loginOrRegister));
+                  }));
+            return SizedBox();
+          },
+        ),
       )
     ]);
   }

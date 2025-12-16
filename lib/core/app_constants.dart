@@ -7,7 +7,8 @@ abstract class AppConstants {
   static const String qatarInternationalCodeLabel = '+974';
   static const String jordanInternationalCodeLabel = '+962';
   static const String qatarInternationalCode = '974';
-  static const String phoneNumberHint = 'XXXXXXXX';
+  static const String jordanInternationalCode = '962';
+  static const String phoneNumberHint = '7XXXXXXXX';
   // static const String phoneNumberHint = '5XXXXXXX';
   static const String tokenKey = 'TOKEN_KEY';
   static const String mainCategoriesId = 'All Item Groups';

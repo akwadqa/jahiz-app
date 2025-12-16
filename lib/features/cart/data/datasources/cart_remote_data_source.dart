@@ -30,100 +30,12 @@ class CartRemoteDataSourceImpl
 
   @override
   Future<CartModel?> updateCart(CartModel cartModel) async {
-    // CartModel cart = CartModel(
-    //     name: cartModel.name,
-    //     transactionDate: cartModel.transactionDate,
-    //     shippingAddressName: cartModel.shippingAddressName,
-    //     currency: cartModel.currency,
-    //     totalQty: cartModel.totalQty,
-    //     totalTaxesAndCharges: cartModel.totalTaxesAndCharges,
-    //     additionalDiscountPercentage: cartModel.additionalDiscountPercentage,
-    //     discountAmount: cartModel.discountAmount,
-    //     grandTotal: cartModel.grandTotal,
-    //     status: cartModel.status,
-    //     couponCode: cartModel.couponCode,
-    //     couponCodeDetails: cartModel.couponCodeDetails,
-    //     shippingAddressDetails: cartModel.shippingAddressDetails,
-    //     items: [cartModel.items.first],
-
-    //     otherChargesCalculation: cartModel.otherChargesCalculation,
-    //     paymentGateway: cartModel.paymentGateway);
-    // var formData = FormData.fromMap({'items': jsonEncode(cartModel.toJson())});
-    var formData = FormData.fromMap({
-      'items': jsonEncode('''
-{
-        "shipping_address_name": "",
-        "coupon_code": "",
-        "payment_gateway": "Cash on Delivery",
-        "items": [
-            {
-                "Website_item_code": "WEB-ITM-0001",
-                "qty": 2,
-                "product_options": [
-                  {
-                   "option_name":"Storage",
-                   "option_value":"",
-                   "is_price_modifier":""
-                  }
-                ]
-            }
-        ]
-    }
-''')
-    });
-    print('--------------------------');
-    print(formData.fields.first);
-    print(cartModel.shippingAddressName == null); // true ?
-    print("->${cartModel.shippingAddressName}<-");
+    var formData = FormData.fromMap({'items': jsonEncode(cartModel.toJson())});
     print(cartModel.toJson());
     final AppResponseModel<CartModel?> appResponseModel =
         await performRequest<CartModel?>(
-            () => _networkService.post(endpoint: EndPoints.updateCart, data: {
-            
-                  'items': jsonEncode({
-                    "shipping_rule": "Shipping Fees",
-                    // "shipping_rule": {"name": "Shipping Fees"},
-                    "shipping_address_name":
-                        cartModel.shippingAddressName ?? "",
-                    "coupon_code": cartModel.couponCode ?? "",
-                    "payment_gateway":
-                        cartModel.paymentGateway ?? "Cash on Delivery",
-                    "items": cartModel.items.map((item) {
-                      return {
-                        "Website_item_code": item.itemCode,
-                        "qty": item.qty,
-                        "product_options": item.productOptions.map((option) {
-                          return {
-                            "option_name": option.productOptionFieldName,
-                            "option_value": option.productOptionFieldValue,
-                            "is_price_modifier": option.isPriceModifier,
-                          };
-                        }).toList(),
-                      };
-                    }).toList(),
-                  })
-//                   'items': '''
-// {
-//         "shipping_address_name": "",
-//         "coupon_code": "",
-//         "payment_gateway": "Cash on Delivery",
-//         "items": [
-//             {
-//                 "Website_item_code": "WEB-ITM-0001",
-//                 "qty": 2,
-//                 "product_options": [
-//                   {
-//                    "option_name":"Storage",
-//                    "option_value":"",
-//                    "is_price_modifier":""
-//                   }
-//                 ]
-//             }
-//         ]
-//     }
-
-// '''
-                }),
+            () => _networkService.post(
+                endpoint: EndPoints.updateCart, data: formData),
             _parseCartModel);
     return appResponseModel.data;
   }

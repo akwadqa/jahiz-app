@@ -224,20 +224,20 @@ class S {
     );
   }
 
-  /// `Must be 8 digits`
+  /// `Must be 9 digits`
   String get mustBeEightDigits {
     return Intl.message(
-      'Must be 8 digits',
+      'Must be 9 digits',
       name: 'mustBeEightDigits',
       desc: '',
       args: [],
     );
   }
 
-  /// `Must start with 3, 5, 6, or 7`
+  /// `Must start with 7`
   String get qatariPhoneNumberValidator {
     return Intl.message(
-      'Must start with 3, 5, 6, or 7',
+      'Must start with 7',
       name: 'qatariPhoneNumberValidator',
       desc: '',
       args: [],
@@ -254,10 +254,10 @@ class S {
     );
   }
 
-  /// `Must be 8 digits at least`
+  /// `Must be 9 digits at least`
   String get mustBeEightDigitsAtLeast {
     return Intl.message(
-      'Must be 8 digits at least',
+      'Must be 9 digits at least',
       name: 'mustBeEightDigitsAtLeast',
       desc: '',
       args: [],

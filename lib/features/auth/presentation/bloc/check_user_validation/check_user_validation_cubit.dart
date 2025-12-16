@@ -28,7 +28,7 @@ class CheckUserValidationCubit extends Cubit<CheckUserValidationState> {
       _formKey.currentState!.save();
       emit(CheckUserValidationLoadInProgress());
       final failureOrUserIsExist = await _checkUserValidationUseCase(
-          '${AppConstants.qatarInternationalCode}$_phoneNumber');
+          '${AppConstants.jordanInternationalCode}$_phoneNumber');
       failureOrUserIsExist.fold(
           (failure) => emit(CheckUserValidationLoadFailure(failure.message)),
           (userIsExist) =>

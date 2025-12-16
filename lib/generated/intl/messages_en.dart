@@ -113,10 +113,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Login or Register",
     ),
     "mustBeEightDigits": MessageLookupByLibrary.simpleMessage(
-      "Must be 8 digits",
+      "Must be 9 digits",
     ),
     "mustBeEightDigitsAtLeast": MessageLookupByLibrary.simpleMessage(
-      "Must be 8 digits at least",
+      "Must be 9 digits at least",
     ),
     "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
     "myAddresses": MessageLookupByLibrary.simpleMessage("My Addresses"),
@@ -162,7 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "qar": MessageLookupByLibrary.simpleMessage("QAR"),
     "qatar": MessageLookupByLibrary.simpleMessage("Qatar"),
     "qatariPhoneNumberValidator": MessageLookupByLibrary.simpleMessage(
-      "Must start with 3, 5, 6, or 7",
+      "Must start with 7",
     ),
     "receiverDetails": MessageLookupByLibrary.simpleMessage("Receiver Details"),
     "receiverPhoneNumber": MessageLookupByLibrary.simpleMessage(

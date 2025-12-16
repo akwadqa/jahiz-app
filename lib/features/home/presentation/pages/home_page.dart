@@ -33,6 +33,7 @@ class HomePage extends StatelessWidget {
                 builder: (context, state) {
               if (state != null) {
                 return AppCachedNetworkImage(imageUrl: state.appLogo);
+                // return AppCachedNetworkImage(imageUrl: 'https://gp.akwad.qa/files/328927187_919348082568480_721040017669892235_n.jpg');
               }
               return const SizedBox.shrink();
             })),

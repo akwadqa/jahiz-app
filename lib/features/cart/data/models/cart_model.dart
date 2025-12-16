@@ -63,10 +63,10 @@ class CartModel extends Cart {
     final map = <String, dynamic>{};
     map['coupon_code'] = couponCode ?? "";
     map["shipping_address_name"] = shippingAddressName;
-    if (shippingAddressDetails.isNotEmpty) {
-      map['shipping_address_name'] = shippingAddressDetails.first.addressId;
+    if (shippingAddressDetails?.isNotEmpty ?? false) {
+      map['shipping_address_name'] = shippingAddressDetails?.first.addressId;
     }
-    map['items'] = items.map((e) => (e as CartItemModel).toJson()).toList();
+    map['items'] = items?.map((e) => (e as CartItemModel).toJson()).toList();
     map['payment_gateway'] = paymentGateway ?? "";
     return map;
   }

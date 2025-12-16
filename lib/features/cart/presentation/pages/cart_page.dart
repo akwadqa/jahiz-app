@@ -84,7 +84,7 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
                                     child: ListView.separated(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 16.0, vertical: 20.0),
-                                      itemCount: state.cart.items.length,
+                                      itemCount: state.cart.items!.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return _CartItem(
@@ -112,7 +112,7 @@ class CartPage extends StatelessWidget implements AutoRouteWrapper {
                                             style: _style()),
                                         Text(
                                             // '${S.of(context).qar} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
-                                            '${S.of(context).jod} ${state.cart.totalTaxesAndCharges.toStringAsFixed(2)}',
+                                            '${S.of(context).jod} ${state.cart.totalTaxesAndCharges!.toStringAsFixed(2)}',
                                             style: _style()),
                                       ],
                                     ),
@@ -171,7 +171,7 @@ class _CartItem extends StatelessWidget {
   final int index;
   @override
   Widget build(BuildContext context) {
-    final CartItem cartItem = cart.items[index];
+    final CartItem cartItem = cart.items![index];
     return Dismissible(
       key: Key(cartItem.itemCode),
       direction: DismissDirection.endToStart,
@@ -231,11 +231,11 @@ class _CartItem extends StatelessWidget {
                     listener: (context, state) {
                       if (state is UpdateCartLoaded) {
                         //TODO
-                        if (cart.shippingAddressDetails.isEmpty &&
-                            state.cart.shippingAddressDetails.isNotEmpty) {
+                        if (cart.shippingAddressDetails!.isEmpty &&
+                            state.cart.shippingAddressDetails!.isNotEmpty) {
                           context.pushRoute(CheckoutRoute(
                               address:
-                                  state.cart.shippingAddressDetails.first));
+                                  state.cart.shippingAddressDetails!.first));
                         }
                         context.read<CartCubit>().setCart(state.cart);
                       }

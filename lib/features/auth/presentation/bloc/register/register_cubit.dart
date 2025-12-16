@@ -59,7 +59,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           _firstName!,
           _lastName!,
           _email!,
-          '${AppConstants.qatarInternationalCode}$phoneNumber',
+          '${AppConstants.jordanInternationalCode}$phoneNumber',
           _password!);
       failureOrAuthResponse
           .fold((failure) => emit(RegisterLoadFailure(failure.message)),

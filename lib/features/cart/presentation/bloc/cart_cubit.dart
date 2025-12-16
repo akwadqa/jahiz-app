@@ -39,17 +39,15 @@ class CartCubit extends Cubit<CartState> {
 
   void checkout(Cart cart, BuildContext context) async {
     if (_authCubit.state is Authenticated) {
-      if (cart.shippingAddressDetails.isEmpty) {
+      if (cart.shippingAddressDetails!.isEmpty) {
         showLocationSelectorBottomSheet(context).then((address) {
           if (address != null) {
-            print('++++++++++++++++++++');
-            print(address);
             getIt<CartService>().updateCartAddress(address);
           }
         });
       } else {
         await context.pushRoute(
-            CheckoutRoute(address: cart.shippingAddressDetails.first));
+            CheckoutRoute(address: cart.shippingAddressDetails!.first));
       }
     } else {
       await showSignUpLoginBottomSheet(context);

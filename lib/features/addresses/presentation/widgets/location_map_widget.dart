@@ -22,6 +22,9 @@ class LocationMapWidget extends StatelessWidget {
       ),
       scrollPhysics: const NeverScrollableScrollPhysics(),
       submitButton: ElevatedButton(
+        style: ButtonStyle(
+            backgroundColor:
+                WidgetStatePropertyAll(Theme.of(context).primaryColor)),
         onPressed: () {
           context.maybePop().then((value) {
             SharedFunctions.showAddressFormBottomSheet(
